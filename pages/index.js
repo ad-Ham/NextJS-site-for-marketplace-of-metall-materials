@@ -2,6 +2,7 @@ import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout'
 import {Portions} from '../components/Portions'
 import {MainPromos} from '../components/MainPromos'
+import {MainPageNews} from '../components/MainPageNews'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
@@ -24,6 +25,7 @@ export default function Index() {
 				</div>
 				<div className="rightside">
 					<MainPromos/>
+					<MainPageNews/>
 				</div>
 				
 			</div>

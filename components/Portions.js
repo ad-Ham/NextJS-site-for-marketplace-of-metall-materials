@@ -6,17 +6,17 @@ export function Portions(){
 			<p className="portionsHeader">Разделы</p>
 			<ul>
 				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
-				<li className="portionsList"><Link href="/news"><a className="portiona">Новости</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Аналитика</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Публикации</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">ГОСТы</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Калькулятор металлурга</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Справочник металлурга</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Расчет ж/д тарифов</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Полезные материалы</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Прогнозы</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Индекс цен</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Индекс цен LME</a></Link></li>
+				<li className="portionsList"><Link href="/news"><a className="portiona">Конференции</a></Link></li>
 				
 			</ul>
 		</div>
