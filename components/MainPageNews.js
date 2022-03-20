@@ -1,14 +1,20 @@
+import {MainPageImportantNews} from '../components/MainPageImportantNews'
 export function MainPageNews() {
 	return(<>
 		<div className="mainpagenews">
 			<div className="newsmainheader">
 				<h2 className="newsmainheadertext">Новости</h2>
 			</div>
+			<MainPageImportantNews/>
+			<div>
+				
+			</div>
 		</div>
 		<style jsx>{`
 
 			.mainpagenews {
 				margin-top: 11px;
+				margin-left: 31px;
 			}
 
 			.newsmainheader {
@@ -16,7 +22,7 @@ export function MainPageNews() {
 				flex-direction: row;
 				justify-content: center;
 				position: relative;
-				margin-left: 31px;
+				margin-bottom: 11px;
 			}
 
 			.newsmainheadertext {
