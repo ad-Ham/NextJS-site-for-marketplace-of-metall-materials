@@ -1,4 +1,6 @@
 import {MainPageImportantNews} from '../components/MainPageImportantNews'
+import {MainPageNewsPhoto} from '../components/MainPageNewsPhoto'
+
 export function MainPageNews() {
 	return(<>
 		<div className="mainpagenews">
@@ -6,8 +8,8 @@ export function MainPageNews() {
 				<h2 className="newsmainheadertext">Новости</h2>
 			</div>
 			<MainPageImportantNews/>
-			<div>
-				
+			<div className="newsrow">
+				<MainPageNewsPhoto/>
 			</div>
 		</div>
 		<style jsx>{`
@@ -48,6 +50,10 @@ export function MainPageNews() {
 			    position: absolute;
 			    width: calc(50% - 114.7px);
 			    border-top: 2px solid #000;
+			}
+
+			.newsrow {
+				margin-top: 26px;
 			}
 		`}</style>
 	</>)
