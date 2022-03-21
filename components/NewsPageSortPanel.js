@@ -1,31 +1,88 @@
-import Search from '../public/search.svg'
+import SearchNews from '../public/searchNews.svg'
 
 export function NewsPageSortPanel() {
 	return(<>
 		<div className="maindiv">
-			<div>
+			<div className="searchbar">
 				<input type="text" placeholder="Поиск по новостям" className="newssearch"/>
-				<div ><Search className="search"/></div>
+				<SearchNews/>
+			</div>
+			<div className="selectsortbar">
+				<p className="selectsortbarheader">Сортировка по дате</p>
+				<select name="" id="" className="selectsortbartext">
+					<option value="">По убыванию</option>
+					<option value="">По возрастанию</option>
+				</select>
+			</div>
+			<div className="selectsortbar">
+				<p className="selectsortbarheader">Выберите дату</p>
+				<input type="date" className="sortbarcalendar"/>
 			</div>
 		</div>
 		<style jsx>{`
-			.search {
+			.sortbarcalendar {
+				width: 198px;
+				height: 22px;
+				background: #FFF7F7;
 				border: 1px solid #000000;
 				box-sizing: border-box;
-				border-radius: 0px 4px 4px 0px;
+				border-radius: 3px;
+				padding: 7px;
+				box-sizing: border-box;
+				border-radius: 3px;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 99.69%;
+				color: #000;
+			}
+
+			.selectsortbar {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: 
+			}
+
+			.selectsortbarheader{
+				font-weight: 300;
+				font-size: 10px;
+				line-height: 99.69%;
+				margin-bottom: 2px;
+			}
+
+			.selectsortbartext{
+				width: 145px;
+				height: 22px;
+				background: #FFF7F7;
+				border: 1px solid #000000;
+				box-sizing: border-box;
+				border-radius: 3px;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 99.69%;
+				color: #000;
+				padding-left: 7px;
+			}
+
+			.searchbar {
+				display: flex;
+				flex-direction: row;
+				
 			}
 
 			.newssearch {
 				width: 184px;
 				height: 22px;
 				background: #FFF7F7;
-				border: 1px solid #000000;
+				border: 2px solid #000000;
+				border-right: 0;
 				box-sizing: border-box;
 				border-radius: 3px 0px 0px 3px;
 				font-weight: 400;
 				font-size: 12px;
 				line-height: 99.69%;
 				color: #9B9B9B;
+				padding-left: 7px;
 			}
 
 			.maindiv{
@@ -36,10 +93,11 @@ export function NewsPageSortPanel() {
 				border-radius: 4px;
 				margin-left: 25px;
 				margin-bottom: 41px;
-				padding: 0 10px 0 10px;
+				padding: 0 10px 25px 10px;
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				align-items: flex-end;
 			}
 		`}</style>
 	</>)
