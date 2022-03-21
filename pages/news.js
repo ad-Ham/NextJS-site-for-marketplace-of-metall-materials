@@ -2,6 +2,8 @@ import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout'
 import {Portions} from '../components/Portions'
 import {NewsPageMainNews} from '../components/NewsPageMainNews'
+import {NewsCardPhoto} from '../components/NewsCardPhoto'
+import {NewsPageSortPanel} from '../components/NewsPageSortPanel'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
@@ -24,9 +26,14 @@ export default function Index() {
 				</div>
 				<div className="rightside">
 					<NewsPageMainNews/>
+					<NewsPageSortPanel/>
+					<div className="newsrow">
+						<NewsCardPhoto/>
+					</div>
 				</div>
 			</div>
 			<style jsx>{`
+
 				.adbannertop {
 					margin-top: 13px;
 				}

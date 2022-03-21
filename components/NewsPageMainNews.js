@@ -67,6 +67,7 @@ export function NewsPageMainNews() {
 				flex-direction: column;
 				padding-bottom: 12px;
 				border-bottom: 1px solid #C4C4C4;
+				margin-bottom: 15px;
 			}
 
 			.newsmainheader {
