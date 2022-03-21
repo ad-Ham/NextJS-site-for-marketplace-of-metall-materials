@@ -21,6 +21,7 @@ export function MainPromoPhoto() {
 				width: 100%;
 				height: 160px;
 				background-image: url("/photopromo.svg");
+				background-repeat: no-repeat;
 				margin-bottom: 15px;
 			}
 

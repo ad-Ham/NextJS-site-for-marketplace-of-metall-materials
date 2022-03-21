@@ -18,6 +18,7 @@ export function MainPageNewsPhoto() {
 					height: 70px;
 					border-radius: 4px;
 					background-image: url("/photopromo.svg");
+					background-repeat: no-repeat;
 					margin-right: 12px;
 				}
 

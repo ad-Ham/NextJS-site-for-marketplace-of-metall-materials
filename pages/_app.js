@@ -60,6 +60,11 @@ export default function MyApp({ Component, pageProps }) {
           margin: 0 auto;
           flex-grow: 1;
         }
+
+        .photo {
+          background-size: cover;
+          background-position: center;
+        }
       `}
       </style>
     </>

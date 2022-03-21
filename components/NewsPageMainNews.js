@@ -56,6 +56,7 @@ export function NewsPageMainNews() {
 				height: 339px;
 				border-radius: 4px;
 				background-image: url("/photopromo.svg");
+				background-repeat: no-repeat;
 				margin-bottom: 15px;
 			}
 
