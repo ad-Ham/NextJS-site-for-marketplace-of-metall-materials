@@ -29,10 +29,20 @@ export default function Index() {
 					<NewsPageSortPanel/>
 					<div className="newsrow">
 						<NewsCardPhoto/>
+						<NewsCardPhoto/>
+					</div>
+					<div className="newsrow">
+						<NewsCardPhoto/>
+						<NewsCardPhoto/>
 					</div>
 				</div>
 			</div>
 			<style jsx>{`
+				.newsrow {
+					display: flex;
+					flex-direction: row;
+					margin-bottom: 16px;
+				}
 
 				.adbannertop {
 					margin-top: 13px;
