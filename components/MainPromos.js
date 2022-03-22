@@ -62,7 +62,7 @@ export function MainPromos() {
 				font-size: 12px;
 				line-height: 99.69%;
 				padding: 8px 35px 7px 35px;
-
+				color: #000;
 			}
 
 
