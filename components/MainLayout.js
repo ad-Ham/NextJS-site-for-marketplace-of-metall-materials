@@ -86,6 +86,7 @@ export function MainLayout({ children }) {
 					flex-shrink: 0;
 					display: flex;
 					flex-direction: row;
+					margin-top: 24px;
 				}
 
 				.footer-container {
