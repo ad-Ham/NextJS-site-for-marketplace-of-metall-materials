@@ -7,7 +7,7 @@ import Mypromosicon from '../public/mypromosicon.svg'
 import Submitpromoicon from '../public/submitpromoicon.svg'
 import Link from 'next/link'
 
-export default function Index() {
+export default function Profile() {
 	return (
 		<MainLayout>
 			<Head>

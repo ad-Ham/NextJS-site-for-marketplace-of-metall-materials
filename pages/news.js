@@ -9,7 +9,7 @@ import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 
-export default function Index() {
+export default function News() {
 	return (
 		<MainLayout>
 			<Head>
