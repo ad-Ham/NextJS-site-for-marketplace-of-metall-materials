@@ -4,6 +4,7 @@ import {Portions} from '../components/Portions'
 import {NewsPageMainNews} from '../components/NewsPageMainNews'
 import {NewsCardPhoto} from '../components/NewsCardPhoto'
 import {NewsPageSortPanel} from '../components/NewsPageSortPanel'
+import {NewsPages} from '../components/NewsPages'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
@@ -35,6 +36,11 @@ export default function Index() {
 						<NewsCardPhoto/>
 						<NewsCardPhoto/>
 					</div>
+					<div className="newsrow">
+						<NewsCardPhoto/>
+						<NewsCardPhoto/>
+					</div>
+					<NewsPages/>
 				</div>
 			</div>
 			<style jsx>{`
@@ -68,6 +74,7 @@ export default function Index() {
 					display: flex;
 					flex-direction: column;
 					width: 864px;
+					align-items: center;
 
 				}
 			`}</style>
