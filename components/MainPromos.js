@@ -1,26 +1,27 @@
-import {MainPromoPhoto} from '../components/MainPromoPhoto'
-import {PromoNoPhoto} from '../components/PromoNoPhoto'
+import Link from 'next/link'
+import { MainPromoPhoto } from '../components/MainPromoPhoto'
+import { PromoNoPhoto } from '../components/PromoNoPhoto'
 
-export function MainPromos(){
-	return(<>
+export function MainPromos() {
+	return (<>
 		<div className="promosMainBox">
 			<h2 className="promosHeader">Объявления</h2>
 			<div className="menucards">
-				<MainPromoPhoto/>
-				<MainPromoPhoto/>
+				<MainPromoPhoto />
+				<MainPromoPhoto />
 				<div className="promos">
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
-					<PromoNoPhoto/>
+					<PromoNoPhoto />
+					<PromoNoPhoto />
+					<PromoNoPhoto />
+					<PromoNoPhoto />
+					<PromoNoPhoto />
+					<PromoNoPhoto />
+					<PromoNoPhoto />
 				</div>
 			</div>
 			<div className="buttons">
 				<button className="promosButton1">Подать объявление</button>
-				<button className="promosButton2">Все объявления</button>
+				<Link href="/promos"><a className="promosButton2">Все объявления</a></Link>
 			</div>
 		</div>
 		<style jsx>{`
