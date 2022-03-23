@@ -1,4 +1,4 @@
-import Search from '../public/search.svg'
+import Search from '/public/search.svg'
 
 export function SearchHeader() {
 	return (

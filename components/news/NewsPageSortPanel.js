@@ -1,4 +1,4 @@
-import SearchNews from '../public/searchNews.svg'
+import SearchNews from '/public/searchNews.svg'
 
 export function NewsPageSortPanel() {
 	return(<>

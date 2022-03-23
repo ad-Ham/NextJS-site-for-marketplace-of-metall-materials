@@ -1,6 +1,6 @@
-import {MainPageImportantNews} from '../components/MainPageImportantNews'
-import {MainPageNewsPhoto} from '../components/MainPageNewsPhoto'
-import {MainPageNewsNoPhoto} from '../components/MainPageNewsNoPhoto'
+import {MainPageImportantNews} from '../mainpage/MainPageImportantNews'
+import {MainPageNewsPhoto} from '../mainpage/MainPageNewsPhoto'
+import {MainPageNewsNoPhoto} from '../mainpage/MainPageNewsNoPhoto'
 
 export function MainPageNews() {
 	return(<>

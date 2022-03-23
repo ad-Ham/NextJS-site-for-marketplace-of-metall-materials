@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {MainLayout} from '../components/MainLayout'
+import {MainLayout} from '../components/mainlayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {Block404} from '../components/Block404'
 import Adbannertop from '../public/adbannertop.svg'

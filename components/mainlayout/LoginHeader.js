@@ -1,6 +1,6 @@
-import {LoginHeaderInput} from './LoginHeaderInput'
-import {LoginHeaderPassword} from './LoginHeaderPassword'
-import {LoginHeaderButton} from './LoginHeaderButton'
+import {LoginHeaderInput} from '../mainlayout/LoginHeaderInput'
+import {LoginHeaderPassword} from '../mainlayout/LoginHeaderPassword'
+import {LoginHeaderButton} from '../mainLayout/LoginHeaderButton'
 
 export function LoginHeader() {
 	return (

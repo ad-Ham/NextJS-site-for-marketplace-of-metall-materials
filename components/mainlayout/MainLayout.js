@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import {SearchHeader} from './SearchHeader'
-import {LoginHeader} from './LoginHeader'
-import Logo from '../public/logo.svg'
+import {SearchHeader} from '../mainlayout/SearchHeader'
+import {LoginHeader} from '../mainlayout/LoginHeader'
+import Logo from '/public/logo.svg'
 
 export function MainLayout({ children }) {
 	return (

@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { MainPromoPhoto } from '../components/MainPromoPhoto'
-import { PromoNoPhoto } from '../components/PromoNoPhoto'
+import { MainPromoPhoto } from '../mainpage/MainPromoPhoto'
+import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
 
 export function MainPromos() {
 	return (<>

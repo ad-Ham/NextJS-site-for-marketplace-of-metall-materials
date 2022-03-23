@@ -1,4 +1,4 @@
-import Profilepicture from '../public/profilepicture.svg'
+import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
 
 export function PersonalData() {
