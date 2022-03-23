@@ -1,111 +1,99 @@
-import SearchPromos from '../public/searchPromos.svg'
+import SearchNews from '../public/searchNews.svg'
 
 export function PromosPageSortPanel() {
 	return (<>
 		<div className="maindiv">
-			<div className="searchbar">
-				<input type="text" placeholder="Поиск по объявлениям" className="promossearch" />
-				<SearchPromos />
-			</div>
 			<div className="selectsortbar">
-				<p className="selectsortbarheader">Сортировка по цене</p>
-				<select name="" id="" className="selectsortbartext">
-					<option value="">По убыванию цены</option>
-					<option value="">По возрастанию цены</option>
-				</select>
-			</div>
-			<div className="selectsortbar">
-				<p className="selectsortbarheader">Сортировка по категории</p>
-				<select name="" id="" className="selectsortbartext">
-					<option value="">Покупка</option>
-					<option value="">Продажа</option>
-				</select>
-			</div>
-			<div className="selectsortbar">
-				<p className="selectsortbarheader">Выберите дату</p>
-				<input type="date" className="sortbarcalendar" />
+				<span className="selectsortbarheader">Сортировать:</span>
+				<span className="selectsortbardate">Дата</span>
+				<span className="selectsortbarsell">Продажа</span>
+				<span className="selectsortbarbuy">Покупка</span>
+				<button className="postbutton">Подать объявление</button>
 			</div>
 		</div>
 		<style jsx>{`
-			.sortbarcalendar {
-				width: 198px;
-				height: 22px;
-				background: #FFF7F7;
-				border: 1px solid #000000;
-				box-sizing: border-box;
-				border-radius: 3px;
-				padding: 7px;
-				box-sizing: border-box;
-				border-radius: 3px;
-				font-weight: 400;
-				font-size: 12px;
-				line-height: 99.69%;
-				color: #000;
-			}
 
 			.selectsortbar {
-				display: flex;
+				display: inline-block;
+				margin-top:25px;
+				width: 790px;
 				flex-direction: column;
 				align-items: center;
 				justify-content: 
 			}
 
 			.selectsortbarheader{
-				font-weight: 300;
-				font-size: 10px;
+				display: inline-block;
+				position: static;
+				width: 111px;
+				height: 16px;
+				left: 0px;
+				top: 0px;
+				font-family: 'Roboto';
+				font-style: normal;
+				font-weight: 500;
+				font-size: 14px;
 				line-height: 99.69%;
-				margin-bottom: 2px;
 			}
 
-			.selectsortbartext{
-				width: 145px;
-				height: 22px;
-				background: #FFF7F7;
-				border: 1px solid #000000;
-				box-sizing: border-box;
-				border-radius: 3px;
+			.selectsortbardate {
+				display: inline-block;
+				position: static;
+				width: 41px;
+				height: 16px;
+				left: 126px;
+				top: 0px;
+				font-family: 'Roboto';
+				font-style: normal;
 				font-weight: 400;
-				font-size: 12px;
+				font-size: 14px;
 				line-height: 99.69%;
-				color: #000;
-				padding-left: 7px;
 			}
 
-			.searchbar {
-				display: flex;
-				flex-direction: row;
-				
-			}
-
-			.promossearch {
-				width: 184px;
-				height: 22px;
-				background: #FFF7F7;
-				border: 2px solid #000000;
-				border-right: 0;
-				box-sizing: border-box;
-				border-radius: 3px 0px 0px 3px;
+			.selectsortbarsell {
+				display: inline-block;
+				position: static;
+				width: 70px;
+				height: 16px;
+				left: 182px;
+				top: 0px;
+				font-family: 'Roboto';
+				font-style: normal;
 				font-weight: 400;
-				font-size: 12px;
+				font-size: 14px;
 				line-height: 99.69%;
-				color: #9B9B9B;
-				padding-left: 7px;
 			}
 
-			.maindiv{
-				width: 839px;
-				height: 71px;
-				background: #FFFFFF;
-				box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-				border-radius: 4px;
-				margin-left: 25px;
-				margin-bottom: 41px;
-				padding: 0 10px 25px 10px;
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: flex-end;
+			.selectsortbarbuy{
+				display: inline-block;
+				position: static;
+				width: 65px;
+				height: 16px;
+				left: 267px;
+				top: 0px;
+				font-family: 'Roboto';
+				font-style: normal;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 99.69%;
 			}
+
+			.postbutton {
+				margin-left: 333px;
+				width: 170px;
+				height: 45px;
+				left: 1209px;
+				top: 321px;
+				background: #C4C4C4;
+				border: none;
+				border-radius: 4px;	
+				font-family: 'Roboto';
+				font-style: normal;
+				font-weight: 600;
+				font-size: 17px;
+				line-height: 99.69%;
+			}
+
 		`}</style>
 	</>)
 }
