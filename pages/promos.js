@@ -1,15 +1,16 @@
 import Head from 'next/head'
 import { MainLayout } from '../components/MainLayout'
 import { Portions } from '../components/Portions'
-import { MainPromosPages } from '../components/MainPromosPage'
+import { PromosCategoriesSelector } from '../components/PromosCategoriesSelector'
 import { PromosCardPhoto } from '../components/PromosCardPhoto'
+import { PromosPageSearchPanel } from '../components/PromosPageSearchPanel'
 import { PromosPageSortPanel } from '../components/PromosPageSortPanel'
-import { NewsPages } from '../components/NewsPages'
+import { PromosPages } from '../components/PromosPages'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 
-export default function Index() {
+export default function Promos() {
     return (
         <MainLayout>
             <Head>
@@ -22,25 +23,20 @@ export default function Index() {
             <div className="content bothsides">
 
                 <div className="leftside">
+                    <PromosCategoriesSelector />
                     <Portions />
                     <div className="adbannerside"><Link href="https://www.example.com"><Adbannerside /></Link></div>
                 </div>
                 <div className="rightside">
-                    <MainPromosPages />
+                    <PromosPageSearchPanel />
                     <PromosPageSortPanel />
                     <div className="promosrow">
-                        <PromosCardPhoto />
-                        <PromosCardPhoto />
                     </div>
                     <div className="promosrow">
-                        <PromosCardPhoto />
-                        <PromosCardPhoto />
                     </div>
                     <div className="promosrow">
-                        <PromosCardPhoto />
-                        <PromosCardPhoto />
                     </div>
-                    <NewsPages />
+                    <PromosPages />
                 </div>
             </div>
             <style jsx>{`
