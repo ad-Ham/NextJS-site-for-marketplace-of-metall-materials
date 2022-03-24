@@ -16,7 +16,7 @@ export function PromosPageSortPanel() {
 			.selectsortbar {
 				display: inline-block;
 				margin-top:25px;
-				width: 790px;
+				width: 840px;
 				flex-direction: column;
 				align-items: center;
 				justify-content: 
@@ -79,7 +79,7 @@ export function PromosPageSortPanel() {
 			}
 
 			.postbutton {
-				margin-left: 333px;
+				margin-left: 383px;
 				width: 170px;
 				height: 45px;
 				left: 1209px;

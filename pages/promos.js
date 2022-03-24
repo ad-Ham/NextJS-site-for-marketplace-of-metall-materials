@@ -2,9 +2,10 @@ import Head from 'next/head'
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { Portions } from '../components/Portions'
 import { PromosCategoriesSelector } from '../components/promos/PromosCategoriesSelector'
-import { PromosCardPhoto } from '../components/promos/PromosCardPhoto'
 import { PromosPageSearchPanel } from '../components/promos/PromosPageSearchPanel'
 import { PromosPageSortPanel } from '../components/promos/PromosPageSortPanel'
+import { PromosPageListHeader } from '../components/promos/PromosPageListHeader'
+import { PromosPageList } from '../components/promos/PromosPageList'
 import { PromosPages } from '../components/promos/PromosPages'
 import Adbannertop from '/public/adbannertop.svg'
 import Adbannerside from '/public/adbannerside.svg'
@@ -30,20 +31,41 @@ export default function Promos() {
                 <div className="rightside">
                     <PromosPageSearchPanel />
                     <PromosPageSortPanel />
+                    <PromosPageListHeader />
                     <div className="promosrow">
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
                     </div>
                     <div className="promosrow">
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
                     </div>
                     <div className="promosrow">
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                    </div>
+                    <div className="promosrow">
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
                     </div>
                     <PromosPages />
                 </div>
             </div>
             <style jsx>{`
 				.promosrow {
-					display: flex;
 					flex-direction: row;
-					margin-bottom: 16px;
 				}
 
 				.adbannertop {
