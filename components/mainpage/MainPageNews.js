@@ -1,6 +1,7 @@
 import {MainPageImportantNews} from '../mainpage/MainPageImportantNews'
 import {MainPageNewsPhoto} from '../mainpage/MainPageNewsPhoto'
 import {MainPageNewsNoPhoto} from '../mainpage/MainPageNewsNoPhoto'
+import Link from 'next/link'
 
 export function MainPageNews() {
 	return(<>
@@ -15,7 +16,7 @@ export function MainPageNews() {
 			</div>
 			<div className="newsrow">
 				<MainPageNewsPhoto/>
-				<MainPageNewsNoPhoto/>
+				<Link href="/newspage"><a><MainPageNewsNoPhoto/></a></Link>
 			</div>
 		</div>
 		<style jsx>{`
@@ -63,6 +64,7 @@ export function MainPageNews() {
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				align-items: flex-end;
 			}
 		`}</style>
 	</>)

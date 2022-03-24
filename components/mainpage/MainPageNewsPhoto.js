@@ -1,11 +1,13 @@
+import Link from 'next/link'
+
 export function MainPageNewsPhoto() {
 	return(
 		<>
 			<div className="newsphotocard">
-				<div className="firstrow">
+				<Link href="/newspage"><a><div className="firstrow">
 					<div className="photo"></div>
 					<h3 className="newsphotoheader">Чуть менее важная новость</h3>
-				</div>
+				</div></a></Link>
 				<p>Не может быть не верю как такое возможно обалдеть просто кто бы мог подумать как же так не верю своим глазам такое бывает только в сказке</p>
 				<div className="importantnewsbottom">
 					<p className="importantnewsbottomtext">16.22.22</p>
@@ -13,6 +15,10 @@ export function MainPageNewsPhoto() {
 				</div>
 			</div>	
 			<style jsx>{`
+				a {
+					color: #000;
+				}
+				
 				.photo {
 					width: 102px;
 					height: 70px;

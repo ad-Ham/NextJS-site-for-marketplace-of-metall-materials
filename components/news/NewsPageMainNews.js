@@ -1,18 +1,24 @@
+import Link from 'next/link'
+
 export function NewsPageMainNews() {
 	return(<>
 		<div className="maindiv">
 			<div className="newsmainheader">
 				<h1 className="newsmainheadertext">Новости</h1>
 			</div>
-			<div className="photo"></div>
+			<Link href="/newspage"><a><div className="photo"></div></a></Link>
 			<div className="importantnewsheader">
-				<h2 className="importantnewsheadertext">Новость дня!</h2>
+				<Link href="/newspage"><a><h2 className="importantnewsheadertext">Новость дня!</h2></a></Link>
 				<p className="importantnewsheaderdate">22.02 18:00</p>
 			</div>
 			<p className="importantnewstext">В декабре 2021 года Россия импортировала 4 тыс. тонн медного лома и отходов, что на 22% больше, чем месяцем ранее, но на 38% меньше по сравнению с декабрем 2020 года. Средняя импортная цена за декабрь увеличилась на 1 $/т до 8,6 $/кг.</p>
 			<p className="importantnewsbottomtext">Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
 		</div>
 		<style jsx>{`
+			a {
+				color: #000;
+			}
+
 			.importantnewsbottomtext {
 				font-weight: 200;
 				font-style: italic;

@@ -1,9 +1,11 @@
+import Link from 'next/link'
+
 export function MainPageImportantNews() {
 	return(<>
 		<div className="importantnews">
-			<div className="photo"></div>
+			<Link href="/newspage"><a><div className="photo"></div></a></Link>
 			<div className="rightside">
-				<h3 className="importantheader">Супер важная новость</h3>
+				<Link href="/newspage"><a><h3 className="importantheader">Супер важная новость</h3></a></Link>
 				<p className="importanttext">Не может быть не верю как такое возможно обалдеть просто кто бы мог подумать как же так не верю своим глазам такое бывает только в сказке</p>
 				<div className="importantnewsbottom">
 					<p className="importantnewsbottomtext">16.22.22</p>
@@ -12,6 +14,10 @@ export function MainPageImportantNews() {
 			</div>
 		</div>
 		<style jsx>{`
+			a {
+				color: #000;
+			}
+
 			.photo {
 				width: 299.52px;
 				height: 124px;

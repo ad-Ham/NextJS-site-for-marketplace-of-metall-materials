@@ -1,9 +1,11 @@
+import Link from 'next/link'
+
 export function NewsCardPhoto() {
 	return(<>
 		<div className='maindiv'>
-			<div className="photo"></div>
+			<Link href="/newspage"><a><div className="photo"></div></a></Link>
 			<div>
-				<h3 className="newsheader">Заголовок новости с фото!</h3>
+				<Link href="/newspage"><a><h3 className="newsheader">Заголовок новости с фото!</h3></a></Link>
 				<p className="newstext">В декабре 2021 года Россия импортировала 4 тыс. тонн медного лома и отходов, что....</p>
 				<div className="newsbottom">
 					<p className="newsdate">22.02.2022 18:00</p>
@@ -12,6 +14,10 @@ export function NewsCardPhoto() {
 			</div>
 		</div>
 		<style jsx>{`
+			a {
+				color: #000;
+			}
+			
 			.newstag {
 				font-style: italic;
 				font-weight: 200;
