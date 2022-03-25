@@ -4,7 +4,7 @@ export function LoginHeaderButton() {
 		<>
 			<div>
 				<button>Войти</button>
-				<Link href={'/registration'}><a>Регистрация</a></Link>
+				<Link href={'/reg'}><a>Регистрация</a></Link>
 			</div>
 			<style jsx>{`
 
