@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 export function PromosPageList() {
     return (<>
-        <div className='maindiv'>
+        <div className='maindiv'><Link href="/promopage"><a>
             <div className="promosrow">
                 <div className="listdate">
                     <p>
@@ -28,8 +30,12 @@ export function PromosPageList() {
                     </p>
                 </div>
             </div>
-        </div>
+        </a></Link></div>
         <style jsx>{`
+            a {
+                color: #000;
+            }
+
             .promosrow {
 				margin-top: 15px;
             }

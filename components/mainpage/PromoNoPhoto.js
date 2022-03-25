@@ -1,11 +1,15 @@
+import Link from 'next/link'
+
 export function PromoNoPhoto() {
 	return(<>
 		<div className="sides">
-			<div className="leftside">
-				<p className="buysell">Покупка</p>
-				<p className="date">22.02 12:00</p>
-			</div>
-			<p className="promonophototext">Деталь ДС-21, сталь, железо, чугун, иные материалы</p>
+			<Link href="/promopage"><a>
+				<div className="leftside">
+					<p className="buysell">Покупка</p>
+					<p className="date">22.02 12:00</p>
+				</div>
+				<p className="promonophototext">Деталь ДС-21, сталь, железо, чугун, иные материалы</p>
+			</a></Link>
 		</div>
 		<style jsx>{`
 			.buysell {
@@ -46,6 +50,14 @@ export function PromoNoPhoto() {
 				align-items: center;
 				height: 100%;
 				border-bottom: 1px solid #E0E0E0;
+			}
+
+			a {
+				max-width: 250px;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				height: 100%;
 			}
 		`}</style>
 	</>)

@@ -1,8 +1,10 @@
+import  Link from 'next/link'
+
 export function MainPromoPhoto() {
 	return(<>
 		<div className="mainpromophoto">
-			<div className="photo"></div>
-			<h3 className="promophotoheader"><b className="promophotoheaderb">Продажа</b> Деталь ДС-21, сталь, железо, чугун, иные материалы</h3>
+			<Link href="/promopage"><a><div className="photo"></div></a></Link>
+			<Link href="/promopage"><a><h3 className="promophotoheader"><b className="promophotoheaderb">Продажа</b> Деталь ДС-21, сталь, железо, чугун, иные материалы</h3></a></Link>
 			<p className="promophototext">Деталь ДС-21, сталь, чугун, железо, трубы балки провода, медная катушка, в хорошем состоянии, в плачевном состоянии, требуется ремонт, материалы</p>
 			<div className="promophotobottomtext">
 				<p>Раздел</p>
