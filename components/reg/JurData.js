@@ -7,6 +7,7 @@ export function JurData() {
 			<input type="text" placeholder="ИНН"/>
 			<input type="text" placeholder="ОГРН"/>
 			<label className="btnpanel"><input type="radio" className="radiobtn"/><p>Я принимаю условия передачи информации*</p></label>
+
 		</div>
 		<style jsx>{`
 			p {
