@@ -8,6 +8,7 @@ import {NewsPages} from '../components/News/NewsPages'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
+import styles from '../styles/news.module.scss'
 
 export default function News() {
 	return (
@@ -18,25 +19,25 @@ export default function News() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className="adbannertop"><Link href="https://www.example.com"><Adbannertop/></Link></div>
-			<div className="content bothsides">
+			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<div className={styles.content, styles.bothsides}>
 				
-				<div className="leftside">
+				<div className={styles.leftside}>
 					<Portions/>
-					<div className="adbannerside"><Link href="https://www.example.com"><Adbannerside/></Link></div>
+					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside/></Link></div>
 				</div>
-				<div className="rightside">
+				<div className={styles.rightside}>
 					<NewsPageMainNews/>
 					<NewsPageSortPanel/>
-					<div className="newsrow">
+					<div className={styles.newsrow}>
 						<NewsCardPhoto/>
 						<NewsCardPhoto/>
 					</div>
-					<div className="newsrow">
+					<div className={styles.newsrow}>
 						<NewsCardPhoto/>
 						<NewsCardPhoto/>
 					</div>
-					<div className="newsrow">
+					<div className={styles.newsrow}>
 						<NewsCardPhoto/>
 						<NewsCardPhoto/>
 					</div>
@@ -44,39 +45,7 @@ export default function News() {
 				</div>
 			</div>
 			<style jsx>{`
-				.newsrow {
-					display: flex;
-					flex-direction: row;
-					margin-bottom: 16px;
-				}
-
-				.adbannertop {
-					margin-top: 13px;
-				}
-
-				.adbannerside {
-					margin-top: 16px;
-					margin-bottom: 180px;
-				}
-
-				.bothsides {
-					width: 100%;
-					display: flex;
-					flex-direction: row;
-				}
-
-				.leftside {
-					display: flex;
-					flex-direction: column;
-				}
-
-				.rightside {
-					display: flex;
-					flex-direction: column;
-					width: 864px;
-					align-items: center;
-
-				}
+				
 			`}</style>
 		</MainLayout>
 	)

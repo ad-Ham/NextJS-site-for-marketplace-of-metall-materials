@@ -1,0 +1,43 @@
+.morenewsrow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.moreniewsdiv {
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+.morenews {
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 99.69%;
+	color: #000;
+	margin-bottom: 20px;
+}
+
+.adbannertop {
+	margin-top: 13px;
+}
+
+.adbannerside {
+	margin-top: 16px;
+	margin-bottom: 180px;
+}
+
+.bothsides {
+	display: flex;
+	flex-direction: row;
+}
+
+.leftside {
+	display: flex;
+	flex-direction: column;
+}
+
+.rightside {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

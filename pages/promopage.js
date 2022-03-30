@@ -8,6 +8,7 @@ import {MorePromosCard} from '../components/promopage/MorePromosCard'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
+import styles from '../styles/promopage.module.scss'
 
 export default function Index() {
 	return (
@@ -18,18 +19,18 @@ export default function Index() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className="adbannertop"><Link href="https://www.example.com"><Adbannertop/></Link></div>
-			<div className="content bothsides">
+			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<div className={styles.content, styles.bothsides}>
 				
-				<div className="leftside">
+				<div className={styles.leftside}>
 					<Portions/>
-					<div className="adbannerside"><Link href="https://www.example.com"><Adbannerside/></Link></div>
+					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside/></Link></div>
 				</div>
-				<div className="rightside">
+				<div className={styles.rightside}>
 					<PromoBlock/>
-					<div className="morepromosblock">
-						<h2 className="morepromosheader">Еще объявления:</h2>
-						<div className="morepromosrow">
+					<div className={styles.morepromosblock}>
+						<h2 className={styles.morepromosheader}>Еще объявления:</h2>
+						<div className={styles.morepromosrow}>
 							<MorePromosCard/>
 							<MorePromosCard/>
 							<MorePromosCard/>
@@ -39,49 +40,7 @@ export default function Index() {
 				
 			</div>
 			<style jsx>{`
-				.morepromosrow {
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-between;
-					margin-top: 16px;
-				}
-
-				.morepromosblock {
-					margin-left: 30px;
-					margin-top: 15px;
-				}
-
-				.morepromosheader {
-					font-weight: 500;
-					font-size: 36px;
-					line-height: 42px;
-				}
-
-				.adbannertop {
-					margin-top: 13px;
-				}
-
-				.adbannerside {
-					margin-top: 16px;
-					margin-bottom: 180px;
-				}
-
-				.bothsides {
-					display: flex;
-					flex-direction: row;
-				}
-
-				.leftside {
-					display: flex;
-					flex-direction: column;
-				}
-
-				.rightside {
-					display: flex;
-					flex-direction: column;
-					width: 100%;
-				}
+				
 			`}</style>
 		</MainLayout>
 	)

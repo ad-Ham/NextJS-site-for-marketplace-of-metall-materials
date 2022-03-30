@@ -1,0 +1,33 @@
+.newsrow {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 16px;
+}
+
+.adbannertop {
+	margin-top: 13px;
+}
+
+.adbannerside {
+	margin-top: 16px;
+	margin-bottom: 180px;
+}
+
+.bothsides {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.leftside {
+	display: flex;
+	flex-direction: column;
+}
+
+.rightside {
+	display: flex;
+	flex-direction: column;
+	width: 864px;
+	align-items: center;
+
+}

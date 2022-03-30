@@ -1,0 +1,41 @@
+.regheaderblock {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #B6B6B6;
+	width: 100%;
+	margin-bottom: 12px;
+}
+
+.regtext {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 99.69%;
+	letter-spacing: 0.045em;
+}
+
+.regheader {
+	margin-top: 30px;
+	margin-bottom: 25px;
+	font-weight: 600;
+	font-size: 36px;
+	line-height: 99.69%;
+	letter-spacing: 0.045em;
+}
+
+.maindiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+.adbannertop {
+	margin-top: 13px;
+}
+
+.adbannerside {
+	margin-top: 16px;
+	margin-bottom: 180px;
+}
