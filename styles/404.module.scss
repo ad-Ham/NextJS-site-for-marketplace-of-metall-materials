@@ -1,0 +1,26 @@
+.adbannertop {
+	margin-top: 13px;
+}
+
+.adbannerside {
+	margin-top: 16px;
+	margin-bottom: 180px;
+}
+
+.bothsides {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 24px;
+}
+
+.leftside {
+	display: flex;
+	flex-direction: column;
+}
+
+.rightside {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}

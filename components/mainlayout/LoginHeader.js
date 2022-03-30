@@ -5,13 +5,13 @@ import {LoginHeaderButton} from '../mainLayout/LoginHeaderButton'
 export function LoginHeader() {
 	return (
 		<>	
-			<div>
+			<div className="maindiv">
 				<LoginHeaderInput/>
 				<LoginHeaderPassword/>
 				<LoginHeaderButton/>
 			</div>
 			<style jsx>{`
-				div {
+				.maindiv {
 					display: flex;
 				}
 			`}</style>

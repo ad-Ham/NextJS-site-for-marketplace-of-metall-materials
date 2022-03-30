@@ -5,6 +5,7 @@ import {Block404} from '../components/Block404'
 import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
+import styles from '../styles/404.module.scss'
 
 export default function Page404() {
 	return (
@@ -15,37 +16,12 @@ export default function Page404() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className="adbannertop"><Link href="https://www.example.com"><Adbannertop/></Link></div>
-			<div className="content bothsides">
+			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<div className={styles.content, styles.bothsides}>
 				<Block404/>
 			</div>
 			<style jsx>{`
-				.adbannertop {
-					margin-top: 13px;
-				}
-
-				.adbannerside {
-					margin-top: 16px;
-					margin-bottom: 180px;
-				}
-
-				.bothsides {
-					display: flex;
-					flex-direction: row;
-					justify-content: center;
-					margin-top: 24px;
-				}
-
-				.leftside {
-					display: flex;
-					flex-direction: column;
-				}
-
-				.rightside {
-					display: flex;
-					flex-direction: column;
-					width: 100%;
-				}
+				
 			`}</style>
 		</MainLayout>
 	)
