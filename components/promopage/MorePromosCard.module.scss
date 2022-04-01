@@ -1,0 +1,50 @@
+.promobottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+
+.a {
+	color: #000;
+}
+
+.promobottomtext {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 99.69%;
+	color: #000000;
+}
+
+.photo {
+	max-width: 220px;
+	height: 160px;
+	border-radius: 4px;
+	background-image: url("/photopromo.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin-bottom: 10px;
+}
+
+.maindiv {
+	max-width: 220px;
+	padding-bottom: 11px;
+	border-bottom: 1px solid #989898;
+}
+
+.promoheader {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 99.69%;
+	color: #000000;
+	margin-bottom: 8px;
+}
+
+.promotext {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 99.69%;
+	color: #717171;
+	margin-bottom: 5px;
+}

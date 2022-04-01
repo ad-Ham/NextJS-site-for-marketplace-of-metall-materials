@@ -1,0 +1,51 @@
+.desc {
+	padding-bottom: 25px;
+	border-bottom: 1px solid #959595;
+}
+
+.descrow {
+	margin-top: 16px;
+}
+
+.desctext {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 99.69%;
+	color: #000;
+	margin-top: 2px;
+}
+
+.maindiv {
+	margin-top: 24px;
+	margin-left: 30px;
+}
+
+.photo {
+	min-width: 834px;
+	height: 375px;
+	border-radius: 4px;
+	background-image: url("/photopromo.svg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-position: center;
+}
+
+.promoheader {
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 99.69%;
+	color: #000000;
+	margin-bottom: 20px;
+}
+
+.headerblock {
+	padding-bottom: 16px;
+	border-bottom: 1px solid #959595;
+}
+
+.descheader {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 99.69%;
+	color: #000;
+}

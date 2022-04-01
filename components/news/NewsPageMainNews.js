@@ -1,113 +1,22 @@
 import Link from 'next/link'
+import styles from './NewsPageMainNews.module.scss'
 
 export function NewsPageMainNews() {
 	return(<>
-		<div className="maindiv">
-			<div className="newsmainheader">
-				<h1 className="newsmainheadertext">Новости</h1>
+		<div className={styles.maindiv}>
+			<div className={styles.newsmainheader}>
+				<h1 className={styles.newsmainheadertext}>Новости</h1>
 			</div>
-			<Link href="/newspage"><a><div className="photo"></div></a></Link>
-			<div className="importantnewsheader">
-				<Link href="/newspage"><a><h2 className="importantnewsheadertext">Новость дня!</h2></a></Link>
-				<p className="importantnewsheaderdate">22.02 18:00</p>
+			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
+			<div className={styles.importantnewsheader}>
+				<Link href="/newspage"><a><h2 className={styles.importantnewsheadertext}>Новость дня!</h2></a></Link>
+				<p className={styles.importantnewsheaderdate}>22.02 18:00</p>
 			</div>
-			<p className="importantnewstext">В декабре 2021 года Россия импортировала 4 тыс. тонн медного лома и отходов, что на 22% больше, чем месяцем ранее, но на 38% меньше по сравнению с декабрем 2020 года. Средняя импортная цена за декабрь увеличилась на 1 $/т до 8,6 $/кг.</p>
-			<p className="importantnewsbottomtext">Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
+			<p className={styles.importantnewstext}>В декабре 2021 года Россия импортировала 4 тыс. тонн медного лома и отходов, что на 22% больше, чем месяцем ранее, но на 38% меньше по сравнению с декабрем 2020 года. Средняя импортная цена за декабрь увеличилась на 1 $/т до 8,6 $/кг.</p>
+			<p className={styles.importantnewsbottomtext}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
 		</div>
 		<style jsx>{`
-			a {
-				color: #000;
-			}
-
-			.importantnewsbottomtext {
-				font-weight: 200;
-				font-style: italic;
-				font-size: 14px;
-				line-height: 99.69%;
-				color: #454545;
-			}
-
-			.importantnewstext {
-				font-weight: 300;
-				font-size: 18px;
-				line-height: 99.69%;
-				color: #343434;
-				margin-top: 16px;
-				margin-bottom: 6px;
-			}
-
-			.importantnewsheaderdate {
-				font-weight: 600;
-				font-size: 18px;
-				line-height: 99.69%;
-				color: #000;
-			}
-
-			.importantnewsheadertext {
-				font-weight: 600;
-				font-size: 36px;
-				line-height: 99.69%;
-				color: #000;
-			}
-
-			.importantnewsheader {
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: space-between;
-			}
-
-			.photo {
-				width: 839px;
-				height: 339px;
-				border-radius: 4px;
-				background-image: url("/photopromo.svg");
-				background-repeat: no-repeat;
-				margin-bottom: 15px;
-			}
-
-			.maindiv {
-				margin-top: 26px;
-				margin-left: 25px;
-				display: flex;
-				flex-direction: column;
-				padding-bottom: 12px;
-				border-bottom: 1px solid #C4C4C4;
-				margin-bottom: 15px;
-			}
-
-			.newsmainheader {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				position: relative;
-				margin-bottom: 11px;
-			}
-
-			.newsmainheadertext {
-				font-weight: 700;
-				font-size: 48px;
-				line-height: 99.69%;
-				color: #000;
-			}
-
-			.newsmainheadertext::before {
-				left: 0;
-			    content: " ";
-			    top: 25px;
-			    position: absolute;
-			    width: calc(50% - 114.7px);
-			    border-top: 2px solid #000;
-			}
-
-			.newsmainheadertext::after {
-				right: 0;
-			    content: " ";
-			    top: 25px;
-			    position: absolute;
-			    width: calc(50% - 114.7px);
-			    border-top: 2px solid #000;
-			}
+			
 		`}</style>
 	</>)
 }
