@@ -9,6 +9,7 @@ import { MyPromosPages } from '../components/mypromos/MyPromosPages'
 import Adbannertop from '/public/adbannertop.svg'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
+import styles from '../styles/mypromos.module.scss'
 
 export default function MyPromos() {
     return (
@@ -19,39 +20,39 @@ export default function MyPromos() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <div className="adbannertop"><Link href="https://www.example.com"><Adbannertop /></Link></div>
-            <div className="content bothsides">
+            <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div>
+            <div className={styles.content, styles.bothside}>
 
-                <div className="leftside">
+                <div className={styles.leftside}>
                     <Portions />
-                    <div className="adbannerside"><Link href="https://www.example.com"><Adbannerside /></Link></div>
+                    <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
                 </div>
-                <div className="rightside">
+                <div className={styles.rightside}>
                     <MyPromosPageSearchPanel />
                     <MyPromosPageCountPanel />
                     <MyPromosPageListHeader />
-                    <div className="promosrow">
+                    <div className={styles.promosrow}>
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                     </div>
-                    <div className="promosrow">
+                    <div className={styles.promosrow}>
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                     </div>
-                    <div className="promosrow">
+                    <div className={styles.promosrow}>
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
                     </div>
-                    <div className="promosrow">
+                    <div className={styles.promosrow}>
                         <MyPromosPageList />
                         <MyPromosPageList />
                         <MyPromosPageList />
@@ -62,38 +63,7 @@ export default function MyPromos() {
                 </div>
             </div>
             <style jsx>{`
-				.promosrow {
-					flex-direction: row;
-				}
-
-				.adbannertop {
-					margin-top: 13px;
-				}
-
-				.adbannerside {
-					margin-top: 16px;
-					margin-bottom: 180px;
-				}
-
-				.bothsides {
-					width: 100%;
-					display: flex;
-					flex-direction: row;
-				}
-
-				.leftside {
-					display: flex;
-					flex-direction: column;
-				}
-
-				.rightside {
-					display: flex;
-					flex-direction: column;
-                    margin-left: 19px;
-					width: 864px;
-					align-items: center;
-
-				}
+                
 			`}</style>
         </MainLayout>
     )

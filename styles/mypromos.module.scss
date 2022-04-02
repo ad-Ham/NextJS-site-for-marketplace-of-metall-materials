@@ -1,0 +1,31 @@
+.promosrow {
+    flex-direction: row;
+}
+
+.adbannertop {
+    margin-top: 13px;
+}
+
+.adbannerside {
+    margin-top: 16px;
+    margin-bottom: 180px;
+}
+
+.bothsides {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.leftside {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightside {
+    display: flex;
+    flex-direction: column;
+    margin-left: 19px;
+    align-items: center;
+
+}
