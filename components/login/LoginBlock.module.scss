@@ -1,0 +1,43 @@
+.maindiv {
+	width: 684px;
+	background: #FFFFFF;
+	box-shadow: 0px 2.35052px 23.5052px rgba(0, 0, 0, 0.1);
+	border-radius: 2.93814px;
+	padding: 30px 20px 30px 20px
+}
+
+.blockheader {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 100.69%;
+	letter-spacing: 0.045em;
+	color: #000000;
+	margin-bottom: 15px;
+}
+
+.blocktext {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 100.69%;
+	letter-spacing: 0.045em;
+	color: #000000;
+}
+
+.blocklist {
+	list-style: disc;
+	margin-left: 25px;
+	padding-left: 5px;
+}
+
+.blockul {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.blocklink {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 100.69%;
+	letter-spacing: 0.045em;
+	color: #005478;
+}
