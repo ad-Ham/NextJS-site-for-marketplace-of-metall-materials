@@ -89,6 +89,7 @@ export default function MyPromos() {
 				.rightside {
 					display: flex;
 					flex-direction: column;
+                    margin-left: 19px;
 					width: 864px;
 					align-items: center;
 

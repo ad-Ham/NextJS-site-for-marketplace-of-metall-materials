@@ -7,6 +7,9 @@ export function MyPromosPageSearchPanel() {
 			</div>
 		</div>
 		<style jsx>{`
+			.maindiv {
+				width: 850px;
+			}
 			.promossearch {
 				margin-top: 25px;
 				width: 750px;
