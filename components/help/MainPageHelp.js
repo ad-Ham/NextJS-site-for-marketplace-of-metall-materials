@@ -25,10 +25,10 @@ export function MainPageHelp() {
         }
         .emailinput {
             margin-top:38px;
-            padding-left:34px;
+            padding-left:20px;
             display: block;
             width: 1164px;
-            height: 40px;
+            height: 30px;
             left: 215px;
             top: 343px;
             background: #F5F5F5;
@@ -38,15 +38,15 @@ export function MainPageHelp() {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 99.69%;
         }
         .probleminput {    
-            margin-top:22px;  
-            padding-left:34px;      
+            margin-top:15px;  
+            padding-left:20px;      
             display: block;
             width: 1164px;
-            height: 40px;
+            height: 30px;
             left: 215px;
             top: 405px;
             background: #F5F5F5;
@@ -56,14 +56,13 @@ export function MainPageHelp() {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 99.69%;
         }
         .problemdesrciptioninput {  
-            margin-top:48px;    
+            margin-top:15px;    
             padding-bottom: 93px;  
-            padding-left:34px;
-            padding            
+            padding-left:20px;         
             display: block;
             width: 1164px;
             height: 133px;
@@ -76,20 +75,20 @@ export function MainPageHelp() {
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 99.69%;
         }
         .sendbutton {
-            margin-top:54px;
+            margin-top:35px;
             display: block;
-            width: 188px;
-            height: 56px;
+            width: 125px;
+            height: 35px;
             left: 215px;
             top: 680px;
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 99.69%;
             background: #C4C4C4;
             border-radius: 4px;

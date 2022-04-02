@@ -20,6 +20,9 @@ export default function Help() {
                 </div>
             </div>
             <style jsx>{`
+                .adbannertop {
+                    margin-top: 13px;
+                }
 			`}</style>
         </MainLayout>
     )
