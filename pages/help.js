@@ -3,6 +3,7 @@ import { MainLayout } from '../components/mainlayout/MainLayout'
 import { MainPageHelp } from '../components/help/MainPageHelp'
 import Adbannertop from '/public/adbannertop.svg'
 import Link from 'next/link'
+import styles from "../styles/help.module.scss"
 
 export default function Help() {
     return (
@@ -13,16 +14,13 @@ export default function Help() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <div className="adbannertop"><Link href="https://www.example.com"><Adbannertop /></Link></div>
-            <div className="content bothsides">
-                <div className="rightside">
+            <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div>
+            <div className={styles.content, styles.bothsides}>
+                <div className={styles.rightside}>
                     <MainPageHelp />
                 </div>
             </div>
             <style jsx>{`
-                .adbannertop {
-                    margin-top: 13px;
-                }
 			`}</style>
         </MainLayout>
     )

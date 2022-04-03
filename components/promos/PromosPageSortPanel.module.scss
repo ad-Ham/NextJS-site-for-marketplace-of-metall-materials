@@ -1,13 +1,14 @@
 .selectsortbar {
 	display: inline-block;
-	margin-top:25px;
+	margin-left: 19px;
+	margin-top: 25px;
 	width: 840px;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.selectsortbarheader{
+.selectsortbarheader {
 	display: inline-block;
 	position: static;
 	width: 111px;
@@ -49,7 +50,7 @@
 	line-height: 99.69%;
 }
 
-.selectsortbarbuy{
+.selectsortbarbuy {
 	display: inline-block;
 	position: static;
 	width: 65px;
@@ -71,7 +72,7 @@
 	top: 321px;
 	background: #C4C4C4;
 	border: none;
-	border-radius: 4px;	
+	border-radius: 4px;
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 600;
