@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout/MainLayout'
 import {Portions} from '../components/Portions'
-import {ResetHeader} from '../components/reset/ResetHeader'
-import {EmailInput} from '../components/reset/EmailInput'
-import {CodeInput} from '../components/reset/CodeInput'
+import {ResetForm} from '../components/resetpassword/ResetForm'
 import Adbannertop from '../public/adbannertop.svg'
 import Link from 'next/link'
-import styles from '../styles/reset.module.scss'
+import styles from '../styles/resetpassword.module.scss'
 
 export default function Index() {
 	return (
@@ -19,10 +17,9 @@ export default function Index() {
 			</Head>
 			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
 			<div className={styles.content, styles.maindiv}>
-				<ResetHeader/>
-				<EmailInput/>
-				<CodeInput/>
-				<p className={styles.bottomtext}>Не пришел код в течение 5 минут? <Link href='/'><a className={styles.bottomlink}>Нажмите сюда</a></Link></p>
+				<h2 className={styles.header}>Восстановление доступа</h2>
+				<p className={styles.headertext}>Введите новый пароль</p>
+				<ResetForm/>
 			</div>
 			<style jsx>{`
 				
