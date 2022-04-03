@@ -4,6 +4,7 @@ import { YourData } from '../components/editprofile/YourData'
 import { JurData } from '../components/editprofile/JurData'
 import Adbannertop from '/public/adbannertop.svg'
 import Link from 'next/link'
+import styles from "../styles/editprofile.module.scss"
 
 export default function EditProfile() {
     return (
@@ -14,17 +15,14 @@ export default function EditProfile() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <div className="adbannertop"><Link href="https://www.example.com"><Adbannertop /></Link></div>
-            <div className="content bothsides">
-                <div className="rightside">
+            <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div>
+            <div className={styles.content, styles.bothsides}>
+                <div className={styles.rightside}>
                     <YourData />
                     <JurData />
                 </div>
             </div>
             <style jsx>{`
-                .adbannertop {
-                    margin-top: 13px;
-                }
 			`}</style>
         </MainLayout>
     )
