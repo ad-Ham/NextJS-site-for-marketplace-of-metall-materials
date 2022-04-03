@@ -3,12 +3,12 @@ export function LoginHeaderButton() {
 	return (
 		<>
 			<div>
-				<button>Войти</button>
+				<Link href="/reset"><a className="linklogin">Войти</a></Link>
 				<Link href={'/reg'}><a>Регистрация</a></Link>
 			</div>
 			<style jsx>{`
 
-				button {
+				.linklogin {
 					width: 79.38px;
 					height: 21.46px;
 					background: #C4C4C4;
@@ -20,6 +20,10 @@ export function LoginHeaderButton() {
 					padding: 0;
 					border: 0;
 					margin-bottom: 4.54px;
+					color: #000;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 				}
 
 				a {
