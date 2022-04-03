@@ -1,0 +1,23 @@
+.maindiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 99.69%;
+	letter-spacing: 0.045em;
+	color: #000000;
+	margin-bottom: 20px;
+}
+
+.text {
+	width: 710px;
+	font-weight: 400;
+	font-size: 18px;	
+	line-height: 99.69%;
+	letter-spacing: 0.045em;
+	color: #000000;
+}
