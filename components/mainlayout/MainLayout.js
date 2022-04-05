@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import {SearchHeader} from '../mainlayout/SearchHeader'
-import {LoginHeader} from '../mainlayout/LoginHeader'
+import { SearchHeader } from '../mainlayout/SearchHeader'
+import { LoginHeader } from '../mainlayout/LoginHeader'
+import { BurgerMenu } from '../BurgerMenu'
 import Logo from '/public/logo.svg'
 import styles from './MainLayout.module.scss'
 
@@ -10,11 +11,12 @@ export function MainLayout({ children }) {
 			<div className={styles.wrapper}>
 				<nav className={styles.nav}>
 					<div className={styles.container, styles.navcontainer}>
-						<Link href="/"><Logo/></Link>
-						<SearchHeader/>
+						<BurgerMenu />
+						<Link href="/"><Logo /></Link>
+						<SearchHeader />
 						<Link href={'/buy'}><a className={styles.buysell}>Купить</a></Link>
 						<Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link>
-						<LoginHeader/>
+						<LoginHeader />
 					</div>
 				</nav>
 				<main className={styles.main}>
@@ -23,7 +25,7 @@ export function MainLayout({ children }) {
 				<footer className={styles.footer}>
 					<div className={styles.container, styles.footercontainer}>
 						<div className={styles.footerleft}>
-							<Link href="/"><Logo/></Link>
+							<Link href="/"><Logo /></Link>
 							<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
 						</div>
 						<ul className={styles.footerul}>
