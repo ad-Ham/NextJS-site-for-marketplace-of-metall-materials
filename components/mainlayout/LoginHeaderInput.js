@@ -14,6 +14,12 @@ export function LoginHeaderInput() {
 					padding: 0;
 					padding-left: 5px;
 				}
+
+				@media (max-width: 660px) {
+					input {
+						display: none;
+					}
+				}
 			`}</style>
 		</>
 	)

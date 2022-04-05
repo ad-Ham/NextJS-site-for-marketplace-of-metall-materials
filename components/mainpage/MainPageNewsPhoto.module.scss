@@ -15,7 +15,7 @@
 
 .newsphotocard {
 	border-bottom: 1px solid #ACACAC;
-	width: 407px;
+	width: 50%;
 	margin-right: 25px;
 }
 
@@ -54,3 +54,10 @@
 	line-height: 99.69%;
 	color: #6C6C6C;
 }	
+
+@media (max-width: 660px) {
+	.newsphotocard {
+		width: 100%;
+		margin: 0;
+	}
+}

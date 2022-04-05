@@ -4,7 +4,7 @@
 
 .newsphotocard {
 	margin-top: 24px;
-	width: 407px;
+	width: 50%;
 	border-bottom: 1px solid #ACACAC;
 }
 
@@ -37,4 +37,10 @@
 	font-size: 11px;
 	line-height: 99.69%;
 	color: #6C6C6C;
+}
+
+@media (max-width: 660px) {
+	.newsphotocard {
+		width: 100%;
+	}
 }

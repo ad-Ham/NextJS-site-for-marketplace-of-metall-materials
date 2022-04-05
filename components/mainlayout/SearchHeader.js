@@ -3,7 +3,7 @@ import Search from '/public/search.svg'
 export function SearchHeader() {
 	return (
 		<>	
-			<div>
+			<div className="maindiv">
 				<input type="text" placeholder="Поиск" className="inputSearch"/>
 				<button><Search/></button>
 			</div>
@@ -25,10 +25,16 @@ export function SearchHeader() {
 					padding: 0;
 					border: 0;
 				}
-				div {
+				.maindiv {
 					display: flex;
 					align-items: center;
 					height: 22px;
+				}
+
+				@media (max-width: 980px) {
+					.maindiv {
+						display: none;
+					}
 				}
 			`}
 			</style>

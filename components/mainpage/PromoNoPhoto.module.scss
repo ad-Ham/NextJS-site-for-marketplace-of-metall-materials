@@ -39,9 +39,23 @@
 }
 
 .a {
-	max-width: 250px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	height: 100%;
+}
+
+@media (max-width: 1100px) {
+	.sides {
+		max-width: 100%;
+	}
+
+	.a {
+		width: 100%;
+	}
+
+	.promonophototext {
+		width: 100%;
+		text-align: center;
+	}
 }

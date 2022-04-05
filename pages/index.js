@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout/MainLayout'
 import {Portions} from '../components/Portions'
+import {Adbannertop} from '../components/Adbannertop'
 import {MainPromos} from '../components/MainPage/MainPromos'
 import {MainPageNews} from '../components/MainPage/MainPageNews'
-import Adbannertop from '../public/adbannertop.svg'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/index.module.scss'
@@ -24,13 +24,14 @@ export default function Index() {
 				<meta name="keywords" content="next, javascript"/>
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
+				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 			</Head>
-			{!isMobile &&<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>}
+			<Adbannertop/>
 			<div className={styles.content, styles.bothsides}>
 				
 				<div className={styles.leftside}>
 					<Portions/>
-					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside/></Link></div>
+					<Link href="https://www.example.com"><img src="/adbannerside.svg" alt=""/></Link>
 				</div>
 				<div className={styles.rightside}>
 					<MainPromos/>

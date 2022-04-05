@@ -17,7 +17,7 @@ export function MainPageNews() {
 			</div>
 			<div className={styles.newsrow}>
 				<MainPageNewsPhoto/>
-				<Link href="/newspage"><a><MainPageNewsNoPhoto/></a></Link>
+				<MainPageNewsNoPhoto/>
 			</div>
 		</div>
 		<style jsx>{`
