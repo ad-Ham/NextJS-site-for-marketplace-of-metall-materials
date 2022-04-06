@@ -109,7 +109,7 @@ export function BurgerMenu() {
   visibility: hidden;
   top: 0;
   left: -100%;
-  width: 300px;
+  width: 60%;
   height: 100%;
   margin: 0;
   padding: 80px 0;
@@ -131,6 +131,23 @@ export function BurgerMenu() {
 }
 .menuitem:hover {
   background-color: #CFD8DC;
+}
+
+.hamburger-menu {
+  display: none;
+  z-index: 1;
+}
+
+@media (max-width: 1150px) {
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 660px) {
+  .menubox {
+    width: 100%;
+  }
 }
 		`}</style>
     </>)
