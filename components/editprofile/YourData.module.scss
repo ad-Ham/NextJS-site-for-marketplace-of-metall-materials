@@ -216,3 +216,52 @@
     align-items: center;
     text-align: center;
 }
+
+
+@media (max-width: 980px) {
+    .nav {
+        padding: 0 60px;
+    }
+
+    .footer {
+        padding: 0 60px;
+    }
+
+    .maindiv {
+        margin-bottom: 230px;
+        width: 50px;
+    }
+
+    .editprofileheader {
+        font-size: 20px;
+        text-align: center;
+        margin-left: 0;
+        width: 200px;
+    }
+
+    .firstrow,
+    .secondrow,
+    .thirdrow {
+        display: block;
+    }
+
+    .emailinput,
+    .fathernameinput,
+    .logininput,
+    .nameinput,
+    .surnameinput,
+    .telinput {
+        font-size: 20px;
+        margin: 5px 0 10px 0;
+    }
+
+    .savebutton {
+        margin: 20px 35px;
+        width: 260px;
+        font-size: 17px;
+    }
+
+    .hr {
+        width: 385px;
+    }
+}

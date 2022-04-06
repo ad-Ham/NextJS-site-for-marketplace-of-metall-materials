@@ -1,3 +1,21 @@
 .adbannertop {
     margin-top: 13px;
 }
+
+@media (max-width: 600px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .adbannertop {
+        width: 100px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .adbannertop {
+        display: none;
+    }
+
+}

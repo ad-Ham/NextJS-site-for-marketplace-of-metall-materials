@@ -28,3 +28,24 @@
     text-transform: uppercase;
     font-weight: 600;
 }
+
+
+@media (max-width: 980px) {
+    .maindiv {
+        width: 400px;
+    }
+
+    .nav {
+        padding: 0 60px;
+    }
+
+    .footer {
+        padding: 0 60px;
+    }
+
+    .promossearch {
+        width: 285px;
+        margin-left: 25px;
+    }
+
+}

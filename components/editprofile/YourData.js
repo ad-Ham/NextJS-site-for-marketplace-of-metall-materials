@@ -19,7 +19,7 @@ export function YourData() {
                 </div>
             </div>
             <button className={styles.savebutton} type="button">Сохранить изменения</button>
-            <hr></hr>
+            <hr className={styles.hr}></hr>
         </div>
         <style jsx>{`
 

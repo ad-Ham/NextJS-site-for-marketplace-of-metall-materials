@@ -23,7 +23,7 @@
 }
 
 .inputSearch {
- 	width: 270px;
+	width: 270px;
 	height: 18px;
 	background: #FFF7F7;
 	border: 1px solid #000000;
@@ -58,7 +58,7 @@
 	width: 100%
 }
 
-.footerleft{
+.footerleft {
 	display: flex;
 	align-items: center;
 }
@@ -81,7 +81,7 @@
 	color: #000000;
 }
 
-.footerul > li + li {
+.footerul>li+li {
 	margin-top: 11px;
 }
 
@@ -89,9 +89,7 @@
 	color: #000000;
 }
 
-.main {
-	
-}
+.main {}
 
 @media (max-width: 980px) {
 	.nav {
@@ -100,5 +98,13 @@
 
 	.footer {
 		padding: 0 60px;
+	}
+
+	.footerul {
+		font-size: 9px;
+	}
+
+	.supportlink {
+		font-size: 15px;
 	}
 }

@@ -95,3 +95,32 @@
     font-size: 18px;
     line-height: 99.69%;
 }
+
+@media (max-width: 980px) {
+
+    .maindiv {
+        width: 400px;
+    }
+
+    .listorganization,
+    .listregion {
+        display: none;
+    }
+
+    .listdate {
+        width: 70px;
+        margin-left: 27px;
+        font-size: 15px;
+    }
+
+    .listcategory {
+        width: 50px;
+        font-size: 15px;
+    }
+
+    .listpromoheader {
+        width: 225px;
+        margin-right: 0px;
+        font-size: 15px;
+    }
+}

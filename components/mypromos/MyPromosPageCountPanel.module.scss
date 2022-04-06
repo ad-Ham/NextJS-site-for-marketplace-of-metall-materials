@@ -27,3 +27,30 @@
     background: #C4C4C4;
     border-radius: 4px;
 }
+
+@media (max-width: 980px) {
+    .nav {
+        padding: 0 60px;
+    }
+
+    .maindiv {
+        width: 400px;
+    }
+
+    .footer {
+        padding: 0 60px;
+    }
+
+    .counttext {
+        margin-right: -105px;
+        margin-left: 27px;
+        font-size: 12px;
+    }
+
+    .postbutton {
+        width: 135px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+}

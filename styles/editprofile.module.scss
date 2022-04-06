@@ -5,3 +5,25 @@
 .rightside {
     margin-left: 220px;
 }
+
+@media (max-width: 600px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .adbannertop {
+        width: 100px;
+    }
+
+    .rightside {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .adbannertop {
+        display: none;
+    }
+
+}

@@ -31,3 +31,30 @@
     align-items: center;
 
 }
+
+@media (max-width: 600px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .adbannertop {
+        width: 100px;
+    }
+
+    .rightside {
+        margin-left: 8px;
+        width: 365px;
+    }
+
+    .leftside {
+        display: none;
+    }
+}
+
+@media (max-width: 1150px) {
+    .adbannertop {
+        display: none;
+    }
+
+}
