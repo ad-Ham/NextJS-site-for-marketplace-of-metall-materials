@@ -61,3 +61,12 @@
 	margin-bottom: 15px;
 	margin-right: 16px;
 }
+
+@media (max-width: 850px) {
+	.maindiv {
+		width: 100%;
+		margin: 0;
+		padding: 0 30px;
+		padding-bottom: 10px;
+	}
+}

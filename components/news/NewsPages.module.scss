@@ -34,3 +34,9 @@
 	align-items: center;
 	margin-top: 21px;
 }
+
+@media (max-width: 448px) {
+	.maindiv {
+		width: 100%;
+	}
+}

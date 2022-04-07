@@ -39,7 +39,7 @@
 
 .photo {
 	width: 100%;
-	height: calc(100vw - 15px);
+	height: 400px;
 	border-radius: 4px;
 	background-image: url("/photopromo.svg");
 	background-repeat: no-repeat;
@@ -52,6 +52,10 @@
 	.maindiv {
 		margin: 0;
 		padding: 0 30px;
+	}
+
+	.photo {
+		height: calc(100vw - 15px);
 	}
 }
 

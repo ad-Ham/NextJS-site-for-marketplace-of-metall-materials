@@ -77,3 +77,42 @@
 	justify-content: space-between;
 	align-items: flex-end;
 }
+
+@media (max-width: 1150px) {
+	.maindiv {
+		width: 100%;
+		margin-left: 0;
+		padding: 0 30px;
+		align-items: center;
+	}
+
+	.newssearch {
+		width: 100%;
+	}
+
+	.selectsortbartext {
+		width: 100%;
+	}
+
+	.sortbarcalendar {
+		width: 100%;
+	}
+}
+
+@media (max-width: 660px) {
+	.maindiv {
+		padding: 0 15px;
+	}
+
+	.newssearch {
+		width: 80%;
+	}
+
+	.selectsortbartext {
+		width: 80%;
+	}
+
+	.sortbarcalendar {
+		width: 80%;
+	}
+}
