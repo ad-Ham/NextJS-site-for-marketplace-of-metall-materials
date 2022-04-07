@@ -2,7 +2,7 @@ import Head from 'next/head'
 import {MainLayout} from '../components/mainlayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {Block404} from '../components/Block404'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/404.module.scss'
@@ -16,7 +16,7 @@ export default function Page404() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.bothsides}>
 				<Block404/>
 			</div>

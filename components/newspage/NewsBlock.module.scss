@@ -38,10 +38,26 @@
 }
 
 .photo {
-	min-width: 834px;
-	height: 450px;
+	width: 100%;
+	height: calc(100vw - 15px);
 	border-radius: 4px;
 	background-image: url("/photopromo.svg");
 	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 	margin-bottom: 10px;
+}
+
+@media (max-width: 1150px) {
+	.maindiv {
+		margin: 0;
+		padding: 0 30px;
+	}
+}
+
+@media (max-width: 660px) {
+	.maindiv {
+		margin: 0;
+		padding: 0 15px;
+	}
 }
