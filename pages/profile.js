@@ -2,7 +2,7 @@ import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {PersonalData} from '../components/Profile/PersonalData'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Mypromosicon from '../public/mypromosicon.svg'
 import Submitpromoicon from '../public/submitpromoicon.svg'
 import Link from 'next/link'
@@ -17,7 +17,7 @@ export default function Profile() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.bothsides}>
 				
 				<div className={styles.leftside}>

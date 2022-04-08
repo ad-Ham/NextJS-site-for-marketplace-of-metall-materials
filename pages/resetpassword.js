@@ -2,7 +2,7 @@ import Head from 'next/head'
 import {MainLayout} from '../components/MainLayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {ResetForm} from '../components/resetpassword/ResetForm'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Link from 'next/link'
 import styles from '../styles/resetpassword.module.scss'
 
@@ -15,7 +15,7 @@ export default function Index() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.maindiv}>
 				<h2 className={styles.header}>Восстановление доступа</h2>
 				<p className={styles.headertext}>Введите новый пароль</p>

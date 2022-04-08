@@ -3,7 +3,7 @@ import {MainLayout} from '../components/MainLayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {LoginBlock} from '../components/login/LoginBlock'
 import {LoginForm} from '../components/login/LoginForm'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/login.module.scss'
@@ -17,7 +17,7 @@ export default function Index() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.maindiv}>
 				<div className={styles.loginheaderblock}>
 					<h1 className={styles.loginheader}>Вход в личный кабинет</h1>

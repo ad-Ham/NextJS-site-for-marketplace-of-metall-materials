@@ -55,3 +55,15 @@
 	letter-spacing: 0.045em;
 	color: #989898;
 }
+
+@media (max-width: 660px) {
+	.input {
+		width: 70vw;
+		height: 7vw;
+	}
+
+	.inputpassword {
+		width: 70vw;
+		height: 7vw;
+	}
+}

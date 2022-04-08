@@ -7,7 +7,7 @@ import { PromosPageSortPanel } from '../components/promos/PromosPageSortPanel'
 import { PromosPageListHeader } from '../components/promos/PromosPageListHeader'
 import { PromosPageList } from '../components/promos/PromosPageList'
 import { PromosPages } from '../components/promos/PromosPages'
-import Adbannertop from '/public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/promos.module.scss'
@@ -21,7 +21,7 @@ export default function Promos() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div>
+            <Adbannertop/>
             <div className={styles.content, styles.bothsides}>
 
                 <div className={styles.leftside}>

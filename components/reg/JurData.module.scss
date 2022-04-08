@@ -52,3 +52,15 @@
 	color: #989898;
 	margin-bottom: 10px;
 }
+
+@media (max-width: 660px) {
+	.input {
+		width: 70vw;
+		height: 7vw;
+	}
+
+	.inputpassword {
+		width: 70vw;
+		height: 7vw;
+	}
+}

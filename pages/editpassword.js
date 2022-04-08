@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { EditPasswordPage } from '../components/editpassword/EditPasswordPage'
-import Adbannertop from '/public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Link from 'next/link'
 import styles from "../styles/editpassword.module.scss"
 
@@ -14,7 +14,7 @@ export default function EditPassword() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div>
+            <Adbannertop/>
             <div className={styles.content, styles.bothsides}>
                 <EditPasswordPage />
             </div>

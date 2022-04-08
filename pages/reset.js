@@ -4,7 +4,7 @@ import {Portions} from '../components/Portions'
 import {ResetHeader} from '../components/reset/ResetHeader'
 import {EmailInput} from '../components/reset/EmailInput'
 import {CodeInput} from '../components/reset/CodeInput'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Link from 'next/link'
 import styles from '../styles/reset.module.scss'
 
@@ -17,7 +17,7 @@ export default function Index() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.maindiv}>
 				<ResetHeader/>
 				<EmailInput/>

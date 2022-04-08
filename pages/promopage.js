@@ -5,7 +5,7 @@ import {MainPromos} from '../components/MainPage/MainPromos'
 import {MainPageNews} from '../components/MainPage/MainPageNews'
 import {PromoBlock} from '../components/promopage/PromoBlock'
 import {MorePromosCard} from '../components/promopage/MorePromosCard'
-import Adbannertop from '../public/adbannertop.svg'
+import {Adbannertop} from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/promopage.module.scss'
@@ -19,7 +19,7 @@ export default function Index() {
 				<meta name="description" content="this is"/>
 				<meta charSet="utf-8"/>
 			</Head>
-			<div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop/></Link></div>
+			<Adbannertop/>
 			<div className={styles.content, styles.bothsides}>
 				
 				<div className={styles.leftside}>
