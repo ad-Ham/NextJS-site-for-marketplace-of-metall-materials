@@ -56,3 +56,32 @@
 	letter-spacing: 0.045em;
 	color: #989898;
 }
+
+@media (max-width: 660px) {
+	.logininput {
+		width: 70vw;
+		height: 7vw;
+	}
+
+	.loginpassword {
+		width: 70vw;
+		height: 7vw;
+	}
+
+	.loginbuttonlogin {
+		width: 40vw;
+		height: 7vw;
+	}
+}
+
+@media (max-width: 450px) {
+	.buttontext {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 350px) {
+	.buttontext {
+		font-size: 10px;
+	}
+}
