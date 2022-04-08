@@ -33,3 +33,27 @@
 	border-radius: 2.68421px;
 	margin-top: 20px;
 }
+
+@media (max-width: 660px) {
+	.input {
+		width: 70vw;
+		height: 7vw;
+	}
+
+	.button {
+		width: 40vw;
+		height: 7vw;
+	}
+}
+
+@media (max-width: 450px) {
+	.button {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 350px) {
+	.button {
+		font-size: 10px;
+	}
+}
