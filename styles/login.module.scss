@@ -29,7 +29,7 @@
 	align-items: center;
 	margin-bottom: 50px;
 	justify-content: center;
-	min-width: 1164px;
+	width: 100%;
 }
 
 .adbannertop {
@@ -39,4 +39,11 @@
 .adbannerside {
 	margin-top: 16px;
 	margin-bottom: 180px;
+}
+
+@media (max-width: 1150px) {
+  .leftside {
+    display: none;
+  }
+
 }

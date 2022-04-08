@@ -1,5 +1,5 @@
 .maindiv {
-	width: 684px;
+	width: 60%;
 	background: #FFFFFF;
 	box-shadow: 0px 2.35052px 23.5052px rgba(0, 0, 0, 0.1);
 	border-radius: 2.93814px;
@@ -40,4 +40,10 @@
 	line-height: 100.69%;
 	letter-spacing: 0.045em;
 	color: #005478;
+}
+
+@media (max-width: 870px) {
+	.maindiv {
+		width: 80%;
+	}
 }

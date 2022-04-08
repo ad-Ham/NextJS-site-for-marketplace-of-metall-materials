@@ -3,6 +3,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	margin-top: 15px;
+	width: 100%;
 }
 
 .loginbuttonreg {
@@ -36,6 +37,7 @@
 .maindiv {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	margin-top: 45px;
 }
 
@@ -70,4 +72,32 @@
 	line-height: 99.69%;
 	letter-spacing: 0.045em;
 	color: #989898;
+}
+
+@media (max-width: 480px) {
+	.logininput {
+		width: 70vw;
+		height: 10vw;
+	}
+
+	.loginpassword {
+		width: 70vw;
+		height: 10vw;
+	}
+
+	.loginbuttonreg {
+		width: 40vw;
+		height: 10vw;
+	}
+
+	.loginbuttonlogin {
+		width: 20vw;
+		height: 10vw;
+	}
+}
+
+@media (max-width: 330px) {
+	.buttontext {
+		font-size: 15px;
+	}
 }

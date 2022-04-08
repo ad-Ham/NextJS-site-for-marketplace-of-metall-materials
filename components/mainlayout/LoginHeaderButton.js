@@ -3,7 +3,7 @@ export function LoginHeaderButton() {
 	return (
 		<>
 			<div>
-				<Link href="/reset"><a className="linklogin">Войти</a></Link>
+				<Link href="/login"><a className="linklogin">Войти</a></Link>
 				<Link href={'/reg'}><a>Регистрация</a></Link>
 			</div>
 			<style jsx>{`
