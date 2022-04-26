@@ -42,9 +42,13 @@
 	margin-bottom: 180px;
 }
 
+.btn {
+	margin-top: 10px;
+}
+
 @media (max-width: 1150px) {
-  .leftside {
-    display: none;
-  }
+	.leftside {
+		display: none;
+	}
 
 }

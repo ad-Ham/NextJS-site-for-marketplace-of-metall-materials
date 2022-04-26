@@ -1,9 +1,10 @@
 import Link from 'next/link'
 
 export function RegButton() {
-	return(<>
+	return (<>
 		<div className="maindiv">
-			<Link href="/"><a>Регистрация</a></Link>
+			{/* <Link href="/"><button type="submit">Регистрация</button></Link> */}
+			<button type="submit">Регистрация</button>
 		</div>
 		<style jsx>{`
 			.maindiv {
@@ -14,10 +15,11 @@ export function RegButton() {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				margin-top: 12px;
 			}
 
-			a {
+			button {
+				width: 100%;
+    			height: 100%;
 				font-weight: 500;
 				font-size: 18px;
 				line-height: 99.69%;
