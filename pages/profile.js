@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import {MainLayout} from '../components/MainLayout/MainLayout'
-import {Portions} from '../components/Portions'
-import {PersonalData} from '../components/Profile/PersonalData'
-import {Adbannertop} from '../components/Adbannertop'
+import { MainLayout } from '../components/MainLayout/MainLayout'
+import { Portions } from '../components/Portions'
+import { PersonalData } from '../components/Profile/PersonalData'
+import { Adbannertop } from '../components/Adbannertop'
 import Mypromosicon from '../public/mypromosicon.svg'
 import Submitpromoicon from '../public/submitpromoicon.svg'
 import Link from 'next/link'
@@ -13,25 +13,35 @@ export default function Profile() {
 		<MainLayout>
 			<Head>
 				<title>Next Title</title>
-				<meta name="keywords" content="next, javascript"/>
-				<meta name="description" content="this is"/>
-				<meta charSet="utf-8"/>
+				<meta name="keywords" content="next, javascript" />
+				<meta name="description" content="this is" />
+				<meta charSet="utf-8" />
 			</Head>
-			<Adbannertop/>
+			<Adbannertop />
 			<div className={styles.content, styles.bothsides}>
-				
+
 				<div className={styles.leftside}>
-					<PersonalData/>
-					<Portions/>
+					<PersonalData />
+					<div className={styles.buttonsrow}>
+						<Link href="/mypromos"><a className={styles.profilebutton}>
+							<Mypromosicon />
+							<p>Мои объявления</p>
+						</a></Link>
+						<Link href="/submitpromo"><a className={styles.profilebutton}>
+							<Submitpromoicon />
+							<p>Подать объявление</p>
+						</a></Link>
+					</div>
+					<Portions />
 				</div>
 				<div className={styles.rightside}>
 					<div className={styles.buttonsrow}>
 						<Link href="/mypromos"><a className={styles.profilebutton}>
-							<Mypromosicon/>
+							<Mypromosicon />
 							<p>Мои объявления</p>
 						</a></Link>
 						<Link href="/submitpromo"><a className={styles.profilebutton}>
-							<Submitpromoicon/>
+							<Submitpromoicon />
 							<p>Подать объявление</p>
 						</a></Link>
 					</div>

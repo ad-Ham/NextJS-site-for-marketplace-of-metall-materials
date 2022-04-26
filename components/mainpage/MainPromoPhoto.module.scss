@@ -11,7 +11,7 @@
 	background-image: url("/photopromo.svg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position:center;
+	background-position: center;
 	margin-bottom: 15px;
 }
 
@@ -22,9 +22,9 @@
 	line-height: 99.69%;
 	color: #000;
 	white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		margin-bottom: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 5px;
 }
 
 .promophotoheaderb {
@@ -55,6 +55,6 @@
 
 @media (max-width: 660px) {
 	.mainpromophoto {
-		max-width: 100%;
+		max-width: 76%;
 	}
 }

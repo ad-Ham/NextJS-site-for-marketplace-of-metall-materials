@@ -55,3 +55,29 @@
 	line-height: 99.69%;
 	color: #6C6C6C;
 }
+
+
+@media (max-width: 1100px) {}
+
+@media (max-width: 660px) {
+	.rightside {
+		width: 400px;
+	}
+
+	.importantnews {
+		display: block;
+	}
+
+	.importantheader {
+		margin-left: 70px;
+	}
+
+	.importanttext {
+		display: block;
+		width: 400px;
+	}
+
+	.photo {
+		margin-left: 50px;
+	}
+}
