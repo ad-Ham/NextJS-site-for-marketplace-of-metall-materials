@@ -3,7 +3,7 @@ import { MainPromoPhoto } from '../mainpage/MainPromoPhoto'
 import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
 import styles from './MainPromos.module.scss'
 
-export function MainPromos() {
+export function MainPromos(pageProps) {
 	return (<>
 		<div className={styles.promosMainBox}>
 			<h2 className={styles.promosHeader}>Объявления</h2>

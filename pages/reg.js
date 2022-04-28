@@ -44,7 +44,8 @@ export default function Index() {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json'
-			}
+			},
+			body: JSON.stringify(data) // данные 
 		})
 			.then(response => response.json())
 			.then(result => {
