@@ -11,39 +11,46 @@ import styles from '../styles/reg.module.scss'
 export default function Index() {
 	const [regStatus, setRegStatus] = useState('')
 
-	// const [mainData, setMainData] = useState('');
-	// const [personalData, setPersonalData] = useState('');
-	// const [jurData, setJurData] = useState('');
+	const [mainData, setMainData] = useState('');
+	const [personalData, setPersonalData] = useState('');
+	const [jurData, setJurData] = useState('');
 
 
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	// const [email, setEmail] = useState('');
+	// const [password, setPassword] = useState('');
 
-	const [surname, setSurname] = useState('');
-	const [firstname, setFirstname] = useState('');
-	const [lastname, setLastname] = useState('');
-	const [phonenumber, setPhoneNumber] = useState('');
+	// const [surname, setSurname] = useState('');
+	// const [firstname, setFirstname] = useState('');
+	// const [lastname, setLastname] = useState('');
+	// const [phonenumber, setPhoneNumber] = useState('');
 
-	const [orgname, setOrgName] = useState('');
-	const [juradress, setJurAdress] = useState('');
-	const [inn, setInn] = useState('');
-	const [ogrn, setOgrn] = useState('');
+	// const [orgname, setOrgName] = useState('');
+	// const [juradress, setJurAdress] = useState('');
+	// const [inn, setInn] = useState('');
+	// const [ogrn, setOgrn] = useState('');
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = {
-			email.value,
-			password.value,
-			surname.value,
-			firstname.value,
-			lastname.value,
-			phonenumber.value,
-			orgname.value,
-			juradress.value,
-			inn.value,
-			ogrn.value
-		}
+			mainData: [
+				email.value,
+				password.value,
+			],
 
+			personalData: [
+				surname.value,
+				firstname.value,
+				lastname.value,
+				phonenumber.value
+			],
+
+			jurData: [
+				orgname.value,
+				juradress.value,
+				inn.value,
+				ogrn.value
+			],
+		};
 		console.log(data);
 
 		fetch('http://localhost:3000/regquery', {
@@ -52,17 +59,17 @@ export default function Index() {
 				'Accept': 'application/json'
 			},
 			body: JSON.stringify({
-			email.value,
-			password.value,
-			surname.value,
-			firstname.value,
-			lastname.value,
-			phonenumber.value,
-			orgname.value,
-			juradress.value,
-			inn.value,
-			ogrn.value
-		}) // данные 
+				email: data.mainData[0],
+				password: data.mainData[1],
+				surname: data.personalData[0],
+				firstname: data.personalData[1],
+				lastname: data.personalData[2],
+				phonenumber: data.personalData[3],
+				orgname: data.jurData[0],
+				juradress: data.jurData[1],
+				inn: data.jurData[2],
+				ogrn: data.jurData[3],
+			}) // данные 
 		})
 			.then(response => response.json())
 			.then(result => {

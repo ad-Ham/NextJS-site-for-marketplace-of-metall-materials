@@ -4,14 +4,12 @@ import styles from './MainData.module.scss'
 export function MainData() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [repeatpassword, setRepeatPasswordd] = useState('');
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = {
 			email,
 			password,
-			repeatpassword,
 		};
 		console.log(data);
 	};
