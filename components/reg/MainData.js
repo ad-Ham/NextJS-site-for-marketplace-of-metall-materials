@@ -3,7 +3,7 @@ import styles from './MainData.module.scss'
 
 export function MainData() {
 	const [email, setEmail] = useState('');
-	const [password, setPasswordd] = useState('');
+	const [password, setPassword] = useState('');
 	const [repeatpassword, setRepeatPasswordd] = useState('');
 
 	const handleSubmit = e => {
@@ -23,8 +23,8 @@ export function MainData() {
 					<input id='email' type="text" placeholder="E-mail адрес*" className={styles.input} onChange={e => setEmail(e.target.value)} />
 				</div>
 				<div className={styles.secondblock}>
-					<input id='password' type="text" placeholder="Пароль*" className={styles.inputpassword} onChange={e => setPasswordd(e.target.value)} />
-					<input id='repeatpassword' type="text" placeholder="Повторите пароль*" className={styles.input} onChange={e => setRepeatPasswordd(e.target.value)} />
+					<input id='password' type="text" placeholder="Пароль*" className={styles.inputpassword} onChange={e => setPassword(e.target.value)} />
+					<input id='repeatpassword' type="text" placeholder="Повторите пароль*" className={styles.input} />
 				</div>
 			</form>
 

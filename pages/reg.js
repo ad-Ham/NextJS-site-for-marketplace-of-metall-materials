@@ -11,33 +11,39 @@ import styles from '../styles/reg.module.scss'
 export default function Index() {
 	const [regStatus, setRegStatus] = useState('')
 
-	const [mainData, setMainData] = useState('');
-	const [personalData, setPersonalData] = useState('');
-	const [jurData, setJurData] = useState('');
+	// const [mainData, setMainData] = useState('');
+	// const [personalData, setPersonalData] = useState('');
+	// const [jurData, setJurData] = useState('');
+
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const [surname, setSurname] = useState('');
+	const [firstname, setFirstname] = useState('');
+	const [lastname, setLastname] = useState('');
+	const [phonenumber, setPhoneNumber] = useState('');
+
+	const [orgname, setOrgName] = useState('');
+	const [juradress, setJurAdress] = useState('');
+	const [inn, setInn] = useState('');
+	const [ogrn, setOgrn] = useState('');
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = {
-			mainData: [
-				email.value,
-				password.value,
-				repeatpassword.value
-			],
+			email,
+			password,
+			surname,
+			firstname,
+			lastname,
+			phonenumber,
+			orgname,
+			juradress,
+			inn,
+			ogrn
+		}
 
-			personalData: [
-				surname.value,
-				firstname.value,
-				lastname.value,
-				phonenumber.value
-			],
-
-			jurData: [
-				orgname.value,
-				juradress.value,
-				inn.value,
-				ogrn.value
-			],
-		};
 		console.log(data);
 
 		fetch('http://localhost:3000/regquery', {
