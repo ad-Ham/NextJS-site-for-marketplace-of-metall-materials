@@ -32,16 +32,16 @@ export default function Index() {
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = {
-			email,
-			password,
-			surname,
-			firstname,
-			lastname,
-			phonenumber,
-			orgname,
-			juradress,
-			inn,
-			ogrn
+			email.value,
+			password.value,
+			surname.value,
+			firstname.value,
+			lastname.value,
+			phonenumber.value,
+			orgname.value,
+			juradress.value,
+			inn.value,
+			ogrn.value
 		}
 
 		console.log(data);
@@ -51,7 +51,18 @@ export default function Index() {
 			headers: {
 				'Accept': 'application/json'
 			},
-			body: JSON.stringify(data) // данные 
+			body: JSON.stringify({
+			email.value,
+			password.value,
+			surname.value,
+			firstname.value,
+			lastname.value,
+			phonenumber.value,
+			orgname.value,
+			juradress.value,
+			inn.value,
+			ogrn.value
+		}) // данные 
 		})
 			.then(response => response.json())
 			.then(result => {
