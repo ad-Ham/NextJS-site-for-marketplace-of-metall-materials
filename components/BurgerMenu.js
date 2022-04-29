@@ -4,7 +4,7 @@ export function BurgerMenu() {
     return (<>
         <div className="hamburger-menu">
             <input id="menutoggle" type="checkbox" />
-            <label className="menubtn" for="menutoggle">
+            <label className="menubtn" htmlFor="menutoggle">
                 <span></span>
             </label>
 

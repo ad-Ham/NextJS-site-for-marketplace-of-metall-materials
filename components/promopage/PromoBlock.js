@@ -22,7 +22,7 @@ export function PromoBlock() {
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Организация:</p>
-					<p className={styles.desctext}>ООО "Рога и копыта"</p>
+					<p className={styles.desctext}>ООО Рога и копыта</p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Категория:</p>

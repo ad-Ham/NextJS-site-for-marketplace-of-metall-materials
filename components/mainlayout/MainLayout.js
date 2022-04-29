@@ -31,7 +31,7 @@ export function MainLayout({ children }) {
 						<ul className={styles.footerul}>
 							<li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li>
 							<li>Уфа, улица Пушкина, дом Колотушкина</li>
-							<li>© ООО "Рога и компыта", сайт сделан Алексеем, 2022</li>
+							<li>© ООО Рога и копыта, сайт сделан Алексеем, 2022</li>
 						</ul>
 					</div>
 				</footer>

@@ -23,7 +23,7 @@ export function MyPromosPageList() {
                     </div>
                     <div className={styles.listorganization}>
                         <p>
-                            ООО "Тракторист"
+                            ООО Тракторист
                         </p>
                     </div>
                     <div className={styles.listregion}>
