@@ -60,24 +60,24 @@ export function MainPromoPhoto() {
 	return (<>
 		<div className={styles.mainpromophoto}>
 
-			{news.map(newpicture_ => <div id='newpicture'>{newpicture_}</div>)}
+			{news.map(newpicture_ => <div key={newpicture_} id='newpicture'>{newpicture_}</div>)}
 			<Link href="/promopage"><a><div id='newpicture' className={styles.photo}></div></a></Link>
 
-			{news.map(newheader_ => <h3 id='newheader'>{newheader_}</h3>)}
+			{news.map(newheader_ => <h3 key={newheader_} id='newheader'>{newheader_}</h3>)}
 			<Link href="/promopage"><a><h3 id='newheader' className={styles.promophotoheader}><b className={styles.promophotoheaderb}>Продажа</b> Деталь ДС-21, сталь, железо, чугун, иные материалы</h3></a></Link>
 
-			{news.map(newtext_ => <p id='newtext'>{newtext_}</p>)}
+			{news.map(newtext_ => <p key={newtext_} id='newtext'>{newtext_}</p>)}
 			<p id='newstext' className={styles.promophototext} >
 				Деталь ДС-21, сталь, чугун, железо, трубы балки провода, медная катушка, в хорошем состоянии, в плачевном состоянии, требуется ремонт, материалы
 			</p>
 
 			<div className={styles.promophotobottomtext}>
 
-				{news.map(newsection_ => <p id='newsection'>{newtext_}</p>)}
-				<p>Раздел</p>
+				{news.map(newsection_ => <p key={newsection_} id='newsection'>{newtext_}</p>)}
+				<p id='newsection'>Раздел</p>
 
-				{news.map(newdate_ => <p id='newdate'>{newtext_}</p>)}
-				<p>22.02.2022</p>
+				{news.map(newdate_ => <p key={newdate_} id='newdate'>{newtext_}</p>)}
+				<p id='newdate'>22.02.2022</p>
 			</div>
 		</div>
 		<style>{`
