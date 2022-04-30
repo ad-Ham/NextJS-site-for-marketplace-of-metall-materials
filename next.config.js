@@ -13,6 +13,8 @@ const nextConfig = {
     return config;
   },
 
+  swcMinify: false, 
+
 }
 
 module.exports = nextConfig

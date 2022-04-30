@@ -51,12 +51,25 @@ export default function Index() {
 				ogrn.value
 			],
 		};
-		console.log(data);
 
+		console.log(JSON.stringify({
+				email: data.mainData[0],
+				password: data.mainData[1],
+				surname: data.personalData[0],
+				firstname: data.personalData[1],
+				lastname: data.personalData[2],
+				phonenumber: data.personalData[3],
+				orgname: data.jurData[0],
+				juradress: data.jurData[1],
+				inn: data.jurData[2],
+				ogrn: data.jurData[3],
+			}));
 		fetch('http://localhost:3000/regquery', {
 			method: 'POST',
 			headers: {
-				'Accept': 'application/json'
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'User-Agent': '*'
 			},
 			body: JSON.stringify({
 				email: data.mainData[0],
