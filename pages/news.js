@@ -1,16 +1,18 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react';
 import { MainLayout } from '../components/MainLayout/MainLayout'
 import { Portions } from '../components/Portions'
 import { NewsPageMainNews } from '../components/News/NewsPageMainNews'
 import { NewsCardPhoto } from '../components/News/NewsCardPhoto'
 import { NewsPageSortPanel } from '../components/News/NewsPageSortPanel'
 import { NewsPages } from '../components/News/NewsPages'
-import {Adbannertop} from '../components/Adbannertop'
+import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/news.module.scss'
 
 export default function News() {
+
 	return (
 		<MainLayout>
 			<Head>
@@ -19,7 +21,7 @@ export default function News() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			<Adbannertop/>
+			<Adbannertop />
 			<div className={styles.content, styles.bothsides}>
 
 				<div className={styles.leftside}>
@@ -28,7 +30,9 @@ export default function News() {
 				</div>
 				<div className={styles.rightside}>
 					<NewsPageMainNews />
-					<NewsPageSortPanel />
+					<div className={styles.rightside}>
+						<NewsPageSortPanel />
+					</div>
 					<div className={styles.newsrow}>
 						<NewsCardPhoto />
 						<NewsCardPhoto />
