@@ -1,14 +1,40 @@
-import {RepostLayout} from '../newspage/RepostLayout'
+import { RepostLayout } from '../newspage/RepostLayout'
+import { useState, useEffect } from 'react';
 import styles from './NewsBlock.module.scss'
 
 export function NewsBlock() {
-	return(<>
+
+	const [news, setNews] = useState([])
+
+	useEffect(() => {
+		fetch('http://localhost:3000/newsquery', {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json'
+			}
+		})
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				setNews(result.data.news)
+			})
+			.catch(err => {
+				if (err) {
+					console.log(err);
+				}
+			})
+	}, [])
+
+	return (<>
 		<div className={styles.maindiv}>
-			<h2 className={styles.newsheader}>Спрос на сталь в Китае будет стабильным</h2>
+			{news.map(title => <h2>{news[0].title}</h2>)}
+			<h2 className={styles.newsheader}></h2>
 			<div className={styles.photo}></div>
-			<p className={styles.newstext}>Согласно данным SteelOrbis, в 2022 году спрос на сталь в Китае будет удерживаться на уровне предыдущего года. Такая тенденция отражает усилия правительства Китая по стабилизации экономики после пандемии COVID-19.<br/><br/>Стоит отметить, что в нынешнем году CISA сосредоточит свои усилия на балансе спроса и предложения в металлургии, на развитии технологий стального производства, политике координации и сотрудничества с потребляющими сталь отраслями.</p>
-			<p className={styles.newstags}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
-			<RepostLayout/>
+			{news.map(text => <p>{news[0].text}</p>)}
+			<p className={styles.newstext}></p>
+			{news.map(tags => <p>{news[0].tags}</p>)}
+			<p className={styles.newstags}></p>
+			<RepostLayout />
 		</div>
 		<style jsx>{`
 			

@@ -27,35 +27,35 @@ export function PromoBlock() {
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.headerblock}>
-				{promos.map(title => <h1>{title}</h1>)}
-				<h1 className={styles.promoheader}>Металлические ограждения</h1>
+				{promos.map(title => <h1>{promos[0].title}</h1>)}
+				<h1 className={styles.promoheader}></h1>
 				<div className={styles.photo}></div>
 			</div>
 			<div className={styles.desc}>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Страна:</p>
-					{promos.map(country => <p>{country}</p>)}
-					<p className={styles.desctext}>Россия</p>
+					{promos.map(country => <p>{promos[0].country}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Регион:</p>
-					{promos.map(region => <p>{region}</p>)}
-					<p className={styles.desctext}>Владимир и Владимирская область</p>
+					{promos.map(region => <p>{promos[0].region}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>E-mail:</p>
-					{promos.map(email => <p>{email}</p>)}
-					<p className={styles.desctext}>example@mail.ru</p>
+					{promos.map(email => <p>{promos[0].email}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Телефон:</p>
-					{promos.map(phoneNumber => <p>{phoneNumber}</p>)}
-					<p className={styles.desctext}>8-800-555-35-35</p>
+					{promos.map(phoneNumber => <p>{promos[0].phoneNumber}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Организация:</p>
-					{promos.map(organizationName => <p>{organizationName}</p>)}
-					<p className={styles.desctext}>ООО Рога и копыта</p>
+					{promos.map(organizationName => <p>{promos[0].organizationName}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Категория:</p>
@@ -63,8 +63,8 @@ export function PromoBlock() {
 				</div>
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Описание:</p>
-					{promos.map(desription => <p>{desription}</p>)}
-					<p className={styles.desctext}>Металлические ограждения 3D.<br /><br />Для: автомобильных дорог, аэродромов, габионов, стадионов, промышленных объектов, гражданских объектов, коттеджей и дач.  </p>
+					{promos.map(description => <p>{promos[0].description}</p>)}
+					<p className={styles.desctext}></p>
 				</div>
 			</div>
 		</div>
