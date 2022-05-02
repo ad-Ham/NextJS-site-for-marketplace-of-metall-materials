@@ -8,7 +8,7 @@ import Link from 'next/link'
 import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 
-export default function Index(pageProps) {
+export default function Index({news}) {
 	const [isMobile, setIsMobile] = useState(false)
 	useEffect(() => {
 		console.log(document.body.clientWidth)
@@ -33,7 +33,7 @@ export default function Index(pageProps) {
 					<Link href="https://www.example.com"><img src="/adbannerside.svg" alt="" /></Link>
 				</div>
 				<div className={styles.rightside}>
-					<MainPromos store={pageProps.store} />
+					<MainPromos />
 					<MainPageNews />
 				</div>
 

@@ -16,15 +16,32 @@ export function MainData() {
 	return (<>
 		<div className={styles.maindiv}>
 			<h2 className={styles.h2}>Основные данные</h2>
-			<form onSubmit={handleSubmit} className={styles.form}>
-				<div className={styles.firstblock}>
-					<input id='email' type="text" placeholder="E-mail адрес*" className={styles.input} onChange={e => setEmail(e.target.value)} />
-				</div>
-				<div className={styles.secondblock}>
-					<input id='password' type="text" placeholder="Пароль*" className={styles.inputpassword} onChange={e => setPassword(e.target.value)} />
-					<input id='repeatpassword' type="text" placeholder="Повторите пароль*" className={styles.input} />
-				</div>
-			</form>
+			<div className={styles.firstblock}>
+				<input id='email' 
+					   type="email" 
+					   placeholder="E-mail адрес*" 
+					   className={styles.input} 
+					   onChange={e => setEmail(e.target.value)}
+					   required 
+					   maxLength='255'/>
+			</div>
+			<div className={styles.secondblock}>
+				<input id='password' 
+				       type="password" 
+					   placeholder="Пароль*" 
+					   className={styles.inputpassword} 
+					   onChange={e => setPassword(e.target.value)}
+					   required
+					   minLength='6'
+					   maxLength='100' />
+				<input id='repeatpassword' 
+					   type="password" 
+					   required
+					   minLength='6'
+					   maxLength='100'
+					   placeholder="Повторите пароль*" 
+					   className={styles.input} />
+			</div>
 
 		</div>
 		<style jsx>{`
