@@ -64,7 +64,7 @@ export default function Index() {
 				inn: data.jurData[2],
 				ogrn: data.jurData[3],
 			}));
-		fetch('http://localhost:3000/regquery', {
+		fetch('http://localhost:3001/regquery', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
