@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react';
-import { MainLayout } from '../components/MainLayout/MainLayout'
+import { MainLayout } from '../components/mainlayout/MainLayout'
 import { MainData } from '../components/reg/MainData'
 import { PersonalData } from '../components/reg/PersonalData'
 import { JurData } from '../components/reg/JurData'

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {MainLayout} from '../components/MainLayout/MainLayout'
+import {MainLayout} from '../components/mainlayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {ResetForm} from '../components/resetpassword/ResetForm'
 import {Adbannertop} from '../components/Adbannertop'

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {MainLayout} from '../components/MainLayout/MainLayout'
+import {MainLayout} from '../components/mainlayout/MainLayout'
 import {Portions} from '../components/Portions'
 import {ResetHeader} from '../components/reset/ResetHeader'
 import {EmailInput} from '../components/reset/EmailInput'
