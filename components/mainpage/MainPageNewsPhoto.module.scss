@@ -38,6 +38,11 @@
 	line-height: 99.69%;
 	color: #4B4B4B;
 	margin-bottom: 16.5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-line-clamp: 4;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 .importantnewsbottom {
