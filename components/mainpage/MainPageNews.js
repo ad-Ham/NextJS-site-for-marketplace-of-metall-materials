@@ -11,11 +11,11 @@ export function MainPageNews({ news, importantNews }) {
 				<h2 className={styles.newsmainheadertext}>Новости</h2>
 			</div>
 			{importantNews.map(importantNews => (
-				<MainPageImportantNews id={importantNews.id} title={importantNews.title} text={importantNews.text} />
+				<MainPageImportantNews key={importantNews} id={importantNews.id} title={importantNews.title} text={importantNews.text} />
 			))}
 			<div className={styles.newsrow}>
 				{news.map(news => (
-					<MainPageNewsNoPhoto id={news.id} title={news.title} text={news.text} />
+					<MainPageNewsNoPhoto key={news} id={news.id} title={news.title} text={news.text} />
 				))}
 				{/* <MainPageNewsPhoto /> */}
 			</div>
