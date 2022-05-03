@@ -26,16 +26,24 @@ export function NewsBlock() {
 	}, [])
 
 	return (<>
-		<div className={styles.maindiv}>
-			{news.map(title => <h2>{news[0].title}</h2>)}
-			<h2 className={styles.newsheader}></h2>
+
+		{news.map(news => <div className={styles.maindiv} key={news}>
+			<h2 className={styles.newsheader}>
+				{news.title}
+			</h2>
+
 			<div className={styles.photo}></div>
-			{news.map(text => <p>{news[0].text}</p>)}
-			<p className={styles.newstext}></p>
-			{news.map(tags => <p>{news[0].tags}</p>)}
-			<p className={styles.newstags}></p>
-			<RepostLayout />
+
+			<p className={styles.newstext}>
+				{news.text}
+			</p>
+
+			<p className={styles.newstags}>
+				{news.tags}
+			</p>
 		</div>
+		)}
+		<RepostLayout />
 		<style jsx>{`
 			
 		`}</style>

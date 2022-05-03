@@ -25,49 +25,54 @@ export function PromoBlock() {
 	}, [])
 
 	return (<>
-		<div className={styles.maindiv}>
+
+		{promos.map(promos => <div className={styles.maindiv} key={promos}>
+
 			<div className={styles.headerblock}>
-				{promos.map(title => <h1>{promos[0].title}</h1>)}
-				<h1 className={styles.promoheader}></h1>
+				<h1 className={styles.promoheader}>{promos.title}</h1>
 				<div className={styles.photo}></div>
 			</div>
+
 			<div className={styles.desc}>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Страна:</p>
-					{promos.map(country => <p>{promos[0].country}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.country}</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Регион:</p>
-					{promos.map(region => <p>{promos[0].region}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.region}</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>E-mail:</p>
-					{promos.map(email => <p>{promos[0].email}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.email}</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Телефон:</p>
-					{promos.map(phoneNumber => <p>{promos[0].phoneNumber}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.phoneNumber}</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Организация:</p>
-					{promos.map(organizationName => <p>{promos[0].organizationName}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.organizationName}</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Категория:</p>
 					<p className={styles.desctext}>Продажа (предложение)</p>
 				</div>
+
 				<div className={styles.descrow}>
 					<p className={styles.descheader}>Описание:</p>
-					{promos.map(description => <p>{promos[0].description}</p>)}
-					<p className={styles.desctext}></p>
+					<p className={styles.desctext}>{promos.description} </p>
 				</div>
 			</div>
+
 		</div>
+		)}
 		<style jsx>{`
 			
 		`}</style>
