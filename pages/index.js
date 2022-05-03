@@ -8,7 +8,18 @@ import Link from 'next/link'
 import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 
-export default function Index({news}) {
+const knex = require('knex')({
+	client: 'pg',
+	connection: {
+		host: '213.189.221.184',
+		port: 5432,
+		user: 'metallsite',
+		password: 'EyPu{4L}5zhHT~VtC8x~XniK8',
+		database: 'metallsite'
+	}
+});
+
+export default function Index({ news }) {
 	const [isMobile, setIsMobile] = useState(false)
 	useEffect(() => {
 		console.log(document.body.clientWidth)
@@ -34,7 +45,7 @@ export default function Index({news}) {
 				</div>
 				<div className={styles.rightside}>
 					<MainPromos />
-					<MainPageNews />
+					<MainPageNews news={news.slice(1, 5)} importantNews={news.slice(0, 1)} />
 				</div>
 
 			</div>
@@ -44,3 +55,25 @@ export default function Index({news}) {
 		</MainLayout>
 	)
 }
+
+/*Index.getInitialProps = async() => {
+	const news = knex.select('*').from('news');
+	console.log(news);
+	return {
+		news
+	}
+}*/
+
+export async function getServerSideProps() {
+	const news = await knex.select(`id`, `title`, `text`).table('news');
+	console.log(news);
+	return { props: { news } }
+}
+
+
+// export async function getServerSideProps() {
+// 	const news = await knex.select(`id`, `title`, `text`).table('news');
+// 	const promos = await knex.select(`id`, `title`, `text`).table('promos');
+// 	console.log(news, promos);
+// 	return { props: { news, promos } }
+// }
