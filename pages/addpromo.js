@@ -153,6 +153,12 @@ export default function Addpromo() {
 						   onChange={e => setOrganizationName(e.target.value)}
 						   className="inputText"/>
 				</div>
+				<div>
+					<p>Прикрепите фотографию</p>
+					<input id="photo" 
+						   type="file"
+						   onChange={e => console.log(e)}/>
+				</div>
 				<button type="submit">Разместить объявление</button>
 			</form>
 			<style jsx>{`
