@@ -1,15 +1,27 @@
 import Link from 'next/link'
+import { Button } from '@mantine/core';
+
 export function LoginHeaderButton() {
 	return (
 		<>
 			<div>
-				<Link href="/login"><a className="linklogin">Войти</a></Link>
+				<Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
+					<Link href="/login" className='linklogin'><a >Войти</a></Link>
+				</Button>
+				{/* <Link href="/login"><a className="linklogin">Войти</a></Link> */}
 				<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
 			</div>
 			<style jsx>{`
-
-				.linklogin {
-					width: 79.38px;
+				
+				a {
+					color: white;
+				}
+				
+				 .linklogin {
+					text-decoration: none; 				
+					color: white;
+				 }
+					/*width: 79.38px;
 					height: 21.46px;
 					background: #C4C4C4;
 					border-radius: 4px;
@@ -24,7 +36,7 @@ export function LoginHeaderButton() {
 					display: flex;
 					align-items: center;
 					justify-content: center;
-				}
+				} */
 				.linkreg {
 					text-decoration: none;
 					font-weight: 900;

@@ -18,23 +18,7 @@
 	color: #000;
 }
 
-.newsmainheadertext::before {
-	left: 0;
-    content: " ";
-    top: 25px;
-    position: absolute;
-    width: calc(50% - 114.7px);
-    border-top: 2px solid #000;
-}
 
-.newsmainheadertext::after {
-	right: 0;
-    content: " ";
-    top: 25px;
-    position: absolute;
-    width: calc(50% - 114.7px);
-    border-top: 2px solid #000;
-}
 
 .newsrow {
 	margin-top: 26px;

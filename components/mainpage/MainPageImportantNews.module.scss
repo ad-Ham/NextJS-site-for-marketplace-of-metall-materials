@@ -15,9 +15,13 @@
 }
 
 .importantnews {
+	border: 1px solid grey;
+	border-radius: 4px;
+	box-shadow: 1px 1px 5px 2px grey;
+	padding: 5px;
 	display: flex;
 	flex-direction: row;
-	border-bottom: 1px solid #ACACAC;
+	// border-bottom: 1px solid #ACACAC;
 	padding-bottom: 13px;
 }
 

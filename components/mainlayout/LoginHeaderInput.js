@@ -1,9 +1,10 @@
 export function LoginHeaderInput() {
 	return (
-		<>	
-			<input type="text" placeholder="Логин"/>
+		<>
+			<input type="text" placeholder="Логин" />
 			<style jsx>{`
 				input {
+					margin-top: 15px;
 					width: 118.23px;
 					height: 22px;
 					background: #FFF7F7;

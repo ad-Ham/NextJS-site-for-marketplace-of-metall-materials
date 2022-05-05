@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { MainPromoPhoto } from '../mainpage/MainPromoPhoto'
 import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
+import { Button } from '@mantine/core';
 import styles from './MainPromos.module.scss'
 
 export function MainPromos({ firstImprotantPromos, secondImportantPromos }) {
@@ -26,8 +27,12 @@ export function MainPromos({ firstImprotantPromos, secondImportantPromos }) {
 				</div>
 			</div>
 			<div className={styles.buttons}>
-				<button className={styles.promosButton1}>Подать объявление</button>
-				<Link href="/promos"><a className={styles.promosButton2}>Все объявления</a></Link>
+				<Button color="indigo">
+					Подать объявление
+				</Button>
+				<Button color="indigo">
+					<Link href="/promos"><a className={styles.promosButton2}>Все объявления</a></Link>
+				</Button>
 			</div>
 		</div>
 		<style jsx>{`
