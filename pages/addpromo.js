@@ -1,11 +1,13 @@
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { Adbannertop } from '../components/Adbannertop'
 import { useState } from 'react';
+const axios = require('axios').default;
 
 export default function Addpromo() {
 	const [newsStatus, setNewsStatus] = useState('');
 
 	const [title, setTitle] = useState('');
+	const [name, setName] = useState('');
 	const [category, setCategory] = useState('');
 	const [description, setDescription] = useState('');
 	const [country, setCountry] = useState('');
@@ -14,6 +16,7 @@ export default function Addpromo() {
 	const [email, setEmail] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [organizationName, setOrganizationName] = useState('');
+	const [price, setPrice] = useState('');
 
 	const changeCountry = e => {
 		e.preventDefault();
@@ -53,14 +56,36 @@ export default function Addpromo() {
 		}
 		console.log(JSON.stringify({
 			title,
-			category,
-			description,
-			country,
-			region,
+			name,
 			email,
 			phoneNumber,
-			organizationName
+			country,
+			region,
+			category,
+			price,
+			description
 		}))
+
+		axios.post('http://localhost:3001/promosquery', {
+			title,
+			name,
+			email,
+			phoneNumber,
+			country,
+			region,
+			category,
+			price,
+			description
+		})
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+			})
+			.catch(err => {
+				if (err) {
+					console.log(err);
+				}
+			})
 	}
 
 	return (
@@ -68,16 +93,69 @@ export default function Addpromo() {
 			<Adbannertop />
 			<h1>Размещение объявления</h1>
 			<form onSubmit={handleSubmit}>
-				<div>
-					<p>Название товара или услуги</p>
-					<input id="title"
-					   type="text"
-					   placeholder="Например, электродвигатель или лом РЗМ"
-					   required
-					   maxLength="150"
-					   onChange={e => setTitle(e.target.value)}
-					   className="inputText"/>
+				<div className="columnDiv">
+					<div>
+						<div>
+							<p>Заголовок публикации</p>
+							<input id="title"
+							   type="text"
+							   placeholder=""
+							   required
+							   maxLength="150"
+							   onChange={e => setTitle(e.target.value)}
+							   className="inputText"/>
+						</div>
+						<div>
+							<p>Введите контактный e-mail</p>
+							<input id="email" 
+								   type="email"
+								   placeholder="example@email.com"
+								   required
+								   maxLength="150"
+								   onChange={e => setEmail(e.target.value)}
+								   className="inputText"/>
+						</div>
+						<div>
+							<p>Ваша страна</p>
+							<select name="country" id="country" onChange={e => changeCountry(e)}>
+								<option selected="selected" value="">Выберите страну</option>
+								<option value="Россия">Россия</option>
+								<option value="Казахстан">Казахстан</option>
+								<option value="Кыргызстан">Кыргызстан</option>
+								<option value="Узбекистан">Узбекистан</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<div>
+							<p>Наименование товара</p>
+							<input id="name"
+							   type="text"
+							   placeholder="Например, электродвигатель или лом РЗМ"
+							   required
+							   maxLength="150"
+							   onChange={e => setName(e.target.value)}
+							   className="inputText"/>
+						</div>
+						<div>
+							<p>Введите номер телефона</p>
+							<input id="email" 
+								   type="tel"
+								   placeholder="999-999-999"
+								   required
+								   maxLength="150"
+								   onChange={e => setPhoneNumber(e.target.value)}
+								   className="inputText"/>
+						</div>
+						<div>
+							{(country !=='') && <><p>Ваш регион</p>
+							<select name="region" id="region" onChange={e => changeRegion(e)}>
+								{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
+							</select></>}
+						</div>
+					</div>
 				</div>
+
 				<div>
 					<p>Выберите категорию</p>
 					<div className="radioDiv">
@@ -100,6 +178,16 @@ export default function Addpromo() {
 				    </div>
 				</div>
 				<div>
+					<p>Введите цену(₽)</p>
+					<input id="price" 
+					   type="number"
+					   placeholder=""
+					   required
+					   maxLength="150"
+					   onChange={e => setPrice(e.target.value)}
+					   className="inputText"/>
+				</div>
+				<div>
 					<p>Описание товара или услуги</p>
 					<textarea id="description"
 					  	placeholder="Введите описание сюда"
@@ -108,58 +196,9 @@ export default function Addpromo() {
 					  	rows="10"
 					  	onChange={e => setDescription(e.target.value)}/>
 				</div>
-				<div>
-					<p>Ваша страна</p>
-					<select name="country" id="country" onChange={e => changeCountry(e)}>
-						<option selected="selected" value="">Выберите страну</option>
-						<option value="Россия">Россия</option>
-						<option value="Казахстан">Казахстан</option>
-						<option value="Кыргызстан">Кыргызстан</option>
-						<option value="Узбекистан">Узбекистан</option>
-					</select>
+				<div className="buttonDiv">
+					<button type="submit">Разместить объявление</button>
 				</div>
-				<div>
-					{(country !=='') && <><p>Ваша регион</p>
-					<select name="region" id="region" onChange={e => changeRegion(e)}>
-						{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
-					</select></>}
-				</div>
-				<div>
-					<p>Введите контактный e-mail</p>
-					<input id="email" 
-						   type="email"
-						   placeholder="example@email.com"
-						   required
-						   maxLength="150"
-						   onChange={e => setEmail(e.target.value)}
-						   className="inputText"/>
-				</div>
-				<div>
-					<p>Введите номер телефона</p>
-					<input id="email" 
-						   type="tel"
-						   placeholder="999-999-999"
-						   required
-						   maxLength="150"
-						   onChange={e => setPhoneNumber(e.target.value)}
-						   className="inputText"/>
-				</div>
-				<div>
-					<p>Введите название организации</p>
-					<input id="email" 
-						   type="tel"
-						   required
-						   maxLength="150"
-						   onChange={e => setOrganizationName(e.target.value)}
-						   className="inputText"/>
-				</div>
-				<div>
-					<p>Прикрепите фотографию</p>
-					<input id="photo" 
-						   type="file"
-						   onChange={e => console.log(e)}/>
-				</div>
-				<button type="submit">Разместить объявление</button>
 			</form>
 			<style jsx>{`
 				button {
@@ -174,14 +213,20 @@ export default function Addpromo() {
 					line-height: 99.69%;
 					padding: 8px 25px 7px 25px;
 					margin-top: 25px;
+					width: 15vw;
 				}
 
 				h1 {
-					padding-left: 5vw;
+					text-align: center;
+					font-size: 36px;
 				}
 
 				form {
+					display: flex;
+					flex-direction: column;
+					flex-wrap: wrap;
 					padding-left: 5vw;
+					padding-right: 5vw;
 				}
 
 				p {
@@ -210,10 +255,20 @@ export default function Addpromo() {
 					align-items: center;
 				}
 
+				.columnDiv {
+					flex-direction: row;
+					justify-content: space-between;
+				}
+
+				.buttonDiv {
+					display: flex;
+					align-items: center;
+				}
+
 				.inputText {
 					font-size: 16px;
 					padding: 4px;
-					width: 35vw;
+					width: 30vw;
 					background: #E0E0E0;
 					border: 1px solid #000000;
 					box-sizing: border-box;
@@ -223,7 +278,8 @@ export default function Addpromo() {
 				textarea {
 					font-size: 18px;
 					padding: 7px;
-					width: 35vw;background: #E0E0E0;
+					width: 100%;
+					background: #E0E0E0;
 					border: 1px solid #000000;
 					box-sizing: border-box;
 					border-radius: 4px;
@@ -232,7 +288,7 @@ export default function Addpromo() {
 				select {
 					font-size: 18px;
 					padding: 7px;
-					width: 35vw;
+					width: 30vw;
 					background: #E0E0E0;
 					border: 1px solid #000000;
 					box-sizing: border-box;
