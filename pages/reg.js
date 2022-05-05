@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState } from 'react';
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { MainData } from '../components/reg/MainData'
@@ -29,7 +30,7 @@ export default function Index() {
 	// const [inn, setInn] = useState('');
 	// const [ogrn, setOgrn] = useState('');
 
-	const handleSubmit = e => {
+	const Submit = e => {
 		e.preventDefault();
 		const data = {
 			mainData: [
@@ -53,17 +54,17 @@ export default function Index() {
 		};
 
 		console.log(JSON.stringify({
-				email: data.mainData[0],
-				password: data.mainData[1],
-				surname: data.personalData[0],
-				firstname: data.personalData[1],
-				lastname: data.personalData[2],
-				phonenumber: data.personalData[3],
-				orgname: data.jurData[0],
-				juradress: data.jurData[1],
-				inn: data.jurData[2],
-				ogrn: data.jurData[3],
-			}));
+			email: data.mainData[0],
+			password: data.mainData[1],
+			surname: data.personalData[0],
+			firstname: data.personalData[1],
+			lastname: data.personalData[2],
+			phonenumber: data.personalData[3],
+			orgname: data.jurData[0],
+			juradress: data.jurData[1],
+			inn: data.jurData[2],
+			ogrn: data.jurData[3],
+		}));
 		fetch('http://localhost:3001/regquery', {
 			method: 'POST',
 			headers: {
@@ -110,11 +111,13 @@ export default function Index() {
 					<h1 className={styles.regheader}>Регистрация</h1>
 					<p className={styles.regtext}>Впервые на нашем сайте? Заполните форму регистрации.</p>
 				</div>
-				<form onSubmit={handleSubmit} className={styles.form}>
+				<form onSubmit={Submit} className={styles.form}>
 					<MainData onChange={e => setMainData(e.target.value)} />
 					<PersonalData onChange={e => setPersonalData(e.target.value)} />
 					<JurData onChange={e => setJurData(e.target.value)} />
-					<button className='btn' type="submit"><RegButton /></button>
+					{/* <button className='btn' type="submit"><RegButton /></button> */}
+					<RegButton />
+					{/* <Link href="/thankyou"><RegButton /></Link> */}
 				</form>
 			</div>
 			<style jsx>{`

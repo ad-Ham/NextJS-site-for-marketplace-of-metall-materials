@@ -4,7 +4,7 @@ export function LoginHeaderButton() {
 		<>
 			<div>
 				<Link href="/login"><a className="linklogin">Войти</a></Link>
-				<Link href={'/reg'}><a>Регистрация</a></Link>
+				<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
 			</div>
 			<style jsx>{`
 
@@ -25,15 +25,16 @@ export function LoginHeaderButton() {
 					align-items: center;
 					justify-content: center;
 				}
-
-				a {
+				.linkreg {
 					text-decoration: none;
-					font-weight: 400;
-					font-size: 10px;
-					line-height: 99.69%;
+					font-weight: 900;
+					font-size: 14px;
+					line-height: 98.69%;
 					letter-spacing: 0.1em;
-					color: #828282;
+					color: #000000;
 				}
+
+				
 
 				div {
 					display: flex;

@@ -11,8 +11,19 @@ import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/news.module.scss'
 
-export default function News() {
 
+const knex = require('knex')({
+	client: 'pg',
+	connection: {
+		host: '213.189.221.184',
+		port: 5432,
+		user: 'metallsite',
+		password: 'EyPu{4L}5zhHT~VtC8x~XniK8',
+		database: 'metallsite'
+	}
+});
+
+export default function News({ news }) {
 	return (
 		<MainLayout>
 			<Head>
@@ -29,22 +40,22 @@ export default function News() {
 					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
 				</div>
 				<div className={styles.rightside}>
-					<NewsPageMainNews />
+					<NewsPageMainNews importantNews={news.slice(0, 1)} />
 					<div className={styles.rightside}>
 						<NewsPageSortPanel />
 					</div>
 					<div className={styles.newsrow}>
+						<NewsCardPhoto news={news.slice(1, 5)} />
+						{/* <NewsCardPhoto /> */}
+					</div>
+					{/* <div className={styles.newsrow}>
 						<NewsCardPhoto />
 						<NewsCardPhoto />
 					</div>
 					<div className={styles.newsrow}>
 						<NewsCardPhoto />
 						<NewsCardPhoto />
-					</div>
-					<div className={styles.newsrow}>
-						<NewsCardPhoto />
-						<NewsCardPhoto />
-					</div>
+					</div> */}
 					<NewsPages />
 				</div>
 			</div>
@@ -53,4 +64,10 @@ export default function News() {
 			`}</style>
 		</MainLayout>
 	)
+}
+
+export async function getServerSideProps() {
+	const news = await knex.select(`id`, `title`, `text`).table('news');
+	console.log(news);
+	return { props: { news } }
 }

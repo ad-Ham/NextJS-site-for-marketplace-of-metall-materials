@@ -7,12 +7,24 @@ import { PromosPageSortPanel } from '../components/promos/PromosPageSortPanel'
 import { PromosPageListHeader } from '../components/promos/PromosPageListHeader'
 import { PromosPageList } from '../components/promos/PromosPageList'
 import { PromosPages } from '../components/promos/PromosPages'
-import {Adbannertop} from '../components/Adbannertop'
+import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/promos.module.scss'
 
-export default function Promos() {
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: '213.189.221.184',
+        port: 5432,
+        user: 'metallsite',
+        password: 'EyPu{4L}5zhHT~VtC8x~XniK8',
+        database: 'metallsite'
+    }
+});
+
+
+export default function Promos({ promos }) {
     return (
         <MainLayout>
             <Head>
@@ -21,7 +33,7 @@ export default function Promos() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <Adbannertop/>
+            <Adbannertop />
             <div className={styles.content, styles.bothsides}>
 
                 <div className={styles.leftside}>
@@ -34,6 +46,13 @@ export default function Promos() {
                     <PromosPageSortPanel />
                     <PromosPageListHeader />
                     <div className={styles.promosrow}>
+                        <PromosPageList promos={promos} />
+                        {/* <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList />
+                        <PromosPageList /> */}
+                    </div>
+                    {/* <div className={styles.promosrow}>
                         <PromosPageList />
                         <PromosPageList />
                         <PromosPageList />
@@ -53,14 +72,7 @@ export default function Promos() {
                         <PromosPageList />
                         <PromosPageList />
                         <PromosPageList />
-                    </div>
-                    <div className={styles.promosrow}>
-                        <PromosPageList />
-                        <PromosPageList />
-                        <PromosPageList />
-                        <PromosPageList />
-                        <PromosPageList />
-                    </div>
+                    </div> */}
                     <PromosPages />
                 </div>
             </div>
@@ -69,4 +81,10 @@ export default function Promos() {
 			`}</style>
         </MainLayout>
     )
+}
+
+export async function getServerSideProps() {
+    const promos = await knex.select(`id`, `title`, `country`, 'region', 'email', 'phoneNumber', 'organizationName', 'description').table('promos');
+    console.log(promos);
+    return { props: { promos } }
 }

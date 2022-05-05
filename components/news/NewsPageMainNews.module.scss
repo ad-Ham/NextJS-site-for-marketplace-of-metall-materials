@@ -20,6 +20,7 @@
 }
 
 .importantnewsheaderdate {
+	margin-top: 10px;
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 99.69%;
@@ -27,6 +28,7 @@
 }
 
 .importantnewsheadertext {
+	margin-bottom: 16px;
 	font-weight: 600;
 	font-size: 36px;
 	line-height: 99.69%;
@@ -78,20 +80,20 @@
 
 .newsmainheadertext::before {
 	left: 0;
-    content: " ";
-    top: 25px;
-    position: absolute;
-    width: calc(50% - 114.7px);
-    border-top: 2px solid #000;
+	content: " ";
+	top: 25px;
+	position: absolute;
+	width: calc(50% - 114.7px);
+	border-top: 2px solid #000;
 }
 
 .newsmainheadertext::after {
 	right: 0;
-    content: " ";
-    top: 25px;
-    position: absolute;
-    width: calc(50% - 114.7px);
-    border-top: 2px solid #000;
+	content: " ";
+	top: 25px;
+	position: absolute;
+	width: calc(50% - 114.7px);
+	border-top: 2px solid #000;
 }
 
 @media (max-width: 1150px) {

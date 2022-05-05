@@ -14,8 +14,8 @@ export function MainLayout({ children }) {
 						<BurgerMenu />
 						<Link href="/"><Logo /></Link>
 						<SearchHeader />
-						<Link href={'/buy'}><a className={styles.buysell}>Купить</a></Link>
-						<Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link>
+						<Link href={'/promos'}><a className={styles.buysell}>Доска объявлений</a></Link>
+						{/* <Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link> */}
 						<LoginHeader />
 					</div>
 				</nav>

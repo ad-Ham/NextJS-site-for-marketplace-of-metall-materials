@@ -3,11 +3,16 @@ import { MainPromoPhoto } from '../mainpage/MainPromoPhoto'
 import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
 import styles from './MainPromos.module.scss'
 
-export function MainPromos(pageProps) {
+export function MainPromos({ firstImprotantPromos, secondImportantPromos }) {
+	console.log(firstImprotantPromos);
+	console.log(secondImportantPromos);
 	return (<>
 		<div className={styles.promosMainBox}>
 			<h2 className={styles.promosHeader}>Объявления</h2>
 			<div className={styles.menucards}>
+				{/* {firstImprotantPromos.map(firstImprotantPromos => (
+					<MainPromoPhoto key={firstImprotantPromos} id={firstImprotantPromos.id} title={firstImprotantPromos.title} text={firstImprotantPromos.text} />
+				))} */}
 				<MainPromoPhoto />
 				<MainPromoPhoto />
 				<div className={styles.promos}>

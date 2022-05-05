@@ -19,7 +19,7 @@ const knex = require('knex')({
 	}
 });
 
-export default function Index({ news }) {
+export default function Index({ news, promos }) {
 	const [isMobile, setIsMobile] = useState(false)
 	useEffect(() => {
 		console.log(document.body.clientWidth)
@@ -44,7 +44,7 @@ export default function Index({ news }) {
 					<Link href="https://www.example.com"><img src="/adbannerside.svg" alt="" /></Link>
 				</div>
 				<div className={styles.rightside}>
-					<MainPromos />
+					<MainPromos firstImprotantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
 					<MainPageNews news={news.slice(1, 5)} importantNews={news.slice(0, 1)} />
 				</div>
 
@@ -67,7 +67,9 @@ export default function Index({ news }) {
 export async function getServerSideProps() {
 	const news = await knex.select(`id`, `title`, `text`).table('news');
 	console.log(news);
-	return { props: { news } }
+	const promos = await knex.select(`id`, `title`, `country`, 'region', 'email', 'phoneNumber', 'organizationName', 'description').table('promos');
+	console.log(promos);
+	return { props: { news, promos } }
 }
 
 

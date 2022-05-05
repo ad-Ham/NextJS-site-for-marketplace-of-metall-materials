@@ -1,13 +1,17 @@
 import Link from 'next/link'
 
 export function RegButton() {
+
 	return (<>
 		<div className="maindiv">
-			{/* <Link href="/"><button type="submit">Регистрация</button></Link> */}
+			{/* <Link href="/thankyou"><button type="submit" >Регистрация</button></Link> */}
 			<button type="submit">Регистрация</button>
+			{/* <a href='/thankyou'><button type="submit">Регистрация</button></a> */}
 		</div>
 		<style jsx>{`
 			.maindiv {
+				margin-top: 40px;
+				margin-left: 75px;
 				width: 157px;
 				height: 39px;
 				background: #C4C4C4;

@@ -5,6 +5,8 @@ import Link from 'next/link'
 import styles from './MainPageNews.module.scss'
 
 export function MainPageNews({ news, importantNews }) {
+	// console.log(news)
+	// console.log(importantNews)
 	return (<>
 		<div className={styles.mainpagenews}>
 			<div className={styles.newsmainheader}>
