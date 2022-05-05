@@ -8,6 +8,7 @@ import { JurData } from '../components/reg/JurData'
 import { RegButton } from '../components/reg/RegButton'
 import { Adbannertop } from '../components/Adbannertop'
 import styles from '../styles/reg.module.scss'
+const axios = require('axios').default;
 
 export default function Index() {
 	const [regStatus, setRegStatus] = useState('')
@@ -65,8 +66,7 @@ export default function Index() {
 			inn: data.jurData[2],
 			ogrn: data.jurData[3],
 		}));
-		fetch('http://localhost:3001/regquery', {
-			method: 'POST',
+		axios.post('http://localhost:3001/regquery', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',

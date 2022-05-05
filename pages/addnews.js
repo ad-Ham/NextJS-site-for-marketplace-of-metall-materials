@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react';
+const axios = require('axios').default;
 
 export default function Addnews() {
 	const [newsStatus, setNewsStatus] = useState('');
@@ -23,8 +24,7 @@ export default function Addnews() {
 			tags,
 			date
 		}));
-		fetch('http://localhost:3001/newsquery', {
-			method: 'POST',
+		axios.post('http://localhost:3001/newsquery', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',

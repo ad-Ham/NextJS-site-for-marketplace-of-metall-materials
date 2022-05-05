@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styles from './MainPromoPhoto.module.scss'
+const axios = require('axios').default;
 
 export function MainPromoPhoto() {
 	// Взятие новости из бд и отображение на странице
 	const [news, setNews] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:3000/regquery', {
-			method: 'GET',
+		axios.get('http://localhost:3001/regquery', {
 			headers: {
 				'Accept': 'application/json'
 			}
@@ -37,8 +37,7 @@ export function MainPromoPhoto() {
 		const newsection = e.target.type.value;
 		const newdate = e.target.type.value;
 
-		fetch('http://localhost:3000/regquery', {
-			method: 'POST',
+		axios.post('http://localhost:3001/regquery', {
 			headers: {
 				'Accept': 'application/json'
 			},

@@ -1,14 +1,14 @@
 import { RepostLayout } from '../newspage/RepostLayout'
 import { useState, useEffect } from 'react';
 import styles from './NewsBlock.module.scss'
+const axios = require('axios').default;
 
 export function NewsBlock() {
 
 	const [news, setNews] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:3000/newsquery', {
-			method: 'GET',
+		axios.get('http://localhost:3001/newsquery', {
 			headers: {
 				'Accept': 'application/json'
 			}

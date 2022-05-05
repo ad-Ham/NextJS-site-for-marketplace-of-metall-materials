@@ -1,13 +1,13 @@
 import styles from './PromoBlock.module.scss'
 import { useState, useEffect } from 'react';
+const axios = require('axios').default;
 
 export function PromoBlock() {
 
 	const [promos, setPromos] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:3000/promosquery', {
-			method: 'GET',
+		axios.get('http://localhost:3001/promosquery', {
 			headers: {
 				'Accept': 'application/json'
 			}
