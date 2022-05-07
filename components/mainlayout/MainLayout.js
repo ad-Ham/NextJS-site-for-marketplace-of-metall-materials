@@ -2,7 +2,10 @@ import Link from 'next/link'
 import { SearchHeader } from '../mainlayout/SearchHeader'
 import { LoginHeader } from '../mainlayout/LoginHeader'
 import { BurgerMenu } from '../BurgerMenu'
-import Logo from '/public/logo.svg'
+import Image from 'next/image'
+// import smallLogo from '../../public/metal_small_logo'
+// import profilePic from '../../public\metal_small_logo.png'
+// import Logo from '/public/logo.svg'
 import styles from './MainLayout.module.scss'
 
 export function MainLayout({ children }) {
@@ -12,9 +15,16 @@ export function MainLayout({ children }) {
 				<nav className={styles.nav}>
 					<div className={styles.container, styles.navcontainer}>
 						<BurgerMenu />
-						<Link href="/"><Logo /></Link>
+						<Link href="/">
+							<Image
+								src="/metal_small_logo.png"
+								width={45}
+								height={45}
+							/>
+						</Link>
 						<SearchHeader />
-						<Link href={'/promos'}><a className={styles.buysell}>Доска объявлений</a></Link>
+						{/* <Link href={'/promos'}><a className={styles.buysell}>Доска объявлений</a></Link> */}
+						<p>Курс валют</p>
 						{/* <Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link> */}
 						<LoginHeader />
 					</div>
@@ -25,13 +35,19 @@ export function MainLayout({ children }) {
 				<footer className={styles.footer}>
 					<div className={styles.container, styles.footercontainer}>
 						<div className={styles.footerleft}>
-							<Link href="/"><Logo /></Link>
+							<Link href="/">
+								<Image
+									src="/metal_small_logo.png"
+									width={45}
+									height={45}
+								/>
+							</Link>
 							<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
 						</div>
 						<ul className={styles.footerul}>
-							<li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li>
-							<li>Уфа, улица Пушкина, дом Колотушкина</li>
-							<li>© ООО Рога и копыта, сайт сделан Алексеем, 2022</li>
+							{/* <li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li> */}
+							<li>ООО "Технические системы" г.Уфа, Республика Башкортостан</li>
+							<li>© ООО "Технические системы", 2022</li>
 						</ul>
 					</div>
 				</footer>

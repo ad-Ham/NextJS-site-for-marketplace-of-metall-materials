@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { useState } from 'react';
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { MainData } from '../components/reg/MainData'
@@ -105,7 +104,7 @@ export default function Index() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			<Adbannertop />
+			{/* <Adbannertop /> */}
 			<div className={styles.content, styles.maindiv}>
 				<div className={styles.regheaderblock}>
 					<h1 className={styles.regheader}>Регистрация</h1>
@@ -115,9 +114,7 @@ export default function Index() {
 					<MainData onChange={e => setMainData(e.target.value)} />
 					<PersonalData onChange={e => setPersonalData(e.target.value)} />
 					<JurData onChange={e => setJurData(e.target.value)} />
-					{/* <button className='btn' type="submit"><RegButton /></button> */}
 					<RegButton />
-					{/* <Link href="/thankyou"><RegButton /></Link> */}
 				</form>
 			</div>
 			<style jsx>{`

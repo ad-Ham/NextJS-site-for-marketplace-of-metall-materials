@@ -33,7 +33,7 @@ export default function Promos({ promos }) {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <Adbannertop />
+            {/* <Adbannertop /> */}
             <div className={styles.content, styles.bothsides}>
 
                 <div className={styles.leftside}>

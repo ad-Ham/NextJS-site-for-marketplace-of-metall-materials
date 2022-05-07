@@ -13,7 +13,7 @@ export default function Thankyou() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			<Adbannertop />
+			{/* <Adbannertop /> */}
 			<div className={styles.content, styles.bothsides}>
 				<ThankYouForRegistration />
 			</div>

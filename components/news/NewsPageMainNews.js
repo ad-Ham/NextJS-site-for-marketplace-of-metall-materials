@@ -11,13 +11,15 @@ export function NewsPageMainNews({ importantNews }) {
 			<div className={styles.importantnewsheader}>
 				<Link href="/newspage">
 					{importantNews.map(importantNews => (
-						<a key={importantnewsheadertext}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
+						<a key={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
+						// <a><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
 					))}
 				</Link>
 			</div>
 			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
 			{importantNews.map(importantNews => (
-				<p key={importantnewstext} className={styles.importantnewstext}>{importantNews.text}</p>
+				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>
+				// <p className={styles.importantnewstext}>{importantNews.text}</p>
 			))}
 			<p className={styles.importantnewsbottomtext}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
 			<p className={styles.importantnewsheaderdate}>22.02 18:00</p>

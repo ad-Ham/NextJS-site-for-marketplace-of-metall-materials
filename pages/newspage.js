@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import {MainLayout} from '../components/mainlayout/MainLayout'
-import {Portions} from '../components/Portions'
-import {MainPromos} from '../components/mainpage/MainPromos'
-import {MainPageNews} from '../components/mainpage/MainPageNews'
-import {NewsBlock} from '../components/newspage/NewsBlock'
-import {MoreNewsCard} from '../components/newspage/MoreNewsCard'
-import {Adbannertop} from '../components/Adbannertop'
+import { MainLayout } from '../components/mainlayout/MainLayout'
+import { Portions } from '../components/Portions'
+import { MainPromos } from '../components/mainpage/MainPromos'
+import { MainPageNews } from '../components/mainpage/MainPageNews'
+import { NewsBlock } from '../components/newspage/NewsBlock'
+import { MoreNewsCard } from '../components/newspage/MoreNewsCard'
+import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/newspage.module.scss'
@@ -15,29 +15,29 @@ export default function NewsPage() {
 		<MainLayout>
 			<Head>
 				<title>Next Title</title>
-				<meta name="keywords" content="next, javascript"/>
-				<meta name="description" content="this is"/>
-				<meta charSet="utf-8"/>
+				<meta name="keywords" content="next, javascript" />
+				<meta name="description" content="this is" />
+				<meta charSet="utf-8" />
 			</Head>
-			<Adbannertop/>
+			{/* <Adbannertop/> */}
 			<div className={styles.content, styles.bothsides}>
-				
+
 				<div className={styles.leftside}>
-					<Portions/>
-					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside/></Link></div>
+					<Portions />
+					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
 				</div>
 				<div className={styles.rightside}>
-					<NewsBlock/>
+					<NewsBlock />
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
 						<div className={styles.morenewsrow}>
-							<MoreNewsCard/>
-							<MoreNewsCard/>
-							<MoreNewsCard/>
+							<MoreNewsCard />
+							<MoreNewsCard />
+							<MoreNewsCard />
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<style jsx>{`
 				

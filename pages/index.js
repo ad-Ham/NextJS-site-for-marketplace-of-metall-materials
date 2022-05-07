@@ -36,12 +36,12 @@ export default function Index({ news, promos }) {
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 			</Head>
-			<Adbannertop />
+			{/* <Adbannertop /> */}
 			<div className={styles.content, styles.bothsides}>
 
 				<div className={styles.leftside}>
 					<Portions />
-					<Link href="https://www.example.com"><img src="/adbannerside.svg" alt="" /></Link>
+					{/* <Link href="https://www.example.com"><img src="/adbannerside.svg" alt="" /></Link> */}
 				</div>
 				<div className={styles.rightside}>
 					<MainPromos firstImprotantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />

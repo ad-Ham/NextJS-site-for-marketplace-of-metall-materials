@@ -82,7 +82,7 @@ import { MyPromosPageCountPanel } from '../components/mypromos/MyPromosPageCount
 import { MyPromosPageListHeader } from '../components/mypromos/MyPromosPageListHeader'
 import { MyPromosPageList } from '../components/mypromos/MyPromosPageList'
 import { MyPromosPages } from '../components/mypromos/MyPromosPages'
-import {Adbannertop} from '../components/Adbannertop'
+import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/mypromos.module.scss'
@@ -96,7 +96,7 @@ export default function MyPromos() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <Adbannertop/>
+            {/* <Adbannertop/> */}
             <div className={styles.content, styles.bothsides}>
 
                 <div className={styles.leftside}>

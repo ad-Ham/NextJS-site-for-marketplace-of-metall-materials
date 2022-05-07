@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { YourData } from '../components/editprofile/YourData'
 import { JurData } from '../components/editprofile/JurData'
-import {Adbannertop} from '../components/Adbannertop'
+import { Adbannertop } from '../components/Adbannertop'
 import Link from 'next/link'
 import styles from "../styles/editprofile.module.scss"
 
@@ -15,7 +15,7 @@ export default function EditProfile() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <Adbannertop/>
+            {/* <Adbannertop/> */}
             <div className={styles.content, styles.bothsides}>
                 <div className={styles.rightside}>
                     <YourData />

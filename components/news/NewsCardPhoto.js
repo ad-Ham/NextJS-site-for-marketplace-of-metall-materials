@@ -10,11 +10,11 @@ export function NewsCardPhoto({ news }) {
 			<div>
 				<Link href="/newspage">
 					{news.map(news => (
-						<a key={newsheader}><h3 className={styles.newsheader}>{news.title}</h3></a>
+						<a key={news.id}><h3 className={styles.newsheader}>{news.title}</h3></a>
 					))}
 				</Link>
 				{news.map(news => (
-					<p key={newstext} className={styles.newstext}>{news.text}</p>
+					<p key={news.id} className={styles.newstext}>{news.text}</p>
 				))}
 
 				<div className={styles.newsbottom}>
