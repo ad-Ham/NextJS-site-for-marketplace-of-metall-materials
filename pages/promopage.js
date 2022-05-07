@@ -24,7 +24,7 @@ export default function Index() {
 
 				<div className={styles.leftside}>
 					<Portions />
-					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
+					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
 					<PromoBlock />

@@ -23,7 +23,7 @@ export default function Gosts() {
             <div className={styles.content, styles.bothsides}>
                 <div className={styles.leftside}>
                     <Portions />
-                    <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
+                    {/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
                 </div>
                 <div className={styles.rightside}>
                     <GostsMainText />

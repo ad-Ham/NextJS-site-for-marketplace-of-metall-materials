@@ -1,0 +1,29 @@
+.maindiv {
+    border-radius: 4px;
+    box-shadow: 0px 4px 40px rgb(0 0 0 / 10%);
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.listitemheadertext {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #f9b302;
+}
+
+.listitemsubheadertext {
+    margin-top: 15px;
+    text-align: center;
+    background-color: #e5e4e2;
+    color: #85620a;
+}
+
+.listitem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 740px;
+    margin-top: 10px;
+    // border-bottom: 1px solid black;
+    font-size: 14px;
+}

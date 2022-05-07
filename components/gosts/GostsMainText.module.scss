@@ -1,5 +1,6 @@
 .maindiv {
     background: #FFFFFF;
+    border-radius: 4px;
     box-shadow: 0px 4px 40px rgb(0 0 0 / 10%);
     padding: 10px 6px 21px 5px;
     margin-left: 30px;
@@ -22,5 +23,7 @@
 .gostsbodytextthree,
 .gostsbodytextfour {
     margin-top: 5px;
+    padding-left: 10px;
     text-indent: 30px;
+    line-height: 20px;
 }
