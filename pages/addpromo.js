@@ -2,6 +2,7 @@ import { MainLayout } from '../components/mainlayout/MainLayout'
 import { Adbannertop } from '../components/Adbannertop'
 import { useState } from 'react';
 const axios = require('axios').default;
+import styles from '../components/promopage/PromoBlock.module.scss'
 
 export default function Addpromo() {
 	const [newsStatus, setNewsStatus] = useState('');
@@ -48,6 +49,14 @@ export default function Addpromo() {
 		setCountry(e.target.value)
 	}
 
+	const showPreview = e => {
+		elem.classList.add("modWindowWrapper");
+	}
+
+	const removePreview = e => {
+		elem.classList.remove("modWindowWrapper");
+	}
+
 	const handleSubmit = e => {
 		e.preventDefault();
 		if ( country === '' || region === '') {
@@ -89,8 +98,61 @@ export default function Addpromo() {
 	}
 
 	return (
+		
 		<MainLayout>
+		<div id='elem' className="modWindowDisable">
+		<button type="button" onClick={removePreview} className="cross"></button>
+		<div className="modWindow">
+			<div className={styles.headerblock}>
+				<h1 className={styles.promoheader}>{title}</h1>
+			</div>
+
+			<div className={styles.desc}>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Наименование товара:</p>
+					<p className={styles.desctext}>{name}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>E-mail:</p>
+					<p className={styles.desctext}>{email}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Телефон:</p>
+					<p className={styles.desctext}>{phoneNumber}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Страна:</p>
+					<p className={styles.desctext}>{country}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Регион:</p>
+					<p className={styles.desctext}>{region}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Категория:</p>
+					<p className={styles.desctext}>{category}</p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Описание:</p>
+					<p className={styles.desctext}>{description} </p>
+				</div>
+
+				<div className={styles.descrow}>
+					<p className={styles.descheader}>Цена:</p>
+					<p className={styles.desctext}>{price} </p>
+				</div>
+			</div>
+		</div>
+		</div>
 			<Adbannertop />
+			
 			<h1>Размещение объявления</h1>
 			<form onSubmit={handleSubmit}>
 				<div className="columnDiv">
@@ -163,7 +225,7 @@ export default function Addpromo() {
 							   id="category"
 							   name="radiobutton"
 							   required
-							   value="buy"
+							   value="Куплю"
 							   onChange={e => setCategory(e.target.value)}/>
 					    <p className="radioTeaxt">Куплю</p>
 				    </div>
@@ -172,7 +234,7 @@ export default function Addpromo() {
 							   id="category"
 							   name="radiobutton"
 							   required
-							   value="sell"
+							   value="Продам"
 							   onChange={e => setCategory(e.target.value)}/>
 					    <p className="radioTeaxt">Продам</p>
 				    </div>
@@ -199,8 +261,46 @@ export default function Addpromo() {
 				<div className="buttonDiv">
 					<button type="submit">Разместить объявление</button>
 				</div>
+				<div className="buttonDiv">
+					<button type="button" onClick={showPreview}>Предпросмотр</button>
+				</div>
 			</form>
 			<style jsx>{`
+				.cross {
+					width: 2vw;
+					height: 2vw;
+					background-color: unset;
+					background-image: url("/cross.svg");
+					background-size: contain;
+    				opacity: 0.5;
+				}
+
+				.modWindowDisable {
+					display: none;
+				}
+
+				.modWindowWrapper {
+					display: flex;
+					position: fixed;
+					background: rgb(0,0,0,0.7);
+					width: 100vw;
+					height: 100vh;
+					top: 0;
+					left: 0;
+					margin: 0;
+				}
+
+				.modWindow {
+					z-index: 100;
+					height: 80vh;
+					width: 80vw;
+					overflow-y: scroll;
+					background: white;
+					margin: auto;
+					padding: 15px;
+					border-radius: 4px;
+				}
+
 				button {
 					display: flex;
 					align-items: center;
