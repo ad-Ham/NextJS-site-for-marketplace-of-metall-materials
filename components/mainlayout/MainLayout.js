@@ -46,8 +46,8 @@ export function MainLayout({ children }) {
 						</div>
 						<ul className={styles.footerul}>
 							{/* <li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li> */}
-							<li>ООО "Технические системы" г.Уфа, Республика Башкортостан</li>
-							<li>© ООО "Технические системы", 2022</li>
+							<li>ООО &quot;Технические системы&quot; г.Уфа, Республика Башкортостан</li>
+							<li>© ООО &quot;Технические системы&quot;, 2022</li>
 						</ul>
 					</div>
 				</footer>
