@@ -66,12 +66,6 @@ export default function Index() {
 			ogrn: data.jurData[3],
 		}));
 		axios.post('http://localhost:3001/regquery', {
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'User-Agent': '*'
-			},
-			body: JSON.stringify({
 				email: data.mainData[0],
 				password: data.mainData[1],
 				surname: data.personalData[0],
@@ -82,13 +76,11 @@ export default function Index() {
 				juradress: data.jurData[1],
 				inn: data.jurData[2],
 				ogrn: data.jurData[3],
-			}) // данные 
 		})
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				setRegStatus('Вы успешно зарегестрированы')
-				e.targer.reset()
+				e.target.reset()
 			})
 			.catch(err => {
 				if (err) {

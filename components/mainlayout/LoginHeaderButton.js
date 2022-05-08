@@ -5,8 +5,8 @@ export function LoginHeaderButton() {
 	return (
 		<>
 			<div className='maindiv'>
-				<Button variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
-					<Link href="/login" className='linklogin'><a >Войти</a></Link>
+				<Button type="submit" variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
+					Войти
 				</Button>
 				{/* <Link href="/login"><a className="linklogin">Войти</a></Link> */}
 				<div className='reg'></div>

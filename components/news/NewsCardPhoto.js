@@ -2,7 +2,6 @@ import Link from 'next/link'
 import styles from './NewsCardPhoto.module.scss'
 
 export function NewsCardPhoto({ title, text  }) {
-	console.log({title, text})
 	return (<>
 		<div className={styles.maindiv}>
 			<div>
