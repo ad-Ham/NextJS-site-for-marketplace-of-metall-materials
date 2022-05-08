@@ -30,17 +30,7 @@ export function LoginHeader() {
 
 	return (
 		<>
-			<form className="maindiv" onSubmit={handleSubmit}>
-				<input type="text" 
-					   placeholder="Логин" 
-					   required
-					   onChange={e => setLogin(e.target.value)}/>
-				<input type="password" 
-					   placeholder="Пароль" 
-					   required
-					   onChange={e => setPassword(e.target.value)}/>
 				<LoginHeaderButton />
-			</form>
 			<style jsx>{`
 				.maindiv {
 					display: flex;

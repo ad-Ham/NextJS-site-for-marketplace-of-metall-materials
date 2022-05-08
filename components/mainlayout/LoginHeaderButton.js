@@ -2,10 +2,14 @@ import Link from 'next/link'
 import { Button } from '@mantine/core';
 
 export function LoginHeaderButton() {
+	const showPreview = e => {
+		elem.classList.add("modWindowWrapper");
+	}
+	
 	return (
 		<>
 			<div className='maindiv'>
-				<Button type="submit" variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
+				<Button type="button" onClick={showPreview} variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
 					Войти
 				</Button>
 				{/* <Link href="/login"><a className="linklogin">Войти</a></Link> */}
