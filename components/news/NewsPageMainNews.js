@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './NewsPageMainNews.module.scss'
 
-export function NewsPageMainNews({ importantNews }) {
+export function NewsPageMainNews({ id, title, text }) {
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.newsmainheader}>
@@ -10,17 +10,11 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				<Link href="/newspage">
-					{importantNews.map(importantNews => (
-						<a key={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
-						// <a><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
-					))}
+					<a key={id}><h2 className={styles.importantnewsheadertext}>{title}</h2></a>
 				</Link>
 			</div>
 			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
-			{importantNews.map(importantNews => (
-				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>
-				// <p className={styles.importantnewstext}>{importantNews.text}</p>
-			))}
+				<p key={id} className={styles.importantnewstext}>{text}</p>
 			<p className={styles.importantnewsbottomtext}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
 			<p className={styles.importantnewsheaderdate}>22.02 18:00</p>
 		</div>

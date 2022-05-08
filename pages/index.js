@@ -69,10 +69,9 @@ export default function Index({ news, promos }) {
 }*/
 
 export async function getServerSideProps() {
-	const news = await knex.select(`id`, `title`, `text`).table('news');
-	console.log(news);
+	const newsReverse = await knex.select(`id`, `title`, `text`).table('news');
+	let news = newsReverse.reverse()
 	const promos = await knex.select(`id`, `title`, `country`, 'region', 'email', 'phoneNumber', 'organizationName', 'description').table('promos');
-	console.log(promos);
 	return { props: { news, promos } }
 }
 

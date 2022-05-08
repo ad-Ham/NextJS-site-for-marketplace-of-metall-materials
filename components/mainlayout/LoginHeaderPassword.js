@@ -1,7 +1,7 @@
 export function LoginHeaderPassword() {
 	return (
 		<>
-			<input type="text" placeholder="Пароль" />
+			<input type="text" placeholder="Пароль" required/>
 			<style jsx>{`
 				input {
 					margin-top: 15px;
