@@ -40,22 +40,14 @@ export default function News({ news }) {
 					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
 				</div>
 				<div className={styles.rightside}>
-					<NewsPageMainNews importantNews={news.slice(0, 1)} />
-					<div className={styles.rightside}>
+					<NewsPageMainNews id={news[0].id} title={news[0].title} text={news[0].text}/>
 						<NewsPageSortPanel />
-					</div>
+
 					<div className={styles.newsrow}>
-						<NewsCardPhoto news={news.slice(1, 5)} />
-						{/* <NewsCardPhoto /> */}
+						{news.slice(1).map(news => (
+							<NewsCardPhoto key={news.id} title={news.title} text={news.text} />
+						))}
 					</div>
-					{/* <div className={styles.newsrow}>
-						<NewsCardPhoto />
-						<NewsCardPhoto />
-					</div>
-					<div className={styles.newsrow}>
-						<NewsCardPhoto />
-						<NewsCardPhoto />
-					</div> */}
 					<NewsPages />
 				</div>
 			</div>
@@ -67,7 +59,7 @@ export default function News({ news }) {
 }
 
 export async function getServerSideProps() {
-	const news = await knex.select(`id`, `title`, `text`).table('news');
-	console.log(news);
+	const newsReverse = await knex.select(`id`, `title`, `text`).table('news');
+	let news = newsReverse.reverse()
 	return { props: { news } }
 }

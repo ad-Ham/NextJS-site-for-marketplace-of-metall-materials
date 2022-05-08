@@ -1,7 +1,7 @@
 export function LoginHeaderInput() {
 	return (
 		<>
-			<input type="text" placeholder="Логин" />
+			<input type="text" placeholder="Логин" required/>
 			<style jsx>{`
 				input {
 					margin-top: 15px;
