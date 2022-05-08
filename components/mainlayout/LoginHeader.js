@@ -13,6 +13,7 @@ export function LoginHeader() {
 			<style jsx>{`
 				.maindiv {
 					display: flex;
+					/* margin-right: 150px; */
 				}
 			`}</style>
 		</>

@@ -24,7 +24,7 @@ export function MainLayout({ children }) {
 						</Link>
 						<SearchHeader />
 						{/* <Link href={'/promos'}><a className={styles.buysell}>Доска объявлений</a></Link> */}
-						<p>Курс валют</p>
+						{/* <p>Курс валют</p> */}
 						{/* <Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link> */}
 						<LoginHeader />
 					</div>

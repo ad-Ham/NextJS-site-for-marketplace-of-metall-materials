@@ -1,42 +1,42 @@
 import Link from 'next/link'
 
 export function BurgerMenu() {
-    return (<>
-        <div className="hamburger-menu">
-            <input id="menutoggle" type="checkbox" />
-            <label className="menubtn" htmlFor="menutoggle">
-                <span></span>
-            </label>
+  return (<>
+    <div className="hamburger-menu">
+      <input id="menutoggle" type="checkbox" />
+      <label className="menubtn" htmlFor="menutoggle">
+        <span></span>
+      </label>
 
-            <ul className="menubox">
-                <hr></hr>
-                <li><a className="menuitem" ><a className='menuelement'><Link href="/news">Новости</Link></a></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Аналитика</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Публикации</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">ГОСТы</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Калькулятор металлурга</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Справочник металлурга</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Расчет ж/д тарифов</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Полезные материалы</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Прогнозы</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Индекс цен</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Индекс цен LME</Link></a></li>
-                <hr></hr>
-                <li><a className="menuitem" ><Link href="/news">Конференции</Link></a></li>
-                <hr></hr>
-            </ul>
-        </div>
-        <style jsx>{`
+      <ul className="menubox">
+        <hr></hr>
+        <li><a className="menuitem" ><a className='menuelement'><Link href="/news">Новости</Link></a></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Аналитика</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/promos">Объявления</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/gosts">ГОСТы</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Калькулятор металлурга</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Справочник металлурга</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Расчет ж/д тарифов</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Полезные материалы</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Прогнозы</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Индекс цен</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Индекс цен LME</Link></a></li>
+        <hr></hr>
+        <li><a className="menuitem" ><Link href="/news">Конференции</Link></a></li>
+        <hr></hr>
+      </ul>
+    </div>
+    <style jsx>{`
 
  #menutoggle {
   opacity: 0;
@@ -150,5 +150,5 @@ export function BurgerMenu() {
   }
 }
 		`}</style>
-    </>)
+  </>)
 }

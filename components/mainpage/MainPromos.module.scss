@@ -126,16 +126,12 @@
 	}
 
 	.buttons {
-		flex-direction: column;
+		margin-top: 10px;
 	}
 
 	.promosMainBox {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-
-	.promosButton2 {
-		margin-top: 10px;
 	}
 }

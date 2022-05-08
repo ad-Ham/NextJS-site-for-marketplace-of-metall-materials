@@ -27,3 +27,27 @@
     text-indent: 30px;
     line-height: 20px;
 }
+
+
+
+@media (max-width: 1150px) {
+    .leftside {
+        display: none;
+    }
+
+}
+
+@media (max-width: 660px) {
+    .rightside {
+        width: 100%;
+    }
+
+    .gostsbodytextone,
+    .gostsbodytexttwo,
+    .gostsbodytextthree,
+    .gostsbodytextfour {
+        margin-top: 15px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

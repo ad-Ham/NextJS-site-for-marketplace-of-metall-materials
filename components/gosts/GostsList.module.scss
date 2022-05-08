@@ -27,3 +27,28 @@
     // border-bottom: 1px solid black;
     font-size: 14px;
 }
+
+@media (max-width: 1150px) {
+    .leftside {
+        display: none;
+    }
+
+}
+
+@media (max-width: 660px) {
+    .maindiv {
+        width: 100%;
+    }
+
+    .listitem {
+        width: 100%;
+        margin-top: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .listitemtext {
+        width: 400px;
+        font-weight: 900;
+    }
+}

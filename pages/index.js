@@ -46,6 +46,10 @@ export default function Index({ news, promos }) {
 				<div className={styles.rightside}>
 					<MainPromos firstImprotantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
 					<MainPageNews news={news.slice(1, 5)} importantNews={news.slice(0, 1)} />
+
+				</div>
+				<div className={styles.priceindex}>
+					Индексы цен на металл
 				</div>
 
 			</div>

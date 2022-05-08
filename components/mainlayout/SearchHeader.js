@@ -2,15 +2,15 @@ import Search from '/public/search.svg'
 
 export function SearchHeader() {
 	return (
-		<>	
+		<>
 			<div className="maindiv">
-				<input type="text" placeholder="Поиск" className="inputSearch"/>
-				<button><Search/></button>
+				<input type="text" placeholder="Поиск" className="inputSearch" />
+				<button><Search /></button>
 			</div>
 
 			<style jsx>{`
 				.inputSearch {
-				 	width: 270px;
+				 	width: 250px;
 					height: 18px;
 					background: #FFF7F7;
 					border: 1px solid #000000;
@@ -26,6 +26,7 @@ export function SearchHeader() {
 					border: 0;
 				}
 				.maindiv {
+					margin-right: 100px;
 					display: flex;
 					align-items: center;
 					height: 22px;

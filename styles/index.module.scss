@@ -125,10 +125,27 @@
   margin-left: 0.5rem;
 }
 
+.priceindex {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 40px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  width: 350px;
+  height: 566.13px;
+  margin-top: 24px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 17px 25px 30px 25px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .rightside {
+    width: 100%;
   }
 }
 

@@ -56,7 +56,7 @@ export default function MyApp({ Component, pageProps }) {
         }
 
         main {
-          max-width: 1164px;
+          max-width: 1500px;
           margin: 0 auto;
           flex-grow: 1;
         }
