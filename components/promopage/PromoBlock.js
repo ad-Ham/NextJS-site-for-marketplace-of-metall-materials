@@ -26,7 +26,7 @@ export function PromoBlock() {
 
 	return (<>
 
-		{promos.map(promos => <div className={styles.maindiv} key={promos}>
+		{promos.map(promos => <div className={styles.maindiv} key={promos.id}>
 
 			<div className={styles.headerblock}>
 				<h1 className={styles.promoheader}>{promos.title}</h1>

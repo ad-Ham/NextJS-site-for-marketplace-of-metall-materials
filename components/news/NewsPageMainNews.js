@@ -14,7 +14,7 @@ export function NewsPageMainNews({ id, title, text }) {
 				</Link>
 			</div>
 			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
-				<p key={id} className={styles.importantnewstext}>{text}</p>
+			<p key={id} className={styles.importantnewstext}>{text}</p>
 			<p className={styles.importantnewsbottomtext}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
 			<p className={styles.importantnewsheaderdate}>22.02 18:00</p>
 		</div>

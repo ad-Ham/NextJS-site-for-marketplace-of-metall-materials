@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import styles from './PromosPageList.module.scss'
 
-export function PromosPageList({ promos }) {
-    console.log(promos)
+export function PromosPageList({ id, title, region, organizationName }) {
     return (<>
         <div className={styles.maindiv}><Link href="/promopage">
             <a className={styles.a}>
@@ -17,27 +16,21 @@ export function PromosPageList({ promos }) {
                             П.
                         </p>
                     </div>
-                    {promos.map(promos => (
-                        <div key={title} className={styles.listpromoheader}>
-                            <p >
-                                {promos.title}
-                            </p>
-                        </div>
-                    ))}
-                    {promos.map(promos => (
-                        <div key={organizationName} className={styles.listorganization}>
-                            <p >
-                                {promos.organizationName}
-                            </p>
-                        </div>
-                    ))}
-                    {promos.map(promos => (
-                        <div key={region} className={styles.listregion}>
-                            <p >
-                                {promos.region}
-                            </p>
-                        </div>
-                    ))}
+                    <div key={id} className={styles.listpromoheader}>
+                        <p >
+                            {title}
+                        </p>
+                    </div>
+                    <div key={id} className={styles.listorganization}>
+                        <p >
+                            {organizationName}
+                        </p>
+                    </div>
+                    <div key={id} className={styles.listregion}>
+                        <p >
+                            {region}
+                        </p>
+                    </div>
                 </div>
             </a>
         </Link>

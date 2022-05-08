@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react';
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { Portions } from '../components/Portions'
 import { PromosCategoriesSelector } from '../components/promos/PromosCategoriesSelector'
@@ -11,20 +12,31 @@ import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/promos.module.scss'
-
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: '213.189.221.184',
-        port: 5432,
-        user: 'metallsite',
-        password: 'EyPu{4L}5zhHT~VtC8x~XniK8',
-        database: 'metallsite'
-    }
-});
+const axios = require('axios').default;
 
 
-export default function Promos({ promos }) {
+export default function Promos() {
+
+    const [promos, setPromos] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/promosquery', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                const promos = response.data.data.promos;
+                setPromos([promos])
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+
+    console.log(promos)
+
     return (
         <MainLayout>
             <Head>
@@ -39,18 +51,22 @@ export default function Promos({ promos }) {
                 <div className={styles.leftside}>
                     <PromosCategoriesSelector />
                     <Portions />
-                    <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
+                    {/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
                 </div>
                 <div className={styles.rightside}>
                     <PromosPageSearchPanel />
                     <PromosPageSortPanel />
                     <PromosPageListHeader />
                     <div className={styles.promosrow}>
-                        <PromosPageList promos={promos} />
-                        {/* <PromosPageList />
-                        <PromosPageList />
-                        <PromosPageList />
-                        <PromosPageList /> */}
+                        {promos.map(promos => (
+                            <PromosPageList key={promos} id={promos[0].id} title={promos[0].title} region={promos[0].region} organizationName={promos[0].organizationName} />
+                        ))}
+                        {promos.map(promos => (
+                            <PromosPageList key={promos} id={promos[1].id} title={promos[1].title} region={promos[1].region} organizationName={promos[1].organizationName} />
+                        ))}
+                        {promos.map(promos => (
+                            <PromosPageList key={promos} id={promos[2].id} title={promos[2].title} region={promos[2].region} organizationName={promos[2].organizationName} />
+                        ))}
                     </div>
                     {/* <div className={styles.promosrow}>
                         <PromosPageList />
@@ -81,10 +97,4 @@ export default function Promos({ promos }) {
 			`}</style>
         </MainLayout>
     )
-}
-
-export async function getServerSideProps() {
-    const promos = await knex.select(`id`, `title`, `country`, 'region', 'email', 'phoneNumber', 'organizationName', 'description').table('promos');
-    console.log(promos);
-    return { props: { promos } }
 }

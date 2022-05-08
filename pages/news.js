@@ -10,20 +10,31 @@ import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/news.module.scss'
+const axios = require('axios').default;
+
+export default function News() {
+
+	const [news, setNews] = useState([])
 
 
-const knex = require('knex')({
-	client: 'pg',
-	connection: {
-		host: '213.189.221.184',
-		port: 5432,
-		user: 'metallsite',
-		password: 'EyPu{4L}5zhHT~VtC8x~XniK8',
-		database: 'metallsite'
-	}
-});
+	useEffect(() => {
+		axios.get('http://localhost:3001/newsquery', {
+			headers: {
+				'Accept': 'application/json'
+			}
+		})
+			.then(function (response) {
+				console.log(response);
+				const news = response.data.data.news;
+				setNews([news])
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+	}, [])
 
-export default function News({ news }) {
+	// console.log(news)
+
 	return (
 		<MainLayout>
 			<Head>
@@ -37,15 +48,26 @@ export default function News({ news }) {
 
 				<div className={styles.leftside}>
 					<Portions />
-					<div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
+					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
-					<NewsPageMainNews id={news[0].id} title={news[0].title} text={news[0].text}/>
-						<NewsPageSortPanel />
+					{news.map(news => (
+						<NewsPageMainNews key={news} id={news[0].id} title={news[0].title} text={news[0].text} />
+					))}
+					<NewsPageSortPanel />
 
 					<div className={styles.newsrow}>
-						{news.slice(1).map(news => (
-							<NewsCardPhoto key={news.id} title={news.title} text={news.text} />
+						{news.map(news => (
+							<NewsCardPhoto key={news[1].id} title={news[1].title} text={news[1].text} />
+						))}
+						{news.map(news => (
+							<NewsCardPhoto key={news[2].id} title={news[2].title} text={news[2].text} />
+						))}
+						{news.map(news => (
+							<NewsCardPhoto key={news[3].id} title={news[3].title} text={news[3].text} />
+						))}
+						{news.map(news => (
+							<NewsCardPhoto key={news[4].id} title={news[4].title} text={news[4].text} />
 						))}
 					</div>
 					<NewsPages />
@@ -56,10 +78,4 @@ export default function News({ news }) {
 			`}</style>
 		</MainLayout>
 	)
-}
-
-export async function getServerSideProps() {
-	const newsReverse = await knex.select(`id`, `title`, `text`).table('news');
-	let news = newsReverse.reverse()
-	return { props: { news } }
 }
