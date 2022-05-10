@@ -20,9 +20,6 @@ export default function NewsPage({ id }) {
 
 	useEffect(() => {
 		axios.get('http://localhost:3001/singlenews', {
-			headers: {
-				'Accept': 'application/json'
-			},
 			id: id
 		})
 			.then(function (response) {
