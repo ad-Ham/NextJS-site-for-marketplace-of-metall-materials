@@ -20,13 +20,13 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				{importantNews.map(importantNews => (
-					<Link href={'/newspage/[id]'} as={'/newspage/${importantNews.id}'} >
+					<Link key={importantNews.id} href={'/newspage/[id]'} as={'/newspage/${importantNews.id}'} >
 						<a key={importantNews.id} id={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}/{importantNews.id}</h2></a>
 					</Link>
 				))}
 			</div>
 			{importantNews.map(importantNews => (
-				<Link href="/newspage" id={importantNews.id} ><a className={styles.a}><div className={styles.photo}></div></a></Link>
+				<Link key={importantNews.id} href="/newspage" id={importantNews.id} ><a className={styles.a}><div className={styles.photo}></div></a></Link>
 			))}
 			{importantNews.map(importantNews => (
 				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>
