@@ -5,6 +5,10 @@ import { Card, Image, Text } from '@mantine/core';
 
 export function NewsCardPhoto({ id, text, title, date, tags }) {
 	// console.log(news)
+	console.log(id)
+
+
+
 	return (<>
 		<div className={styles.newsphotocard}>
 			<Card
@@ -16,7 +20,7 @@ export function NewsCardPhoto({ id, text, title, date, tags }) {
 
 
 				<Text weight={500} size="sm">
-					<Link href="/newspage"><a className={styles.a}><h3 className={styles.newsphotoheader}>{title}</h3></a></Link>
+					<Link href="/newspage" id={id} ><a className={styles.a}><h3 className={styles.newsphotoheader}>{title}/{id}</h3></a></Link>
 				</Text>
 
 				<Text size="xs">

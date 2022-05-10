@@ -13,26 +13,25 @@ import styles from '../styles/newspage.module.scss'
 const axios = require('axios').default;
 
 export default function NewsPage({ id }) {
-
-	const [singleNew, setSingleNew] = useState([])
-
-
-
-	useEffect(() => {
-		axios.get('http://localhost:3001/singlenews', {
-			id: id
-		})
-			.then(function (response) {
-				console.log(response);
-				const singleNew = response;
-				setSingleNew(singleNew)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
-	}, [])
-
 	console.log(id)
+
+	// const [singleNew, setSingleNew] = useState([])
+
+	// useEffect(() => {
+	// 	axios.get('http://localhost:3001/singlenews', {
+	// 		id: id
+	// 	})
+	// 		.then(function (response) {
+	// 			console.log(response);
+	// 			const singleNew = response;
+	// 			setSingleNew(singleNew)
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.log(error);
+	// 		})
+	// }, [])
+
+
 
 	return (
 		<MainLayout>
@@ -51,14 +50,14 @@ export default function NewsPage({ id }) {
 				</div>
 				<div className={styles.rightside}>
 					<NewsBlock />
-					<div className={styles.moreniewsdiv}>
-						<p className={styles.morenews}>Еще новости:</p>
+					{/* <div className={styles.moreniewsdiv}>
+						<p className={styles.morenews}>Еще новости: {id}</p>
 						<div className={styles.morenewsrow}>
 							<MoreNewsCard />
 							<MoreNewsCard />
 							<MoreNewsCard />
 						</div>
-					</div>
+					</div> */}
 				</div>
 
 			</div>

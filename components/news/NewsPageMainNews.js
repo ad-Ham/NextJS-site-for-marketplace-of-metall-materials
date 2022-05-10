@@ -2,8 +2,15 @@ import Link from 'next/link'
 import styles from './NewsPageMainNews.module.scss'
 
 export function NewsPageMainNews({ importantNews }) {
-	console.log(importantNews);
-	console.log(importantNews.id);
+	// console.log(importantNews.id);
+	// console.log(importantNews.id);
+	// console.log(importantNews.title);
+
+	{
+		importantNews.map(importantNews => (
+			console.log(importantNews.id)
+		))
+	}
 
 	return (<>
 		<div className={styles.maindiv}>
@@ -13,12 +20,14 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				{importantNews.map(importantNews => (
-					<Link key={importantNews.id} href="/newspage">
-						<a key={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
+					<Link href={'/newspage/[id]'} as={'/newspage/${importantNews.id}'} >
+						<a key={importantNews.id} id={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}/{importantNews.id}</h2></a>
 					</Link>
 				))}
 			</div>
-			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
+			{importantNews.map(importantNews => (
+				<Link href="/newspage" id={importantNews.id} ><a className={styles.a}><div className={styles.photo}></div></a></Link>
+			))}
 			{importantNews.map(importantNews => (
 				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>
 			))}

@@ -27,7 +27,7 @@ export default function News() {
 		})
 			.then(function (response) {
 				console.log(response);
-				const news = response.data.data.news;
+				const news = response.data.news;
 				setNews(news)
 			})
 			.catch(function (error) {
@@ -36,6 +36,8 @@ export default function News() {
 	}, [])
 
 	console.log(news)
+	// console.log(news.id)
+
 
 	const [otherNews, setOtherNews] = useState([])
 
@@ -49,7 +51,7 @@ export default function News() {
 		})
 			.then(function (response) {
 				console.log(response);
-				const otherNews = response.data.data.news.slice(1, 100);
+				const otherNews = response.data.news.slice(1, 100);
 				setOtherNews(otherNews)
 			})
 			.catch(function (error) {

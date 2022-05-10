@@ -27,7 +27,7 @@ export default function Promos() {
         })
             .then(function (response) {
                 console.log(response);
-                const promos = response.data.data.promos;
+                const promos = response.data.promos;
                 setPromos(promos)
             })
             .catch(function (error) {

@@ -30,7 +30,7 @@ export default function Index() {
 		})
 			.then(function (response) {
 				console.log(response);
-				const news = response.data.data.news;
+				const news = response.data.news;
 				setNews(news)
 			})
 			.catch(function (error) {
@@ -52,7 +52,7 @@ export default function Index() {
 		})
 			.then(function (response) {
 				console.log(response);
-				const promos = response.data.data.promos;
+				const promos = response.data.promos;
 				setPromos(promos)
 			})
 			.catch(function (error) {
