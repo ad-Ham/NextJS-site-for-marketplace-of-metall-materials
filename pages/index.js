@@ -19,7 +19,7 @@ export default function Index() {
 	}, [])
 
 
-
+	const myURL = new URL('https://example.org');
 	const [news, setNews] = useState([])
 
 	useEffect(() => {
