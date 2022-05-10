@@ -11,7 +11,7 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				{importantNews.map(importantNews => (
-					<Link href="/newspage">
+					<Link key={importantNews.id} href="/newspage">
 						<a key={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
 					</Link>
 				))}
