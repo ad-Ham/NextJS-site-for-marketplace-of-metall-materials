@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import styles from './NewsPageMainNews.module.scss'
 
-export function NewsPageMainNews({ id, title, text }) {
+export function NewsPageMainNews({ importantNews }) {
+	console.log(importantNews);
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.newsmainheader}>
@@ -9,14 +10,22 @@ export function NewsPageMainNews({ id, title, text }) {
 			</div>
 
 			<div className={styles.importantnewsheader}>
-				<Link href="/newspage">
-					<a key={id}><h2 className={styles.importantnewsheadertext}>{title}</h2></a>
-				</Link>
+				{importantNews.map(importantNews => (
+					<Link href="/newspage">
+						<a key={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}</h2></a>
+					</Link>
+				))}
 			</div>
 			<Link href="/newspage"><a className={styles.a}><div className={styles.photo}></div></a></Link>
-			<p key={id} className={styles.importantnewstext}>{text}</p>
-			<p className={styles.importantnewsbottomtext}>Теги: импорт, лом, отходы, металлургия, цена, увеличилась</p>
-			<p className={styles.importantnewsheaderdate}>22.02 18:00</p>
+			{importantNews.map(importantNews => (
+				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>
+			))}
+			{importantNews.map(importantNews => (
+				<p key={importantNews.id} className={styles.importantnewsbottomtext}>Теги: {importantNews.tags}</p>
+			))}
+			{importantNews.map(importantNews => (
+				<p key={importantNews.id} className={styles.importantnewsheaderdate}>{importantNews.date}</p>
+			))}
 		</div>
 		<style jsx>{`
 			

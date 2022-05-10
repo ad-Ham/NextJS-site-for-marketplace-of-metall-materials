@@ -10,11 +10,13 @@ import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/news.module.scss'
+import { MainPageNewsNoPhoto } from '../components/mainpage/MainPageNewsNoPhoto';
 const axios = require('axios').default;
 
 export default function News() {
 
 	const [news, setNews] = useState([])
+
 
 
 	useEffect(() => {
@@ -26,14 +28,36 @@ export default function News() {
 			.then(function (response) {
 				console.log(response);
 				const news = response.data.data.news;
-				setNews([news])
+				setNews(news)
 			})
 			.catch(function (error) {
 				console.log(error);
 			})
 	}, [])
 
-	// console.log(news)
+	console.log(news)
+
+	const [otherNews, setOtherNews] = useState([])
+
+
+
+	useEffect(() => {
+		axios.get('http://localhost:3001/newsquery', {
+			headers: {
+				'Accept': 'application/json'
+			}
+		})
+			.then(function (response) {
+				console.log(response);
+				const otherNews = response.data.data.news.slice(1, 100);
+				setOtherNews(otherNews)
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+	}, [])
+
+	console.log(otherNews)
 
 	return (
 		<MainLayout>
@@ -51,23 +75,13 @@ export default function News() {
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
-					{news.map(news => (
-						<NewsPageMainNews key={news} id={news[0].id} title={news[0].title} text={news[0].text} />
-					))}
+					<NewsPageMainNews importantNews={news.slice(0, 1)} />
+
 					<NewsPageSortPanel />
 
 					<div className={styles.newsrow}>
-						{news.map(news => (
-							<NewsCardPhoto key={news[1].id} title={news[1].title} text={news[1].text} />
-						))}
-						{news.map(news => (
-							<NewsCardPhoto key={news[2].id} title={news[2].title} text={news[2].text} />
-						))}
-						{news.map(news => (
-							<NewsCardPhoto key={news[3].id} title={news[3].title} text={news[3].text} />
-						))}
-						{news.map(news => (
-							<NewsCardPhoto key={news[4].id} title={news[4].title} text={news[4].text} />
+						{otherNews.map(otherNews => (
+							<NewsCardPhoto key={otherNews} id={otherNews.id} title={otherNews.title} text={otherNews.text} date={otherNews.date} tags={otherNews.tags} />
 						))}
 					</div>
 					<NewsPages />

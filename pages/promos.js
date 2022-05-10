@@ -28,7 +28,7 @@ export default function Promos() {
             .then(function (response) {
                 console.log(response);
                 const promos = response.data.data.promos;
-                setPromos([promos])
+                setPromos(promos)
             })
             .catch(function (error) {
                 console.log(error);
@@ -59,14 +59,14 @@ export default function Promos() {
                     <PromosPageListHeader />
                     <div className={styles.promosrow}>
                         {promos.map(promos => (
-                            <PromosPageList key={promos} id={promos[0].id} title={promos[0].title} region={promos[0].region} organizationName={promos[0].organizationName} />
+                            <PromosPageList key={promos} id={promos.id} title={promos.title} region={promos.region} organizationName={promos.organizationName} />
                         ))}
-                        {promos.map(promos => (
+                        {/* {promos.map(promos => (
                             <PromosPageList key={promos} id={promos[1].id} title={promos[1].title} region={promos[1].region} organizationName={promos[1].organizationName} />
                         ))}
                         {promos.map(promos => (
                             <PromosPageList key={promos} id={promos[2].id} title={promos[2].title} region={promos[2].region} organizationName={promos[2].organizationName} />
-                        ))}
+                        ))} */}
                     </div>
                     {/* <div className={styles.promosrow}>
                         <PromosPageList />

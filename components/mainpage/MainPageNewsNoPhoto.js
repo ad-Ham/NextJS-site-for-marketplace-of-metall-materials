@@ -2,7 +2,7 @@ import Link from 'next/link'
 import styles from './MainPageNewsNoPhoto.module.scss'
 import { Card, Image, Text } from '@mantine/core';
 
-export function MainPageNewsNoPhoto({ id, text, title }) {
+export function MainPageNewsNoPhoto({ id, text, title, date, tags }) {
 	return (
 		<>
 			<div className={styles.newsphotocard}>
@@ -23,8 +23,8 @@ export function MainPageNewsNoPhoto({ id, text, title }) {
 					</Text>
 
 					<Text size="xs">
-						<p className={styles.importantnewsbottomtext, styles.p}>16.22.22</p>
-						<p className={styles.importantnewsbottomtext, styles.p}>Какой-то тег</p>
+						<p className={styles.importantnewsbottomtext, styles.p}>{date}</p>
+						<p className={styles.importantnewsbottomtext, styles.p}>{tags}</p>
 					</Text>
 
 				</Card>

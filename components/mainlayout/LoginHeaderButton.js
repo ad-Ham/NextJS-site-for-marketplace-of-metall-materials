@@ -5,19 +5,19 @@ export function LoginHeaderButton() {
 	const showPreview = e => {
 		elem.classList.add("modWindowWrapper");
 	}
-	
+
 	return (
 		<>
 			<div className='maindiv'>
-				<Button type="button" onClick={showPreview} variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
+				{/* <Button type="button" onClick={showPreview} variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
 					Войти
-				</Button>
-				{/* <Link href="/login"><a className="linklogin">Войти</a></Link> */}
-				<div className='reg'></div>
-				<Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
+				</Button> */}
+				<Link href="/login"><a className="linklogin">Войти</a></Link>
+				<div className='reg'>/</div>
+				{/* <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
 					<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
-				</Button>
-				{/* <Link href={'/reg'}><a className="linkreg">Регистрация</a></Link> */}
+				</Button> */}
+				<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
 			</div>
 			<style jsx>{`
 				
@@ -27,16 +27,17 @@ export function LoginHeaderButton() {
 				
 				 .linklogin {
 					text-decoration: none; 				
-					color: white;
+					color: black;
 				 }
 
 				 .reg {
 					 margin-left: 15px;
+					 margin-right: 5px;
 				 }
 
 				.linkreg {
 					text-decoration: none;					
-					color: white;
+					color: black;
 				}
 
 				

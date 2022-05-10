@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react';
 import { MainLayout } from '../components/mainlayout/MainLayout'
 import { Portions } from '../components/Portions'
 import { MainPromos } from '../components/mainpage/MainPromos'
@@ -9,8 +10,32 @@ import { Adbannertop } from '../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/newspage.module.scss'
+const axios = require('axios').default;
 
 export default function NewsPage() {
+
+	const [news, setNews] = useState([])
+
+
+
+	useEffect(() => {
+		axios.get('http://localhost:3001/singlenews', {
+			headers: {
+				'Accept': 'application/json'
+			}
+		})
+			.then(function (response) {
+				console.log(response);
+				const news = response;
+				setNews(news)
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+	}, [])
+
+	console.log(news)
+
 	return (
 		<MainLayout>
 			<Head>

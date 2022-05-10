@@ -1,19 +1,34 @@
 import Link from 'next/link'
 import styles from './NewsCardPhoto.module.scss'
+import { Card, Image, Text } from '@mantine/core';
 
-export function NewsCardPhoto({ title, text  }) {
+
+export function NewsCardPhoto({ id, text, title, date, tags }) {
+	// console.log(news)
 	return (<>
-		<div className={styles.maindiv}>
-			<div>
-				<Link href="/newspage">
-					<a><h3 className={styles.newsheader}>{title}</h3></a>
-				</Link>
-					<p className={styles.newstext}>{text}</p>
-				<div className={styles.newsbottom}>
-					<p className={styles.newsdate}>22.02.2022 18:00</p>
-					<p className={styles.newstag}>Какой-то тег</p>
-				</div>
-			</div>
+		<div className={styles.newsphotocard}>
+			<Card
+				shadow="lg"
+				p="xs"
+				component="a"
+				target="_blank"
+			>
+
+
+				<Text weight={500} size="sm">
+					<Link href="/newspage"><a className={styles.a}><h3 className={styles.newsphotoheader}>{title}</h3></a></Link>
+				</Text>
+
+				<Text size="xs">
+					<p className={styles.p}>{text}</p>
+				</Text>
+
+				<Text size="xs">
+					<p className={styles.importantnewsbottomtext, styles.p}>{date}</p>
+					<p className={styles.importantnewsbottomtext, styles.p}>{tags}</p>
+				</Text>
+
+			</Card>
 		</div>
 		<style jsx>{`
 			

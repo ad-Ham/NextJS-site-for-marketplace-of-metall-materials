@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import styles from './MainPromoPhoto.module.scss'
 const axios = require('axios').default;
 
-export function MainPromoPhoto({ id, text, title }) {
+export function MainPromoPhoto({ id, text, title, date, category }) {
 	// Взятие новости из бд и отображение на странице
 	// const [news, setNews] = useState([])
 
@@ -61,7 +61,7 @@ export function MainPromoPhoto({ id, text, title }) {
 
 			<Link href="/promopage"><a><div id='newpicture' className={styles.photo}></div></a></Link>
 
-			<Link href="/promopage"><a><h3 id='newheader' className={styles.promophotoheader}><b className={styles.promophotoheaderb}>Продажа<br /><br /></b>{title}</h3></a></Link>
+			<Link href="/promopage"><a><h3 id='newheader' className={styles.promophotoheader}><b className={styles.promophotoheaderb}>{category}<br /><br /></b>{title}</h3></a></Link>
 
 			<p id='newstext' className={styles.promophototext} >
 				{text}
@@ -71,7 +71,7 @@ export function MainPromoPhoto({ id, text, title }) {
 
 				<p id='newsection'>Раздел</p>
 
-				<p id='newdate'>22.02.2022</p>
+				<p id='newdate'>{date}</p>
 			</div>
 		</div>
 		<style>{`

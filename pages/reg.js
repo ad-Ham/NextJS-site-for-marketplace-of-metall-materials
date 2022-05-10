@@ -65,17 +65,18 @@ export default function Index() {
 			inn: data.jurData[2],
 			ogrn: data.jurData[3],
 		}));
+
 		axios.post('http://localhost:3001/regquery', {
-				email: data.mainData[0],
-				password: data.mainData[1],
-				surname: data.personalData[0],
-				firstname: data.personalData[1],
-				lastname: data.personalData[2],
-				phonenumber: data.personalData[3],
-				orgname: data.jurData[0],
-				juradress: data.jurData[1],
-				inn: data.jurData[2],
-				ogrn: data.jurData[3],
+			email: data.mainData[0],
+			password: data.mainData[1],
+			surname: data.personalData[0],
+			firstname: data.personalData[1],
+			lastname: data.personalData[2],
+			phonenumber: data.personalData[3],
+			orgname: data.jurData[0],
+			juradress: data.jurData[1],
+			inn: data.jurData[2],
+			ogrn: data.jurData[3],
 		})
 			.then(response => response.json())
 			.then(result => {

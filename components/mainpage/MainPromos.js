@@ -4,39 +4,24 @@ import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
 import { Button } from '@mantine/core';
 import styles from './MainPromos.module.scss'
 
-export function MainPromos({ promos }) {
-	console.log(promos);
+export function MainPromos({ promos, firstImportantPromos, secondImportantPromos }) {
+	// console.log(firstImportantPromos);
+	// console.log(secondImportantPromos);
+	// console.log(promos);
+
 	return (<>
 		<div className={styles.promosMainBox}>
 			<h2 className={styles.promosHeader}>Объявления</h2>
 			<div className={styles.menucards}>
-				{promos.map(promos => (
-					<MainPromoPhoto key={promos} id={promos[0].id} title={promos[0].title} text={promos[0].description} />
+				{firstImportantPromos.map(firstImportantPromos => (
+					<MainPromoPhoto key={firstImportantPromos} id={firstImportantPromos.id} title={firstImportantPromos.title} text={firstImportantPromos.description} date={firstImportantPromos.date} category={firstImportantPromos.category} />
 				))}
-				{promos.map(promos => (
-					<MainPromoPhoto key={promos} id={promos[1].id} title={promos[1].title} text={promos[1].description} />
+				{secondImportantPromos.map(secondImportantPromos => (
+					<MainPromoPhoto key={secondImportantPromos} id={secondImportantPromos.id} title={secondImportantPromos.title} text={secondImportantPromos.description} date={secondImportantPromos.date} category={secondImportantPromos.category} />
 				))}
 				<div className={styles.promos}>
 					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
-					))}
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos[2].id} title={promos[2].title} text={promos[2].description} />
+						<PromoNoPhoto key={promos} id={promos.id} title={promos.title} date={promos.date} category={promos.category} />
 					))}
 				</div>
 			</div>

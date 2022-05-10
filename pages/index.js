@@ -31,14 +31,14 @@ export default function Index() {
 			.then(function (response) {
 				console.log(response);
 				const news = response.data.data.news;
-				setNews([news])
+				setNews(news)
 			})
 			.catch(function (error) {
 				console.log(error);
 			})
 	}, [])
 
-	// console.log(news)
+	console.log(news)
 
 
 
@@ -53,14 +53,14 @@ export default function Index() {
 			.then(function (response) {
 				console.log(response);
 				const promos = response.data.data.promos;
-				setPromos([promos])
+				setPromos(promos)
 			})
 			.catch(function (error) {
 				console.log(error);
 			})
 	}, [])
 
-	// console.log(promos)
+	console.log(promos)
 
 	return (
 		<MainLayout>
@@ -79,8 +79,8 @@ export default function Index() {
 					{/* <Link href="https://www.example.com"><img src="/adbannerside.svg" alt="" /></Link> */}
 				</div>
 				<div className={styles.rightside}>
-					<MainPromos promos={promos} />
-					<MainPageNews news={news} />
+					<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
+					<MainPageNews news={news.slice(1, 100)} importantNews={news.slice(0, 1)} />
 				</div>
 				<div className={styles.priceindex}>
 					Индексы цен на металл
