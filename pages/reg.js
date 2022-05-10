@@ -101,7 +101,7 @@ export default function Index() {
 			<div className={styles.content, styles.maindiv}>
 				<div className={styles.regheaderblock}>
 					<h1 className={styles.regheader}>Регистрация</h1>
-					<p className={styles.regtext}>Впервые на нашем сайте? Заполните форму регистрации.</p>
+					<p className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</p>
 				</div>
 				<form onSubmit={Submit} className={styles.form}>
 					<MainData onChange={e => setMainData(e.target.value)} />

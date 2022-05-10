@@ -13,18 +13,16 @@ export function LoginHeader() {
 		    password: password
 		  })
 		  .then(function (response) {
-		    console.log(response.data.data.loginStatus);
-		    let loginStatus = response.data.data.loginStatus;
-		    if (loginStatus===true) {
-		    	alert('Вы успешно вошли!')
-		    }
-		    else {
-		    	alert('Не верный email или пароль!')
-		    }
+		    console.log(response.data.loginStatus);
+		    console.log(response)
+		    console.log(response.data)
+		    let token = response.data.token;
+		    localStorage.setItem('token', token);
+	    	alert('Вы успешно вошли!')
 		    e.target.reset();
 		  })
 		  .catch(function (error) {
-		    console.log(error);
+		    console.log(error)
 		  });
 	}
 

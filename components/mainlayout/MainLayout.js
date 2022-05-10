@@ -8,11 +8,19 @@ import Image from 'next/image'
 // import Logo from '/public/logo.svg'
 import styles from './MainLayout.module.scss'
 import { LoginHeaderButton } from '../mainLayout/LoginHeaderButton.js'
-import { useState } from 'react';
-const axios = require('axios').default;
+import { useState, useEffect } from 'react';
+import { axios, checkToken } from '/middleware/axios.js';
 import { Button } from '@mantine/core';
 
+import { useRouter } from 'next/router';
+
 export function MainLayout({ children }) {
+	const router = useRouter();
+	useEffect(() => {
+		const userStatus = checkToken(router.pathname)
+		console.log(userStatus)
+	}, [])
+	
 	const removeWindow = e => {
 		elem.classList.remove("modWindowWrapper");
 	}
@@ -27,21 +35,25 @@ export function MainLayout({ children }) {
 		    password: password
 		  })
 		  .then(function (response) {
-		    console.log(response.data.data.loginStatus);
-		    let loginStatus = response.data.data.loginStatus;
-		    if (loginStatus===true) {
-		    	alert('Вы успешно вошли!')
-		    	elem.classList.remove("modWindowWrapper")
-		    }
-		    else {
-		    	alert('Не верный email или пароль!')
-		    }
+		  	if (response.status===200) {
+		  		localStorage.setItem('token', response.data.token);
+	    		alert('Вы успешно вошли!')
+	    		elem.classList.remove("modWindowWrapper")
+		  	} else if (response.status===404) {
+		  		alert('Пользователь не найден')
+		  	} else if (response.status===403) {
+		  		alert('Неверный пароль')
+		  	}
+		    
 		    e.target.reset();
 		  })
 		  .catch(function (error) {
+		  	alert('Не верный email или пароль!')
 		    console.log(error);
 		  });
 	}
+
+
 
 	return (
 		<>
@@ -62,7 +74,11 @@ export function MainLayout({ children }) {
 					    </div>
 						<div className="loginButton"><Button type="submit" variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
 							Войти
-						</Button></div>
+						</Button>
+						<Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
+							<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
+						</Button>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -72,15 +88,11 @@ export function MainLayout({ children }) {
 						<BurgerMenu />
 						<Link href="/">
 							<Image
-								src="/metal_small_logo.png"
+								src="/logo.svg"
 								width={45}
 								height={45}
 							/>
 						</Link>
-						<SearchHeader />
-						{/* <Link href={'/promos'}><a className={styles.buysell}>Доска объявлений</a></Link> */}
-						{/* <p>Курс валют</p> */}
-						{/* <Link href={'/sell'}><a className={styles.buysell}>Продать</a></Link> */}
 						<LoginHeader />
 					</div>
 				</nav>
@@ -92,7 +104,7 @@ export function MainLayout({ children }) {
 						<div className={styles.footerleft}>
 							<Link href="/">
 								<Image
-									src="/metal_small_logo.png"
+									src="/logo.svg"
 									width={45}
 									height={45}
 								/>
@@ -108,6 +120,11 @@ export function MainLayout({ children }) {
 				</footer>
 			</div>
 			<style jsx>{`
+				.linkreg {
+					text-decoration: none;					
+					color: white;
+				}
+				
 				.loginButton {
 					max-width: 5vw;
 					margin-top: 20px;
