@@ -3,6 +3,8 @@ import styles from './NewsPageMainNews.module.scss'
 
 export function NewsPageMainNews({ importantNews }) {
 	console.log(importantNews);
+	console.log(importantNews.id);
+
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.newsmainheader}>

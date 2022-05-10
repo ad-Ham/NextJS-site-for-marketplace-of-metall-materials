@@ -13,12 +13,12 @@ export function LoginHeaderButton() {
 				{/* <Button type="button" onClick={showPreview} variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
 					Войти
 				</Button> */}
-				<Link href="/login"><a className="linklogin">Войти</a></Link>
-				<div className='reg'>/</div>
+				{/* <Link href="/login"><a className="linklogin">Войти</a></Link>
+				<div className='reg'>/</div> */}
 				{/* <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
 					<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
 				</Button> */}
-				<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
+				{/* <Link href={'/reg'}><a className="linkreg">Регистрация</a></Link> */}
 				{/* ======= */}
 				<Button onClick={showPreview} variant="light" color="gray" size="xs" uppercase>
 					Войти/Регстрация

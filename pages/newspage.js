@@ -12,9 +12,9 @@ import Link from 'next/link'
 import styles from '../styles/newspage.module.scss'
 const axios = require('axios').default;
 
-export default function NewsPage() {
+export default function NewsPage({ id }) {
 
-	const [news, setNews] = useState([])
+	const [singleNew, setSingleNew] = useState([])
 
 
 
@@ -22,19 +22,20 @@ export default function NewsPage() {
 		axios.get('http://localhost:3001/singlenews', {
 			headers: {
 				'Accept': 'application/json'
-			}
+			},
+			id: id
 		})
 			.then(function (response) {
 				console.log(response);
-				const news = response;
-				setNews(news)
+				const singleNew = response;
+				setSingleNew(singleNew)
 			})
 			.catch(function (error) {
 				console.log(error);
 			})
 	}, [])
 
-	console.log(news)
+	console.log(id)
 
 	return (
 		<MainLayout>

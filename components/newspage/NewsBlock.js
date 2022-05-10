@@ -5,45 +5,43 @@ const axios = require('axios').default;
 
 export function NewsBlock() {
 
-	const [news, setNews] = useState([])
+	// const [news, setNews] = useState([])
 
-	useEffect(() => {
-		axios.get('http://localhost:3001/newsquery', {
-			headers: {
-				'Accept': 'application/json'
-			}
-		})
-			.then(response => response.json())
-			.then(result => {
-				console.log(result);
-				setNews(result.data.news)
-			})
-			.catch(err => {
-				if (err) {
-					console.log(err);
-				}
-			})
-	}, [])
+	// useEffect(() => {
+	// 	axios.get('http://localhost:3001/newsquery', {
+	// 		headers: {
+	// 			'Accept': 'application/json'
+	// 		}
+	// 	})
+	// 		.then(response => response.json())
+	// 		.then(result => {
+	// 			console.log(result);
+	// 			setNews(result.data.news)
+	// 		})
+	// 		.catch(err => {
+	// 			if (err) {
+	// 				console.log(err);
+	// 			}
+	// 		})
+	// }, [])
 
 	return (<>
-
-		{news.map(news => <div className={styles.maindiv} key={news}>
+		<div className={styles.maindiv} >
 			<h2 className={styles.newsheader}>
-				{news.title}
+				Название
 			</h2>
 
 			<div className={styles.photo}></div>
 
 			<p className={styles.newstext}>
-				{news.text}
+				Описание
 			</p>
 
 			<p className={styles.newstags}>
-				{news.tags}
+				Теги
 			</p>
 		</div>
-		)}
-		<RepostLayout />
+		{/* <RepostLayout /> */}
 		<style jsx>{`
 			
 		`}</style>
