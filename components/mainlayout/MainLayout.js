@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { SearchHeader } from '../mainlayout/SearchHeader'
-import { LoginHeader } from '../mainlayout/LoginHeader'
+import { LoginButton } from '../mainlayout/LoginButton'
 import { BurgerMenu } from '../BurgerMenu'
 import Image from 'next/image'
 // import smallLogo from '../../public/metal_small_logo'
@@ -10,19 +10,20 @@ import styles from './MainLayout.module.scss'
 import { LoginHeaderButton } from '../mainLayout/LoginHeaderButton.js'
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
-import { Button } from '@mantine/core';
+import { Button, TextInput, MantineProvider } from '@mantine/core';
+import { useModals, ModalsProvider  } from '@mantine/modals';
 
 import { useRouter } from 'next/router';
 
 export function MainLayout({ children }) {
 	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
 	useEffect(() => {
-		const userStatus = checkToken(router.pathname)
-		console.log(userStatus)
+		changeUserStatus()
 	}, [])
-	
-	const removeWindow = e => {
-		elem.classList.remove("modWindowWrapper");
+
+	function changeUserStatus() {
+		setUserStatus(checkToken(router.pathname))
 	}
 
 	const [login, setLogin] = useState('');
@@ -56,32 +57,8 @@ export function MainLayout({ children }) {
 
 
 	return (
-		<>
-			<div id='elem' className="modWindowDisable">
-				<button type="button" onClick={removeWindow} className="cross"></button>
-				<div className="modWindow">
-					<form className="maindiv" onSubmit={handleSubmit}>
-						<div className="loginDiv">
-							<input type="text" 
-								   placeholder="e-mail" 
-								   required
-								   onChange={e => setLogin(e.target.value)}/>
-							<input type="password" 
-								   placeholder="Пароль" 
-								   required
-								   onChange={e => setPassword(e.target.value)}
-								   className="passwordInput"/>
-					    </div>
-						<div className="loginButton"><Button type="submit" variant="gradient" gradient={{ from: 'teal', to: 'lime' }}>
-							Войти
-						</Button>
-						<Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
-							<Link href={'/reg'}><a className="linkreg">Регистрация</a></Link>
-						</Button>
-						</div>
-					</form>
-				</div>
-			</div>
+		<MantineProvider>
+      	<ModalsProvider>
 			<div className={styles.wrapper}>
 				<nav className={styles.nav}>
 					<div className={styles.container, styles.navcontainer}>
@@ -89,11 +66,14 @@ export function MainLayout({ children }) {
 						<Link href="/">
 							<Image
 								src="/logo.svg"
-								width={45}
-								height={45}
+								width={225}
+								height={60}
 							/>
 						</Link>
-						<LoginHeader />
+						{!userStatus && <LoginButton/>}
+						{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
+											Личный кабинет
+									   </Button></a></Link>}
 					</div>
 				</nav>
 				<main className={styles.main}>
@@ -105,8 +85,8 @@ export function MainLayout({ children }) {
 							<Link href="/">
 								<Image
 									src="/logo.svg"
-									width={45}
-									height={45}
+									width={225}
+									height={60}
 								/>
 							</Link>
 							<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
@@ -184,7 +164,12 @@ export function MainLayout({ children }) {
 					display: flex;
 					align-items: center;
 				}
+
+				a {
+					color: unset
+				}
 			`}</style>
-		</>
+		</ModalsProvider>
+    </MantineProvider>
 	)
 }

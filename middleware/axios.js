@@ -21,7 +21,7 @@ function deleteToken() {
 
 // Функци проверки наличия токена, false - токена нет, при полечении токена нужно его сохранить по заданнуму ключу в сторадж
 function checkToken(pathname) {
-	if (!localStorage.getItem("token") && pathname !== "/auth") {
+	if (localStorage.getItem("token") && pathname !== "/auth") {
 		return true;
 	} else {
 		if (!axios.defaults.headers.common['Token'])
