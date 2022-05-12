@@ -59,8 +59,6 @@ export function MainPromoPhoto({ id, text, title, date, category }) {
 	return (<>
 		<div className={styles.mainpromophoto}>
 
-			<Link href="/promopage"><a><div id='newpicture' className={styles.photo}></div></a></Link>
-
 			<Link href="/promopage"><a><h3 id='newheader' className={styles.promophotoheader}><b className={styles.promophotoheaderb}>{category}<br /><br /></b>{title}</h3></a></Link>
 
 			<p id='newstext' className={styles.promophototext} >

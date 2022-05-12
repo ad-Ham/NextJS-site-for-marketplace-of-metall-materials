@@ -18,9 +18,10 @@ export default function Index() {
 		}
 	}, [])
 
-
 	const myURL = new URL('https://example.org');
 	const [news, setNews] = useState([])
+	const [dollarPrice, setDollarPrice] = useState('')
+	const [euroPrice, setEuroPrice] = useState('')
 
 	useEffect(() => {
 		axios.get('http://localhost:3001/newsquery', {
@@ -29,7 +30,6 @@ export default function Index() {
 			}
 		})
 			.then(function (response) {
-				console.log(response);
 				const news = response.data.news;
 				setNews(news)
 			})
@@ -38,9 +38,30 @@ export default function Index() {
 			})
 	}, [])
 
-	console.log(news)
+	useEffect(() => {
+		axios.get('http://localhost:3001/getExchangeRates')
+			.then(function (response) {
+				const dollarPrice = response.data.dollar_price
+				const euroPrice = response.data.euro_price
+				setDollarPrice(dollarPrice)
+				setEuroPrice(euroPrice)
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+	}, [])
 
+	const [metalls, setMetalls] = useState([])
 
+	useEffect(() => {
+		axios.get('http://localhost:3001/getMetalsPrice')
+			.then(function (response) {
+				setMetalls(response.data.metals)
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
+	}, [])
 
 	const [promos, setPromos] = useState([])
 
@@ -60,7 +81,6 @@ export default function Index() {
 			})
 	}, [])
 
-	console.log(promos)
 
 	return (
 		<MainLayout>
@@ -83,7 +103,12 @@ export default function Index() {
 					<MainPageNews news={news.slice(1, 100)} importantNews={news.slice(0, 1)} />
 				</div>
 				<div className={styles.priceindex}>
-					Индексы цен на металл
+					<h2>Индексы цен на металл</h2>
+					<p>{ dollarPrice }</p>
+					<p>{ euroPrice }</p>
+					{metalls.map(metalls => (
+						<p key={metalls.id}>{metalls.name}: {metalls.price} {metalls.price_change}</p>
+					))}
 				</div>
 
 			</div>
