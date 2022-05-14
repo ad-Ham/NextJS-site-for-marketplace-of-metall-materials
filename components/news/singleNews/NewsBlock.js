@@ -1,4 +1,4 @@
-import { RepostLayout } from '../newspage/RepostLayout'
+import { RepostLayout } from './RepostLayout'
 import { useState, useEffect } from 'react';
 import styles from './NewsBlock.module.scss'
 const axios = require('axios').default;

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { SearchHeader } from '../mainlayout/SearchHeader'
 import { LoginButton } from '../mainlayout/LoginButton'
-import { BurgerMenu } from '../BurgerMenu'
+import { BurgerMenu } from '../Layout/BurgerMenu'
 import Image from 'next/image'
 // import smallLogo from '../../public/metal_small_logo'
 // import profilePic from '../../public\metal_small_logo.png'
@@ -11,8 +11,9 @@ import { LoginHeaderButton } from '../mainLayout/LoginHeaderButton.js'
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
 import { Button, TextInput, MantineProvider } from '@mantine/core';
-import { useModals, ModalsProvider  } from '@mantine/modals';
+import { useModals, ModalsProvider } from '@mantine/modals';
 
+import { LoginModal } from '../login/LoginModal';
 import { useRouter } from 'next/router';
 
 export function MainLayout({ children }) {
@@ -32,74 +33,80 @@ export function MainLayout({ children }) {
 	const handleSubmit = e => {
 		e.preventDefault();
 		axios.post('http://localhost:3001/login', {
-		    login: login,
-		    password: password
-		  })
-		  .then(function (response) {
-		  	if (response.status===200) {
-		  		localStorage.setItem('token', response.data.token);
-	    		alert('Вы успешно вошли!')
-	    		elem.classList.remove("modWindowWrapper")
-		  	} else if (response.status===404) {
-		  		alert('Пользователь не найден')
-		  	} else if (response.status===403) {
-		  		alert('Неверный пароль')
-		  	}
-		    
-		    e.target.reset();
-		  })
-		  .catch(function (error) {
-		  	alert('Не верный email или пароль!')
-		    console.log(error);
-		  });
+			login: login,
+			password: password
+		})
+			.then(function (response) {
+				if (response.status === 200) {
+					localStorage.setItem('token', response.data.token);
+					alert('Вы успешно вошли!')
+					elem.classList.remove("modWindowWrapper")
+				} else if (response.status === 404) {
+					alert('Пользователь не найден')
+				} else if (response.status === 403) {
+					alert('Неверный пароль')
+				}
+
+				e.target.reset();
+			})
+			.catch(function (error) {
+				alert('Не верный email или пароль!')
+				console.log(error);
+			});
 	}
 
-
+	const [opened, setOpened] = useState(false);
+	const onLogin = (state) => {
+		setUserStatus(state)
+	}
 
 	return (
 		<MantineProvider>
-      	<ModalsProvider>
-			<div className={styles.wrapper}>
-				<nav className={styles.nav}>
-					<div className={styles.container, styles.navcontainer}>
-						<BurgerMenu />
-						<Link href="/">
-							<Image
-								src="/logo.svg"
-								width={225}
-								height={60}
-							/>
-						</Link>
-						{!userStatus && <LoginButton/>}
-						{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
-											Личный кабинет
-									   </Button></a></Link>}
-					</div>
-				</nav>
-				<main className={styles.main}>
-					{children}
-				</main>
-				<footer className={styles.footer}>
-					<div className={styles.container, styles.footercontainer}>
-						<div className={styles.footerleft}>
+			<ModalsProvider>
+				<div className={styles.wrapper}>
+					<nav className={styles.nav}>
+						<div className={styles.container, styles.navcontainer}>
+							<BurgerMenu />
 							<Link href="/">
 								<Image
+									alt="metall-market.pro"
 									src="/logo.svg"
 									width={225}
 									height={60}
 								/>
 							</Link>
-							<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
+							<LoginModal opened={opened} setOpened={setOpened} onLogin={onLogin}/>
+							<Button onClick={(e) => {setOpened(!opened);}}>ОТКРЫТЬ МОДАЛКУ</Button>
+							{!userStatus && <LoginButton />}
+							{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
+								Личный кабинет
+							</Button></a></Link>}
 						</div>
-						<ul className={styles.footerul}>
-							{/* <li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li> */}
-							<li>ООО &quot;Технические системы&quot; г.Уфа, Республика Башкортостан</li>
-							<li>© ООО &quot;Технические системы&quot;, 2022</li>
-						</ul>
-					</div>
-				</footer>
-			</div>
-			<style jsx>{`
+					</nav>
+					<main className={styles.main}>
+						{children}
+					</main>
+					<footer className={styles.footer}>
+						<div className={styles.container, styles.footercontainer}>
+							<div className={styles.footerleft}>
+								<Link href="/">
+									<Image
+										src="/logo.svg"
+										width={225}
+										height={60}
+									/>
+								</Link>
+								<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
+							</div>
+							<ul className={styles.footerul}>
+								{/* <li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li> */}
+								<li>ООО &quot;Технические системы&quot; г.Уфа, Республика Башкортостан</li>
+								<li>© ООО &quot;Технические системы&quot;, 2022</li>
+							</ul>
+						</div>
+					</footer>
+				</div>
+				<style jsx>{`
 				.linkreg {
 					text-decoration: none;					
 					color: white;
@@ -169,7 +176,7 @@ export function MainLayout({ children }) {
 					color: unset
 				}
 			`}</style>
-		</ModalsProvider>
-    </MantineProvider>
+			</ModalsProvider>
+		</MantineProvider>
 	)
 }

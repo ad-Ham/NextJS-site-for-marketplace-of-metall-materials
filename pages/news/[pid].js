@@ -1,19 +1,21 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
-import { MainPromos } from '../components/mainpage/MainPromos'
-import { MainPageNews } from '../components/mainpage/MainPageNews'
-import { NewsBlock } from '../components/newspage/NewsBlock'
-import { MoreNewsCard } from '../components/newspage/MoreNewsCard'
-import { Adbannertop } from '../components/Adbannertop'
-import Adbannerside from '../public/adbannerside.svg'
+import { MainLayout } from '../../components/mainlayout/MainLayout'
+import { Portions } from '../../components/Portions'
+import { MainPromos } from '../../components/mainpage/MainPromos'
+import { MainPageNews } from '../../components/mainpage/MainPageNews'
+import { NewsBlock } from '../../components/news/singleNews/NewsBlock'
+import { MoreNewsCard } from '../../components/news/singleNews/MoreNewsCard'
+import { Adbannertop } from '../../components/Adbannertop'
 import Link from 'next/link'
-import styles from '../styles/newspage.module.scss'
+import styles from '../../styles/news/newspage.module.scss'
 const axios = require('axios').default;
 
-export default function NewsPage({ id }) {
-	console.log(id)
+export default function NewsPage() {
+	const router = useRouter()
+	const { pid } = router.query
+	console.log(pid)
 
 	// const [singleNew, setSingleNew] = useState([])
 
@@ -36,7 +38,7 @@ export default function NewsPage({ id }) {
 	return (
 		<MainLayout>
 			<Head>
-				<title>Next Title</title>
+				<title>Новость</title>
 				<meta name="keywords" content="next, javascript" />
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />

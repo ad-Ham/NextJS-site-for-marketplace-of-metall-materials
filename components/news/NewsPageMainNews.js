@@ -20,7 +20,7 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				{importantNews.map(importantNews => (
-					<Link key={importantNews.id} href={'/newspage/[id]'} as={'/newspage/${importantNews.id}'} >
+					<Link key={importantNews.id} href={`/news/${importantNews.id}`} as={`/news/${importantNews.id}`} >
 						<a key={importantNews.id} id={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}/{importantNews.id}</h2></a>
 					</Link>
 				))}
