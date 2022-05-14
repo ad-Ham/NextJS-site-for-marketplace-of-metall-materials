@@ -71,8 +71,8 @@ export function MainLayout({ children }) {
 								<Image
 									alt="metall-market.pro"
 									src="/logo.svg"
-									width={225}
-									height={60}
+									width={300}
+									height={75}
 								/>
 							</Link>
 							<LoginModal opened={opened} setOpened={setOpened} onLogin={onLogin}/>
@@ -92,15 +92,15 @@ export function MainLayout({ children }) {
 								<Link href="/">
 									<Image
 										src="/logo.svg"
-										width={225}
-										height={60}
+										width={300}
+										height={75}
 									/>
 								</Link>
 								<Link href={'/help'}><a className={styles.supportlink}>Техподдержка</a></Link>
 							</div>
 							<ul className={styles.footerul}>
 								{/* <li>Телефон: <a href="tel:88005553535" className={styles.footerphone}>8-800-555-35-35</a></li> */}
-								<li>ООО &quot;Технические системы&quot; г.Уфа, Республика Башкортостан</li>
+								<li>г.Уфа, Республика Башкортостан</li>
 								<li>© ООО &quot;Технические системы&quot;, 2022</li>
 							</ul>
 						</div>

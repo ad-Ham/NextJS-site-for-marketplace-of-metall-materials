@@ -4,7 +4,7 @@
 	right: 0;
 	left: 0;
 	top: 0;
-	padding: 0 215px 0 215px;
+	padding: 0 30px;
 }
 
 .navcontainer {
@@ -88,7 +88,9 @@
 	color: #000000;
 }
 
-.main {}
+.main {
+	padding: 0 30px;
+}
 
 @media (max-width: 1150px) {
 	.nav {
