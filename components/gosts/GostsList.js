@@ -1,450 +1,524 @@
 import styles from './GostsList.module.scss'
 
-export function GostsList() {
+export const GOSTS = [
+    {
+        title: 'Феррросплавы',
+        list: [
+            {
+                title: 'Феррохром',
+                standards: [
+                    {
+                        title: 'ГОСТ 4757 - 91',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Марганец металлический',
+                standards: [
+                    {
+                        title: 'ГОСТ 6008 - 82',
+                        link: ''
+                    },
+                    {
+                        title: 'ГОСТ 6008 - 90',
+                        link: ''
+                    },
+                ]
+            },
+            {
+                title: 'Ферромарганец',
+                standards: [
+                    {
+                        title: 'ГОСТ 4755 – 80',
+                        link: ''
+                    },
+                    {
+                        title: 'ГОСТ 4755 – 91',
+                        link: ''
+                    },
+                    {
+                        title: 'ДСТУ 3547 - 97',
+                        link: ''
+                    },
+                ]
+            },
+            {
+                title: 'Ферромарганец',
+                standards: [
+                    {
+                        title: 'ГОСТ 4755 – 80',
+                        link: ''
+                    },
+                    {
+                        title: 'ГОСТ 4755 – 91',
+                        link: ''
+                    },
+                    {
+                        title: 'ДСТУ 3547 - 97',
+                        link: ''
+                    },
+                ]
+            },
+            {
+                title: 'Ферросилиций',
+                standards: [
+                    {
+                        title: 'ГОСТ 1415 – 93',
+                        link: ''
+                    },
+                    {
+                        title: 'ДСТУ 4127 - 2002',
+                        link: ''
+                    },
+                ]
+            },
+            {
+                title: 'Феррованадий',
+                standards: [
+                    {
+                        title: 'ГОСТ 27130-94',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферромолибден',
+                standards: [
+                    {
+                        title: 'ГОСТ 4759 - 91',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферровольфрам',
+                standards: [
+                    {
+                        title: 'ГОСТ 17293 - 93',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Феррониобий',
+                standards: [
+                    {
+                        title: 'ГОСТ 16773 - 2003',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферротитан',
+                standards: [
+                    {
+                        title: 'ГОСТ 4761 - 91',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферросиликомарганец',
+                standards: [
+                    {
+                        title: 'ГОСТ 4756 – 91',
+                        link: ''
+                    },
+                    {
+                        title: 'ДСТУ 3548 - 97',
+                        link: ''
+                    },
+                ]
+            },
+            {
+                title: 'Силикокальций',
+                standards: [
+                    {
+                        title: 'ГОСТ 4762 - 71',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Хром металлический',
+                standards: [
+                    {
+                        title: 'ГОСТ 5905 - 2004',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферробор',
+                standards: [
+                    {
+                        title: 'ГОСТ 14848 - 69',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Ферросиликохром',
+                standards: [
+                    {
+                        title: 'ГОСТ 11861 - 91',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Цветные металлы',
+        list: [
+            {
+                title: 'Алюминий вторичный',
+                standards: [
+                    {
+                        title: 'ГОСТ 295 - 98',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Никель первичный',
+                standards: [
+                    {
+                        title: 'ГОСТ 849 - 97',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Медь',
+                standards: [
+                    {
+                        title: 'ГОСТ 859 - 2001',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Титан губчатый',
+                standards: [
+                    {
+                        title: 'ГОСТ 17746-96',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Цинк',
+                standards: [
+                    {
+                        title: 'ГОСТ 3640 - 94',
+                        link: ''
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        title: 'Чугуны',
+        list: [
+            {
+                title: 'Чугун антифрикционный для отливок',
+                standards: [
+                    {
+                        title: 'ГОСТ 1585-85',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Чугун с вермикулярным графитом для отливок',
+                standards: [
+                    {
+                        title: 'ГОСТ 28394-89',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Сталь',
+        list: [
+            {
+                title: 'Прокат для строительных стальных конструкций',
+                standards: [
+                    {
+                        title: 'ГОСТ 27772-88',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Приемка, маркировка, упаковка, транспортирование и хранение металлопродукции',
+                standards: [
+                    {
+                        title: 'ГОСТ 7566-94',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Прокат сортовой и фасонный из стали углеродистой обыкновенного качества',
+                standards: [
+                    {
+                        title: 'ГОСТ 535-88',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Металлопрокат',
+        subtitle: 'Арматура',
+        list: [
+            {
+                title: 'Сталь горячекатаная для армирования железобетонных конструкций',
+                standards: [
+                    {
+                        title: 'ГОСТ 5781-82',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Прокат арматурный свариваемый периодического профиля классов А500С и В500С для армирования железобетонных конструкций',
+                standards: [
+                    {
+                        title: 'ГОСТ Р 52544-2006',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Прокат периодического профиля из арматурной стали',
+                standards: [
+                    {
+                        title: 'СТО АСЧМ 7-93',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Прокат периодического профиля для армирования железобетонных конструкций',
+                standards: [
+                    {
+                        title: 'ТУ 14-1-5254-94',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Полосы стальные арматурные',
+                standards: [
+                    {
+                        title: 'DIN 488-2-1986',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Сетка стальная и проволока арматурные',
+                standards: [
+                    {
+                        title: 'DIN 488-4-1986',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Сталь арматурная термомеханически упрочненная для железобетонных конструкций',
+                standards: [
+                    {
+                        title: 'ГОСТ 10884-94',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        subtitle: 'Балки двутавровые',
+        list: [
+            {
+                title: 'Балка двутавровая горячекатаная',
+                standards: [
+                    {
+                        title: 'ГОСТ 8239-89',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Балка двутавровая стальная специальная',
+                standards: [
+                    {
+                        title: 'ГОСТ 19425-74',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Балка двутавровая стальная горячекатаная с параллельными гранями полок',
+                standards: [
+                    {
+                        title: 'ГОСТ 26020-83',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Балка двутавровая',
+                standards: [
+                    {
+                        title: 'СТО АСЧМ 20-93',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Профили горячекатаные двутавровые узкие ряда I',
+                standards: [
+                    {
+                        title: 'DIN 1025-1-1995',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Профили горячекатаные двутавровые широкие рядов IPB и IB',
+                standards: [
+                    {
+                        title: 'DIN 1025-2-1995',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Профили горячекатаные двутавровые широкие легкой конструкции ряда IPBI',
+                standards: [
+                    {
+                        title: 'DIN 1025-3-1994',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Профили горячекатаные двутавровые широкие упрочненной конструкции ряда IPBv',
+                standards: [
+                    {
+                        title: 'DIN 1025-4-1994',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Профили горячекатаные двутавровые средней ширины ряда IPE',
+                standards: [
+                    {
+                        title: 'DIN 1025-5-1994',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Балки из горячекатаной стали Z-образные с закругленными кромками',
+                standards: [
+                    {
+                        title: 'DIN 1027-2004',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Сталь тавровая горячекатаная с острыми кромками',
+                standards: [
+                    {
+                        title: 'DIN 59051-2004',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        subtitle: 'Жесть',
+        list: [
+            {
+                title: 'Жесть',
+                standards: [
+                    {
+                        title: 'ГОСТ 13345-85',
+                        link: ''
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        subtitle: 'Катанка',
+        list: [
+            {
+                title: 'Катанка из углеродистой стали обыкновенного качества',
+                standards: [
+                    {
+                        title: 'ГОСТ 30136-95',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Катанка для перетяжки на проволоку',
+                standards: [
+                    {
+                        title: 'ТУ 14-15-212-89',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Катанка для упаковки и других целей',
+                standards: [
+                    {
+                        title: 'ТУ 14-15-213-89',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Пруток стальной для волочения и/или холодной прокатки',
+                standards: [
+                    {
+                        title: 'DIN EN 10017-2005',
+                        link: ''
+                    }
+                ]
+            },
+            {
+                title: 'Прутки стальные круглого сечения для холодной высадки и холодной экструзии',
+                standards: [
+                    {
+                        title: 'DIN EN 10108-2005',
+                        link: ''
+                    }
+                ]
+            },
+        ]
+    },
+]
+
+export const GostsList = () => {
     return (<>
         <div className={styles.maindiv}>
             <ul className={styles.gostslist}>
 
-                {/* Ферросплавы */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemheadertext}>
-                        Феррросплавы
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Феррохром
-                    </p>
-                    <p>
-                        ГОСТ 4757 - 91
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Марганец металлический
-                    </p>
-                    <p>	ГОСТ 6008 - 82 <br />
-                        ГОСТ 6008 - 90<br />
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферромарганец
-                    </p>
-                    <p>	ГОСТ 4755 – 80<br />
-                        ГОСТ 4755 – 91<br />
-                        ДСТУ 3547 - 97</p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферросилиций
-                    </p>
-                    <p>
-                        ГОСТ 1415 – 93<br />
-                        ДСТУ 4127 - 2002
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Феррованадий
-                    </p>
-                    <p>
-                        ГОСТ 27130-94
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферромолибден
-                    </p>
-                    <p>
-                        ГОСТ 4759 - 91
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферровольфрам
-                    </p>
-                    <p>
-                        ГОСТ 17293 - 93
-                    </p>
-                </li><li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Феррониобий
-                    </p>
-                    <p>
-                        ГОСТ 16773 - 2003
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферротитан
-                    </p>
-                    <p>
-                        ГОСТ 4761 - 91
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферросиликомарганец
-                    </p>
-                    <p>
-                        ГОСТ 4756 – 91<br />
-                        ДСТУ 3548 - 97
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Силикокальций
-                    </p>
-                    <p>
-                        ГОСТ 4762 - 71
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Хром металлический
-                    </p>
-                    <p>
-                        ГОСТ 5905 - 2004
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферробор
-                    </p>
-                    <p>
-                        ГОСТ 14848 - 69
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Ферросиликохром
-                    </p>
-                    <p>
-                        ГОСТ 11861 - 91
-                    </p>
-                </li>
-
-                {/* Цветные металлы */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemheadertext}>
-                        Цветные металлы
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Алюминий вторичный
-                    </p>
-                    <p>
-                        ГОСТ 295 - 98
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Никель первичный
-                    </p>
-                    <p>
-                        ГОСТ 849 - 97<br />
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Медь
-                    </p>
-                    <p>
-                        ГОСТ 859 - 2001
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Титан губчатый
-                    </p>
-                    <p>
-                        ГОСТ 17746-96
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Цинк
-                    </p>
-                    <p>
-                        ГОСТ 3640 - 94
-                    </p>
-                </li>
-
-                {/* Чугуны */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemheadertext}>
-                        Чугуны
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Чугун антифрикционный для отливок
-                    </p>
-                    <p>
-                        ГОСТ 1585-85
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Чугун с вермикулярным графитом для отливок
-                    </p>
-                    <p>
-                        ГОСТ 28394-89
-                    </p>
-                </li>
-
-                {/* Сталь */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemheadertext}>
-                        Сталь
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Прокат для строительных стальных конструкций
-                    </p>
-                    <p>
-                        ГОСТ 27772-88
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Приемка, маркировка, упаковка, <br />транспортирование и хранение металлопродукции
-                    </p>
-                    <p>
-                        ГОСТ 7566-94
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Прокат сортовой и фасонный<br /> из стали углеродистой обыкновенного качества
-                    </p>
-                    <p>
-                        ГОСТ 535-88
-                    </p>
-                </li>
-
-                {/* Металлопрокат */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemheadertext}>
-                        Металлопрокат
-                    </p>
-                </li>
-
-                {/* Арматура */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemsubheadertext}>
-                        Арматура
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Сталь горячекатаная для армирования железобетонных конструкций
-                    </p>
-                    <p>
-                        ГОСТ 5781-82
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Прокат арматурный свариваемый периодического профиля классов<br />
-                        А500С и В500С для армирования железобетонных конструкций
-                    </p>
-                    <p>
-                        ГОСТ Р 52544-2006
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Прокат периодического профиля из арматурной стали
-                    </p>
-                    <p>
-                        СТО АСЧМ 7-93
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Прокат периодического профиля для армирования<br /> железобетонных конструкций
-                    </p>
-                    <p>
-                        ТУ 14-1-5254-94
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Полосы стальные арматурные
-                    </p>
-                    <p>
-                        DIN 488-2-1986
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Сетка стальная и проволока арматурные
-                    </p>
-                    <p>
-                        DIN 488-4-1986
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Сталь арматурная термомеханически упрочненная для железобетонных конструкций
-                    </p>
-                    <p>
-                        ГОСТ 10884-94
-                    </p>
-                </li>
-
-                {/* Балки двутавровые  */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemsubheadertext}>
-                        Балки двутавровые
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Балка двутавровая горячекатаная
-                    </p>
-                    <p>
-                        ГОСТ 8239-89
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Балка двутавровая стальная специальная
-                    </p>
-                    <p>
-                        ГОСТ 19425-74
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Балка двутавровая стальная горячекатаная с параллельными гранями полок
-                    </p>
-                    <p>
-                        ГОСТ 26020-83
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Балка двутавровая
-                    </p>
-                    <p>
-                        СТО АСЧМ 20-93
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Профили горячекатаные двутавровые узкие ряда I
-                    </p>
-                    <p>
-                        DIN 1025-1-1995
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Профили горячекатаные двутавровые широкие рядов IPB и IB
-                    </p>
-                    <p>
-                        DIN 1025-2-1995
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Профили горячекатаные двутавровые широкие легкой конструкции ряда IPBI
-                    </p>
-                    <p>
-                        DIN 1025-3-1994
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Профили горячекатаные двутавровые широкие упрочненной конструкции ряда IPBv
-                    </p>
-                    <p>
-                        DIN 1025-4-1994
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Профили горячекатаные двутавровые средней ширины ряда IPE
-                    </p>
-                    <p>
-                        DIN 1025-5-1994
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Балки из горячекатаной стали Z-образные с закругленными кромками
-                    </p>
-                    <p>
-                        DIN 1027-2004
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Сталь тавровая горячекатаная с острыми кромками
-                    </p>
-                    <p>
-                        DIN 59051-2004
-                    </p>
-                </li>
-
-                {/* Жесть  */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemsubheadertext}>
-                        Жесть
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Жесть
-                    </p>
-                    <p>
-                        ГОСТ 13345-85
-                    </p>
-                </li>
-
                 {/* Катанка  */}
-                <li className={styles.listitemheader}>
-                    <p className={styles.listitemsubheadertext}>
-                        Катанка
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Катанка из углеродистой стали обыкновенного качества
-                    </p>
-                    <p>
-                        ГОСТ 30136-95
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Катанка для перетяжки на проволоку
-                    </p>
-                    <p>
-                        ТУ 14-15-212-89
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Катанка для упаковки и других целей
-                    </p>
-                    <p>
-                        ТУ 14-15-213-89
-                    </p>
-                </li>
-                <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
-                        Пруток стальной для волочения и/или холодной прокатки
-                    </p>
-                    <p>
-                        DIN EN 10017-2005
-                    </p>
-                </li>
                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Прутки стальные круглого сечения для холодной высадки и холодной экструзии

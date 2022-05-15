@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Button } from '@mantine/core';
 import { useRouter } from 'next/router'
 
-export function RegButton() {
+export const RegButton = () => {
 	const router = useRouter()
 	return (<>
 		<div className="maindiv">

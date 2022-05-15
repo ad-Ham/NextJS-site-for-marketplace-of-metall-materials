@@ -2,7 +2,7 @@ import Link from 'next/link'
 import styles from './MainPageImportantNews.module.scss'
 import { Card, Image, Text } from '@mantine/core';
 
-export function MainPageImportantNews({ id, text, title, date, tags }) {
+export const MainPageImportantNews = ({ id, text, title, date, tags }) => {
 	return (<>
 		<div className={styles.importantnews}>
 			<Card
@@ -17,7 +17,9 @@ export function MainPageImportantNews({ id, text, title, date, tags }) {
 				</Card.Section>
 
 				<Text weight={500} size="lg">
-					<Link href="/newspage"><a className={styles.a}><h3 className={styles.importantheader}>{title}</h3></a></Link>
+					<Link href="/newspage" className={styles.a} passHref>
+						<h3 className={styles.importantheader}>{title}</h3>
+					</Link>
 				</Text>
 
 				<Text size="sm">

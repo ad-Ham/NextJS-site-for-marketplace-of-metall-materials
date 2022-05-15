@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { MainLayout } from '../../components/mainlayout/MainLayout'
-import { Portions } from '../../components/Portions'
 import { MainPromos } from '../../components/mainpage/MainPromos'
 import { MainPageNews } from '../../components/mainpage/MainPageNews'
 import { NewsBlock } from '../../components/news/singleNews/NewsBlock'
@@ -12,7 +10,7 @@ import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
 const axios = require('axios').default;
 
-export default function NewsPage() {
+const NewsPage = () => {
 	const router = useRouter()
 	const { pid } = router.query
 	console.log(pid)
@@ -36,7 +34,7 @@ export default function NewsPage() {
 
 
 	return (
-		<MainLayout>
+		<>
 			<Head>
 				<title>Новость</title>
 				<meta name="keywords" content="next, javascript" />
@@ -47,7 +45,6 @@ export default function NewsPage() {
 			<div className={styles.content, styles.bothsides}>
 
 				<div className={styles.leftside}>
-					<Portions />
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
@@ -63,9 +60,8 @@ export default function NewsPage() {
 				</div>
 
 			</div>
-			<style jsx>{`
-				
-			`}</style>
-		</MainLayout>
+		</>
 	)
 }
+
+export default NewsPage;

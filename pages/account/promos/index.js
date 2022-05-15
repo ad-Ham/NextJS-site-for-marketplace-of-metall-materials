@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
-import { MyPromosPageSearchPanel } from '../components/mypromos/MyPromosPageSearchPanel'
-import { MyPromosPageCountPanel } from '../components/mypromos/MyPromosPageCountPanel'
-import { MyPromosPageListHeader } from '../components/mypromos/MyPromosPageListHeader'
-import { MyPromosPageList } from '../components/mypromos/MyPromosPageList'
-import { MyPromosPages } from '../components/mypromos/MyPromosPages'
-import { Adbannertop } from '../components/Adbannertop'
+import { MainLayout } from '../../../components/Layout/MainLayout'
+import { MyPromosPageSearchPanel } from '../../../components/mypromos/MyPromosPageSearchPanel'
+import { MyPromosPageCountPanel } from '../../../components/mypromos/MyPromosPageCountPanel'
+import { MyPromosPageListHeader } from '../../../components/mypromos/MyPromosPageListHeader'
+import { MyPromosPageList } from '../../../components/mypromos/MyPromosPageList'
+import { MyPromosPages } from '../../../components/mypromos/MyPromosPages'
+import { Adbannertop } from '../../../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/mypromos.module.scss'
@@ -24,7 +23,6 @@ export default function MyPromos() {
             <div className={styles.content, styles.bothsides}>
 
                 <div className={styles.leftside}>
-                    <Portions />
                     <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div>
                 </div>
                 <div className={styles.rightside}>

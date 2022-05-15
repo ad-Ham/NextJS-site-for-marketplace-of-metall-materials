@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import styles from './NewsBlock.module.scss'
 const axios = require('axios').default;
 
-export function NewsBlock() {
+export const NewsBlock = () => {
 
 	// const [news, setNews] = useState([])
 

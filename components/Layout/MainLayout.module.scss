@@ -1,17 +1,8 @@
-.nav {
-	height: 80px;
-	background: #EFEFEF;
-	right: 0;
-	left: 0;
-	top: 0;
-	padding: 0 30px;
-}
-
-.navcontainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 100%;
+.main {
+	max-width: 1600px;
+	margin: 0 auto;
+	margin-top: 24px;
+	flex-grow: 1;
 }
 
 .buysell {
@@ -86,10 +77,6 @@
 
 .footerphone {
 	color: #000000;
-}
-
-.main {
-	padding: 0 30px;
 }
 
 @media (max-width: 1150px) {

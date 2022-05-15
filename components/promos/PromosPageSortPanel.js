@@ -1,7 +1,7 @@
 import SearchNews from '/public/searchNews.svg'
 import styles from './PromosPageSortPanel.module.scss'
 
-export function PromosPageSortPanel() {
+export const PromosPageSortPanel = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.selectsortbar}>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './PersonalData.module.scss'
 
-export function PersonalData() {
+export const PersonalData = () => {
 	const [surName, setSurname] = useState('');
 	const [firstName, setFirstname] = useState('');
 	const [lastName, setLastname] = useState('');

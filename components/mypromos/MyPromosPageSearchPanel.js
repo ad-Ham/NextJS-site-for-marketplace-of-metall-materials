@@ -1,6 +1,6 @@
 import styles from './MyPromosPageSearchPanel.module.scss'
 
-export function MyPromosPageSearchPanel() {
+export const MyPromosPageSearchPanel = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<input type="text" placeholder="Введите ваш запрос..." className={styles.promossearch} />

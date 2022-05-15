@@ -1,6 +1,6 @@
 import styles from './PromosPages.module.scss'
 
-export function PromosPages() {
+export const PromosPages = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<button type="button" className={styles.buttonArrow}></button>

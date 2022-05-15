@@ -1,13 +1,9 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
-import { Block404 } from '../components/Block404'
-import { Adbannertop } from '../components/Adbannertop'
-import Adbannerside from '../public/adbannerside.svg'
-import Link from 'next/link'
+import { MainLayout } from '../components/Layout/MainLayout'
+import { Link } from 'next/link'
 import styles from '../styles/404.module.scss'
 
-export default function Page404() {
+const Page404 = () => {
 	return (
 		<MainLayout>
 			<Head>
@@ -18,7 +14,11 @@ export default function Page404() {
 			</Head>
 			{/* <Adbannertop/> */}
 			<div className={styles.content, styles.bothsides}>
-				<Block404 />
+				<div className={styles.maindiv}>
+					<h2 className={styles.header404}>404<br />Страница не найдена</h2>
+					<p className={styles.text404}>Упс! Что-то пошло не так... Пожалуйста, свяжитесь с технической поддержкой</p>
+					<Link href="/" className={styles.button404}>На главную</Link>
+				</div>
 			</div>
 			<style jsx>{`
 				
@@ -26,3 +26,5 @@ export default function Page404() {
 		</MainLayout>
 	)
 }
+
+export default Page404;

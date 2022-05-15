@@ -1,7 +1,7 @@
 import SearchNews from '/public/searchNews.svg'
 import styles from './NewsPageSortPanel.module.scss'
 
-export function NewsPageSortPanel() {
+export const NewsPageSortPanel = () => {
 	return(<>
 		<div className={styles.maindiv}>
 			<div className={styles.searchbar}>

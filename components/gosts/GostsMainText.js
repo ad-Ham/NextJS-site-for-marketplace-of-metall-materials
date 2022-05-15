@@ -1,6 +1,6 @@
 import styles from './GostsMainText.module.scss'
 
-export function GostsMainText() {
+export const GostsMainText = () => {
     return (<>
         <div className={styles.maindiv}>
             <div className={styles.gostsheader}>

@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
-import { PersonalData } from '../components/profile/PersonalData'
-import { Adbannertop } from '../components/Adbannertop'
+import { MainLayout } from '../../components/Layout/MainLayout'
+import { PersonalData } from '../../components/profile/PersonalData'
+import { Adbannertop } from '../../components/Adbannertop'
 import Mypromosicon from '../public/mypromosicon.svg'
 import Submitpromoicon from '../public/submitpromoicon.svg'
 import Link from 'next/link'
@@ -23,33 +22,29 @@ export default function Profile() {
 				<div className={styles.leftside}>
 					<PersonalData />
 					<div className={styles.buttonsrow}>
-						<Link href="/mypromos"><a className={styles.profilebutton}>
+						<Link href="/mypromos" className={styles.profilebutton} passHref>
 							<Mypromosicon />
 							<p>Мои объявления</p>
-						</a></Link>
-						<Link href="/submitpromo"><a className={styles.profilebutton}>
+						</Link>
+						<Link href="/submitpromo" className={styles.profilebutton} passHref>
 							<Submitpromoicon />
 							<p>Подать объявление</p>
-						</a></Link>
+						</Link>
 					</div>
-					<Portions />
 				</div>
 				<div className={styles.rightside}>
 					<div className={styles.buttonsrow}>
-						<Link href="/mypromos"><a className={styles.profilebutton}>
+						<Link href="/mypromos" className={styles.profilebutton} passHref>
 							<Mypromosicon />
 							<p>Мои объявления</p>
-						</a></Link>
-						<Link href="/submitpromo"><a className={styles.profilebutton}>
+						</Link>
+						<Link href="/submitpromo" className={styles.profilebutton} passHref>
 							<Submitpromoicon />
 							<p>Подать объявление</p>
-						</a></Link>
+						</Link>
 					</div>
 				</div>
 			</div>
-			<style jsx>{`
-				
-			`}</style>
 		</MainLayout>
 	)
 }

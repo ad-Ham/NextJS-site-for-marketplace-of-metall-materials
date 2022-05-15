@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './NewsPageMainNews.module.scss'
 
-export function NewsPageMainNews({ importantNews }) {
+export const NewsPageMainNews = ({ importantNews }) => {
 	// console.log(importantNews.id);
 	// console.log(importantNews.id);
 	// console.log(importantNews.title);
@@ -20,13 +20,15 @@ export function NewsPageMainNews({ importantNews }) {
 
 			<div className={styles.importantnewsheader}>
 				{importantNews.map(importantNews => (
-					<Link key={importantNews.id} href={`/news/${importantNews.id}`} as={`/news/${importantNews.id}`} >
-						<a key={importantNews.id} id={importantNews.id}><h2 className={styles.importantnewsheadertext}>{importantNews.title}/{importantNews.id}</h2></a>
+					<Link key={importantNews.id} href={`/news/${importantNews.id}`} as={`/news/${importantNews.id}`} id={importantNews.id} passHref>
+						<h2 className={styles.importantnewsheadertext}>{importantNews.title}/{importantNews.id}</h2>
 					</Link>
 				))}
 			</div>
 			{importantNews.map(importantNews => (
-				<Link key={importantNews.id} href="/newspage" id={importantNews.id} ><a className={styles.a}><div className={styles.photo}></div></a></Link>
+				<Link key={importantNews.id} href="/newspage" id={importantNews.id} className={styles.a} passHref>
+					<div className={styles.photo} />
+				</Link>
 			))}
 			{importantNews.map(importantNews => (
 				<p key={importantNews.id} className={styles.importantnewstext}>{importantNews.text}</p>

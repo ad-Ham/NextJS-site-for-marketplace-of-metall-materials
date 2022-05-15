@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './JurData.module.scss'
 
-export function JurData() {
+export const JurData = () => {
 	const [orgName, setOrgName] = useState('');
 	const [jurAdress, setJurAdress] = useState('');
 	const [inn, setInn] = useState('');

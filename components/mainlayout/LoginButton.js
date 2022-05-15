@@ -5,7 +5,7 @@ import { axios, checkToken } from '/middleware/axios.js';
 import { useState, useEffect } from 'react';
 import { LoginForm } from '../mainlayout/LoginForm'
 
-export function LoginButton() {
+export const LoginButton = () => {
 
   const modals = useModals();
 

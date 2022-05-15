@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
 import { ResetHeader } from '../components/reset/ResetHeader'
 import { EmailInput } from '../components/reset/EmailInput'
 import { CodeInput } from '../components/reset/CodeInput'
@@ -22,7 +21,7 @@ export default function Index() {
 				<ResetHeader />
 				<EmailInput />
 				<CodeInput />
-				<p className={styles.bottomtext}>Не пришел код в течение 5 минут? <Link href='/'><a className={styles.bottomlink}>Нажмите сюда</a></Link></p>
+				<p className={styles.bottomtext}>Не пришел код в течение 5 минут? <Link href='/' className={styles.bottomlink}>Нажмите сюда</Link></p>
 			</div>
 			<style jsx>{`
 				

@@ -1,6 +1,6 @@
 import styles from './PromosCategoriesSelector.module.scss'
 
-export function PromosCategoriesSelector() {
+export const PromosCategoriesSelector = () => {
     return (<>
         <div className={styles.maindiv}>
             <div className={styles.categoriesselector}>

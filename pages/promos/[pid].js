@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Portions } from '../components/Portions'
-import { MainPromos } from '../components/mainpage/MainPromos'
-import { MainPageNews } from '../components/mainpage/MainPageNews'
-import { PromoBlock } from '../components/promopage/PromoBlock'
-import { MorePromosCard } from '../components/promopage/MorePromosCard'
-import { Adbannertop } from '../components/Adbannertop'
+import { MainLayout } from '../../components/Layout/MainLayout'
+import { MainPromos } from '../../components/mainpage/MainPromos'
+import { MainPageNews } from '../../components/mainpage/MainPageNews'
+import { PromoBlock } from '../../components/promopage/PromoBlock'
+import { MorePromosCard } from '../../components/promopage/MorePromosCard'
+import { Adbannertop } from '../../components/Adbannertop'
 import Adbannerside from '../public/adbannerside.svg'
 import Link from 'next/link'
 import styles from '../styles/promopage.module.scss'
@@ -23,7 +22,6 @@ export default function Index() {
 			<div className={styles.content, styles.bothsides}>
 
 				<div className={styles.leftside}>
-					<Portions />
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>

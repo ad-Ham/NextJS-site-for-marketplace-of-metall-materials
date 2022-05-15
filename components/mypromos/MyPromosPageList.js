@@ -1,10 +1,10 @@
 import styles from './MyPromosPageList.module.scss'
 import Link from 'next/link'
 
-export function MyPromosPageList() {
+export const MyPromosPageList = () => {
     return (<>
-        <div className={styles.maindiv}><Link href="/promopage">
-            <a className={styles.link}>
+        <div className={styles.maindiv}>
+            <Link href="/promopage" passHref>
                 <div className={styles.promosrow}>
                     <div className={styles.listdate}>
                         <p>
@@ -32,10 +32,7 @@ export function MyPromosPageList() {
                         </p>
                     </div>
                 </div>
-            </a>
-        </Link>
+            </Link>
         </div>
-        <style jsx>{`
-		`}</style>
     </>)
 }

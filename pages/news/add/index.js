@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react';
 const axios = require('axios').default;
 
-export default function Addnews() {
+const AddNews = () => {
 	const [newsStatus, setNewsStatus] = useState('');
 
 	const [text, setText] = useState('');
@@ -30,11 +30,11 @@ export default function Addnews() {
 				'Content-Type': 'application/json',
 				'User-Agent': '*'
 			},
-			body:JSON.stringify({
-			title,
-			text,
-			tags,
-			date
+			body: JSON.stringify({
+				title,
+				text,
+				tags,
+				date
 			})
 		})
 			.then(response => response.json())
@@ -53,26 +53,26 @@ export default function Addnews() {
 		<h1>Форма добавления новостей</h1>
 		<form onSubmit={handleSubmit}>
 			<input id="title"
-				   type="text"
-				   placeholder="Заголовок новости"
-				   required
-				   maxLength="150"
-				   onChange={e => setTitle(e.target.value)}/>
+				type="text"
+				placeholder="Заголовок новости"
+				required
+				maxLength="150"
+				onChange={e => setTitle(e.target.value)} />
 
-		   <textarea id="text"
-				  placeholder="Текст новости"
-				  required
-				  cols="100"
-				  rows="100"
-				  onChange={e => setText(e.target.value)}/>
+			<textarea id="text"
+				placeholder="Текст новости"
+				required
+				cols="100"
+				rows="100"
+				onChange={e => setText(e.target.value)} />
 
-		   <input id="tags"
-				  placeholder="Теги новости"
-				  required
-				  maxLength="150"
-				  onChange={e => setTags(e.target.value)}/>
+			<input id="tags"
+				placeholder="Теги новости"
+				required
+				maxLength="150"
+				onChange={e => setTags(e.target.value)} />
 
-		   <button className='btn' type="submit">Добавить новость</button>
+			<button className='btn' type="submit">Добавить новость</button>
 		</form>
 		<style jsx>{`
 			h1 {
@@ -105,3 +105,5 @@ export default function Addnews() {
 		`}</style>
 	</>)
 }
+
+export default AddNews;

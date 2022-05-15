@@ -1,6 +1,6 @@
 import styles from "./JurData.module.scss"
 
-export function JurData() {
+export const JurData = () => {
     return (<>
         <div className={styles.maindiv}>
             <h3 className={styles.editprofileheader}>Юридические данные</h3>

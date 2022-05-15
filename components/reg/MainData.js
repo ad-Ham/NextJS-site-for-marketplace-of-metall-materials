@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './MainData.module.scss'
 
-export function MainData() {
+export const MainData = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 

@@ -2,11 +2,11 @@ import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
 import styles from './PersonalData.module.scss'
 
-export function PersonalData() {
-	return(<>
+export const PersonalData = () => {
+	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.row}>
-				<div className={styles.picture}><Profilepicture/></div>
+				<div className={styles.picture}><Profilepicture /></div>
 				<div className={styles.data}>
 					<p className={styles.username}>Хоменков Алексей Дмитриевич</p>
 					<p className={styles.userdata}>aleks.khomenkov.03@mail.ru</p>
@@ -14,11 +14,8 @@ export function PersonalData() {
 				</div>
 			</div>
 			<div className={styles.button}>
-				<Link href="/editprofile"><a className={styles.a}>Редактировать профиль</a></Link>
+				<Link href="/editprofile" className={styles.a}>Редактировать профиль</Link>
 			</div>
 		</div>
-		<style jsx>{`
-			
-		`}</style>
 	</>)
 }

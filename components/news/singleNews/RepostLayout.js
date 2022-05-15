@@ -1,6 +1,6 @@
 import styles from './RepostLayout.module.scss'
 
-export function RepostLayout() {
+export const RepostLayout = () => {
 	return(<>
 		<div className={styles.maindiv}>
 			<div className={styles.iconrow}>

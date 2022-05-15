@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { MainPageHelp } from '../components/help/MainPageHelp'
-import Adbannertop from '/public/adbannertop.svg'
+import { MainLayout } from '../../../../components/Layout/MainLayout'
+import { EditPasswordPage } from '../../../../components/editpassword/EditPasswordPage'
+import { Adbannertop } from '../../../../components/Adbannertop'
 import Link from 'next/link'
-import styles from "../styles/help.module.scss"
+import styles from "../styles/editpassword.module.scss"
 
-export default function Help() {
+const EditPassword = () => {
     return (
         <MainLayout>
             <Head>
@@ -14,14 +14,14 @@ export default function Help() {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            {/* <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div> */}
+            {/* <Adbannertop/> */}
             <div className={styles.content, styles.bothsides}>
-                <div className={styles.rightside}>
-                    <MainPageHelp />
-                </div>
+                <EditPasswordPage />
             </div>
             <style jsx>{`
 			`}</style>
         </MainLayout>
     )
 }
+
+export default EditPassword;

@@ -1,6 +1,6 @@
 import styles from "./MainPageHelp.module.scss"
 
-export function MainPageHelp() {
+export const MainPageHelp = () =>  {
     return (<>
         <div className={styles.maindiv}>
             <h3 className={styles.helpheader}>Здесь вы можете задать любой вопрос <strong>о нашем сайте</strong>!</h3>

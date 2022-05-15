@@ -1,6 +1,6 @@
 import styles from './PromosPageSearchPanel.module.scss'
 
-export function PromosPageSearchPanel() {
+export const PromosPageSearchPanel = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.searchbar}>

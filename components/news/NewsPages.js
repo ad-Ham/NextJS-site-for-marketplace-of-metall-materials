@@ -1,6 +1,6 @@
 import styles from './NewsPages.module.scss'
 
-export function NewsPages({pages, onChange}) {
+export const NewsPages = ({pages, onChange}) => {
 	return(<>
 		<div className={styles.maindiv}>
 			<button type="button" className={styles.buttonArrow}></button>

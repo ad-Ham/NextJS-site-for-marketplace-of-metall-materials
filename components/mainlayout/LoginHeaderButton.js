@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@mantine/core';
 
-export function LoginHeaderButton() {
+export const LoginHeaderButton = () => {
 	const showPreview = e => {
 		elem.classList.add("modWindowWrapper");
 	}

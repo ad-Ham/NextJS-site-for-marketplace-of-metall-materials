@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function Adbannertop() {
+export const Adbannertop = () => {
 	return(<>
 		<div className="maindiv">
 			<Link href="https://www.example.com"><img src="/adbannertop.svg" alt=""/></Link>

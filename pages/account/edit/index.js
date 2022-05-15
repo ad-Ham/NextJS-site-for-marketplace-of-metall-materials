@@ -1,12 +1,12 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { YourData } from '../components/editprofile/YourData'
-import { JurData } from '../components/editprofile/JurData'
-import { Adbannertop } from '../components/Adbannertop'
+import { MainLayout } from '../../../components/Layout/MainLayout'
+import { YourData } from '../../../components/editprofile/YourData'
+import { JurData } from '../../../components/editprofile/JurData'
+import { Adbannertop } from '../../../components/Adbannertop'
 import Link from 'next/link'
 import styles from "../styles/editprofile.module.scss"
 
-export default function EditProfile() {
+const EditProfile = () => {
     return (
         <MainLayout>
             <Head>
@@ -27,3 +27,5 @@ export default function EditProfile() {
         </MainLayout>
     )
 }
+
+export default EditProfile;

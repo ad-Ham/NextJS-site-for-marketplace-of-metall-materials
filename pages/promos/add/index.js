@@ -1,10 +1,10 @@
-import { MainLayout } from '../components/mainlayout/MainLayout'
-import { Adbannertop } from '../components/Adbannertop'
+import { MainLayout } from '../../../components/Layout/MainLayout'
+import { Adbannertop } from '../../../components/Adbannertop'
 import { useState } from 'react';
 const axios = require('axios').default;
 import styles from '../components/promopage/PromoBlock.module.scss'
 
-export default function Addpromo() {
+const AddPromo = () => {
 	const [newsStatus, setNewsStatus] = useState('');
 
 	const [title, setTitle] = useState('');
@@ -399,3 +399,5 @@ export default function Addpromo() {
 
 	)
 }
+
+export default AddPromo;

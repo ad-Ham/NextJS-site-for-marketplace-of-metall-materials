@@ -1,6 +1,6 @@
 import styles from './EmailInput.module.scss'
 
-export function EmailInput() {
+export const EmailInput = () => {
 	return(<>
 		<div className={styles.maindiv}>
 			<input type="text" placeholder="E-mail" className={styles.input}/>

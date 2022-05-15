@@ -2,7 +2,7 @@ import styles from './PromoBlock.module.scss'
 import { useState, useEffect } from 'react';
 const axios = require('axios').default;
 
-export function PromoBlock() {
+export const PromoBlock = () => {
 
 	const [promos, setPromos] = useState([])
 

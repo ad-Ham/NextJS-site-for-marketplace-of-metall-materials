@@ -1,6 +1,6 @@
 import styles from './MyPromosPageListHeader.module.scss'
 
-export function MyPromosPageListHeader() {
+export const MyPromosPageListHeader = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.listheaderbar}>

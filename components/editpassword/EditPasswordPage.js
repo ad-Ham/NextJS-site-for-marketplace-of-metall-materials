@@ -1,6 +1,6 @@
 import styles from "./EditPasswordPage.module.scss"
 
-export function EditPasswordPage() {
+export const EditPasswordPage = () => {
     return (<>
         <div className={styles.maindiv}>
             <h3 className={styles.editpasswordheader}>Смена пароля:</h3>

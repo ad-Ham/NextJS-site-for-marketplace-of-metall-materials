@@ -1,6 +1,6 @@
 import Search from '/public/search.svg'
 
-export function SearchHeader() {
+export const SearchHeader = () => {
 	return (
 		<>
 			<div className="maindiv">

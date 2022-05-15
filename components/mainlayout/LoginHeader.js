@@ -2,7 +2,7 @@ import { LoginHeaderButton } from '../mainLayout/LoginHeaderButton.js'
 import { useState } from 'react';
 const axios = require('axios').default;
 
-export function LoginHeader() {
+export const LoginHeader = () => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 

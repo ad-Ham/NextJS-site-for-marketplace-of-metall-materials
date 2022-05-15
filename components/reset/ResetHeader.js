@@ -1,6 +1,6 @@
 import styles from './ResetHeader.module.scss'
 
-export function ResetHeader() {
+export const ResetHeader = () => {
 	return(<>
 		<div className={styles.maindiv}>
 			<h2 className={styles.header}>Восстановление доступа</h2>

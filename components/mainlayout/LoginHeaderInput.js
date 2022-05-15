@@ -1,4 +1,4 @@
-export function LoginHeaderInput() {
+export const LoginHeaderInput = () =>  {
 	return (
 		<>
 			<style jsx>{`

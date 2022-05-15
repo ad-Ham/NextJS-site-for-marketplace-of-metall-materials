@@ -1,6 +1,6 @@
 import styles from './MyPromosPageCountPanel.module.scss'
 
-export function MyPromosPageCountPanel() {
+export const MyPromosPageCountPanel = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<p className={styles.counttext}> Количество объявлений: 123</p>

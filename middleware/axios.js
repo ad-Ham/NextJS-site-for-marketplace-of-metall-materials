@@ -2,7 +2,7 @@ import axios from "axios"
 
 // Базовая настройка axios
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'http://localhost:3005';
 
 // Перехватчик всех ответов
 axios.interceptors.response.use(function (response) {

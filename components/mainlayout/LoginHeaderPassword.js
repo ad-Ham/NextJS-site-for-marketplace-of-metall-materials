@@ -1,4 +1,4 @@
-export function LoginHeaderPassword() {
+export const LoginHeaderPassword = () => {
 	return (
 		<>
 			<input type="text" placeholder="Пароль" required/>

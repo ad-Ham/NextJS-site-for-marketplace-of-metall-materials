@@ -1,41 +1,60 @@
 import Link from 'next/link'
-import { MainPromoPhoto } from '../mainpage/MainPromoPhoto'
-import { PromoNoPhoto } from '../mainpage/PromoNoPhoto'
-import { Button } from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space } from '@mantine/core';
 import styles from './MainPromos.module.scss'
 
-export function MainPromos({ promos, firstImportantPromos, secondImportantPromos }) {
-	// console.log(firstImportantPromos);
-	// console.log(secondImportantPromos);
-	// console.log(promos);
+export const MainPromos = ({ promos }) => {
+
+	const rows = [...promos, ...promos].filter(el => el.id).map((element) => {
+		let date = new Date(element.date);
+		return (<tr key={element.id}>
+			<td>
+				{
+					(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+					((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+					date.getFullYear()
+				}
+			</td>
+			<td>{element.category}</td>
+			<td>{element.title}</td>
+			<td>ООО Рога и копыта</td>
+			<td>Россия, Урал</td>
+		</tr>)
+	});
 
 	return (<>
-		<div className={styles.promosMainBox}>
-			<h2 className={styles.promosHeader}>Объявления</h2>
-			<div className={styles.menucards}>
-				{firstImportantPromos.map(firstImportantPromos => (
-					<MainPromoPhoto key={firstImportantPromos} id={firstImportantPromos.id} title={firstImportantPromos.title} text={firstImportantPromos.description} date={firstImportantPromos.date} category={firstImportantPromos.category} />
-				))}
-				{secondImportantPromos.map(secondImportantPromos => (
-					<MainPromoPhoto key={secondImportantPromos} id={secondImportantPromos.id} title={secondImportantPromos.title} text={secondImportantPromos.description} date={secondImportantPromos.date} category={secondImportantPromos.category} />
-				))}
-				<div className={styles.promos}>
-					{promos.map(promos => (
-						<PromoNoPhoto key={promos} id={promos.id} title={promos.title} date={promos.date} category={promos.category} />
-					))}
-				</div>
-			</div>
-			<div className={styles.buttons}>
-				<Button color="indigo">
-					Подать объявление
-				</Button>
-				<Button color="indigo">
-					<Link href="/promos"><a className={styles.promosButton2}>Все объявления</a></Link>
-				</Button>
-			</div>
-		</div>
-		<style jsx>{`
-			
-		`}</style>
+		<Card className={styles.promosMainBox}>
+			<Grid justify={'right'}>
+				<Grid.Col span={8}>
+					<Title order={1}>Объявления</Title>
+				</Grid.Col>
+				<Grid.Col span={2} align={"right"}>
+					<Button variant="subtle">
+						Разместить объявление
+					</Button>
+				</Grid.Col>
+				<Grid.Col span={2} align={"right"}>
+					<Link href="/promos" passHref>
+						<Button variant="subtle">
+							Все объявления
+						</Button>
+					</Link>
+				</Grid.Col>
+			</Grid>
+			<Space h="md" />
+			<Table striped highlightOnHover>
+				<thead>
+					<tr>
+						<th>Дата</th>
+						<th>Категория</th>
+						<th>Название объявления</th>
+						<th>Организация</th>
+						<th>Регион</th>
+					</tr>
+				</thead>
+				<tbody>
+					{rows}
+				</tbody>
+			</Table>
+		</Card>
 	</>)
 }

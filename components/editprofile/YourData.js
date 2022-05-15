@@ -1,6 +1,6 @@
 import styles from "./YourData.module.scss"
 
-export function YourData() {
+export const YourData = () => {
     return (<>
         <div className={styles.maindiv}>
             <h3 className={styles.editprofileheader}>Ваши данные</h3>
