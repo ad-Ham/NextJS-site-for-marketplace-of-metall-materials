@@ -3,7 +3,7 @@ import { MainLayout } from '../../../../components/Layout/MainLayout'
 import { EditPasswordPage } from '../../../../components/editpassword/EditPasswordPage'
 import { Adbannertop } from '../../../../components/Adbannertop'
 import Link from 'next/link'
-import styles from "../styles/editpassword.module.scss"
+import styles from "../../../../styles/editpassword.module.scss"
 
 const EditPassword = () => {
     return (

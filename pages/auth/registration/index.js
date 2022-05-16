@@ -6,7 +6,7 @@ import { PersonalData } from '../../../components/reg/PersonalData'
 import { JurData } from '../../../components/reg/JurData'
 import { RegButton } from '../../../components/reg/RegButton'
 import { Adbannertop } from '../../../components/Adbannertop'
-import styles from '../styles/reg.module.scss'
+import styles from '../../../styles/reg.module.scss'
 const axios = require('axios').default;
 
 export default function Index() {

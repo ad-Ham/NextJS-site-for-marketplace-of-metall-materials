@@ -3,9 +3,9 @@ import { MainLayout } from '../../components/Layout/MainLayout'
 import { LoginBlock } from '../../components/login/LoginBlock'
 import { LoginForm } from '../../components/login/LoginForm'
 import { Adbannertop } from '../../components/Adbannertop'
-import Adbannerside from '../public/adbannerside.svg'
+import Adbannerside from '../../public/adbannerside.svg'
 import Link from 'next/link'
-import styles from '../styles/login.module.scss'
+import styles from '../../styles/login.module.scss'
 
 export default function Index() {
 	return (

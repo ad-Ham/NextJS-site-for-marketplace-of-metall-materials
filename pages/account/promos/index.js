@@ -8,7 +8,7 @@ import { MyPromosPages } from '../../../components/mypromos/MyPromosPages'
 import { Adbannertop } from '../../../components/Adbannertop'
 import Adbannerside from '/public/adbannerside.svg'
 import Link from 'next/link'
-import styles from '../styles/mypromos.module.scss'
+import styles from '../../../styles/mypromos.module.scss'
 
 export default function MyPromos() {
     return (

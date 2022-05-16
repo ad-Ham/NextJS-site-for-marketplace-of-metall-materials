@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { MainLayout } from '../components/Layout/MainLayout'
-import { Link } from 'next/link'
+import Link from 'next/link'
 import styles from '../styles/404.module.scss'
 
 const Page404 = () => {

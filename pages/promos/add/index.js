@@ -2,7 +2,7 @@ import { MainLayout } from '../../../components/Layout/MainLayout'
 import { Adbannertop } from '../../../components/Adbannertop'
 import { useState } from 'react';
 const axios = require('axios').default;
-import styles from '../components/promopage/PromoBlock.module.scss'
+import styles from '../../../components/promopage/PromoBlock.module.scss'
 
 const AddPromo = () => {
 	const [newsStatus, setNewsStatus] = useState('');

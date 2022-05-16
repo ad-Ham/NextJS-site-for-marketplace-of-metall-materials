@@ -2,10 +2,10 @@ import Head from 'next/head'
 import { MainLayout } from '../../components/Layout/MainLayout'
 import { PersonalData } from '../../components/profile/PersonalData'
 import { Adbannertop } from '../../components/Adbannertop'
-import Mypromosicon from '../public/mypromosicon.svg'
-import Submitpromoicon from '../public/submitpromoicon.svg'
+import Mypromosicon from '../../public/mypromosicon.svg'
+import Submitpromoicon from '../../public/submitpromoicon.svg'
 import Link from 'next/link'
-import styles from '../styles/profile.module.scss'
+import styles from '../../styles/profile.module.scss'
 
 export default function Profile() {
 	return (

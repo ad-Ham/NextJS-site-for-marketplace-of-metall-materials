@@ -5,9 +5,9 @@ import { MainPageNews } from '../../components/mainpage/MainPageNews'
 import { PromoBlock } from '../../components/promopage/PromoBlock'
 import { MorePromosCard } from '../../components/promopage/MorePromosCard'
 import { Adbannertop } from '../../components/Adbannertop'
-import Adbannerside from '../public/adbannerside.svg'
+import Adbannerside from '../../public/adbannerside.svg'
 import Link from 'next/link'
-import styles from '../styles/promopage.module.scss'
+import styles from '../../styles/promopage.module.scss'
 
 export default function Index() {
 	return (

@@ -4,7 +4,7 @@ import { YourData } from '../../../components/editprofile/YourData'
 import { JurData } from '../../../components/editprofile/JurData'
 import { Adbannertop } from '../../../components/Adbannertop'
 import Link from 'next/link'
-import styles from "../styles/editprofile.module.scss"
+import styles from "../../../styles/editprofile.module.scss"
 
 const EditProfile = () => {
     return (

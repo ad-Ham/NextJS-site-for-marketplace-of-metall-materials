@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { MainLayout } from '../components/mainlayout/MainLayout'
+import { MainLayout } from '../components/Layout/MainLayout'
 import { Adbannertop } from '../components/Adbannertop'
 import styles from '../styles/404.module.scss'
 import { ThankYouForRegistration } from '../components/ThankYouForRegistration'

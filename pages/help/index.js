@@ -3,7 +3,7 @@ import { MainLayout } from '../../components/Layout/MainLayout'
 import { MainPageHelp } from '../../components/help/MainPageHelp'
 import Adbannertop from '/public/adbannertop.svg'
 import Link from 'next/link'
-import styles from "../styles/help.module.scss"
+import styles from "../../styles/help.module.scss"
 
 export default function Help() {
     return (

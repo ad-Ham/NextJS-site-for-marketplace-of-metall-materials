@@ -3,7 +3,7 @@ import { MainLayout } from '../../../components/Layout/MainLayout'
 import { ResetForm } from '../../../components/resetpassword/ResetForm'
 import { Adbannertop } from '../../../components/Adbannertop'
 import Link from 'next/link'
-import styles from '../styles/resetpassword.module.scss'
+import styles from '../../../styles/resetpassword.module.scss'
 
 export default function Index() {
 	return (
