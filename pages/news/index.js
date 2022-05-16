@@ -4,7 +4,7 @@ import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMa
 const axios = require('axios').default;
 
 export const getServerSideProps = async (context) => {
-	const news = await axios.get('http://localhost:3005/newsquery', {
+	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}

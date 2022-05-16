@@ -8,12 +8,12 @@ import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
 
 export async function getServerSideProps(context) {
-	const news = await axios.get('http://localhost:3005/newsquery', {
+	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
-	const promos = await axios.get('http://localhost:3005/promosquery', {
+	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
@@ -39,7 +39,7 @@ export default function Index({ news, promos }) {
 			setIsMobile(true)
 		}
 
-		axios.get('http://localhost:3005/getExchangeRates')
+		axios.get('https://api.metalmarket.pro/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -50,7 +50,7 @@ export default function Index({ news, promos }) {
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3005/getMetalsPrice')
+		axios.get('https://api.metalmarket.pro/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})

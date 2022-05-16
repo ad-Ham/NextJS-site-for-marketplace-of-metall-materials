@@ -9,7 +9,7 @@ import styles from '/styles/promos/promos.module.scss'
 const axios = require('axios').default;
 
 export const getServerSideProps = async (context) => {
-    // const promos = await axios.get('http://localhost:3001/promosquery', {
+    // const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
     //     headers: {
     //         'Accept': 'application/json'
     //     }

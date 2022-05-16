@@ -20,7 +20,7 @@ export const LoginForm = ({ id }) => {
 
 	function handleSubmit(values) {
 		console.log(values)
-		axios.post('http://localhost:3001/login', {
+		axios.post('https://api.metalmarket.pro/login', {
 			login: values.email,
 			password: values.password
 		})

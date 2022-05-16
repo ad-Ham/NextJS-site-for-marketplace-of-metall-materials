@@ -18,7 +18,7 @@ const NewsPage = () => {
 	// const [singleNew, setSingleNew] = useState([])
 
 	// useEffect(() => {
-	// 	axios.get('http://localhost:3001/singlenews', {
+	// 	axios.get('https://api.metalmarket.pro/singlenews', {
 	// 		id: id
 	// 	})
 	// 		.then(function (response) {

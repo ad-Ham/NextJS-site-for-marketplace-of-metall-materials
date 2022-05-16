@@ -10,13 +10,12 @@ import styles from '../../styles/profile.module.scss'
 export default function Profile() {
 	return (
 		<MainLayout>
-			<Head>
+			{/*<Head>
 				<title>Next Title</title>
 				<meta name="keywords" content="next, javascript" />
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			{/* <Adbannertop /> */}
 			<div className={styles.content, styles.bothsides}>
 
 				<div className={styles.leftside}>
@@ -44,7 +43,7 @@ export default function Profile() {
 						</Link>
 					</div>
 				</div>
-			</div>
+			</div>*/}
 		</MainLayout>
 	)
 }

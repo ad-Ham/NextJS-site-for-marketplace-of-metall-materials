@@ -24,7 +24,7 @@ const AddNews = () => {
 			tags,
 			date
 		}));
-		axios.post('http://localhost:3001/newsquery', {
+		axios.post('https://api.metalmarket.pro/newsquery', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',

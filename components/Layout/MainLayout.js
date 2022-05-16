@@ -46,7 +46,7 @@ export const MainLayout = ({ children }) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		axios.post('http://localhost:3001/login', {
+		axios.post('https://api.metalmarket.pro/login', {
 			login: login,
 			password: password
 		})
@@ -84,7 +84,9 @@ export const MainLayout = ({ children }) => {
 	const dictionary = {
 		'news': 'Новости',
 		'promos': 'Объявления',
-		'main': 'Главная'
+		'main': 'Главная',
+		'account': 'Аккаунт',
+		'edit': 'Изменить'
 	}
 	console.log(router.pathname.split('/'))
 	const items = ['main', ...router.pathname.split('/').filter(item => item !== '')].map((item, index) => (
@@ -98,7 +100,7 @@ export const MainLayout = ({ children }) => {
 			setIsMobile(true)
 		}
 
-		axios.get('http://localhost:3005/getExchangeRates')
+		axios.get('https://api.metalmarket.pro/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -109,7 +111,7 @@ export const MainLayout = ({ children }) => {
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3005/getMetalsPrice')
+		axios.get('https://api.metalmarket.pro/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})
@@ -295,7 +297,7 @@ export const MainLayout = ({ children }) => {
 					</Header>
 				}
 			>
-				<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>
+				{/*<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>*/}
 				{children}
 			</AppShell>
 		</>
