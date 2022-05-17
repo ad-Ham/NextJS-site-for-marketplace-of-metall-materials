@@ -1,3 +1,5 @@
+import { ModalsProvider } from '@mantine/modals';
+import { MantineProvider } from '@mantine/core';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
@@ -20,6 +22,8 @@ import {
 	Divider,
 	Title,
 	Grid,
+	Group,
+	TextInput,
 	Breadcrumbs, Anchor
 } from '@mantine/core';
 import { CaretUp, CaretDown, News, ChartInfographic, Box, Calculator, FileText, Book, Train, ChartLine, Users, Help } from 'tabler-icons-react';
@@ -122,184 +126,189 @@ export const MainLayout = ({ children }) => {
 
 	return (
 		<>
-			<AppShell
-				styles={{
-					main: {
-						background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					},
-				}}
-				navbarOffsetBreakpoint="sm"
-				asideOffsetBreakpoint="sm"
-				navbar={
-					<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
-						<Navbar.Section>
-							<Text size="xl" weight={600}>Разделы</Text>
-						</Navbar.Section>
-						<Divider my="md" />
-						<Navbar.Section>
-							<Stack spacing="xs">
-								<Link href='/help' passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
-								</Link>
-								<Link href='/promos' passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
-								</Link>
-								<Link href='/news' passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
-								</Link>
-							</Stack>
-						</Navbar.Section>
-						<Navbar.Section>
+			<MantineProvider>
+			 <ModalsProvider>
+				<AppShell
+					styles={{
+						main: {
+							background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+						},
+					}}
+					navbarOffsetBreakpoint="sm"
+					asideOffsetBreakpoint="sm"
+					navbar={
+						<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
+							<Navbar.Section>
+								<Text size="xl" weight={600}>Разделы</Text>
+							</Navbar.Section>
 							<Divider my="md" />
-							<Text size="lg" weight={500}>Инструменты металлурга</Text>
-							<Divider my="md" />
-						</Navbar.Section>
-						<Navbar.Section>
-							<Stack spacing="xs">
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
-								</Link>
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
-								</Link>
-							</Stack>
-						</Navbar.Section>
-						<Navbar.Section>
-							<Divider my="md" />
-							<Text size="lg" weight={500}>Информация</Text>
-							<Divider my="md" />
-						</Navbar.Section>
-						<Navbar.Section>
-							<Stack spacing="xs">
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
-								</Link>
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
-								</Link>
-								<Link href="/gosts" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
-								</Link>
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
-								</Link>
-								<Link href="/underconstruction" passHref>
-									<Button variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
-								</Link>
-							</Stack>
-						</Navbar.Section>
-					</Navbar>
-				}
-				aside={
-					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-						<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }}>
-							<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
-								<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
-								<Grid className={styles.priceButtonContainer}>
-									<Grid.Col span={6} align={"left"}>
-										<Badge color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
-									</Grid.Col>
-									<Grid.Col span={6} align={"right"}>
-										<Badge color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
-									</Grid.Col>
-								</Grid>
-							</div>
-
-							<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен</Title>
-							<Table fontSize="15px">
-								<thead>
-									<tr>
-										<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Металлы</th>
-										<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
-										<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
-									</tr>
-								</thead>
-								<tbody>
-									{metalls.map(metalls => (
-										<tr key={metalls.id}>
-											<td style={{ fontWeight: 400 }}>{metalls.name}:</td>
-											<td >{metalls.price}</td>
-											<td style={{
-												color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
-												display: 'flex',
-												alignItems: 'center'
-											}}>
-												{metalls.price_change.toString().replace('-', '')}
-												{
-													parseFloat(metalls.price_change) < 0 ?
-														<CaretDown
-															size={18}
-															strokeWidth={1}
-															color={'#ff0000'}
-														/> :
-														<CaretUp
-															size={18}
-															strokeWidth={1}
-															color={'#008000'}
-														/>
-												}
-											</td>
+							<Navbar.Section>
+								<Stack spacing="xs">
+									<Link href='/help' passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
+									</Link>
+									<Link href='/promos' passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
+									</Link>
+									<Link href='/news' passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
+									</Link>
+								</Stack>
+							</Navbar.Section>
+							<Navbar.Section>
+								<Divider my="md" />
+								<Text size="lg" weight={500}>Инструменты металлурга</Text>
+								<Divider my="md" />
+							</Navbar.Section>
+							<Navbar.Section>
+								<Stack spacing="xs">
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
+									</Link>
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
+									</Link>
+								</Stack>
+							</Navbar.Section>
+							<Navbar.Section>
+								<Divider my="md" />
+								<Text size="lg" weight={500}>Информация</Text>
+								<Divider my="md" />
+							</Navbar.Section>
+							<Navbar.Section>
+								<Stack spacing="xs">
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
+									</Link>
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
+									</Link>
+									<Link href="/gosts" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
+									</Link>
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
+									</Link>
+									<Link href="/underconstruction" passHref>
+										<Button variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
+									</Link>
+								</Stack>
+							</Navbar.Section>
+						</Navbar>
+					}
+					aside={
+						<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }}>
+								<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
+									<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
+									<Grid className={styles.priceButtonContainer}>
+										<Grid.Col span={6} align={"left"}>
+											<Badge color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
+										</Grid.Col>
+										<Grid.Col span={6} align={"right"}>
+											<Badge color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
+										</Grid.Col>
+									</Grid>
+								</div>
+	
+								<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен</Title>
+								<Table fontSize="15px">
+									<thead>
+										<tr>
+											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Металлы</th>
+											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
+											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
 										</tr>
-									))}
-								</tbody>
-							</Table>
-						</Aside>
-					</MediaQuery>
-				}
-				footer={
-					<Footer height={60} p="md" className={styles.footercontainer}>
-						<div className={styles.footerleft}>
-							<Link href="/" passHref>
-								<Image
-									alt="metal-merket.pro"
-									src="/logo.svg"
-									width={300}
-									height={75}
-								/>
-							</Link>
-						</div>
-						<ul className={styles.footerul}>
-							<li>г.Уфа, Республика Башкортостан</li>
-							<li>© ООО &quot;Технические системы&quot;, 2022</li>
-						</ul>
-					</Footer>
-				}
-				header={
-					<Header height={70} p="md">
-						<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-							<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-								<Burger
-									opened={opened}
-									onClick={() => setOpenedMobile((o) => !o)}
-									size="sm"
-									color={theme.colors.gray[6]}
-									mr="xl"
-								/>
-							</MediaQuery>
-
-							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+									</thead>
+									<tbody>
+										{metalls.map(metalls => (
+											<tr key={metalls.id}>
+												<td style={{ fontWeight: 400 }}>{metalls.name}:</td>
+												<td >{metalls.price}</td>
+												<td style={{
+													color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
+													display: 'flex',
+													alignItems: 'center'
+												}}>
+													{metalls.price_change.toString().replace('-', '')}
+													{
+														parseFloat(metalls.price_change) < 0 ?
+															<CaretDown
+																size={18}
+																strokeWidth={1}
+																color={'#ff0000'}
+															/> :
+															<CaretUp
+																size={18}
+																strokeWidth={1}
+																color={'#008000'}
+															/>
+													}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</Table>
+							</Aside>
+						</MediaQuery>
+					}
+					footer={
+						<Footer height={60} p="md" className={styles.footercontainer}>
+							<div className={styles.footerleft}>
 								<Link href="/" passHref>
 									<Image
-										alt="metall-market.pro"
+										alt="metal-merket.pro"
 										src="/logo.svg"
 										width={300}
 										height={75}
 									/>
 								</Link>
-							</MediaQuery>
-							<LoginModal opened={opened} setOpened={setOpened} onLogin={onLogin} />
-							{/* <Button onClick={(e) => { setOpened(!opened); }}>ОТКРЫТЬ МОДАЛКУ</Button> */}
-							{/* {!userStatus && <LoginButton />} */}
-							{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
-								Личный кабинет
-							</Button></a></Link>}
-						</div>
-					</Header>
-				}
-			>
-				{/*<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>*/}
-				{children}
-			</AppShell>
+							</div>
+							<ul className={styles.footerul}>
+								<li>г.Уфа, Республика Башкортостан</li>
+								<li>© ООО &quot;Технические системы&quot;, 2022</li>
+							</ul>
+						</Footer>
+					}
+					header={
+						<Header height={70} p="md">
+							<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+									<Burger
+										opened={opened}
+										onClick={() => setOpenedMobile((o) => !o)}
+										size="sm"
+										color={theme.colors.gray[6]}
+										mr="xl"
+									/>
+								</MediaQuery>
+	
+								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+									<Link href="/" passHref>
+										<Image
+											alt="metall-market.pro"
+											src="/logo.svg"
+											width={300}
+											height={75}
+										/>
+									</Link>
+								</MediaQuery>
+								<LoginModal />
+								{/* <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Личный кабинет</Button> */}
+	
+								{/* {!userStatus && <LoginButton />} */}
+								{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
+									Личный кабинет
+								</Button></a></Link>}
+							</div>
+						</Header>
+					}
+				>
+					{/*<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>*/}
+					{children}
+				</AppShell>
+			 </ModalsProvider>
+			</MantineProvider>
 		</>
-	)
-}
+		)
+	}
