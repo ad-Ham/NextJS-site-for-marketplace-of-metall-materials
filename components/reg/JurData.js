@@ -42,15 +42,15 @@ export const JurData = () => {
 					   className={styles.input} 
 					   onChange={e => setInn(e.target.value)} 
 					   required
-				       minLength='3'
-				       maxLength='100'/>
+				       minLength="10"
+				       maxLength="12"/>
 				<input id='ogrn' type="number" 
 					   placeholder="ОГРН" 
 					   className={styles.input} 
 					   onChange={e => setOgrn(e.target.value)} 
 					   required
-				       minLength='3'
-				       maxLength='100'/>
+				       minLength="13"
+				       maxLength="13"/>
 			<label className={styles.btnpanel}><input type="radio" className={styles.radiobtn} required/><p className={styles.p}>Я принимаю условия передачи информации*</p></label>
 		</div>
 		<style jsx>{`

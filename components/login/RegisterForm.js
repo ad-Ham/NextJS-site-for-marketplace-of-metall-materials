@@ -7,8 +7,12 @@ import { RegButton } from '../reg/RegButton'
 import styles from './RegisterForm.module.scss'
 import React from 'react'
 const axios = require('axios').default;
+import { useModals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
+import { Check } from 'tabler-icons-react';
 
 export function RegisterForm() {
+	const modals = useModals();
 	const [regStatus, setRegStatus] = useState('')
 
 	const [mainData, setMainData] = useState('');
@@ -35,6 +39,7 @@ export function RegisterForm() {
 			mainData: [
 				email.value,
 				password.value,
+				passwordRepeat.value
 			],
 
 			personalData: [
@@ -65,28 +70,60 @@ export function RegisterForm() {
 			ogrn: data.jurData[3],
 		}));
 
-		axios.post('http://localhost:3001/regquery', {
-			email: data.mainData[0],
-			password: data.mainData[1],
-			surname: data.personalData[0],
-			firstname: data.personalData[1],
-			lastname: data.personalData[2],
-			phonenumber: data.personalData[3],
-			orgname: data.jurData[0],
-			juradress: data.jurData[1],
-			inn: data.jurData[2],
-			ogrn: data.jurData[3],
+		if (data.mainData[1] !== data.mainData[2]) {
+			alert('Пароли не совпадают')
+			return;
+		}
+
+		if (data.jurData[2].length !== 10) {
+			alert('Неверный ИНН!')
+			return;
+		} else if (data.jurData[3].length !== 13) {
+			alert('Неверный ОГРН!')
+			return;
+		}
+
+		axios.post('http://localhost:3001/validateEmail', {email: data.mainData[0]})
+		.then(res => {
+			if (res.data.id.length !== 0) {
+				alert('Аккаунт с таким e-mail уже существует!')
+			} else {
+				axios.post('https://api.metalmarket.pro/regquery', {
+					email: data.mainData[0],
+					password: data.mainData[1],
+					surname: data.personalData[0],
+					firstname: data.personalData[1],
+					lastname: data.personalData[2],
+					phonenumber: data.personalData[3],
+					orgname: data.jurData[0],
+					juradress: data.jurData[1],
+					inn: data.jurData[2],
+					ogrn: data.jurData[3],
+				})
+				.then(response => {
+					modals.closeAll()
+					showNotification({
+						title: 'Регистрация прошла успешно!',
+			            message: 'Теперь вы можете войти в свой аккаунт',
+			            autoClose: false,
+			            icon: <Check size={18} />,
+			            color: "green"
+			        })
+				})
+				.catch(err => {
+					if (err) {
+						console.log(err);
+					}
+				})
+			}
 		})
-			.then(response => response.json())
-			.then(result => {
-				console.log(result);
-				e.target.reset()
-			})
-			.catch(err => {
-				if (err) {
-					console.log(err);
-				}
-			})
+		.catch(err => {
+			if (err) {
+				console.log(err);
+			}
+		})
+
+		
 	}
 	return (
 		
@@ -97,7 +134,6 @@ export function RegisterForm() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			{/* <Adbannertop /> */}
 			<div className={styles.content}>
 				<div className={styles.regheaderblock}>
 					<h1 className={styles.regheader}>Регистрация</h1>

@@ -26,6 +26,7 @@ import {
 	TextInput,
 	Breadcrumbs, Anchor
 } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { CaretUp, CaretDown, News, ChartInfographic, Box, Calculator, FileText, Book, Train, ChartLine, Users, Help } from 'tabler-icons-react';
 import { useRouter } from 'next/router'
 
@@ -128,6 +129,7 @@ export const MainLayout = ({ children }) => {
 		<>
 			<MantineProvider>
 			 <ModalsProvider>
+			 <NotificationsProvider>
 				<AppShell
 					styles={{
 						main: {
@@ -307,6 +309,7 @@ export const MainLayout = ({ children }) => {
 					{/*<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>*/}
 					{children}
 				</AppShell>
+			 </NotificationsProvider>
 			 </ModalsProvider>
 			</MantineProvider>
 		</>
