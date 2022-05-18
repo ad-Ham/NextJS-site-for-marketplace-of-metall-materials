@@ -11,13 +11,13 @@ export async function getServerSideProps(context) {
     })
     return {
         props: {
-            promos: promos.data.promos
+            promos: promos.data.promos.reverse()
         },
     }
 }
 
 const Promos = ({ promos }) => {
-    const rows = [...promos, ...promos].filter(el => el.id).map((element) => {
+    const rows = [...promos].filter(el => el.id).map((element) => {
         let date = new Date(element.date);
         return (<tr key={element.id}>
             <td>
@@ -29,8 +29,8 @@ const Promos = ({ promos }) => {
             </td>
             <td>{element.category}</td>
             <td>{element.title}</td>
-            <td>ООО Рога и копыта</td>
-            <td>Россия, Урал</td>
+            <td>{element.organizationName}</td>
+            <td>{element.region}</td>
         </tr>)
     });
 
@@ -42,7 +42,12 @@ const Promos = ({ promos }) => {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <h1>Доска объявлений</h1>
+            <div className='headerDiv'>
+                <h1>Доска объявлений</h1>
+                <Button variant="light">
+                  Разместить объявление
+                </Button>
+            </div>
             <PromosMultiSelect/>
             <Table striped highlightOnHover>
                 <thead>
@@ -58,6 +63,13 @@ const Promos = ({ promos }) => {
                     {rows}
                 </tbody>
             </Table>
+            <style jsx>{`
+                .headerDiv {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between
+                }
+            `}</style>
         </>
     )
 }

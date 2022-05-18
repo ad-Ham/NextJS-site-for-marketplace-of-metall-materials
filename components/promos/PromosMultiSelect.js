@@ -13,6 +13,8 @@ export function PromosMultiSelect() {
     { value: 'Цветные металлы', label: 'Цветные металлы' },
     { value: 'Оборудование', label: 'Оборудование' },
     { value: 'Сырье', label: 'Сырье' },
+    { value: 'Транспортные услуги', label: 'Транспортные услуги' },
+    { value: 'Прочие услуги', label: 'Прочие услуги' },
   ];
 
   const darkMet = [
@@ -85,7 +87,7 @@ export function PromosMultiSelect() {
   return (<>
     <MultiSelect
       data={categories}
-      label="Выберите категории"
+      label="Выберите раздел"
       searchable
       nothingFound="Ничего не найдено"
       clearButtonLabel="Clear selection"
@@ -94,7 +96,7 @@ export function PromosMultiSelect() {
     />
     {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><MultiSelect
           data={data}
-          label="Выберите подкатегории"
+          label="Выберите подраздел"
           searchable
           nothingFound="Ничего не найдено"
           clearButtonLabel="Clear selection"

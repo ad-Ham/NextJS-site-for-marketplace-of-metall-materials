@@ -99,7 +99,7 @@ const AddPromo = () => {
 
 	return (
 
-		<MainLayout>
+		<>
 			<div id='elem' className="modWindowDisable">
 				<button type="button" onClick={removePreview} className="cross"></button>
 				<div className="modWindow">
@@ -151,7 +151,6 @@ const AddPromo = () => {
 					</div>
 				</div>
 			</div>
-			<Adbannertop />
 
 			<h1>Размещение объявления</h1>
 			<form onSubmit={handleSubmit}>
@@ -395,7 +394,7 @@ const AddPromo = () => {
 					border-radius: 4px;
 				}
 			`}</style>
-		</MainLayout>
+		<>
 
 	)
 }
