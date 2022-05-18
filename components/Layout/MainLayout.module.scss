@@ -3,6 +3,7 @@
 	margin: 0 auto;
 	margin-top: 24px;
 	flex-grow: 1;
+
 }
 
 .buysell {
@@ -79,31 +80,75 @@
 	color: #000000;
 }
 
-@media (max-width: 1150px) {
-	.nav {
+// @media (max-width: 1150px) {
+// 	.nav {
+// 		padding: 0 60px;
+// 	}
+
+// 	.footer {
+// 		padding: 30px 60px;
+// 	}
+// }
+
+// @media (max-width: 660px) {
+// 	.footercontainer {
+// 		flex-direction: column;
+// 	}
+
+// 	.footerul {
+// 		margin-top: 15px;
+// 		text-align: center;
+// 	}
+
+// 	.footerul {
+// 		font-size: 13px;
+// 	}
+
+// 	.supportlink {
+// 		font-size: 15px;
+// 	}
+// }
+
+@media only screen and (max-width: 1200px) {
+	.navbar {
 		padding: 0 60px;
 	}
 
 	.footer {
 		padding: 30px 60px;
 	}
-}
-
-@media (max-width: 660px) {
-	.footercontainer {
-		flex-direction: column;
+	.navbarSectionText {
+		font-size: 17px;
 	}
-
-	.footerul {
-		margin-top: 15px;
-		text-align: center;
-	}
-
-	.footerul {
-		font-size: 13px;
-	}
-
-	.supportlink {
+	.navbarSectionButton {
 		font-size: 15px;
+		
 	}
+	.loginModal {
+		margin-right: 50px;
+	}
+	.priceButtonContainer {
+		display: inline;
+		margin-top: 0;
+	}
+	.priceTitle {
+		font-size: 20px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.metallsTable {
+		// font-size: 10px;
+	}
+}
+@media only screen and (max-width: 992px) {
+	
+}
+@media only screen and (max-width: 768px) {
+	
+}
+@media only screen and (max-width: 480px) {
+	
+}
+@media only screen and (max-width: 320px) {
+	
 }

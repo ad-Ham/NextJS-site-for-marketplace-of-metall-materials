@@ -23,9 +23,9 @@ export const MainPromos = ({ promos }) => {
 
 	return (<>
 		<Card className={styles.promosMainBox}>
-			<Grid justify={'right'}>
+		<Grid className={styles.promosMainButton} justify={'right'}>
 				<Grid.Col span={8}>
-					<Title order={1}>Объявления</Title>
+					<Title className={styles.promosMainTitle} order={1}>Объявления</Title>
 				</Grid.Col>
 				<Grid.Col span={2} align={"right"}>
 					<Button variant="subtle">
@@ -41,7 +41,7 @@ export const MainPromos = ({ promos }) => {
 				</Grid.Col>
 			</Grid>
 			<Space h="md" />
-			<Table striped highlightOnHover>
+			<Table className={styles.promosMainTable} striped highlightOnHover>
 				<thead>
 					<tr>
 						<th>Дата</th>

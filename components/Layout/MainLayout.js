@@ -139,58 +139,58 @@ export const MainLayout = ({ children }) => {
 					navbar={
 						<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
 							<Navbar.Section>
-								<Text size="xl" weight={600}>Разделы</Text>
+								<Text className={styles.navbarSectionText} size="xl" weight={600}>Разделы</Text>
 							</Navbar.Section>
 							<Divider my="md" />
 							<Navbar.Section>
 								<Stack spacing="xs">
 									<Link href='/help' passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
 									</Link>
 									<Link href='/promos' passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
 									</Link>
 									<Link href='/news' passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
 									</Link>
 								</Stack>
 							</Navbar.Section>
 							<Navbar.Section>
 								<Divider my="md" />
-								<Text size="lg" weight={500}>Инструменты металлурга</Text>
+								<Text className={styles.navbarSectionText} size="lg" weight={500}>Инструменты металлурга</Text>
 								<Divider my="md" />
 							</Navbar.Section>
 							<Navbar.Section>
 								<Stack spacing="xs">
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
 									</Link>
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
 									</Link>
 								</Stack>
 							</Navbar.Section>
 							<Navbar.Section>
 								<Divider my="md" />
-								<Text size="lg" weight={500}>Информация</Text>
+								<Text className={styles.navbarSectionText} size="lg" weight={500}>Информация</Text>
 								<Divider my="md" />
 							</Navbar.Section>
 							<Navbar.Section>
 								<Stack spacing="xs">
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
 									</Link>
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
 									</Link>
 									<Link href="/gosts" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
 									</Link>
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
 									</Link>
 									<Link href="/underconstruction" passHref>
-										<Button variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
 									</Link>
 								</Stack>
 							</Navbar.Section>
@@ -200,19 +200,19 @@ export const MainLayout = ({ children }) => {
 						<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }}>
 								<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
-									<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
+									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
 									<Grid className={styles.priceButtonContainer}>
 										<Grid.Col span={6} align={"left"}>
-											<Badge color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
+											<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
 										</Grid.Col>
 										<Grid.Col span={6} align={"right"}>
-											<Badge color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
+											<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
 										</Grid.Col>
 									</Grid>
 								</div>
 	
-								<Title order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен</Title>
-								<Table fontSize="15px">
+								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен</Title>
+								<Table className={styles.metallsTable} fontSize="15px">
 									<thead>
 										<tr>
 											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Металлы</th>
@@ -285,7 +285,7 @@ export const MainLayout = ({ children }) => {
 	
 								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 									<Link href="/" passHref>
-										<Image
+										<Image className={styles.logo}
 											alt="metall-market.pro"
 											src="/logo.svg"
 											width={300}

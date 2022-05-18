@@ -1,6 +1,7 @@
 import { Button, TextInput, Box, Group} from '@mantine/core';
 import { useModals } from '@mantine/modals';
 import {RegisterForm} from '../login/RegisterForm'
+import styles from './LoginModal.module.scss'
 
 export function LoginModal ()  {
 
@@ -37,6 +38,6 @@ const modals = useModals();
           
         }),
     });
-    return <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Личный кабинет</Button>;
+    return <Button className={styles.loginModal} style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Личный кабинет</Button>;
 
 }
