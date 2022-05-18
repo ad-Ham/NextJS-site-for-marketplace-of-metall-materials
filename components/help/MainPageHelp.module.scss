@@ -25,13 +25,13 @@
     height: 40px;
     left: 215px;
     top: 343px;
-    background: #F5F5F5;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 4px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
+//     background: #F5F5F5;
+//     border: 1px solid #000000;
+//     box-sizing: border-box;
+//     border-radius: 4px;
+//     font-family: 'Roboto';
+//     font-style: normal;
+//     font-weight: 400;
     font-size: 24px;
     line-height: 99.69%;
 }
@@ -44,13 +44,13 @@
     height: 40px;
     left: 215px;
     top: 405px;
-    background: #F5F5F5;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 4px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
+//     background: #F5F5F5;
+//     border: 1px solid #000000;
+//     box-sizing: border-box;
+//     border-radius: 4px;
+    // font-family: 'Roboto';
+//     font-style: normal;
+//     font-weight: 400;
     font-size: 24px;
     line-height: 99.69%;
 }
@@ -61,34 +61,38 @@
     padding-left: 34px;
     display: block;
     width: 1164px;
-    height: 133px;
+    height: 200px;
     left: 215px;
     top: 493px;
-    background: #F5F5F5;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 4px;
-    font-family: 'Roboto';
-    font-style: normal;
+    size: 200px;
+//     background: #F5F5F5;
+//     border: 1px solid #000000;
+//     box-sizing: border-box;
+//     border-radius: 4px;
+//     font-family: 'Roboto';
+//     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 99.69%;
 }
 
 .sendbutton {
-    margin-top: 54px;
-    display: block;
-    width: 188px;
+    top: -65px;
+    display: inline;
+    left: 10px;
+
+  
+    // width: 188px;
     height: 56px;
-    left: 215px;
-    top: 680px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
+    left: 35px;
+   
+    // font-family: 'Roboto';
+    // font-style: normal;
+    // font-weight: 400;
     font-size: 24px;
-    line-height: 99.69%;
-    background: #C4C4C4;
-    border-radius: 4px;
+    // line-height: 99.69%;
+    // background: #C4C4C4;
+    // border-radius: 4px;
 }
 
 @media (max-width: 980px) {

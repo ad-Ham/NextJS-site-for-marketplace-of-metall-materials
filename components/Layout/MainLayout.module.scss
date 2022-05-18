@@ -130,17 +130,27 @@
 	.priceButtonContainer {
 		display: inline;
 		margin-top: 0;
+
 	}
 	.priceTitle {
 		font-size: 20px;
 		margin-top: 5px;
 		margin-bottom: 5px;
 	}
-	.metallsTable {
-		// font-size: 10px;
+	.footercontainer {
+		min-width: 100%;
+		
 	}
+	.logo {
+		width: 50px;
+	}
+	
 }
 @media only screen and (max-width: 992px) {
+	.footercontainer {
+		min-width: 100%;
+		margin: 0 auto;
+	}
 	
 }
 @media only screen and (max-width: 768px) {
