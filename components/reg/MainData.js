@@ -4,14 +4,11 @@ import styles from './MainData.module.scss'
 export const MainData = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [passwordRepeat, setPasswordRepeat] = useState('');
 
-	const handleSubmit = e => {
+	const changePasswordRepeat = e => {
 		e.preventDefault();
-		const data = {
-			email,
-			password,
-		};
-		console.log(data);
+		setPasswordRepeat(e.target.value)
 	};
 	return (<>
 		<div className={styles.maindiv}>
@@ -34,13 +31,14 @@ export const MainData = () => {
 					   required
 					   minLength='6'
 					   maxLength='100' />
-				<input id='repeatpassword' 
+				<input id='passwordRepeat' 
 					   type="password" 
 					   required
 					   minLength='6'
 					   maxLength='100'
 					   placeholder="Повторите пароль*" 
-					   className={styles.input} />
+					   className={styles.input} 
+					   onChange={e => changePasswordRepeat(e)}/>
 			</div>
 
 		</div>

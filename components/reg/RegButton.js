@@ -6,9 +6,8 @@ export const RegButton = () => {
 	const router = useRouter()
 	return (<>
 		<div className="maindiv">
-			<Button color="indigo">
-				{/* <button type="submit" onClick={() => router.push('/thankyou')}>Регистрация</button> */}
-				<button type="submit">Регистрация</button>
+			<Button type="submit" color="indigo">
+				Зарегистрироваться
 			</Button>
 		</div>
 		<style jsx>{`

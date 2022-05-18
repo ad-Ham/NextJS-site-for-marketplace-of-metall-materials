@@ -26,6 +26,7 @@ import {
 	TextInput,
 	Breadcrumbs, Anchor
 } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { CaretUp, CaretDown, News, ChartInfographic, Box, Calculator, FileText, Book, Train, ChartLine, Users, Help } from 'tabler-icons-react';
 import { useRouter } from 'next/router'
 
@@ -128,6 +129,7 @@ export const MainLayout = ({ children }) => {
 		<>
 			<MantineProvider>
 			 <ModalsProvider>
+			 <NotificationsProvider>
 				<AppShell
 					styles={{
 						main: {
@@ -293,13 +295,8 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								<LoginModal />
-								{/* <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Личный кабинет</Button> */}
-	
-								{/* {!userStatus && <LoginButton />} */}
-								{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
-									Личный кабинет
-								</Button></a></Link>}
+								{!userStatus && <LoginModal />}
+								
 							</div>
 						</Header>
 					}
@@ -307,6 +304,7 @@ export const MainLayout = ({ children }) => {
 					{/*<Breadcrumbs style={{ marginBottom: '10px' }}>{items}</Breadcrumbs>*/}
 					{children}
 				</AppShell>
+			 </NotificationsProvider>
 			 </ModalsProvider>
 			</MantineProvider>
 		</>
