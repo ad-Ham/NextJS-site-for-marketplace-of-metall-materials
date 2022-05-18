@@ -29,7 +29,7 @@ export const LoginForm = ({ id }) => {
 					localStorage.setItem('token', response.data.token);
 					alert('Вы успешно вошли!')
 					form.reset()
-					modals.closeModal(id)
+					modals.closeAll()
 
 				} else if (response.status === 404) {
 					alert('Пользователь не найден')
@@ -56,11 +56,6 @@ export const LoginForm = ({ id }) => {
 
 				<Group mt="md">
 					<div className="loginButton"><Button fullWidth type="submit" color="green">Войти</Button></div>
-					<div className="regButton">
-						<Link href="/reg" passHref>
-							<Button fullWidth type="button">Регистрация</Button>
-						</Link>
-					</div>
 				</Group>
 			</form>
 			<style jsx>{`

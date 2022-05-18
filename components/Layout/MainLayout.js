@@ -295,13 +295,8 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								<LoginModal />
-								{/* <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Личный кабинет</Button> */}
-	
-								{/* {!userStatus && <LoginButton />} */}
-								{userStatus && <Link href='/profile'><a><Button variant="light" color="gray" size="xs" uppercase>
-									Личный кабинет
-								</Button></a></Link>}
+								{!userStatus && <LoginModal />}
+								
 							</div>
 						</Header>
 					}
