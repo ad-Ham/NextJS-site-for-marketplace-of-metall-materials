@@ -95,47 +95,106 @@
     // border-radius: 4px;
 }
 
-@media (max-width: 980px) {
-    .nav {
-        padding: 0 60px;
-    }
+// @media (max-width: 980px) {
+//     .nav {
+//         padding: 0 60px;
+//     }
 
-    .footer {
-        padding: 0 60px;
-    }
+//     .footer {
+//         padding: 0 60px;
+//     }
 
-    .maindiv {
-        margin-bottom: 230px;
-    }
+//     .maindiv {
+//         margin-bottom: 230px;
+//     }
 
+//     .helpheader {
+//         font-size: 20px;
+//         text-align: center;
+//         margin-left: 0;
+//         width: 420px;
+//     }
+
+//     .emailinput {
+//         font-size: 20px;
+//         width: 400px;
+//         margin-left: 7px;
+//     }
+
+//     .probleminput {
+//         font-size: 20px;
+//         width: 400px;
+//         margin-left: 7px;
+//         hyphens: break-all;
+//     }
+
+//     .problemdesrciptioninput {
+//         font-size: 20px;
+//         width: 400px;
+//         margin-left: 7px;
+//         word-break: break-all;
+//     }
+
+//     .sendbutton {
+//         margin: 20px 115px;
+//     }
+// }
+@media only screen and (max-width: 1200px) {
     .helpheader {
+        width: 554px;
+        height: 33px;
         font-size: 20px;
         text-align: center;
-        margin-left: 0;
-        width: 420px;
     }
-
     .emailinput {
-        font-size: 20px;
-        width: 400px;
-        margin-left: 7px;
+        width: 550px;
+        
     }
-
     .probleminput {
-        font-size: 20px;
-        width: 400px;
-        margin-left: 7px;
-        hyphens: break-all;
+        width: 850px;
+        
     }
-
     .problemdesrciptioninput {
-        font-size: 20px;
-        width: 400px;
-        margin-left: 7px;
-        word-break: break-all;
+        width: 850px;
+        
+    }
+    .sendbutton {
+        font-size: 19px;
     }
 
-    .sendbutton {
-        margin: 20px 115px;
-    }
+}
+@media only screen and (max-width: 992px) {
+    .helpheader {
+        width: 534px;
+        height: 33px;
+        font-size: 19px;
+        text-align: center;
+    
+        }
+        .emailinput {
+            width: 550px;
+            
+        }
+        .probleminput {
+            width: 700px;
+            
+        }
+        .problemdesrciptioninput {
+            width: 700px;
+            
+        }
+        .sendbutton {
+            font-size: 18px;
+        }
+    
+
+}
+@media only screen and (max-width: 768px) {
+    
+}
+@media only screen and (max-width: 480px) {
+    
+}
+@media only screen and (max-width: 320px) {
+    
 }

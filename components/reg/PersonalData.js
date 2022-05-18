@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './PersonalData.module.scss'
+import { Input } from '@mantine/core';
 
 export const PersonalData = () => {
 	const [surName, setSurname] = useState('');
@@ -21,7 +22,7 @@ export const PersonalData = () => {
 		<div className={styles.maindiv}>
 			<h2 className={styles.h2}>Личные данные</h2>
 				<div className={styles.secondblock}>
-					<input id='surname' 
+					<Input id='surname' 
 						   type="text" 
 						   placeholder="Фамилия*" 
 						   className={styles.inputpassword} 
@@ -29,7 +30,7 @@ export const PersonalData = () => {
 						   required
 						   minLength='1'
 						   maxLength='100'/>
-					<input id='firstname' 
+					<Input id='firstname' 
 					       type="text" 
 					       placeholder="Имя*" 
 					       className={styles.inputpassword} 
@@ -37,7 +38,7 @@ export const PersonalData = () => {
 					       required
 						   minLength='1'
 						   maxLength='100'/>
-					<input id='lastname' 
+					<Input id='lastname' 
 						   type="text" 
 						   placeholder="Отчество" 
 						   className={styles.input} o
@@ -47,7 +48,7 @@ export const PersonalData = () => {
 						   maxLength='100'/>
 				</div>
 				<div className={styles.firstblock}>
-					<input id='phonenumber' 
+					<Input id='phonenumber' 
 						   type="tel" 
 						   placeholder="Телефон*" 
 						   className={styles.input} 

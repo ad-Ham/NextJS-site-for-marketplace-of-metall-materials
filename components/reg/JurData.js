@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './JurData.module.scss'
+import { Input } from '@mantine/core';
 
 export const JurData = () => {
 	const [orgName, setOrgName] = useState('');
@@ -20,7 +21,7 @@ export const JurData = () => {
 	return (<>
 		<div className={styles.maindiv}>
 			<h2 className={styles.h2}>Юридические данные</h2>
-				<input id='orgname' 
+				<Input id='orgname' 
 				       type="text" 
 				       placeholder="Название организации" 
 				       className={styles.input} 
@@ -28,7 +29,7 @@ export const JurData = () => {
 				       required
 				       minLength='3'
 				       maxLength='100'/>
-				<input id='juradress' 
+				<Input id='juradress' 
 				       type="text" 
 				       placeholder="Юридический адрес" 
 				       className={styles.input} 
@@ -36,7 +37,7 @@ export const JurData = () => {
 				       required
 				       minLength='3'
 				       maxLength='100'/>
-				<input id='inn' 
+				<Input id='inn' 
 					   type="number" 
 					   placeholder="ИНН" 
 					   className={styles.input} 
@@ -44,7 +45,7 @@ export const JurData = () => {
 					   required
 				       minLength="10"
 				       maxLength="12"/>
-				<input id='ogrn' type="number" 
+				<Input id='ogrn' type="number" 
 					   placeholder="ОГРН" 
 					   className={styles.input} 
 					   onChange={e => setOgrn(e.target.value)} 
