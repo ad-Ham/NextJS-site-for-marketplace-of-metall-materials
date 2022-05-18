@@ -1,5 +1,6 @@
 import styles from './GostsList.module.scss'
 
+
 export const GOSTS = [
     {
         title: 'Феррросплавы',
