@@ -83,7 +83,7 @@ export function RegisterForm() {
 			return;
 		}
 
-		axios.post('http://localhost:3001/validateEmail', {email: data.mainData[0]})
+		axios.post('https://api.metalmarket.pro/validateEmail', {email: data.mainData[0]})
 		.then(res => {
 			if (res.data.id.length !== 0) {
 				alert('Аккаунт с таким e-mail уже существует!')
