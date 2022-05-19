@@ -87,6 +87,39 @@ export const MainLayout = ({ children }) => {
 	const [dollarPrice, setDollarPrice] = useState('')
 	const [euroPrice, setEuroPrice] = useState('')
 
+	const companyLogo = [{
+		image: <img src="/nornickel.svg" height="20px" width="20px"/>
+	},
+	{
+		image: <img src="/polyuss.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/nlmk.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/severstal.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/alrosa.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/mmk.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/raspadskaya.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/tmk.svg" height="20px" width="20px"/>
+
+	}
+];
+
 	const dictionary = {
 		'news': 'Новости',
 		'promos': 'Объявления',
@@ -234,7 +267,7 @@ export const MainLayout = ({ children }) => {
 									<tbody>
 										{metalls.map(metalls => (
 											<tr key={metalls.id}>
-												<td style={{ fontWeight: 400 }}>{metalls.name}:</td>
+												<td style={{ fontWeight: 400 }}>{metalls.name}</td>
 												<td >{metalls.price}</td>
 												<td style={{
 													color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
@@ -273,7 +306,7 @@ export const MainLayout = ({ children }) => {
 									<tbody>
 										{stock.map(stock => (
 											<tr key={stock.id}>
-												<td style={{ fontWeight: 400 }}>{stock.name}:</td>
+												<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}{stock.name}</td>
 												<td >{stock.price}</td>
 												<td style={{
 													color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),

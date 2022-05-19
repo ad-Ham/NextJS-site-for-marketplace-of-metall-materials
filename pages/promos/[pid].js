@@ -19,7 +19,7 @@ export default function Index() {
 				<meta charSet="utf-8" />
 			</Head>
 			{/* <Adbannertop/> */}
-			<div className={styles.content, styles.bothsides}>
+			<div className={styles.content}>
 
 				<div className={styles.leftside}>
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}

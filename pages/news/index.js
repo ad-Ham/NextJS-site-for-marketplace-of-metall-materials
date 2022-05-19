@@ -47,10 +47,7 @@ const News = ({ news }) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
-					</Grid.Col>
-					<Grid.Col span={4} justify={'end'} align={'center'}>
+				    <Grid.Col span={4} justify={'end'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
@@ -58,9 +55,12 @@ const News = ({ news }) => {
 						}
 						</Text>
 					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'center'}>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
 						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-							Посмотреть
+							Подробнее
 						</Button>
 					</Grid.Col>
 				</Grid>

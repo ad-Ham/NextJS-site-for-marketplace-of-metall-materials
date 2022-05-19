@@ -35,14 +35,14 @@ const NewsPage = () => {
 
 	return (
 		<>
-			<Head>
+			{/* <Head>
 				<title>Новость</title>
 				<meta name="keywords" content="next, javascript" />
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-			{/* <Adbannertop/> */}
-			<div className={styles.content, styles.bothsides}>
+			<Adbannertop/> */}
+			<div className={styles.content}>
 
 				<div className={styles.leftside}>
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
