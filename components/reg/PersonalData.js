@@ -25,7 +25,7 @@ export const PersonalData = () => {
 					<Input id='surname' 
 						   type="text" 
 						   placeholder="Фамилия*" 
-						   className={styles.input} 
+						   className={styles.inputpassword} 
 						   onChange={e => setSurname(e.target.value)} 
 						   required
 						   minLength='1'
@@ -33,7 +33,7 @@ export const PersonalData = () => {
 					<Input id='firstname' 
 					       type="text" 
 					       placeholder="Имя*" 
-					       className={styles.input} 
+					       className={styles.inputpassword} 
 					       onChange={e => setFirstname(e.target.value)} 
 					       required
 						   minLength='1'
