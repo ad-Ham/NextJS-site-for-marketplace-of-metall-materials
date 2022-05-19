@@ -6,7 +6,7 @@ export const RegButton = () => {
 	const router = useRouter()
 	return (<>
 		<div className="maindiv">
-			<Button type="submit" color="blue" style={{justify: 'center'}}>
+			<Button type="submit" color="blue">
 				Зарегистрироваться
 			</Button>
 		</div>

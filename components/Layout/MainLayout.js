@@ -82,7 +82,6 @@ export const MainLayout = ({ children }) => {
 
 	const theme = useMantineTheme();
 
-	const [stock, setStock] = useState([])
 	const [metalls, setMetalls] = useState([])
 	const [dollarPrice, setDollarPrice] = useState('')
 	const [euroPrice, setEuroPrice] = useState('')
@@ -120,14 +119,6 @@ export const MainLayout = ({ children }) => {
 		axios.get('https://api.metalmarket.pro/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
-
-		axios.get('https://api.metalmarket.pro/getStockRates')
-			.then(function (response) {
-				setStock(response.data.stock)
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -222,7 +213,7 @@ export const MainLayout = ({ children }) => {
 									</Grid>
 								</div>
 	
-								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на металлы</Title>
+								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен</Title>
 								<Table className={styles.metallsTable} fontSize="15px">
 									<thead>
 										<tr>
@@ -260,45 +251,6 @@ export const MainLayout = ({ children }) => {
 										))}
 									</tbody>
 								</Table>
-
-								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на акции</Title>
-								<Table className={styles.metallsTable} fontSize="15px">
-									<thead>
-										<tr>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Акции</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
-										</tr>
-									</thead>
-									<tbody>
-										{stock.map(stock => (
-											<tr key={stock.id}>
-												<td style={{ fontWeight: 400 }}>{stock.name}:</td>
-												<td >{stock.price}</td>
-												<td style={{
-													color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),
-													display: 'flex',
-													alignItems: 'center'
-												}}>
-													{stock.price_change.toString().replace('-', '')}
-													{
-														parseFloat(stock.price_change) < 0 ?
-															<CaretDown
-																size={18}
-																strokeWidth={1}
-																color={'#ff0000'}
-															/> :
-															<CaretUp
-																size={18}
-																strokeWidth={1}
-																color={'#008000'}
-															/>
-													}
-												</td>
-											</tr>
-										))}
-									</tbody>
-								</Table>
 							</Aside>
 						</MediaQuery>
 					}
@@ -306,7 +258,7 @@ export const MainLayout = ({ children }) => {
 						<Footer height={60} p="md" className={styles.footercontainer}>
 							<div className={styles.footerleft}>
 								<Link href="/" passHref>
-									<Image
+									<Image className={styles.logo}
 										alt="metal-merket.pro"
 										src="/logo.svg"
 										width={300}

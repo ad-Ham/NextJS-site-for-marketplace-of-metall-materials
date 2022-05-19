@@ -32,10 +32,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 				</Grid.Col>
 			</Grid>
 			<Grid>
-				<Grid.Col span={4} justify={'center'} align={'center'}>
-					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
-				</Grid.Col>
-				<Grid.Col span={4} justify={'end'} align={'center'}>
+			    <Grid.Col span={4} justify={'end'} align={'center'}>
 					<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 						(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 						((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
@@ -43,9 +40,12 @@ export const MainPageNews = ({ news, importantNews }) => {
 					}
 					</Text>
 				</Grid.Col>
+				<Grid.Col span={4} justify={'center'} align={'center'}>
+					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+				</Grid.Col>
 				<Grid.Col span={4} justify={'center'} align={'left'}>
 					<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-						Посмотреть
+					Подробнее
 					</Button>
 				</Grid.Col>
 			</Grid>
@@ -69,9 +69,6 @@ export const MainPageNews = ({ news, importantNews }) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
-					</Grid.Col>
 					<Grid.Col span={4} justify={'end'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
@@ -80,9 +77,12 @@ export const MainPageNews = ({ news, importantNews }) => {
 						}
 						</Text>
 					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'center'}>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
 						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-							Посмотреть
+						Подробнее
 						</Button>
 					</Grid.Col>
 				</Grid>
@@ -111,18 +111,15 @@ export const MainPageNews = ({ news, importantNews }) => {
 							<Image src="/photopromo.svg" height={260} alt="Norway" layout="fill" />
 						</Card.Section>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-							<Title order={3} style={{ maxWidth: '65%' }} weight={500}>{news[0].title}</Title>
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
+							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{news[0].title}</Title>
 						</Group>
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{news[0].text}
 						</Text>
 						<Grid>
-							<Grid.Col span={4} justify={'center'} align={'center'}>
-								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
-							</Grid.Col>
 							<Grid.Col span={4} justify={'end'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 									(news[0].date.getDate().toString().length === 1 ? '0' + news[0].date.getDate().toString() : news[0].date.getDate().toString()) + '.' +
@@ -131,9 +128,12 @@ export const MainPageNews = ({ news, importantNews }) => {
 								}
 								</Text>
 							</Grid.Col>
+							<Grid.Col span={4} justify={'center'} align={'center'}>
+								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'left'}>
 								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-									Посмотреть
+									Подробнее
 								</Button>
 							</Grid.Col>
 						</Grid>
