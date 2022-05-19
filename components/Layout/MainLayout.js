@@ -87,6 +87,35 @@ export const MainLayout = ({ children }) => {
 	const [dollarPrice, setDollarPrice] = useState('')
 	const [euroPrice, setEuroPrice] = useState('')
 
+	const metallsIcon = [{
+		image: <img src="/aluminum.svg" height="20px" width="20px"/>
+	},
+	{
+		image: <img src="/plumbum.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/ferrum.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/cuprum.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/nickel.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/zinc.svg" height="20px" width="20px"/>
+
+	},
+	{
+		image: <img src="/stannum.svg" height="20px" width="20px"/>
+
+	}
+];
+
 	const companyLogo = [{
 		image: <img src="/nornickel.svg" height="20px" width="20px"/>
 	},
@@ -267,7 +296,7 @@ export const MainLayout = ({ children }) => {
 									<tbody>
 										{metalls.map(metalls => (
 											<tr key={metalls.id}>
-												<td style={{ fontWeight: 400 }}>{metalls.name}</td>
+												<td style={{ fontWeight: 400 }}>{metallsIcon[0].image}{metalls.name}</td>
 												<td >{metalls.price}</td>
 												<td style={{
 													color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
