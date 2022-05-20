@@ -394,7 +394,7 @@ const AddPromo = () => {
 					border-radius: 4px;
 				}
 			`}</style>
-		<>
+		</>
 
 	)
 }

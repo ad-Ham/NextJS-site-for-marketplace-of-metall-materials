@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { useState } from 'react';
+import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
+
 const axios = require('axios').default;
 
 export const getServerSideProps = async (context) => {
@@ -59,9 +61,11 @@ const News = ({ news }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-							Подробнее
-						</Button>
+					    <Link href="/news/{pid}" passHref>
+							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+								Подробнее
+							</Button>
+						</Link>
 					</Grid.Col>
 				</Grid>
 			</Card>
