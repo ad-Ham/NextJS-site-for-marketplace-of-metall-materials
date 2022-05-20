@@ -296,7 +296,7 @@ export const MainLayout = ({ children }) => {
 									<tbody>
 										{metalls.map(metalls => (
 											<tr key={metalls.id}>
-												<td style={{ fontWeight: 400 }}>{metallsIcon[0].image}{metalls.name}</td>
+												<td style={{ fontWeight: 400 }}>{metallsIcon[0].image}   {metalls.name}</td>
 												<td >{metalls.price}</td>
 												<td style={{
 													color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
@@ -335,7 +335,7 @@ export const MainLayout = ({ children }) => {
 									<tbody>
 										{stock.map(stock => (
 											<tr key={stock.id}>
-												<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}{stock.name}</td>
+												<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}   {stock.name}</td>
 												<td >{stock.price}</td>
 												<td style={{
 													color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),

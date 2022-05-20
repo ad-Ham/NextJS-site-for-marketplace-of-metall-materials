@@ -93,13 +93,17 @@ export function PromosMultiSelect() {
       clearable
       onChange={updateValue}
     />
-    {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><MultiSelect
+    {((darkMetallStatus === true) || (colorMetallStatus === true)) && <>
+    <div>
+    <MultiSelect
           data={data}
           searchable
           nothingFound="Ничего не найдено"
           clearButtonLabel="Clear selection"
           clearable
-        /></>}
+        />
+        </div>
+        </>}
     </>
   );
 }

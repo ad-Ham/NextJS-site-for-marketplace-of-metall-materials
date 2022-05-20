@@ -128,14 +128,13 @@ export const PromoBlock = () => {
 						</div>
 						<div>
 							<p>Ваша страна</p>
-							<select name="country" id="country" onChange={e => changeCountry(e)}>
+							<select className={styles.selectCountry} name="country" id="country" onChange={e => changeCountry(e)}>
 								<option selected="selected" value="">Выберите страну</option>
 								<option value="Россия">Россия</option>
 								<option value="Казахстан">Казахстан</option>
 								<option value="Кыргызстан">Кыргызстан</option>
 								<option value="Узбекистан">Узбекистан</option>
 							</select>
-
 						</div>
 					</div>
 					<div>
@@ -185,7 +184,7 @@ export const PromoBlock = () => {
 				</div>
 				</div>
 				<div>
-					<p>Введите цену(₽)</p>
+					<p>Введите цену(₽/$)</p>
 					<Input styles={{width: '20px'}} size="sm" id="price"
 						type="number"
 						placeholder=""
