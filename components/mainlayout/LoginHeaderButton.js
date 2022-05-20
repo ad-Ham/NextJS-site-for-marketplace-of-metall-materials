@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@mantine/core';
+import { UserCircle } from 'tabler-icons-react';
 
 export const LoginHeaderButton = () => {
 	const showPreview = e => {
@@ -20,6 +21,11 @@ export const LoginHeaderButton = () => {
 				</Button> */}
 				{/* <Link href={'/reg'}><a className="linkreg">Регистрация</a></Link> */}
 				{/* ======= */}
+				<UserCircle
+					size={32}
+					strokeWidth={1}
+					color={'#191d4d'}
+				/>;
 				<Button onClick={showPreview} variant="light" color="gray" size="xs" uppercase>
 					Войти/Регистрация
 				</Button>

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from './MainLayout.module.scss'
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
+import { PersonalData } from '../profile/PersonalData';
 import {
 	AppShell,
 	Button,
@@ -394,7 +395,6 @@ export const MainLayout = ({ children }) => {
 										mr="xl"
 									/>
 								</MediaQuery>
-	
 								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 									<Link href="/" passHref>
 										<Image className={styles.logo}
@@ -406,7 +406,14 @@ export const MainLayout = ({ children }) => {
 									</Link>
 								</MediaQuery>
 								{!userStatus && <LoginModal />}
-								
+								<PersonalData/>
+								{/* <Link href="/" passHref>
+									<UserCircle className={styles.user}
+										size={32}
+										strokeWidth={1}
+										color={'#191d4d'}
+									/>	
+								</Link>	 */}
 							</div>
 						</Header>
 					}

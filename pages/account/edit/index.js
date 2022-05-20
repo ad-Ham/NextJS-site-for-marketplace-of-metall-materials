@@ -16,7 +16,7 @@ const EditProfile = () => {
                 <meta charSet="utf-8" />
             </Head>
             {/* <Adbannertop/> */}
-            <div className={styles.content, styles.bothsides}>
+            <div className={styles.content}>
                 <div className={styles.rightside}>
                     <YourData />
                     <JurData />
