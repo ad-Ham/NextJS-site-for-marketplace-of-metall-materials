@@ -107,7 +107,7 @@ const Promos = ({ promos }) => {
   ];
 
   function updateSectionRows(sections, subsections, category) {
-        axios.get('http://localhost:3001/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
+        axios.get('https://api.metalmarket.pro/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
         .then(function(response) {
             promos = response.data.promos
             setRows([...promos].filter(el => el.id).map((element) => {
