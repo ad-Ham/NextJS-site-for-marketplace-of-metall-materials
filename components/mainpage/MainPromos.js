@@ -28,9 +28,11 @@ export const MainPromos = ({ promos }) => {
 					<Title className={styles.promosMainTitle} order={1}>Объявления</Title>
 				</Grid.Col>
 				<Grid.Col span={2} align={"right"}>
+				<Link href="/promos/{pid}" passHref>
 					<Button variant="subtle">
 						Разместить объявление
 					</Button>
+				</Link>
 				</Grid.Col>
 				<Grid.Col span={2} align={"right"}>
 					<Link href="/promos" passHref>

@@ -87,7 +87,6 @@ export function PromosMultiSelect() {
   return (<>
     <MultiSelect
       data={categories}
-      label="Выберите раздел"
       searchable
       nothingFound="Ничего не найдено"
       clearButtonLabel="Clear selection"
@@ -96,7 +95,6 @@ export function PromosMultiSelect() {
     />
     {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><MultiSelect
           data={data}
-          label="Выберите подраздел"
           searchable
           nothingFound="Ничего не найдено"
           clearButtonLabel="Clear selection"

@@ -1,8 +1,10 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { MainLayout } from '../../components/Layout/MainLayout'
 import { MainPromos } from '../../components/mainpage/MainPromos'
 import { MainPageNews } from '../../components/mainpage/MainPageNews'
-import { PromoBlock } from '../../components/promopage/PromoBlock'
+import { PromoBlock } from '../../components/promopage/PromoBlock.js'
 import { MorePromosCard } from '../../components/promopage/MorePromosCard'
 import { Adbannertop } from '../../components/Adbannertop'
 import Adbannerside from '../../public/adbannerside.svg'
@@ -10,22 +12,22 @@ import Link from 'next/link'
 import styles from '../../styles/promopage.module.scss'
 
 export default function Index() {
+	const router = useRouter()
+	const { pid } = router.query
+	console.log(pid)
+
+	const [singleNew, setSingleNew] = useState([])
 	return (
-		<MainLayout>
-			<Head>
-				<title>Next Title</title>
-				<meta name="keywords" content="next, javascript" />
-				<meta name="description" content="this is" />
-				<meta charSet="utf-8" />
-			</Head>
+		<>
 			{/* <Adbannertop/> */}
 			<div className={styles.content}>
+			<PromoBlock />
 
 				<div className={styles.leftside}>
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
-					<PromoBlock />
+					
 					<div className={styles.morepromosblock}>
 						<h2 className={styles.morepromosheader}>Еще объявления:</h2>
 						<div className={styles.morepromosrow}>
@@ -40,6 +42,6 @@ export default function Index() {
 			<style jsx>{`
 				
 			`}</style>
-		</MainLayout>
+		</>
 	)
 }

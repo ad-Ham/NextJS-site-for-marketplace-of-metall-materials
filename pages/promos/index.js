@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
 import { Button, Grid, Card, Title, Table, Space, Group } from '@mantine/core';
@@ -137,9 +138,11 @@ const Promos = ({ promos }) => {
             </Head>
             <div className='headerDiv'>
                 <h1>Доска объявлений</h1>
-                <Button variant="light">
-                  Разместить объявление
-                </Button>
+                <Link href="/promos/{pid}" passHref>
+                  <Button variant="light">
+                    Разместить объявление
+                  </Button>
+                </Link>
             </div>
             <MultiSelect
               data={categories}
