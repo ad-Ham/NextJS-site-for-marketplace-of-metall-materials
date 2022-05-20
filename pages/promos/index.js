@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
 import { Button, Grid, Card, Title, Table, Space, Group } from '@mantine/core';
-import { MultiSelect } from '@mantine/core';
+import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 export async function getServerSideProps(context) {
@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
 }
 
 const Promos = ({ promos }) => {
-    const rows = [...promos].filter(el => el.id).map((element) => {
+    const [rows, setRows] = useState([...promos].filter(el => el.id).map((element) => {
         let date = new Date(element.date);
         return (<tr key={element.id}>
             <td>
@@ -35,14 +35,18 @@ const Promos = ({ promos }) => {
             <td>{element.organizationName}</td>
             <td>{element.region}</td>
         </tr>)
-    });
+    })); 
 
-    const [darkMetallStatus, setDarkMetallStatus] = useState(false)
+  const [darkMetallStatus, setDarkMetallStatus] = useState(false)
   const [colorMetallStatus, setColorMetallStatus] = useState(false)
   const [equipmentStatus, setEquipmentStatus] = useState(false)
   const [rawMaterilStatus, setRawMaterialStatus] = useState(false)
+  const [servicesStatus, setServicesStatus] = useState(false)
+  const [buySellStatus, setBuySellStatus] = useState(false)
   const [data, setData] = useState([]);
-  const [sections, setSections] = useState([])
+  const [sections, setSections] = useState('null')
+  const [category, setCategory] = useState('null')
+  const [subsections, setSubsections] = useState('null')
 
   const categories = [
     { value: 'Черные металлы', label: 'Черные металлы' },
@@ -102,30 +106,111 @@ const Promos = ({ promos }) => {
     { value: 'Прочие цветные металлы', label: 'Прочие цветные металлы' },
   ];
 
+  function updateSectionRows(sections, subsections, category) {
+        axios.get('http://localhost:3001/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
+        .then(function(response) {
+            promos = response.data.promos
+            setRows([...promos].filter(el => el.id).map((element) => {
+        let date = new Date(element.date);
+        return (<tr key={element.id}>
+            <td>
+                {
+                    (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+                    ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+                    date.getFullYear()
+                }
+            </td>
+            <td>{element.category}</td>
+            <td>{element.title}</td>
+            <td>{element.organizationName}</td>
+            <td>{element.region}</td>
+        </tr>)
+    }));
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+  }
 
   const updateSectionsValue = e => {
-      if ((e.indexOf('Черные металлы') !== -1) && (darkMetallStatus === false)) {
+        setDarkMetallStatus
+        setData(darkMet)
+
+        setColorMetallStatus
+        setData(colorMet)
+
+        setBuySellStatus
+
+        setServicesStatus
+
+      if (e === 'Черные металлы') {
+        setData(darkMet)
         setDarkMetallStatus(true)
-        setData(data.concat(darkMet))
-      }
-      else if ((e.indexOf('Цветные металлы') !== -1) && (colorMetallStatus === false)) {
-        setColorMetallStatus(true)
-        setData(data.concat(colorMet))
-      }
-      else if ((e.indexOf('Цветные металлы') === -1) && (colorMetallStatus === true)) {
         setColorMetallStatus(false)
-        setData(data.filter(n => colorMet.find(met => met.value === n.value) === undefined))
+        setBuySellStatus(true)
+        setServicesStatus(false)
       }
-      else if ((e.indexOf('Черные металлы') === -1) && (darkMetallStatus === true)) {
+      else if (e === 'Цветные металлы') {
+        setData(colorMet)
         setDarkMetallStatus(false)
-        setData(data.filter(n => darkMet.find(met => met.value === n.value) === undefined))
+        setColorMetallStatus(true)
+        setBuySellStatus(true)
+        setServicesStatus(false)
       }
-      
-      setSections(e)
+      else if ((e === 'Оборудование')||(e === 'Сырье')) {
+        setDarkMetallStatus(false)
+        setColorMetallStatus(false)
+        setBuySellStatus(true)
+        setServicesStatus(false)
+      }
+      else if ((e === 'Транспортные услуги')||(e === 'Прочие')) {
+        setDarkMetallStatus(false)
+        setColorMetallStatus(false)
+        setBuySellStatus(false)
+        setServicesStatus(true)
+      }
+      else if (e === null) {
+        setDarkMetallStatus(false)
+        setColorMetallStatus(false)
+        setBuySellStatus(false)
+        setServicesStatus(false)
+      }
+
+
+
+      if (e !== null) {
+          setSections(e)
+          setSubsections('null')
+          setCategory('null')
+          updateSectionRows(e, 'null', 'null')
+      }
+      else {
+          setSections('null')
+          setSubsections('null')
+          setCategory('null')
+          updateSectionRows('null', 'null', 'null')
+      }
+  }
+
+  const updateServiceCategory = e => {
+    console.log('CHECK' + e)
+    if (e !== null) {
+        setCategory(e)
+        updateSectionRows(sections, subsections, e)
+    } else {
+        setCategory('null')
+        updateSectionRows(sections, subsections, 'null')
+    }
   }
 
   const updateSubsectionsValue = e => {
-    console.log(sections)
+    if (e !== null) {
+        setSubsections(e)
+        updateSectionRows(sections, e, category)
+    } else {
+        setSubsections('null')
+        updateSectionRows(sections, 'null', category)
+    }
   }
 
     return (
@@ -144,16 +229,39 @@ const Promos = ({ promos }) => {
                   </Button>
                 </Link>
             </div>
-            <MultiSelect
+            <Select
+              id='mainSections'
               data={categories}
               label="Выберите раздел"
+              placeholder="--Разделы--"
               searchable
               nothingFound="Ничего не найдено"
               clearButtonLabel="Clear selection"
               clearable
               onChange={updateSectionsValue}
             />
-            {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><MultiSelect
+
+            {(buySellStatus === true) && <><Select
+              data={[{value: 'Продам', label: 'Продам'}, {value: 'Куплю', label: 'Куплю'}]}
+              label="Выберите категорию"
+              placeholder="--Продам/Куплю--"
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+              onChange={updateServiceCategory}
+            /></>}
+
+            {(servicesStatus === true) && <><Select
+                  data={[{value: 'Предложение', label: 'Предложение'}, {value: 'Поиск', label: 'Поиск'}]}
+                  label="Выберите категорию"
+                  placeholder="--предложение/поиск--"
+                  nothingFound="Ничего не найдено"
+                  clearButtonLabel="Clear selection"
+                  clearable
+                  onChange={updateServiceCategory}
+                /></>}
+
+            {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><Select
                   data={data}
                   label="Выберите подраздел"
                   searchable
