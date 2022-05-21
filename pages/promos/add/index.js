@@ -3,6 +3,10 @@ import { Adbannertop } from '../../../components/Adbannertop'
 import { useState } from 'react';
 const axios = require('axios').default;
 import styles from '../../../components/promopage/PromoBlock.module.scss'
+import { Card, Input, Select,  Image, Text, Badge, Button, Group, useMantineTheme, Textarea } from '@mantine/core';
+import { PromosMultiSelect} from '../../../components/promos/PromosMultiSelect'
+import { PromosAdd} from '../../../components/promos/PromosAdd'
+
 
 const AddPromo = () => {
 	const [newsStatus, setNewsStatus] = useState('');
@@ -100,7 +104,7 @@ const AddPromo = () => {
 	return (
 
 		<>
-			<div id='elem' className="modWindowDisable">
+			{/* <div id='elem' className="modWindowDisable">
 				<button type="button" onClick={removePreview} className="cross"></button>
 				<div className="modWindow">
 					<div className={styles.headerblock}>
@@ -150,33 +154,21 @@ const AddPromo = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-
+			</div> */}
+		<Card>
 			<h1>Размещение объявления</h1>
 			<form onSubmit={handleSubmit}>
+				<div>
+					<p>Название объявления</p>
+					<Input 
+					id="title"
+					placeholder="Введите название объявления"
+					required
+					onChange={e => setTitle(e.target.value)}
+					/>
+				</div>
 				<div className="columnDiv">
-					<div>
-						<div>
-							<p>Заголовок публикации</p>
-							<input id="title"
-								type="text"
-								placeholder=""
-								required
-								maxLength="150"
-								onChange={e => setTitle(e.target.value)}
-								className="inputText" />
-						</div>
-						<div>
-							<p>Введите контактный e-mail</p>
-							<input id="email"
-								type="email"
-								placeholder="example@email.com"
-								required
-								maxLength="150"
-								onChange={e => setEmail(e.target.value)}
-								className="inputText" />
-						</div>
-						<div>
+						{/* <div>
 							<p>Ваша страна</p>
 							<select name="country" id="country" onChange={e => changeCountry(e)}>
 								<option selected="selected" value="">Выберите страну</option>
@@ -185,20 +177,18 @@ const AddPromo = () => {
 								<option value="Кыргызстан">Кыргызстан</option>
 								<option value="Узбекистан">Узбекистан</option>
 							</select>
-						</div>
-					</div>
-					<div>
+						</div> */}
 						<div>
-							<p>Наименование товара</p>
-							<input id="name"
-								type="text"
-								placeholder="Например, электродвигатель или лом РЗМ"
-								required
-								maxLength="150"
-								onChange={e => setName(e.target.value)}
-								className="inputText" />
+							<p>Тип объявления</p>
+							<Select
+							placeholder="Куплю/Продам"
+							data={[
+								{ value: 'продам', label: 'Продам' },
+								{ value: 'куплю', label: 'Куплю' },
+							]}
+   					 		/>
 						</div>
-						<div>
+						{/* <div>
 							<p>Введите номер телефона</p>
 							<input id="email"
 								type="tel"
@@ -207,62 +197,61 @@ const AddPromo = () => {
 								maxLength="150"
 								onChange={e => setPhoneNumber(e.target.value)}
 								className="inputText" />
-						</div>
-						<div>
+						</div> */}
+						{/* <div>
 							{(country !== '') && <><p>Ваш регион</p>
 								<select name="region" id="region" onChange={e => changeRegion(e)}>
 									{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
 								</select></>}
-						</div>
-					</div>
+						</div> */}					
 				</div>
-
 				<div>
-					<p>Выберите категорию</p>
-					<div className="radioDiv">
-						<input type="radio"
-							id="category"
-							name="radiobutton"
-							required
-							value="Куплю"
-							onChange={e => setCategory(e.target.value)} />
-						<p className="radioTeaxt">Куплю</p>
-					</div>
-					<div className="radioDiv">
-						<input type="radio"
-							id="category"
-							name="radiobutton"
-							required
-							value="Продам"
-							onChange={e => setCategory(e.target.value)} />
-						<p className="radioTeaxt">Продам</p>
-					</div>
+					<p>Категория</p>
+					< PromosMultiSelect/>
 				</div>
+				<div>
+					<p>Добавить товар</p>
+					< PromosAdd />
+				</div>
+				{/* <div styles={{width: '50px'}}>
+							<p>Наименование товара</p>
+							<div>
+							<Input id="title"
+								placeholder="Введите название объявления"
+								required
+								maxLength="150"
+								onChange={e => setTitle(e.target.value)}
+								className="inputText"
+								width="50px"/>
+							</div>
+					</div>
 				<div>
 					<p>Введите цену(₽)</p>
-					<input id="price"
+					<div>
+					<Input id="price"
 						type="number"
 						placeholder=""
 						required
 						maxLength="150"
 						onChange={e => setPrice(e.target.value)}
 						className="inputText" />
-				</div>
+					</div>
+				</div> */}
 				<div>
 					<p>Описание товара или услуги</p>
-					<textarea id="description"
-						placeholder="Введите описание сюда"
+					<Textarea id="description"
+						placeholder="Опишите товар"
 						required
 						cols="100"
-						rows="10"
+						minRows={5}
 						onChange={e => setDescription(e.target.value)} />
 				</div>
 				<div className="buttonDiv">
-					<button type="submit">Разместить объявление</button>
+					<Button type="submit">Разместить объявление</Button>
 				</div>
-				<div className="buttonDiv">
-					<button type="button" onClick={showPreview}>Предпросмотр</button>
-				</div>
+				{/* <div className="buttonDiv">
+					<Button type="button" onClick={showPreview}>Предпросмотр</button>
+				</div> */}
 			</form>
 			<style jsx>{`
 				.cross {
@@ -394,6 +383,7 @@ const AddPromo = () => {
 					border-radius: 4px;
 				}
 			`}</style>
+		</Card>
 		</>
 
 	)
