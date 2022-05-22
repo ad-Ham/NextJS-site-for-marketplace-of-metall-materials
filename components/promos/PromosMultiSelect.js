@@ -86,6 +86,7 @@ export function PromosMultiSelect() {
 
   return (<>
     <MultiSelect
+      placeholder="Выберите катерогию"
       data={categories}
       searchable
       nothingFound="Ничего не найдено"
