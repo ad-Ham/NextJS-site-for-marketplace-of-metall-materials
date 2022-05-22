@@ -44,7 +44,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 				</Grid.Col>
 				<Grid.Col span={4} justify={'center'} align={'left'}>
-					<Link href="/news/{pid}" passHref>
+					<Link href={'/news/'+el.id} passHref>
 						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 						Подробнее
 						</Button>
@@ -83,7 +83,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-					<Link href="/news/{pid}" passHref>
+					<Link href={'/news/'+el.id} passHref>
 						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 						Подробнее
 						</Button>

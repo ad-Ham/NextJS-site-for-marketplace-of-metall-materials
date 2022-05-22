@@ -10,11 +10,23 @@ import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
 const axios = require('axios').default;
 
-const NewsPage = () => {
-	const router = useRouter()
-	const { pid } = router.query
-	console.log(pid)
 
+
+export async function getServerSideProps(context) {
+	const id = context.params.pid
+	const news = await axios.get('http://localhost:3001/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let tagsMas = news.data.news.tags.split(', ')
+	let tags = []
+	let i;
+	for (i=0; i<tagsMas.length; ++i) {
+		tags.push({id: i, value: tagsMas[i]})
+	}
+	return {
+		props: {news: news.data.news, tags: tags}
+	}
+}
+
+const NewsPage = ({news, tags}) => {
 	const [singleNew, setSingleNew] = useState([])
 
 	// useEffect(() => {
@@ -41,7 +53,7 @@ const NewsPage = () => {
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
-					<NewsBlock />
+					<NewsBlock news={news} tags={tags}/>
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
 						<div className={styles.morenewsrow}>

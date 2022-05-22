@@ -111,21 +111,21 @@ const Promos = ({ promos }) => {
         .then(function(response) {
             promos = response.data.promos
             setRows([...promos].filter(el => el.id).map((element) => {
-        let date = new Date(element.date);
-        return (<tr key={element.id}>
-            <td>
-                {
-                    (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-                    ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-                    date.getFullYear()
-                }
-            </td>
-            <td>{element.category}</td>
-            <td>{element.title}</td>
-            <td>{element.organizationName}</td>
-            <td>{element.region}</td>
-        </tr>)
-    }));
+            let date = new Date(element.date);
+            return (<tr key={element.id}>
+                <td>
+                    {
+                        (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+                        ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+                        date.getFullYear()
+                    }
+                </td>
+                <td>{element.category}</td>
+                <td>{element.title}</td>
+                <td>{element.organizationName}</td>
+                <td>{element.region}</td>
+            </tr>)
+        }));
         })
         .catch(function (error) {
             console.log(error);
