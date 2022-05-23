@@ -3,7 +3,7 @@ import { Adbannertop } from '../../../components/Adbannertop'
 import { useState } from 'react';
 const axios = require('axios').default;
 import styles from '../../../components/promopage/PromoBlock.module.scss'
-import { Card, Input, Select,  Image, Text, Badge, Button, Group, useMantineTheme, Textarea } from '@mantine/core';
+import { Card, Input,Grid, Select,  Image, Text, Badge, Button, Group, useMantineTheme, Textarea } from '@mantine/core';
 import { PromosMultiSelect} from '../../../components/promos/PromosMultiSelect'
 import { PromosAdd} from '../../../components/promos/PromosAdd'
 
@@ -104,61 +104,11 @@ const AddPromo = () => {
 	return (
 
 		<>
-			{/* <div id='elem' className="modWindowDisable">
-				<button type="button" onClick={removePreview} className="cross"></button>
-				<div className="modWindow">
-					<div className={styles.headerblock}>
-						<h1 className={styles.promoheader}>{title}</h1>
-					</div>
-
-					<div className={styles.desc}>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Наименование товара:</p>
-							<p className={styles.desctext}>{name}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>E-mail:</p>
-							<p className={styles.desctext}>{email}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Телефон:</p>
-							<p className={styles.desctext}>{phoneNumber}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Страна:</p>
-							<p className={styles.desctext}>{country}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Регион:</p>
-							<p className={styles.desctext}>{region}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Категория:</p>
-							<p className={styles.desctext}>{category}</p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Описание:</p>
-							<p className={styles.desctext}>{description} </p>
-						</div>
-
-						<div className={styles.descrow}>
-							<p className={styles.descheader}>Цена:</p>
-							<p className={styles.desctext}>{price} </p>
-						</div>
-					</div>
-				</div>
-			</div> */}
 		<Card>
-			<h1>Размещение объявления</h1>
+			<h1 style={{marginBottom: 30}}>Размещение объявления</h1>
 			<form onSubmit={handleSubmit}>
-				<div>
+			<Grid  style={{marginBottom: -40}}>
+				<Grid.Col span={9}>
 					<p>Название объявления</p>
 					<Input 
 					id="title"
@@ -166,8 +116,19 @@ const AddPromo = () => {
 					required
 					onChange={e => setTitle(e.target.value)}
 					/>
-				</div>
-				<div className="columnDiv">
+				</Grid.Col>
+				<Grid.Col span={3}>
+					<p>Тип объявления</p>
+					<Select
+					placeholder="Куплю/Продам"
+					data={[
+						{ value: 'продам', label: 'Продам' },
+						{ value: 'куплю', label: 'Куплю' },
+						]}
+   					/>
+				</Grid.Col>
+			</Grid>
+				
 						{/* <div>
 							<p>Ваша страна</p>
 							<select name="country" id="country" onChange={e => changeCountry(e)}>
@@ -178,7 +139,7 @@ const AddPromo = () => {
 								<option value="Узбекистан">Узбекистан</option>
 							</select>
 						</div> */}
-						<div>
+						{/* <div>
 							<p>Тип объявления</p>
 							<Select
 							placeholder="Куплю/Продам"
@@ -187,7 +148,7 @@ const AddPromo = () => {
 								{ value: 'куплю', label: 'Куплю' },
 							]}
    					 		/>
-						</div>
+						</div> */}
 						{/* <div>
 							<p>Введите номер телефона</p>
 							<input id="email"
@@ -204,15 +165,22 @@ const AddPromo = () => {
 									{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
 								</select></>}
 						</div> */}					
-				</div>
+				
 				<div>
-					<p>Категория</p>
-					< PromosMultiSelect/>
-				</div>
-				<div>
-					<p>Добавить товар</p>
+					<p style={{marginTop:10}}>Добавить товар</p>
 					< PromosAdd />
 				</div>
+				{/* <Card>
+					<Grid>
+						<Grid.Col span={3} style={{ minHeight: 80 }}>
+						<Image
+							width={260}
+							height={160}
+							src="https://s4.aconvert.com/convert/p3r68-cdx67/ahwg4-isf5x.svg"
+						/>
+						</Grid.Col>
+					</Grid>
+				</Card> */}
 				{/* <div styles={{width: '50px'}}>
 							<p>Наименование товара</p>
 							<div>
@@ -237,6 +205,8 @@ const AddPromo = () => {
 						className="inputText" />
 					</div>
 				</div> */}
+
+
 				<div>
 					<p>Описание товара или услуги</p>
 					<Textarea id="description"
@@ -249,9 +219,9 @@ const AddPromo = () => {
 				<div className="buttonDiv">
 					<Button type="submit">Разместить объявление</Button>
 				</div>
-				{/* <div className="buttonDiv">
-					<Button type="button" onClick={showPreview}>Предпросмотр</button>
-				</div> */}
+				<div className="buttonDiv">
+					<Button type="submit" onClick={showPreview}>Предпросмотр</Button>
+				</div>
 			</form>
 			<style jsx>{`
 				.cross {
