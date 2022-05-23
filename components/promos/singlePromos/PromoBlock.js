@@ -6,7 +6,8 @@ import { Comments } from '../../comments/CommentsBlock';
 const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
-
+// media breakpoint
+// mediaquery
 
 export const PromoBlock = () => {
 	const { height, width } = useViewportSize();
@@ -144,9 +145,9 @@ export const PromoBlock = () => {
 					</div>
 				</SimpleGrid>
 				
-				<div>
-					{}
-				</div>
+				{/* <div> */}
+					{/* {} */}
+				{/* </div> */}
 
 				<div>
 					<Comments />

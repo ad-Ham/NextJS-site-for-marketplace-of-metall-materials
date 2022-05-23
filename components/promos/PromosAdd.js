@@ -4,23 +4,22 @@ import { PromosSelect } from './PromosSelect';
 
 export function PromosAdd() {
     
-        const [name, setName] = useState('');
-        const [price, setPrice] = useState('');
-        const [value, setValue] = useState('');
-        const [result, setResult] = useState([]);
-        
-        function handleClick() {
-            setResult(prev => [...prev, {name, price, value}])
-            setName('')
-            setPrice('')
-            setValue('')
-        }
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [value, setValue] = useState('');
+    const [result, setResult] = useState([]);
+    
+    function handleClick() {
+        setResult(prev => [...prev, {name, price, value}])
+        setName('')
+        setPrice('')
+        setValue('')
+    }
 
   return (
       <>
         <PromosSelect 
         value={name}
-        onChange={value => setName(value)}
         />
 		<Input 
         placeholder="введите цену товара" 
