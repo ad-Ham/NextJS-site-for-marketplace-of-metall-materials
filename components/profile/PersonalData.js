@@ -9,7 +9,7 @@ export function PersonalData ()  {
   return (
 	<>
 	<UnstyledButton>
-		<Menu control={<div><User size={38} strokeWidth={1} color={'black'}/></div>} opened={opened} onOpen={handlers.open} onClose={handlers.close}  size="xl" shadow="xl">
+		<Menu control={<div><User size={38} strokeWidth={1} color={'black'} /></div>} opened={opened} onOpen={handlers.open} onClose={handlers.close}  size="xl" shadow="xl">
 			<Menu.Label onClick={() => setOpened(true)}>Application</Menu.Label>
 			<Menu.Item icon={<Settings size={14}/>}>Настройки</Menu.Item>
 			<Menu.Item icon={<MessageCircle size={14} />}>Мои сообщения</Menu.Item>

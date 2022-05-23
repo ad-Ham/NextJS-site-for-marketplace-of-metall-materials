@@ -89,30 +89,30 @@ export const MainLayout = ({ children }) => {
 	const [euroPrice, setEuroPrice] = useState('')
 
 	const metallsIcon = [{
-		image: <img src="/aluminum.svg" height="20px" width="20px"/>
+		image: <img src="/Al.svg" height="20px" width="20px"/>
 	},
 	{
-		image: <img src="/plumbum.svg" height="20px" width="20px"/>
+		image: <img src="/Pb.svg" height="20px" width="20px"/>
 
 	},
 	{
-		image: <img src="/ferrum.svg" height="20px" width="20px"/>
+		image: <img src="/Fe.svg" height="20px" width="20px"/>
 
 	},
 	{
-		image: <img src="/cuprum.svg" height="20px" width="20px"/>
+		image: <img src="/Cu.svg" height="20px" width="20px"/>
 
 	},
 	{
-		image: <img src="/nickel.svg" height="20px" width="20px"/>
+		image: <img src="/Ni.svg" height="20px" width="20px"/>
 
 	},
 	{
-		image: <img src="/zinc.svg" height="20px" width="20px"/>
+		image: <img src="/Zn.svg" height="20px" width="20px"/>
 
 	},
 	{
-		image: <img src="/stannum.svg" height="20px" width="20px"/>
+		image: <img src="/Sn.svg" height="20px" width="20px"/>
 
 	}
 ];

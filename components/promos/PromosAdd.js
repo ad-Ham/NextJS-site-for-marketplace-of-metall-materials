@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { TextInput, Input, Table, Select, Button } from '@mantine/core';
+import { PromosSelect } from './PromosSelect';
+
 export function PromosAdd() {
     
         const [name, setName] = useState('');
         const [price, setPrice] = useState('');
         const [value, setValue] = useState('');
         const [result, setResult] = useState([]);
-        
         
         function handleClick() {
             setResult(prev => [...prev, {name, price, value}])
@@ -17,18 +18,27 @@ export function PromosAdd() {
 
   return (
       <>
-        
-        <TextInput styles={{margin:50}} placeholder="выберите товар" value={name} onChange={event => setName(event.target.value)} />
-		<Input placeholder="введите цену товара" value={price} onChange={event => setPrice(event.target.value)} />
+        <PromosSelect 
+        value={name}
+        onChange={value => setName(value)}
+        />
+		<Input 
+        placeholder="введите цену товара" 
+        value={price} onChange={event => setPrice(event.target.value)} 
+        />
         <Select 
         placeholder="выберите валюту" 
         value={value} 
         onChange={value => setValue(value)} 
         data={[
-            { value: '₽', label: '₽' },
-            { value: '$', label: '$' },
+            { value: 'RUB', label: 'RUB' },
+            { value: 'USD', label: 'USD' },
           ]}/>
-        <Button onClick={handleClick} disabled={result.length >= 10} >Добавить</Button>
+        <Button style={{ width: 150 }}
+        onClick={handleClick} 
+        disabled={result.length >= 10} >
+            Добавить
+        </Button>
          <Table>
             <thead>
             {/* {`${name} ${price} ${value}`}</tr>)} */}
