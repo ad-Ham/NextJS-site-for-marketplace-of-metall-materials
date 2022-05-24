@@ -15,7 +15,7 @@ const PersonalData = () => {
                 <meta charSet="utf-8" />
             </Head>
     <Card>
-	 <Group style={{borderBottom: ' 3px solid #42aaff'}}>
+	 <Group style={{borderBottom: ' 2px solid #42aaff'}}>
         <Grid >
             <Grid.Col style={{marginLeft:20}}>
                  <Profilepicture />
@@ -24,13 +24,13 @@ const PersonalData = () => {
         <Grid>
             <Grid.Col offset={1}>
                 <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>Хоменков Алексей Дмитриевич</p>
-                <p style={{fontSize:20, marginBottom: 20}}>
+                <p style={{fontSize:18, marginBottom: 20}}>
                     <Mail
                     size={20}
                     strokeWidth={2}
                     color={'#26194d'}/>  aleks.khomenkov.03@mail.ru
                 </p>
-                <p style={{fontSize:20, marginBottom: 20}}>
+                <p style={{fontSize:18, marginBottom: 20}}>
                     <Phone 
                     size={20}
                     strokeWidth={2}
@@ -38,16 +38,16 @@ const PersonalData = () => {
             </Grid.Col>
         </Grid>
 		<Grid>
-            <Grid.Col  offset={7.5} style={{marginTop: 120}}>
+            <Grid.Col  offset={7.8} style={{marginTop: 120}}>
                 <Link href="/editprofile" >
                     <Button variant="subtle">Редактировать личные данные</Button>
                 </Link>
             </Grid.Col>
         </Grid>		
 	 </Group>
-     <Group style={{borderBottom: ' 3px solid #42aaff'}}>
-     <Grid style={{marginTop:10, fontSize:20, marginBottom:10}}>
-            <Grid.Col offset={14}>
+     <Group style={{borderBottom: ' 2px solid #42aaff'}}>
+     <Grid style={{marginTop:10, fontSize:18, marginBottom:10}}>
+            <Grid.Col offset={15.1}>
                 <p><Lock 
                     size={20}
                     strokeWidth={2}
@@ -55,36 +55,36 @@ const PersonalData = () => {
             </Grid.Col>
         </Grid>
         <Grid>
-            <Grid.Col  offset={48} style={{marginTop:7}}>
+            <Grid.Col  offset={48.9} style={{marginTop:7}}>
                 <Link href="/editprofile" >
                     <Button variant="subtle">Сменить пароль</Button>
                 </Link>
             </Grid.Col>
         </Grid>
      </Group>
-     <Group style={{borderBottom: ' 3px solid #42aaff'}}>
+     <Group style={{borderBottom: ' 2px solid #42aaff'}}>
      <Grid style={{marginTop:10}}>
-            <Grid.Col offset={6.9}>
-                <p style={{fontSize:20, marginBottom: 20}}><BuildingSkyscraper 
+            <Grid.Col offset={7.6}>
+                <p style={{fontSize:18, marginBottom: 20}}><BuildingSkyscraper 
                     size={20}
                     strokeWidth={2}
                     color={'#26194d'}/>  Организация:</p>
-                <p style={{fontSize:20, marginBottom: 20}}>
+                <p style={{fontSize:18, marginBottom: 20}}>
                     <Home 
                     size={20}
                     strokeWidth={2}
                     color={'#26194d'}/>  Юридический адрес:</p>
-                <p style={{fontSize:20, marginBottom: 20}}>
+                <p style={{fontSize:18, marginBottom: 20}}>
                     <User 
                     size={20}
                     strokeWidth={2}
                     color={'#26194d'}/>  Должность:</p>
-                 <p style={{fontSize:20, marginBottom: 20}}>
+                 <p style={{fontSize:18, marginBottom: 20}}>
                     <FileText
                     size={20}
                     strokeWidth={2}
                     color={'#26194d'}/>  ИНН:</p>
-                 <p style={{fontSize:20, marginBottom: 20}}>
+                 <p style={{fontSize:18, marginBottom: 20}}>
                     <FileDescription 
                     size={20}
                     strokeWidth={2}
@@ -92,7 +92,7 @@ const PersonalData = () => {
             </Grid.Col>
         </Grid>
         <Grid>
-            <Grid.Col  offset={15.5} style={{marginTop:190}}>
+            <Grid.Col  offset={16.5} style={{marginTop:190}}>
                 <Link href="/editprofile" >
                     <Button variant="subtle">Редактировать юридические
                     данные</Button>
