@@ -1,5 +1,6 @@
 import { ModalsProvider } from '@mantine/modals';
 import { MantineProvider } from '@mantine/core';
+import { UserCircle } from 'tabler-icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
@@ -406,14 +407,13 @@ export const MainLayout = ({ children }) => {
 									</Link>
 								</MediaQuery>
 								{!userStatus && <LoginModal />}
-								<PersonalData/>
-								{/* <Link href="/" passHref>
-									<UserCircle className={styles.user}
+								<Link href="/profile" passHref>
+									<UserCircle
 										size={32}
 										strokeWidth={1}
 										color={'#191d4d'}
 									/>	
-								</Link>	 */}
+								</Link>	
 							</div>
 						</Header>
 					}
