@@ -14,7 +14,7 @@ const axios = require('axios').default;
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	const news = await axios.get('http://localhost:3001/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	const news = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let tagsMas = news.data.news.tags.split(', ')
 	let tags = []
 	let i;

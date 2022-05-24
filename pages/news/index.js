@@ -33,35 +33,36 @@ const News = ({ news }) => {
 	const [otherNews, setOtherNews] = useState([])
 
 	const showNews = news.map(el => {
-		return (<Grid.Col span={6} key={'0' + el.id}>
-			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
+		return (<Grid.Col span={10} key={'0' + el.id}>
+			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{el.title}</Title>
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src="/photopromo.svg" height={100} alt="Norway" layout="fill" />
+						<Image src={el.photopath.slice(31)} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{el.text}
+							{el.desc}
 						</Text>
 					</Grid.Col>
 				</Grid>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
+						<Text style={{ marginTop: '20px' }, {fontSize: '15px'}} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear()
+							el.date.getFullYear() +' ' + el.time.slice(0, 5)
 						}
 						</Text>
+
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-					    <Link href="/news/{pid}" passHref>
+					    <Link href={"/news/" + el.id} passHref>
 							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 								Подробнее
 							</Button>
