@@ -1,7 +1,9 @@
+import { Card } from '@mantine/core';
 import styles from './GostsMainText.module.scss'
 
 export const GostsMainText = () => {
     return (<>
+    <Card style={{width: 950, marginLeft: 90}}>
         <div className={styles.maindiv}>
             <div className={styles.gostsheader}>
                 <h2 className={styles.gostsheadertext}>ГОСТы металлургической продукции</h2>
@@ -25,5 +27,6 @@ export const GostsMainText = () => {
             </div>
 
         </div>
+        </Card>
     </>)
 }

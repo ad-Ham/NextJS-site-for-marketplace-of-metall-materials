@@ -1,3 +1,5 @@
+import { Card, Table } from '@mantine/core';
+import Link from 'next/link'
 import styles from './GostsList.module.scss'
 
 
@@ -516,17 +518,22 @@ export const GOSTS = [
 
 export const GostsList = () => {
     return (<>
-        <div className={styles.maindiv}>
-            <ul className={styles.gostslist}>
-
-                {/* Катанка  */}
+      <Card style={{width: 950, marginLeft: 90}}> 
+            <Table>
+                <li className={styles.listitemheader}>
+                    <p className={styles.listitemsubheadertext}>
+                        Катанка
+                    </p>
+                </li>
                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Прутки стальные круглого сечения для холодной высадки и холодной экструзии
                     </p>
+                    <Link href="https://docs.cntd.ru/document/1200005128" >
                     <p>
                         DIN EN 10108-2005
                     </p>
+                    </Link>
                 </li>
 
                 {/* Квадрат    */}
@@ -1144,7 +1151,8 @@ export const GostsList = () => {
                         ГОСТ 26271-84
                     </p>
                 </li>
-            </ul>
-        </div>
+            </Table>
+        
+    </Card>
     </>)
 }
