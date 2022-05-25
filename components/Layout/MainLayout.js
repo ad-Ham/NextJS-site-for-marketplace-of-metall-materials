@@ -273,7 +273,7 @@ export const MainLayout = ({ children }) => {
 					}
 					aside={
 						<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }}>
+							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }} className={styles.aside}>
 								<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
 									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
 									<Grid className={styles.priceButtonContainer}>

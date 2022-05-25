@@ -67,7 +67,7 @@ export default function Index({ news, promos }) {
 				<meta name="description" content="MetalMarket.pro" />
 			</Head>
 			<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
-			<MainPageNews news={news.slice(1, 100)} importantNews={news.slice(0, 1)} />
+			<MainPageNews news={news.slice(0, 100)} importantNews={news.slice(0, 1)} />
 		</>
 	)
 }
