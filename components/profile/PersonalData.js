@@ -28,7 +28,7 @@
 
 import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
-import styles from './PersonalData.module.scss'
+// import styles from './PersonalData.module.scss'
 import { Group } from '@mantine/core';
 
 export const PersonalData = () => {

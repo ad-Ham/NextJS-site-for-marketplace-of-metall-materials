@@ -406,14 +406,14 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								{!userStatus && <LoginModal />}
 								<Link href="/profile" passHref>
 									<UserCircle
 										size={32}
 										strokeWidth={1}
 										color={'#191d4d'}
 									/>	
-								</Link>	
+								</Link>
+								{!userStatus && <LoginModal />}	
 							</div>
 						</Header>
 					}
