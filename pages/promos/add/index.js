@@ -4,7 +4,9 @@ import { useState } from 'react';
 const axios = require('axios').default;
 import styles from '../../../components/promopage/PromoBlock.module.scss'
 import { Card, Input,Grid, Select,  Image, Text, Badge, Button, Group, useMantineTheme, Textarea } from '@mantine/core';
-import { PromosAdd} from '../../../components/promos/PromosAdd'
+import { PromosMultiSelect } from '../../../components/promos/PromosMultiSelect'
+import { PromosAdd } from '../../../components/promos/PromosAdd'
+
 
 
 const AddPromo = () => {
@@ -102,259 +104,255 @@ const AddPromo = () => {
 
 	return (
 
-		<>
-		<Card>
-			<h1 style={{marginBottom: 30}}>Размещение объявления</h1>
-			<form onSubmit={handleSubmit}>
-			<Grid  style={{marginBottom: -40}}>
-				<Grid.Col span={9}>
-					<p>Название объявления</p>
-					<Input 
-					id="title"
-					placeholder="Введите название объявления"
-					required
-					onChange={e => setTitle(e.target.value)}
-					/>
-				</Grid.Col>
-				<Grid.Col span={3}>
-					<p>Тип объявления</p>
-					<Select
-					placeholder="Куплю/Продам"
-					data={[
-						{ value: 'продам', label: 'Продам' },
-						{ value: 'куплю', label: 'Куплю' },
-						]}
-   					/>
-				</Grid.Col>
-			</Grid>
+		// <>
+		// <Card>
+		// 	<h1 style={{marginBottom: 30}}>Размещение объявления</h1>
+		// 	<form onSubmit={handleSubmit}>
+		// 	<Grid  style={{marginBottom: -40}}>
+		// 		<Grid.Col span={9}>
+		// 			<p>Название объявления</p>
+		// 			<Input 
+		// 			id="title"
+		// 			placeholder="Введите название объявления"
+		// 			required
+		// 			onChange={e => setTitle(e.target.value)}
+		// 			/>
+		// 		</Grid.Col>
+		// 		<Grid.Col span={3}>
+		// 			<p>Тип объявления</p>
+		// 			<Select
+		// 			placeholder="Куплю/Продам"
+		// 			data={[
+		// 				{ value: 'продам', label: 'Продам' },
+		// 				{ value: 'куплю', label: 'Куплю' },
+		// 				]}
+   		// 			/>
+		// 		</Grid.Col>
+		// 	</Grid>
 				
-						{/* <div>
-							<p>Ваша страна</p>
-							<select name="country" id="country" onChange={e => changeCountry(e)}>
-								<option selected="selected" value="">Выберите страну</option>
-								<option value="Россия">Россия</option>
-								<option value="Казахстан">Казахстан</option>
-								<option value="Кыргызстан">Кыргызстан</option>
-								<option value="Узбекистан">Узбекистан</option>
-							</select>
-						</div> */}
-						{/* <div>
-							<p>Тип объявления</p>
-							<Select
-							placeholder="Куплю/Продам"
-							data={[
-								{ value: 'продам', label: 'Продам' },
-								{ value: 'куплю', label: 'Куплю' },
-							]}
-   					 		/>
-						</div> */}
-						{/* <div>
-							<p>Введите номер телефона</p>
-							<input id="email"
-								type="tel"
-								placeholder="999-999-999"
-								required
-								maxLength="150"
-								onChange={e => setPhoneNumber(e.target.value)}
-								className="inputText" />
-						</div> */}
-						{/* <div>
-							{(country !== '') && <><p>Ваш регион</p>
-								<select name="region" id="region" onChange={e => changeRegion(e)}>
-									{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
-								</select></>}
-						</div> */}					
+		// 				{/* <div>
+		// 					<p>Ваша страна</p>
+		// 					<select name="country" id="country" onChange={e => changeCountry(e)}>
+		// 						<option selected="selected" value="">Выберите страну</option>
+		// 						<option value="Россия">Россия</option>
+		// 						<option value="Казахстан">Казахстан</option>
+		// 						<option value="Кыргызстан">Кыргызстан</option>
+		// 						<option value="Узбекистан">Узбекистан</option>
+		// 					</select>
+		// 				</div> */}
+		// 				{/* <div>
+		// 					<p>Тип объявления</p>
+		// 					<Select
+		// 					placeholder="Куплю/Продам"
+		// 					data={[
+		// 						{ value: 'продам', label: 'Продам' },
+		// 						{ value: 'куплю', label: 'Куплю' },
+		// 					]}
+   		// 			 		/>
+		// 				</div> */}
+		// 				{/* <div>
+		// 					<p>Введите номер телефона</p>
+		// 					<input id="email"
+		// 						type="tel"
+		// 						placeholder="999-999-999"
+		// 						required
+		// 						maxLength="150"
+		// 						onChange={e => setPhoneNumber(e.target.value)}
+		// 						className="inputText" />
+		// 				</div> */}
+		// 				{/* <div>
+		// 					{(country !== '') && <><p>Ваш регион</p>
+		// 						<select name="region" id="region" onChange={e => changeRegion(e)}>
+		// 							{regionsList.map(el => <option key={el.id} value={el.value}>{el.value}</option>)}
+		// 						</select></>}
+		// 				</div> */}					
 				
-				<div>
-					<p style={{marginTop:10}}>Добавить товар</p>
-					< PromosAdd />
-				</div>
-				{/* <Card>
-					<Grid>
-						<Grid.Col span={3} style={{ minHeight: 80 }}>
-						<Image
-							width={260}
-							height={160}
-							src="https://s4.aconvert.com/convert/p3r68-cdx67/ahwg4-isf5x.svg"
-						/>
-						</Grid.Col>
-					</Grid>
-				</Card> */}
-				{/* <div styles={{width: '50px'}}>
-							<p>Наименование товара</p>
-							<div>
-							<Input id="title"
-								placeholder="Введите название объявления"
-								required
-								maxLength="150"
-								onChange={e => setTitle(e.target.value)}
-								className="inputText"
-								width="50px"/>
-							</div>
-					</div>
-				<div>
-					<p>Введите цену(₽)</p>
-					<div>
-					<Input id="price"
-						type="number"
-						placeholder=""
-						required
-						maxLength="150"
-						onChange={e => setPrice(e.target.value)}
-						className="inputText" />
-					</div>
-				</div> */}
+		// 		{/* <Card>
+		// 			<Grid>
+		// 				<Grid.Col span={3} style={{ minHeight: 80 }}>
+		// 				<Image
+		// 					width={260}
+		// 					height={160}
+		// 					src="https://s4.aconvert.com/convert/p3r68-cdx67/ahwg4-isf5x.svg"
+		// 				/>
+		// 				</Grid.Col>
+		// 			</Grid>
+		// 		</Card> */}
+		// 		{/* <div styles={{width: '50px'}}>
+		// 					<p>Наименование товара</p>
+		// 					<div>
+		// 					<Input id="title"
+		// 						placeholder="Введите название объявления"
+		// 						required
+		// 						maxLength="150"
+		// 						onChange={e => setTitle(e.target.value)}
+		// 						className="inputText"
+		// 						width="50px"/>
+		// 					</div>
+		// 			</div>
+		// 		<div>
+		// 			<p>Введите цену(₽)</p>
+		// 			<div>
+		// 			<Input id="price"
+		// 				type="number"
+		// 				placeholder=""
+		// 				required
+		// 				maxLength="150"
+		// 				onChange={e => setPrice(e.target.value)}
+		// 				className="inputText" />
+		// 			</div>
+		// 		</div> */}
 
 
-				<div>
-					<p>Описание товара или услуги</p>
-					<Textarea id="description"
-						placeholder="Опишите товар"
-						required
-						cols="100"
-						minRows={5}
-						onChange={e => setDescription(e.target.value)} />
-				</div>
-				<div className="buttonDiv">
-					<Button type="submit">Разместить объявление</Button>
-				</div>
-				<div className="buttonDiv">
-					<Button type="submit" onClick={showPreview}>Предпросмотр</Button>
-				</div>
-			</form>
-			<style jsx>{`
-				.cross {
-					width: 2vw;
-					height: 2vw;
-					background-color: unset;
-					background-image: url("/cross.svg");
-					background-size: contain;
-    				opacity: 0.5;
-				}
+		// 		<div>
+		// 			<p>Описание товара или услуги</p>
+		// 			<Textarea id="description"
+		// 				placeholder="Опишите товар"
+		// 				required
+		// 				cols="100"
+		// 				minRows={5}
+		// 				onChange={e => setDescription(e.target.value)} />
+		// 		</div>
+		// 		<div className="buttonDiv">
+		// 			<Button type="submit">Разместить объявление</Button>
+		// 		</div>
+		// 		<div className="buttonDiv">
+		// 			<Button type="submit" onClick={showPreview}>Предпросмотр</Button>
+		// 		</div>
+		// 	</form>
+		// 	<style jsx>{`
+		// 		.cross {
+		// 			width: 2vw;
+		// 			height: 2vw;
+		// 			background-color: unset;
+		// 			background-image: url("/cross.svg");
+		// 			background-size: contain;
+    	// 			opacity: 0.5;
+		// 		}
 
-				.modWindowDisable {
-					display: none;
-				}
+		// 		.modWindowDisable {
+		// 			display: none;
+		// 		}
 
-				.modWindowWrapper {
-					display: flex;
-					position: fixed;
-					background: rgb(0,0,0,0.7);
-					width: 100vw;
-					height: 100vh;
-					top: 0;
-					left: 0;
-					margin: 0;
-				}
+		// 		.modWindowWrapper {
+		// 			display: flex;
+		// 			position: fixed;
+		// 			background: rgb(0,0,0,0.7);
+		// 			width: 100vw;
+		// 			height: 100vh;
+		// 			top: 0;
+		// 			left: 0;
+		// 			margin: 0;
+		// 		}
 
-				.modWindow {
-					z-index: 100;
-					height: 80vh;
-					width: 80vw;
-					overflow-y: scroll;
-					background: white;
-					margin: auto;
-					padding: 15px;
-					border-radius: 4px;
-				}
+		// 		.modWindow {
+		// 			z-index: 100;
+		// 			height: 80vh;
+		// 			width: 80vw;
+		// 			overflow-y: scroll;
+		// 			background: white;
+		// 			margin: auto;
+		// 			padding: 15px;
+		// 			border-radius: 4px;
+		// 		}
 
-				button {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					background: #C4C4C4;
-					border-radius: 4px;
-					border: 0;
-					font-weight: 700;
-					font-size: 18px;
-					line-height: 99.69%;
-					padding: 8px 25px 7px 25px;
-					margin-top: 25px;
-					width: 15vw;
-				}
+		// 		button {
+		// 			display: flex;
+		// 			align-items: center;
+		// 			justify-content: center;
+		// 			background: #C4C4C4;
+		// 			border-radius: 4px;
+		// 			border: 0;
+		// 			font-weight: 700;
+		// 			font-size: 18px;
+		// 			line-height: 99.69%;
+		// 			padding: 8px 25px 7px 25px;
+		// 			margin-top: 25px;
+		// 			width: 15vw;
+		// 		}
 
-				h1 {
-					text-align: center;
-					font-size: 36px;
-				}
+		// 		h1 {
+		// 			text-align: center;
+		// 			font-size: 36px;
+		// 		}
 
-				form {
-					display: flex;
-					flex-direction: column;
-					flex-wrap: wrap;
-					padding-left: 5vw;
-					padding-right: 5vw;
-				}
+		// 		form {
+		// 			display: flex;
+		// 			flex-direction: column;
+		// 			flex-wrap: wrap;
+		// 			padding-left: 5vw;
+		// 			padding-right: 5vw;
+		// 		}
 
-				p {
-					font-size: 20px;
-					margin-bottom: 5px;
-				}
+		// 		p {
+		// 			font-size: 20px;
+		// 			margin-bottom: 5px;
+		// 		}
 
-				.radioTeaxt {
-					margin: 0;
-					font-size: 16px;
-					margin-left: 5px;
-				}
+		// 		.radioTeaxt {
+		// 			margin: 0;
+		// 			font-size: 16px;
+		// 			margin-left: 5px;
+		// 		}
 
-				div {
-					margin-top: 25px;
-					display: flex;
-					flex-direction: column;
-				}
+		// 		div {
+		// 			margin-top: 25px;
+		// 			display: flex;
+		// 			flex-direction: column;
+		// 		}
 
-				.radioDiv {
-					margin: 0;
-					display: flex;
-					flex-direction: row;
-					width: 15vw;
-					justify-content: left;
-					align-items: center;
-				}
+		// 		.radioDiv {
+		// 			margin: 0;
+		// 			display: flex;
+		// 			flex-direction: row;
+		// 			width: 15vw;
+		// 			justify-content: left;
+		// 			align-items: center;
+		// 		}
 
-				.columnDiv {
-					flex-direction: row;
-					justify-content: space-between;
-				}
+		// 		.columnDiv {
+		// 			flex-direction: row;
+		// 			justify-content: space-between;
+		// 		}
 
-				.buttonDiv {
-					display: flex;
-					align-items: center;
-				}
+		// 		.buttonDiv {
+		// 			display: flex;
+		// 			align-items: center;
+		// 		}
 
-				.inputText {
-					font-size: 16px;
-					padding: 4px;
-					width: 30vw;
-					background: #E0E0E0;
-					border: 1px solid #000000;
-					box-sizing: border-box;
-					border-radius: 4px;
-				}
+		// 		.inputText {
+		// 			font-size: 16px;
+		// 			padding: 4px;
+		// 			width: 30vw;
+		// 			background: #E0E0E0;
+		// 			border: 1px solid #000000;
+		// 			box-sizing: border-box;
+		// 			border-radius: 4px;
+		// 		}
 
-				textarea {
-					font-size: 18px;
-					padding: 7px;
-					width: 100%;
-					background: #E0E0E0;
-					border: 1px solid #000000;
-					box-sizing: border-box;
-					border-radius: 4px;
-				}
+		// 		textarea {
+		// 			font-size: 18px;
+		// 			padding: 7px;
+		// 			width: 100%;
+		// 			background: #E0E0E0;
+		// 			border: 1px solid #000000;
+		// 			box-sizing: border-box;
+		// 			border-radius: 4px;
+		// 		}
 
-				select {
-					font-size: 18px;
-					padding: 7px;
-					width: 30vw;
-					background: #E0E0E0;
-					border: 1px solid #000000;
-					box-sizing: border-box;
-					border-radius: 4px;
-				}
-			`}</style>
-		</Card>
-		</>
-
+		// 		select {
+		// 			font-size: 18px;
+		// 			padding: 7px;
+		// 			width: 30vw;
+		// 			background: #E0E0E0;
+		// 			border: 1px solid #000000;
+		// 			box-sizing: border-box;
+		// 			border-radius: 4px;
+		// 		}
+		// 	`}</style>
+		// </Card>
+		// </>
+		<PromosAdd />
 	)
 }
 

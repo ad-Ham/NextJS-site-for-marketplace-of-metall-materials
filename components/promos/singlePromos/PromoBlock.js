@@ -127,7 +127,12 @@ export const PromoBlock = () => {
 				<tbody>{item_rows}</tbody>
 				</Table>	
 
-				<SimpleGrid cols={width > 1200 ? 2 : 1}>
+				<SimpleGrid 
+					breakpoints = {[
+						{ maxWidth: 600, cols: 1 },
+						{ minWidth: 1200, cols: 2 },
+				  	]}
+				>
 					<div style={{marginLeft: 5, position: 'left'}}>
 						{user_rows}
 					</div>
@@ -139,7 +144,7 @@ export const PromoBlock = () => {
 						>
 						</Modal>
 
-						<Group position='right' style={{marginTop: width > 1200 ? 35 : 15}}>
+						<Group position='right' style={{marginTop: 35}}>
 							<Button onClick={() => setOpened(true)}>Ответить на объявление</Button>
 						</Group>
 					</div>
