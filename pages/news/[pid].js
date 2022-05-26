@@ -9,26 +9,49 @@ import { Adbannertop } from '../../components/Adbannertop'
 import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
 const axios = require('axios').default;
-
+const imageToBase64 = require('image-to-base64');
 
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	const news = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
-	let tagsMas = news.data.news.tags.split(', ')
+	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let tagsMas = res.data.news.tags.split(', ')
 	let tags = []
 	let i;
 	for (i=0; i<tagsMas.length; ++i) {
 		tags.push({id: i, value: tagsMas[i]})
 	}
+	let news = res.data.news
+	news['image'] = await imageToBase64(news.photopath)
+
+
+	res = await axios.get('https://api.metalmarket.pro/newsquery', {
+		headers: {
+			'Accept': 'application/json'
+		}
+	})
+	//const images = new Map();
+	let newsList = res.data.news
+	
+	for (i=0;i<newsList.length;++i) {
+		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+		newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
+	}
+
+	if (newsList.indexOf(news) !== -1) {
+		newsList.splice(newsList.indexOf(news))
+	}
+
+
 	return {
-		props: {news: news.data.news, tags: tags}
+		props: {news: news, tags: tags, newsList: newsList}
 	}
 }
 
-const NewsPage = ({news, tags}) => {
+const NewsPage = ({news, tags, newsList}) => {
 	const [singleNew, setSingleNew] = useState([])
-
+	console.log('!!!!!!!!!!!!!!')
+	console.log(newsList)
 	// useEffect(() => {
 	// 	axios.get('https://api.metalmarket.pro/singlenews', {
 	// 		id: id
@@ -57,9 +80,7 @@ const NewsPage = ({news, tags}) => {
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
 						<div className={styles.morenewsrow}>
-							<MoreNewsCard />
-							<MoreNewsCard />
-							<MoreNewsCard />
+							<MoreNewsCard news={newsList.slice(0,3)}/>
 						</div>
 					</div>
 				</div>

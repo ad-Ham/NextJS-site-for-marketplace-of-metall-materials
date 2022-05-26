@@ -35,7 +35,7 @@ const AddNews = () => {
 	  	const uploadToServer = async (e) => {  
   	    e.preventDefault()
 	    const body = new FormData(document.getElementById("uploadForm"));
-	    console.log(image)
+	    console.log(body)
 	    // console.log("file", image)
 	    body.append("html", value);    
 	    const response = await fetch("https://api.metalmarket.pro/uploadNews", {
