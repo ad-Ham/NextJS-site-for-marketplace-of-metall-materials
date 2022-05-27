@@ -1,71 +1,57 @@
-import { Input, Group, Button } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
-import  RichTextEditor  from '../../../components/RichText.tsx';
-import { useState } from 'react';
-const axios = require('axios').default;
+import Head from 'next/head'
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import Link from 'next/link'
-const initialValue =
-  		'<p>Оформите вашу новость здесь</p> <p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>';
-const AddNews = () => {
-	
+const axios = require('axios').default;
+import  RichTextEditor  from '../../../components/RichText.tsx';
+import { showNotification } from '@mantine/notifications';
+import { Input, Group, Button } from '@mantine/core';
 
-	const [newsStatus, setNewsStatus] = useState('');
-	const [value, onChange] = useState(initialValue);
-	const [desc, setDesc] = useState('');
-	const [title, setTitle] = useState('');
-	const [tags, setTags] = useState('');
 
-	const handleSubmit = e => {
-		e.preventDefault()
-		console.log(value)
-		setText(value)
-	};
+export async function getServerSideProps(context) {
+	const id = context.params.pid
+	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let news = res.data.news
+	//news['image'] = await imageToBase64(news.photopath)
 
-	  const [image, setImage] = useState(null);
-	  const [createObjectURL, setCreateObjectURL] = useState(null);
 
-	  const uploadToClient = (event) => {
-	    if (event.target.files && event.target.files[0]) {
-	      const i = event.target.files[0];
 
-	      setImage(i);
-	      setCreateObjectURL(URL.createObjectURL(i));
-	    }
-	  };
+	return {
+		props: {news: news, pid: id}
+	}
+}
 
-	  	const uploadToServer = async (e) => {  
-  	    e.preventDefault()
+const NewsPageEdit = ({news, pid}) => {
+	const [value, onChange] = useState(news.html);
+	const [desc, setDesc] = useState(news.desc);
+	const [title, setTitle] = useState(news.title);
+	const [tags, setTags] = useState(news.tags);
+
+	const uploadToServer = async (e) => {  
+	   	e.preventDefault()
 	    const body = new FormData(document.getElementById("uploadForm"));
 	    console.log(body)
 	    // console.log("file", image)
-	    body.append("html", value);    
-	    const response = await fetch("https://api.metalmarket.pro/uploadNews", {
+	    body.append("html", value); 
+	    body.append("id", pid);    
+	    const response = await fetch("https://api.metalmarket.pro/updateNews", {
 	      method: "POST",
 	      body,
 	    });
 	    onChange('')
 	    showNotification({ 
 		      autoClose: false,
-		      message: 'Новость добавлена',
+		      message: 'Новость обновлена',
 		      color: 'green'
-          })
-	  };
+	      })
+	};
 
 	return (<>
-
-
-		{/*<form  
-	      id='uploadForm' 
-	      onSubmit={uploadToServer} 
-	      encType="multipart/form-data">
-	        <input type="file" name="sampleFile" onChange={uploadToClient}/>
-	        <input type='submit' value='Upload!' />
-	    </form>*/} 
-		
 		<form onSubmit={uploadToServer} id="uploadForm">
 			<Group direction="column" position="center" grow>
 				<h1>Форма добавления новостей</h1>
 				<Input id="title"
+					value={title}
 					name="title"
 					placeholder="Введите заголовок"
 					required
@@ -75,6 +61,7 @@ const AddNews = () => {
 					onChange={e => setTitle(e.target.value)} />
 
 				<Input id="desc"
+					value={desc}
 					name="desc"
 					placeholder="Введите краткое описание статьи"
 					required
@@ -83,13 +70,9 @@ const AddNews = () => {
 					length="100%"
 					onChange={e => setDesc(e.target.value)} />
 
-				<Input
-					type="file"
-					name="sampleFile"
-					onChange={uploadToClient} />
-
 				<RichTextEditor name="rte" value={value} onChange={onChange}  required controls={[['bold', 'strike', 'italic', 'underline'], ['clean'], ['h1', 'h2', 'h3', 'h4'], ['link', 'blockquote', 'sub', 'sup'], ['unorderedList', 'orderedList'], ['alignCenter', 'alignLeft', 'alignRight'], ['code', 'codeBlock']]}/>
 				<Input id="tags"
+					value={tags}
 					name="tags"
 					placeholder="&quot;Тег1, Тег2, Тег3, ...&quot;"
 					required
@@ -99,12 +82,15 @@ const AddNews = () => {
 					onChange={e => setTags(e.target.value)} />
 
 
-				<Button type="submit">Добавить новость</Button>
+				<Button type="submit">Сохранить изменения</Button>
 				<Input type="reset" value="Сбросить"/>
 				<div dangerouslySetInnerHTML={{__html: value}}></div>
 			</Group>
 			<Link href='/news/edit'>
 				<Button>Редактировать новости</Button>
+			</Link>
+			<Link href='/news/add'>
+				<Button>Добавить новости</Button>
 			</Link>
 		</form>
 		<style jsx>{`
@@ -138,4 +124,4 @@ const AddNews = () => {
 	</>)
 }
 
-export default AddNews;
+export default NewsPageEdit;

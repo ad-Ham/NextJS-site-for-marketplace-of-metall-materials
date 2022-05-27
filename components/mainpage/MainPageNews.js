@@ -23,7 +23,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 			</Group>
 			<Grid justify={"center"}>
 				<Grid.Col span={4}>
-					<Image src={el.photopath.slice(31)} height={100} alt="Norway" layout="fill" />
+					<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 				</Grid.Col>
 				<Grid.Col span={8}>
 					<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -62,7 +62,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={el.photopath.slice(31)} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -112,7 +112,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 				<Grid.Col span={6}>
 					<Card p="lg" style={{ height: '560px' }} shadow="md">
 						<Card.Section>
-							<Image src={news[0].photopath.slice(31)} height={260} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+news[0].photopath.substr(news[0].photopath.length-3)+';base64,'+ news[0].image} height={260} alt="Norway" layout="fill" />
 						</Card.Section>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Badge color="pink" variant="light">

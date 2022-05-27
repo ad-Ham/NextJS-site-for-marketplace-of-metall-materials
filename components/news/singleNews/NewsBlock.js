@@ -28,7 +28,7 @@ export const NewsBlock = ({news, tags}) => {
 				{/* <div className={styles.photo}></div> */}
 				<Image className={styles.photo}
 					radius="xs"
-					src={news.photopath.slice(31)}
+					src={'data:image/'+news.photopath.substr(news.photopath.length-3)+';base64,'+ news.image}
 					alt="Random unsplash image"
 				/>
 	

@@ -4,16 +4,25 @@ import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
 
 const axios = require('axios').default;
+const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
-	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
+	//const images = new Map();
+	let news = res.data.news
+	let i;
+	for (i=0;i<news.length;++i) {
+		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+		news[i]['image'] = await imageToBase64(news[i].photopath)
+	}
 	return {
 		props: {
-			news: news.data.news,
+			news: news,
+			//images: images
 		},
 	}
 }
@@ -31,7 +40,6 @@ const News = ({ news }) => {
 		return el;
 	})
 	const [otherNews, setOtherNews] = useState([])
-
 	const showNews = news.map(el => {
 		return (<Grid.Col span={10} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
@@ -40,7 +48,7 @@ const News = ({ news }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={el.photopath.slice(31)} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>

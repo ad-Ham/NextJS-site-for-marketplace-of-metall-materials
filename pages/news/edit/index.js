@@ -3,7 +3,36 @@ import { useState } from 'react';
 import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
 
-export const MoreNewsCard = ({news}) => {
+const axios = require('axios').default;
+const imageToBase64 = require('image-to-base64');
+
+export const getServerSideProps = async (context) => {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
+		headers: {
+			'Accept': 'application/json'
+		}
+	})
+	const images = new Map();
+	let news = res.data.news
+	let i;
+	for (i=0;i<news.length;++i) {
+		images.set(news[i].id, await imageToBase64(news[i].photopath))
+		news[i]['image'] = await imageToBase64(news[i].photopath)
+	}
+	return {
+		props: {
+			news: news,
+			images: images
+		},
+	}
+}
+
+const handleDelete = async(e) => {
+	console.log(e.target.id)
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+}
+
+const NewsEdit = ({ news, images }) => {
 	const theme = useMantineTheme();
 	news = news.map(el => {
 		if (!el.date) {
@@ -16,7 +45,6 @@ export const MoreNewsCard = ({news}) => {
 		return el;
 	})
 	const [otherNews, setOtherNews] = useState([])
-
 	const showNews = news.map(el => {
 		return (<Grid.Col span={10} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
@@ -34,7 +62,7 @@ export const MoreNewsCard = ({news}) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-				    <Grid.Col span={4} justify={'end'} align={'center'}>
+				    <Grid.Col span={4} justify={'center'} align={'center'}>
 						<Text style={{ marginTop: '20px' }, {fontSize: '15px'}} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
@@ -47,21 +75,41 @@ export const MoreNewsCard = ({news}) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-					    <Link href={"/news/" + el.id} passHref>
+					    <Link href={"/news/edit/" + el.id} passHref>
 							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-								Подробнее
+								Редактировать
 							</Button>
 						</Link>
+						<form id={el.id} key={'0'+el.id} onSubmit={handleDelete}>
+						<Button id={el.id} type="submit" variant="subtle" fullWidth style={{ marginTop: 14 }}>
+							Удалить
+						</Button>
+						</form>
 					</Grid.Col>
 				</Grid>
 			</Card>
 		</Grid.Col>);
 	})
-	return (<>
-		<Card p="sm" key={news.id}>
-			<Grid>
-				{showNews}
-			</Grid>
-		</Card>
-	</>)
+
+	return (
+		<>
+			<Head>
+				<title>Новости - MetalMarket.pro</title>
+				<meta name="keywords" content="next, javascript" />
+				<meta name="description" content="this is" />
+			</Head>
+			<Link href='/news/add'>
+				<Button>Добавить новости</Button>
+			</Link>
+			<Card p="sm" key={news.id}>
+				<Grid>
+					{showNews}
+				</Grid>
+			</Card>
+			<Space h="md" />
+			<Pagination total={10} color="orange" withEdges />
+		</>
+	)
 }
+
+export default NewsEdit;
