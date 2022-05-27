@@ -21,19 +21,19 @@ export const NewsBlock = ({news, tags}) => {
 				<p className={styles.newsdate}>
 					{(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
                     ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-                    date.getFullYear()}
+                    date.getFullYear() + '  ' + news.time.slice(0,5)}
 				</p>
 
 				<div>
 				{/* <div className={styles.photo}></div> */}
 				<Image className={styles.photo}
 					radius="xs"
-					src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+					src={'data:image/'+news.photopath.substr(news.photopath.length-3)+';base64,'+ news.image}
 					alt="Random unsplash image"
 				/>
-				<p className={styles.newstext}>
-					{news.text}
-				</p>
+	
+					<div dangerouslySetInnerHTML={{__html: news.html}}></div>
+
 				</div>
 
 				<div  className={styles.newstags}>

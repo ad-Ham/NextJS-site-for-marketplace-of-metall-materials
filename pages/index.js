@@ -6,13 +6,21 @@ import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
+const imageToBase64 = require('image-to-base64/browser');
 
 export async function getServerSideProps(context) {
-	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
+	//const images = new Map();
+	let news = res.data.news
+	let i;
+	// for (i=0;i<news.length;++i) {
+	// 	//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+	// 	news[i]['image'] = await imageToBase64(news[i].photopath)
+	// }
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
@@ -20,7 +28,7 @@ export async function getServerSideProps(context) {
 	})
 	return {
 		props: {
-			news: news.data.news,
+			news: news,
 			promos: promos.data.promos
 		},
 	}
@@ -67,7 +75,7 @@ export default function Index({ news, promos }) {
 				<meta name="description" content="MetalMarket.pro" />
 			</Head>
 			<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
-			<MainPageNews news={news.slice(1, 100)} importantNews={news.slice(0, 1)} />
+			<MainPageNews news={news.slice(0, 100)} importantNews={news.slice(0, 1)} />
 		</>
 	)
 }

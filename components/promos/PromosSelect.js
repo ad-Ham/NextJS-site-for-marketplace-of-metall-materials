@@ -1,4 +1,4 @@
-import { Select } from '@mantine/core';
+import { Select, Grid } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { categories, darkMet, colorMet } from './const';
 
@@ -8,6 +8,7 @@ export function PromosSelect() {
   const [equipmentStatus, setEquipmentStatus] = useState(false)
   const [rawMaterilStatus, setRawMaterialStatus] = useState(false)
   const [data, setData] = useState([]);
+
 
   const updateValue = e => {
       if ((e.indexOf('Черные металлы') !== -1) && (darkMetallStatus === false)) {
@@ -29,26 +30,31 @@ export function PromosSelect() {
   }
 
   return (<>
-    <Select
-      placeholder="Выберите товар"
-      data={categories}
-      searchable
-      nothingFound="Ничего не найдено"
-      clearButtonLabel="Clear selection"
-      clearable
-      onChange={updateValue}
-    />
-    {((darkMetallStatus === true) || (colorMetallStatus === true)) && <>
-    <div>
-    <Select
-          data={data}
-          searchable
-          nothingFound="Ничего не найдено"
-          clearButtonLabel="Clear selection"
-          clearable
+ <Grid >
+ <Grid.Col span={7}>
+        <Select
+              placeholder="Выберите категорию"
+              data={categories}
+              searchable
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+              onChange={updateValue}
         />
-        </div>
-        </>}
+  </Grid.Col>
+  <Grid.Col span={5}>
+         {((darkMetallStatus === true) || (colorMetallStatus === true)) && <>
+        <Select
+              placeholder="Выберите товар"
+              data={data}
+              searchable
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+          /> 
+            </>}
+  </Grid.Col>
+  </Grid>
     </>
   );
 }

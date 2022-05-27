@@ -16,18 +16,18 @@ export const MainPageNews = ({ news, importantNews }) => {
 		}
 		return el;
 	})
-	const newsCards = news.slice(0, 2).map(el => {
+	const newsCards = news.slice(1, 3).map(el => {
 		return (<Card p="sm" key={news.id} shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
 			<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 				<Title order={3} weight={500}>{el.title}</Title>
 			</Group>
 			<Grid justify={"center"}>
 				<Grid.Col span={4}>
-					<Image src="/photopromo.svg" height={100} alt="Norway" layout="fill" />
+					<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 				</Grid.Col>
 				<Grid.Col span={8}>
 					<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-						{el.text}
+						{el.desc}
 					</Text>
 				</Grid.Col>
 			</Grid>
@@ -36,7 +36,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 					<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 						(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 						((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-						el.date.getFullYear()
+						el.date.getFullYear() + ' ' + el.time.slice(0,5)
 					}
 					</Text>
 				</Grid.Col>
@@ -54,7 +54,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 		</Card>);
 	});
 
-	const bottomNews = news.slice(0, 2).map(el => {
+	const bottomNews = news.slice(4,7).map(el => {
 		return (<Grid.Col span={6} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
@@ -62,11 +62,11 @@ export const MainPageNews = ({ news, importantNews }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src="/photopromo.svg" height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{el.text}
+							{el.desc}
 						</Text>
 					</Grid.Col>
 				</Grid>
@@ -75,7 +75,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear()
+							el.date.getFullYear() + ' ' + el.time.slice(0,5)
 						}
 						</Text>
 					</Grid.Col>
@@ -112,7 +112,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 				<Grid.Col span={6}>
 					<Card p="lg" style={{ height: '560px' }} shadow="md">
 						<Card.Section>
-							<Image src="/photopromo.svg" height={260} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+news[0].photopath.substr(news[0].photopath.length-3)+';base64,'+ news[0].image} height={260} alt="Norway" layout="fill" />
 						</Card.Section>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Badge color="pink" variant="light">
@@ -121,14 +121,14 @@ export const MainPageNews = ({ news, importantNews }) => {
 							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{news[0].title}</Title>
 						</Group>
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{news[0].text}
+							{news[0].desc}
 						</Text>
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 									(news[0].date.getDate().toString().length === 1 ? '0' + news[0].date.getDate().toString() : news[0].date.getDate().toString()) + '.' +
 									((news[0].date.getMonth() + 1).toString().length === 1 ? '0' + (news[0].date.getMonth() + 1).toString() : (news[0].date.getMonth() + 1).toString()) + '.' +
-									news[0].date.getFullYear()
+									news[0].date.getFullYear() + ' ' + news[0].time.slice(0,5)
 								}
 								</Text>
 							</Grid.Col>
@@ -136,7 +136,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'left'}>
-							<Link href="/news/{pid}" passHref>
+							<Link href={'/news/'+news[0].id} passHref>
 								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 									Подробнее
 								</Button>

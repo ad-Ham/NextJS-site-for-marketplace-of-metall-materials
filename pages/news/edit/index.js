@@ -3,7 +3,22 @@ import { useState } from 'react';
 import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
 
-export const MoreNewsCard = ({news}) => {
+const axios = require('axios').default;
+
+export const getServerSideProps = async (context) => {
+	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
+		headers: {
+			'Accept': 'application/json'
+		}
+	})
+	return {
+		props: {
+			news: news.data.news,
+		},
+	}
+}
+
+const News = ({ news }) => {
 	const theme = useMantineTheme();
 	news = news.map(el => {
 		if (!el.date) {
@@ -17,6 +32,10 @@ export const MoreNewsCard = ({news}) => {
 	})
 	const [otherNews, setOtherNews] = useState([])
 
+	const handleClick = e => {
+		console.log(e)
+	}
+
 	const showNews = news.map(el => {
 		return (<Grid.Col span={10} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
@@ -25,7 +44,7 @@ export const MoreNewsCard = ({news}) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+						<Image src={el.photopath} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -47,21 +66,33 @@ export const MoreNewsCard = ({news}) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-					    <Link href={"/news/" + el.id} passHref>
-							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
-								Подробнее
+					    
+							<Button key={el.id} variant="subtle" fullWidth style={{ marginTop: 14 }} onClick={handleClick}>
+								Удалить
 							</Button>
-						</Link>
+
 					</Grid.Col>
 				</Grid>
 			</Card>
 		</Grid.Col>);
 	})
-	return (<>
-		<Card p="sm" key={news.id}>
-			<Grid>
-				{showNews}
-			</Grid>
-		</Card>
-	</>)
+
+	return (
+		<>
+			<Head>
+				<title>Новости - MetalMarket.pro</title>
+				<meta name="keywords" content="next, javascript" />
+				<meta name="description" content="this is" />
+			</Head>
+			<Card p="sm" key={news.id}>
+				<Grid>
+					{showNews}
+				</Grid>
+			</Card>
+			<Space h="md" />
+			<Pagination total={10} color="orange" withEdges />
+		</>
+	)
 }
+
+export default News;

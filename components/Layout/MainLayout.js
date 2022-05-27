@@ -1,5 +1,6 @@
 import { ModalsProvider } from '@mantine/modals';
 import { MantineProvider } from '@mantine/core';
+import { UserCircle } from 'tabler-icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
@@ -272,7 +273,7 @@ export const MainLayout = ({ children }) => {
 					}
 					aside={
 						<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }}>
+							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }} className={styles.aside}>
 								<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
 									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
 									<Grid className={styles.priceButtonContainer}>
@@ -405,15 +406,14 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								{!userStatus && <LoginModal />}
-								<PersonalData/>
-								{/* <Link href="/" passHref>
-									<UserCircle className={styles.user}
+								<Link href="/profile" passHref>
+									<UserCircle
 										size={32}
 										strokeWidth={1}
 										color={'#191d4d'}
 									/>	
-								</Link>	 */}
+								</Link>
+								{!userStatus && <LoginModal />}	
 							</div>
 						</Header>
 					}
