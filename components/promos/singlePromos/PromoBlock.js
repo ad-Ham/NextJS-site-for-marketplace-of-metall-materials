@@ -6,26 +6,27 @@ import { Comments } from '../../comments/CommentsBlock';
 const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
-// media breakpoint
-// mediaquery
 
-export const PromoBlock = () => {
-	const { height, width } = useViewportSize();
-	
+export const PromoBlock = ({promoData, previewState = false}) => {
 	const [opened, setOpened] = useState(false);
 
-	const elements = [
-		{name: 'Труба водогазопроводная', price: 12.011, currency: 'RUB'},
-		{name: 'Труба', price: 14.007, currency: 'EUR'},
-		{name: 'Арматура', price: 88.906, currency: 'USD'},
-		{name: 'Труба', price: 137.33, currency: 'RUB'},
-		{name: 'Арматура', price: 140.12, currency: 'RUB'},
-	]
+	// const elements = [
+	// 	{name: 'Труба водогазопроводная', price: 12.011, currency: 'RUB'},
+	// 	{name: 'Труба', price: 14.007, currency: 'EUR'},
+	// 	{name: 'Арматура', price: 88.906, currency: 'USD'},
+	// 	{name: 'Труба', price: 137.33, currency: 'RUB'},
+	// 	{name: 'Арматура', price: 140.12, currency: 'RUB'},
+	// ]
 
-	const item_rows = elements.map((element) => (
-		<tr key={element.name}>
-			<td className={styles.itemtd}>{element.name}</td>
-			<td className={styles.itemtd}>{element.price} {element.currency}</td>
+	const item_rows = promoData.items.map((item) => (
+		<tr key={item.name}>
+			<td>{item.category}</td>
+			<td>{item.metal}</td>
+			<td>{item.stamp}</td>
+			<td>{item.item}</td>
+			<td>{item.size}</td>
+			<td>{item.price}</td>
+			<td>{item.currency}</td>
 		</tr>
 	));
 
@@ -55,14 +56,15 @@ export const PromoBlock = () => {
 				<Group noWrap spacing={10} mt={3}>
 					<At size={16} />
 					<Text style={{fontSize: 16}}>
-					{user.email}
+						<a href={`mailto:${user.email}`}>{user.email}</a>
 					</Text>
 				</Group>
 
 				<Group noWrap spacing={10} mt={5}>
 					<PhoneCall size={16} />
 					<Text style={{fontSize: 16}}>
-					{user.phone}
+					<a href={`tel:${user.phone}`}>{user.phone}</a>
+					
 					</Text>
 				</Group>
 			</div>
@@ -94,7 +96,7 @@ export const PromoBlock = () => {
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
 				<div className={styles.promotitle}>
-					Продам трубу оптом недорого арбузы в подарок 
+					{promoData.title}
 				</div>
 
 				<div className={styles.promodate}>
@@ -102,29 +104,24 @@ export const PromoBlock = () => {
 				</div>
 				
 				<p className={styles.promodescription}>
-				Олово, Оловосодержащий лом, Припои (ПОС-90, ПОС-60, ПОС-40, ПОС-30, Пос-18, ПОСсу и др.), баббит Б-83, баббит Б-16, браки баббитов,
-				Быстрорез р6м5, р18, р6м5к5, р9, р9к5, р9м4к8, р12, р12к5, р3м3, <br></br>
-				Вольфрам, вольфрамосодержащие сплавы, ВК ТК, ВН, ВНЖ, ВНД, ВНК, 49КФ, 29НК.
-				Вольфрамосодержащие порошки ВК.<br></br>
-				Никель Катод, Анод, Никельсодержащий лом,  Б-26, Б-28, Б-55, Б-19, ЭИ943, ЭИ 904, нихром Х20, Х15. Монель 65, Монель 63, Монель 28.
-				Титан, Титан ВТ 1-0, Стружка титана,<br></br>
-				Сурьма, Цинк Ц0, Ниобий, ванадий, Цирконий, кобальт, Кобальтсодержащие сплавы,
-				Ферросплавы ферромолибден 60, феррониобий, ферромарганец,<br></br>
-				Молибден,
-				СВИНЕЦ КАБЕЛЬНЫЙ, типографский шрифт
-				89279705195<br></br>
-				RusMet2016@yandex.ru
+					{promoData.description}
 				</p>
 			
 				<Table className={styles.itemtable} striped>
 				<thead>
 					<tr>
-					<th>Наименование товара</th>
-					<th>Цена</th>
-					{/* <th>Валюта</th> */}
+                        <th>Категория</th>
+                        <th>Металл</th>
+                        <th>Марка</th>
+                        <th>Товар</th>
+                        <th>Размеры</th>
+                        <th>Цена</th>
+                        <th>Валюта</th>
 					</tr>
 				</thead>
-				<tbody>{item_rows}</tbody>
+				<tbody>
+					{item_rows}
+				</tbody>
 				</Table>	
 
 				<SimpleGrid 
@@ -140,23 +137,27 @@ export const PromoBlock = () => {
 						<Modal
 							opened={opened}
 							onClose={() => setOpened(false)}
-							title="Introduce yourself!"
+							title="Ответить на объявление"
 						>
 						</Modal>
 
-						<Group position='right' style={{marginTop: 35}}>
-							<Button onClick={() => setOpened(true)}>Ответить на объявление</Button>
-						</Group>
+						{(!previewState) && (
+							<Group position='right' style={{marginTop: 35}}>
+								<Button onClick={() => setOpened(true)}>Ответить на объявление</Button>
+							</Group>
+						)}
 					</div>
 				</SimpleGrid>
 				
 				{/* <div> */}
 					{/* {} */}
 				{/* </div> */}
-
+				
+				{(!previewState) && (
 				<div>
 					<Comments />
 				</div>
+				)}
 			</SimpleGrid>
 		</div>
 	</>)
