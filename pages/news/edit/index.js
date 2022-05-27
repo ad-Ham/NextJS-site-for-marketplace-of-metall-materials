@@ -4,21 +4,35 @@ import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
 
 const axios = require('axios').default;
+const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
-	const news = await axios.get('https://api.metalmarket.pro/newsquery', {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
+	const images = new Map();
+	let news = res.data.news
+	let i;
+	for (i=0;i<news.length;++i) {
+		images.set(news[i].id, await imageToBase64(news[i].photopath))
+		news[i]['image'] = await imageToBase64(news[i].photopath)
+	}
 	return {
 		props: {
-			news: news.data.news,
+			news: news,
+			images: images
 		},
 	}
 }
 
-const News = ({ news }) => {
+const handleDelete = async(e) => {
+	console.log(e.target.id)
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+}
+
+const NewsEdit = ({ news, images }) => {
 	const theme = useMantineTheme();
 	news = news.map(el => {
 		if (!el.date) {
@@ -31,11 +45,6 @@ const News = ({ news }) => {
 		return el;
 	})
 	const [otherNews, setOtherNews] = useState([])
-
-	const handleClick = e => {
-		console.log(e)
-	}
-
 	const showNews = news.map(el => {
 		return (<Grid.Col span={10} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
@@ -44,7 +53,7 @@ const News = ({ news }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={el.photopath} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -53,7 +62,7 @@ const News = ({ news }) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-				    <Grid.Col span={4} justify={'end'} align={'center'}>
+				    <Grid.Col span={4} justify={'center'} align={'center'}>
 						<Text style={{ marginTop: '20px' }, {fontSize: '15px'}} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
@@ -66,11 +75,16 @@ const News = ({ news }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'left'}>
-					    
-							<Button key={el.id} variant="subtle" fullWidth style={{ marginTop: 14 }} onClick={handleClick}>
-								Удалить
+					    <Link href={"/news/edit/" + el.id} passHref>
+							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+								Редактировать
 							</Button>
-
+						</Link>
+						<form id={el.id} key={'0'+el.id} onSubmit={handleDelete}>
+						<Button id={el.id} type="submit" variant="subtle" fullWidth style={{ marginTop: 14 }}>
+							Удалить
+						</Button>
+						</form>
 					</Grid.Col>
 				</Grid>
 			</Card>
@@ -84,6 +98,9 @@ const News = ({ news }) => {
 				<meta name="keywords" content="next, javascript" />
 				<meta name="description" content="this is" />
 			</Head>
+			<Link href='/news/add'>
+				<Button>Добавить новости</Button>
+			</Link>
 			<Card p="sm" key={news.id}>
 				<Grid>
 					{showNews}
@@ -95,4 +112,4 @@ const News = ({ news }) => {
 	)
 }
 
-export default News;
+export default NewsEdit;
