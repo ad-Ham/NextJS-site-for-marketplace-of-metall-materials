@@ -19,10 +19,6 @@ export function armature(metalData, stampName, CallbackInput) {
         { value : 36, label : "36" }
     ]
 
-    // const setCallbackInput = () => {
-    //     return `${sizeData.diametr} мм. x ${sizeData.length} м.`
-    // }
-
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">                        
             <InputWrapper
@@ -31,10 +27,9 @@ export function armature(metalData, stampName, CallbackInput) {
             >
             <Select
                 placeholder="Выберите номинальный диаметр" 
-                // value={sizeData.diametr}
                 data={diametrData} 
                 style={{width: '75%'}}
-                onChange={value => CallbackInput('diametr', `${value} мм.`)} 
+                onChange={value => CallbackInput('diametr', `${value}`)} 
                 />
             </InputWrapper>
             <InputWrapper
@@ -43,7 +38,6 @@ export function armature(metalData, stampName, CallbackInput) {
             >
             <Input
                 placeholder="Введите длину" 
-                // value={sizeData.length}
                 style={{width: '75%'}}
                 onChange={event => CallbackInput('length', `${event.target.value} м.`)}
                 rightSection="м."
@@ -61,7 +55,7 @@ export function armature(metalData, stampName, CallbackInput) {
 }
 
 
-export function square (metalData, stampName) {
+export function square (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={3} justify="center" align="center">     
             <InputWrapper
@@ -72,7 +66,7 @@ export function square (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 // style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
             </InputWrapper>
             <InputWrapper
@@ -83,7 +77,7 @@ export function square (metalData, stampName) {
                 placeholder="Введите сторону квадрата"
                 // value={price} 
                 // style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -95,7 +89,7 @@ export function square (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 // style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -112,7 +106,7 @@ export function square (metalData, stampName) {
 }
 
 
-export function circle (metalData, stampName) {
+export function circle (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={3} justify="center" align="center">     
             <InputWrapper
@@ -123,7 +117,7 @@ export function circle (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 // style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
             </InputWrapper> 
             <InputWrapper
@@ -134,7 +128,7 @@ export function circle (metalData, stampName) {
                 placeholder="Введите диаметр круга"
                 // value={price} 
                 // style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('diametr', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -146,7 +140,7 @@ export function circle (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 // style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -163,7 +157,7 @@ export function circle (metalData, stampName) {
 }
 
 
-export function ribbon (metalData, stampName) {
+export function ribbon (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
@@ -174,7 +168,7 @@ export function ribbon (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
             </InputWrapper>
             <InputWrapper
@@ -185,7 +179,7 @@ export function ribbon (metalData, stampName) {
                 placeholder="Введите ширину ленты"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -197,7 +191,7 @@ export function ribbon (metalData, stampName) {
                 placeholder="Введите толщину ленты"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -209,7 +203,7 @@ export function ribbon (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -227,7 +221,7 @@ export function ribbon (metalData, stampName) {
 }
 
 
-export function sheet (metalData, stampName) {
+export function sheet (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
@@ -238,10 +232,9 @@ export function sheet (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите ширину листа"
@@ -250,10 +243,10 @@ export function sheet (metalData, stampName) {
                 placeholder="Введите ширину листа"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('width', `${event.target.value} м.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите длину листа"
@@ -262,10 +255,10 @@ export function sheet (metalData, stampName) {
                 placeholder="Введите длину листа"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('height', `${event.target.value} м.`)}
+                rightSection="м."
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите толщину ленты"
@@ -274,10 +267,10 @@ export function sheet (metalData, stampName) {
                 placeholder="Введите толщину ленты"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите длину"
@@ -286,10 +279,10 @@ export function sheet (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                rightSection="м."
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
         </SimpleGrid>
     </>,
     <>
@@ -303,7 +296,7 @@ export function sheet (metalData, stampName) {
 }
 
 
-export function roundPipe (metalData, stampName) {
+export function roundPipe (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
@@ -314,10 +307,9 @@ export function roundPipe (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите внешний диаметр трубы"
@@ -326,10 +318,10 @@ export function roundPipe (metalData, stampName) {
                 placeholder="Введите внешний диаметр трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('diametr', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите толщину стенки"
@@ -338,10 +330,10 @@ export function roundPipe (metalData, stampName) {
                 placeholder="Введите толщину стенки"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите длину"
@@ -350,10 +342,10 @@ export function roundPipe (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                rightSection="м."
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
         </SimpleGrid>
     </>,
     <>
@@ -367,7 +359,7 @@ export function roundPipe (metalData, stampName) {
 }
 
 
-export function profilePipe (metalData, stampName) {
+export function profilePipe (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
@@ -378,10 +370,9 @@ export function profilePipe (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите ширину трубы"
@@ -390,10 +381,10 @@ export function profilePipe (metalData, stampName) {
                 placeholder="Введите ширину трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите высоту трубы"
@@ -402,10 +393,10 @@ export function profilePipe (metalData, stampName) {
                 placeholder="Введите высоту трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('height', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите толщину стенки"
@@ -414,10 +405,10 @@ export function profilePipe (metalData, stampName) {
                 placeholder="Введите толщину стенки"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите длину"
@@ -426,10 +417,10 @@ export function profilePipe (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                rightSection="м."
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
         </SimpleGrid>
     </>,
     <>
@@ -443,7 +434,7 @@ export function profilePipe (metalData, stampName) {
 }
 
 
-export function corner (metalData, stampName) {
+export function corner (metalData, stampName, CallbackInput) {
     return ([<>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
@@ -454,10 +445,9 @@ export function corner (metalData, stampName) {
                 placeholder={`Выберите марку ${stampName}`}
                 data={metalData}
                 style={{width: '75%'}}
-                // onChange={event => event.target.value)}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите ширину уголка"
@@ -466,10 +456,10 @@ export function corner (metalData, stampName) {
                 placeholder="Введите ширину уголка"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('width', `${event.target.value} м.`)}
                 rightSection="мм."
-</InputWrapper>
+                />    
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите высоту уголка"
@@ -478,10 +468,10 @@ export function corner (metalData, stampName) {
                 placeholder="Введите высоту уголка"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('height', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите толщину полки"
@@ -490,10 +480,10 @@ export function corner (metalData, stampName) {
                 placeholder="Введите толщину полки"
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
-                />
+                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
                 rightSection="мм."
-</InputWrapper>
+                />
+            </InputWrapper>
             <InputWrapper
                 required
                 label="Введите длину"
@@ -502,10 +492,10 @@ export function corner (metalData, stampName) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                // onChange={event => setPrice(event.target.value)} 
+                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                rightSection="м."
                 />
-                rightSection="мм."
-</InputWrapper>
+            </InputWrapper>
         </SimpleGrid>
     </>,
     <>

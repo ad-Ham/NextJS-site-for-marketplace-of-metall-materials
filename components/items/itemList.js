@@ -160,22 +160,22 @@ export const steelStamps = [
 
 export const stainlessSteelStamps = [
     { density : 7.76, value : "08X17T", label : "08X17T" },
-    { density : 7.67, value : "20Х13", value : "20Х13" },
-    { density : 7.67, value : "30Х13", value : "30Х13" },
-    { density : 7.65, value : "40Х13", value : "40Х13" },
-    { density : 7.85, value : "08X18H10", value : "08X18H10" },
-    { density : 7.9, value : "12Х18Н10Т", value : "12Х18Н10Т" },
-    { density : 7.9, value : "10X17H13M2T", value : "10X17H13M2T" },
-    { density : 7.96, value : "06ХН28МДТ", value : "06ХН28МДТ" },
-    { density : 7.9, value : "20Х23Н18", value : "20Х23Н18" },
-    { density : 7.85, value : "AISI 304", value : "AISI 304" },
-    { density : 8, value : "AISI 316L", value : "AISI 316L" },
-    { density : 7.95, value : "AISI 316Ti", value : "AISI 316Ti" },
-    { density : 7.9, value : "AISI 321", value : "AISI 321" },
-    { density : 7.76, value : "AISI 409", value : "AISI 409" },
-    { density : 7.72, value : "AISI 430", value : "AISI 430" },
-    { density : 7.96, value : "AISI 904L", value : "AISI 904L" },
-    { density : 7.9, value : "Прочее", value : "Прочее" }
+    { density : 7.67, value : "20Х13", label : "20Х13" },
+    { density : 7.67, value : "30Х13", label : "30Х13" },
+    { density : 7.65, value : "40Х13", label : "40Х13" },
+    { density : 7.85, value : "08X18H10", label : "08X18H10" },
+    { density : 7.9, value : "12Х18Н10Т", label : "12Х18Н10Т" },
+    { density : 7.9, value : "10X17H13M2T", label : "10X17H13M2T" },
+    { density : 7.96, value : "06ХН28МДТ", label : "06ХН28МДТ" },
+    { density : 7.9, value : "20Х23Н18", label : "20Х23Н18" },
+    { density : 7.85, value : "AISI 304", label : "AISI 304" },
+    { density : 8, value : "AISI 316L", label : "AISI 316L" },
+    { density : 7.95, value : "AISI 316Ti", label : "AISI 316Ti" },
+    { density : 7.9, value : "AISI 321", label : "AISI 321" },
+    { density : 7.76, value : "AISI 409", label : "AISI 409" },
+    { density : 7.72, value : "AISI 430", label : "AISI 430" },
+    { density : 7.96, value : "AISI 904L", label : "AISI 904L" },
+    { density : 7.9, value : "Прочее", label : "Прочее" }
 ]
 
 export const aluminumStamps = [

@@ -8,8 +8,6 @@ const axios = require('axios').default;
 export const NewsBlock = ({news, tags}) => {
 	let date = new Date(news.date);
 	console.log(tags)
-	
-	
 
 	return (<>
 		<div className={styles.maindiv}>
@@ -26,21 +24,17 @@ export const NewsBlock = ({news, tags}) => {
 
 				<div>
 				{/* <div className={styles.photo}></div> */}
-				<Image className={styles.photo}
-					radius="xs"
-					src={'data:image/'+news.photopath.substr(news.photopath.length-3)+';base64,'+ news.image}
-					alt="Random unsplash image"
-				/>
-	
+					<Image className={styles.photo}
+						radius="xs"
+						src={'data:image/'+news.photopath.substr(news.photopath.length-3)+';base64,'+ news.image}
+						alt="Random unsplash image"
+					/>
 					<div dangerouslySetInnerHTML={{__html: news.html}}></div>
-
 				</div>
 
-				<div  className={styles.newstags}>
+				<div className={styles.newstags}>
 					{tags.map(tag => {
-						
-							return (<Badge key={tag.id}>{tag.value}</Badge>)
-						
+						return (<Badge key={tag.id}>{tag.value}</Badge>)
 					})}
 				</div>
 
