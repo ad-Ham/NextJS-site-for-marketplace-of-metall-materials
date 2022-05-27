@@ -8,7 +8,6 @@ import { PromosMultiSelect } from '../../../components/promos/PromosMultiSelect'
 import { PromosAdd } from '../../../components/promos/PromosAdd'
 
 
-
 const AddPromo = () => {
 	const [newsStatus, setNewsStatus] = useState('');
 

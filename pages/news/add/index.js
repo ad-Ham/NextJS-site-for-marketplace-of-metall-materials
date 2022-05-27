@@ -61,7 +61,6 @@ const AddNews = () => {
 
 	      setImage(i);
 	      setCreateObjectURL(URL.createObjectURL(i));
-
 	      blah.src = URL.createObjectURL(i)
 	    }
 	  };
@@ -115,7 +114,6 @@ const AddNews = () => {
 					type="file"
 					name="sampleFile"
 					onChange={uploadToClient} />
-
 				<RichTextEditor name="rte" value={value} onChange={onChange}  required controls={[['bold', 'strike', 'italic', 'underline'], ['clean'], ['h1', 'h2', 'h3', 'h4'], ['link', 'blockquote', 'sub', 'sup'], ['unorderedList', 'orderedList'], ['alignCenter', 'alignLeft', 'alignRight'], ['code', 'codeBlock']]}/>
 				<Input id="tags"
 					name="tags"

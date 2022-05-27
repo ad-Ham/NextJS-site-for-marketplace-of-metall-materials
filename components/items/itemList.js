@@ -178,5 +178,61 @@ export const stainlessSteelStamps = [
     { density : 7.9, value : "Прочее", value : "Прочее" }
 ]
 
-// export const armatureFiels = [
-// ]
+export const aluminumStamps = [
+    { density : 2.71, value : "А5", label : "А5" },
+    { density : 2.71, value : "АД", label : "АД" },
+    { density : 2.71, value : "АД1", label : "АД1" },
+    { density : 2.77, value : "АК4", label : "АК4" },
+    { density : 2.75, value : "АК6", label : "АК6" },
+    { density : 2.67, value : "АМг", label : "АМг" },
+    { density : 2.73, value : "АМц", label : "АМц" },
+    { density : 2.85, value : "В95", label : "В95" },
+    { density : 2.8, value : "Д1", label : "Д1" },
+    { density : 2.78, value : "Д16", label : "Д16" },
+    { density : 2.75, value : "Прочее", label : "Прочее" }
+]
+
+export const copperStamps = [
+    { density : 8.91, value : "М1", label : "М1" },
+    { density : 8.93, value : "М2", label : "М2" },
+    { density : 8.93, value : "М3", label : "М3" },
+    { density : 8.92, value : "Прочее", label : "Прочее" }
+]
+
+export const brassStamps = [
+    { density : 8.44, value : "Л63", label : "Л63" },
+    { density : 8.6, value : "Л68", label : "Л68" },
+    { density : 8.5, value : "ЛЖМц59-1-1", label : "ЛЖМц59-1-1" },
+    { density : 8.4, value : "ЛМц58-2", label : "ЛМц58-2" },
+    { density : 8.45, value : "ЛС58-2", label : "ЛС58-2" },
+    { density : 8.45, value : "ЛС59-1", label : "ЛС59-1" },
+    { density : 8.5, value : "ЛС63-3", label : "ЛС63-3" }
+]
+
+export const bronzeStamps = [
+    { density : 7.6, value : "БрАЖ9-4", label : "БрАЖ9-4" },
+    { density : 7.8, value : "БрАЖМц10-3-1,5", label : "БрАЖМц10-3-1,5" },
+    { density : 7.5, value : "БрАЖН10-4-4", label : "БрАЖН10-4-4" },
+    { density : 7.6, value : "БрАМц9-2", label : "БрАМц9-2" },
+    { density : 8.2, value : "БрБ2", label : "БрБ2" },
+    { density : 8.4, value : "БрКМЦ3-1", label : "БрКМЦ3-1" },
+    { density : 7.8, value : "БрОФ7-0,2", label : "БрОФ7-0,2" },
+    { density : 8.8, value : "БрОЦС5-5-5", label : "БрОЦС5-5-5" },
+    { density : 7.96, value : "Прочее", label : "Прочее" }
+]
+
+export const titanStamps = [
+    { density : 4.505, value : "ВТ1-00", label : "ВТ1-00" },
+    { density : 4.505, value : "ВТ1-1", label : "ВТ1-1" },
+    { density : 4.43, value : "АТ-6", label : "АТ-6" },
+    { density : 4.52, value : "ВТ14", label : "ВТ14" },
+    { density : 4.45, value : "ВТ20", label : "ВТ20" },
+    { density : 4.6, value : "ВТ22", label : "ВТ22" },
+    { density : 4.5, value : "ВТ3-1", label : "ВТ3-1" },
+    { density : 4.4, value : "ВТ5", label : "ВТ5" },
+    { density : 4.46, value : "ВТ5-1", label : "ВТ5-1" },
+    { density : 4.43, value : "ВТ6", label : "ВТ6" },
+    { density : 4.55, value : "ОТ4-1", label : "ОТ4-1" },
+    { density : 4.49, value : "ПТ7М", label : "ПТ7М" },
+    { density : 4.5, value : "Прочее", label : "Прочее" }
+]
