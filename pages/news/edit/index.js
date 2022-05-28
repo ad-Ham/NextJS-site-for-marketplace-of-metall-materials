@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
 
@@ -33,6 +35,35 @@ const handleDelete = async(e) => {
 }
 
 const NewsEdit = ({ news, images }) => {
+	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
+	const [user, setUser] = useState('')
+
+	const changeUserStatus = () => {
+		setUserStatus(checkToken(router.pathname))
+		if (checkToken(router.pathname) === true) {
+			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
+			.then(function(response) {
+				let userId = response.data.user_id.user_id;
+				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
+				.then(function(response) {
+					setUser(response.data.user)
+				})
+				.catch(function (error) {
+						console.log(error);
+					})
+			})
+			.catch(function (error) {
+					console.log(error);
+				})
+		}
+	}
+
+	useEffect(() => {
+		changeUserStatus()
+
+	}, [])
+
 	const theme = useMantineTheme();
 	news = news.map(el => {
 		if (!el.date) {
@@ -53,7 +84,7 @@ const NewsEdit = ({ news, images }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+						//<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -98,7 +129,12 @@ const NewsEdit = ({ news, images }) => {
 				<meta name="keywords" content="next, javascript" />
 				<meta name="description" content="this is" />
 			</Head>
-			<Link href='/news/add'>
+
+			{(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
+
+			{(userStatus === true) && (user.role !== 'admin') && <><h1 className="errorHeader">403 Forbidden</h1><p className="errorText">Недостаточно прав доступа</p></>}
+
+			{(userStatus === true) && (user.role === 'admin') && <><Link href='/news/add'>
 				<Button>Добавить новости</Button>
 			</Link>
 			<Card p="sm" key={news.id}>
@@ -107,7 +143,7 @@ const NewsEdit = ({ news, images }) => {
 				</Grid>
 			</Card>
 			<Space h="md" />
-			<Pagination total={10} color="orange" withEdges />
+			<Pagination total={10} color="orange" withEdges /></>}
 		</>
 	)
 }

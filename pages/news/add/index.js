@@ -1,13 +1,44 @@
 import { Input, Group, Button } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import  RichTextEditor  from '../../../components/RichText.tsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 const axios = require('axios').default;
 import Link from 'next/link'
+import { checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 const initialValue =
   		'<p>Оформите вашу новость здесь</p> <p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>';
+
 const AddNews = () => {
 	
+	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
+	const [user, setUser] = useState('')
+
+	const changeUserStatus = () => {
+		setUserStatus(checkToken(router.pathname))
+		if (checkToken(router.pathname) === true) {
+			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
+			.then(function(response) {
+				let userId = response.data.user_id.user_id;
+				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
+				.then(function(response) {
+					setUser(response.data.user)
+				})
+				.catch(function (error) {
+						console.log(error);
+					})
+			})
+			.catch(function (error) {
+					console.log(error);
+				})
+		}
+	}
+
+	useEffect(() => {
+		changeUserStatus()
+
+	}, [])
 
 	const [newsStatus, setNewsStatus] = useState('');
 	const [value, onChange] = useState(initialValue);
@@ -30,6 +61,8 @@ const AddNews = () => {
 
 	      setImage(i);
 	      setCreateObjectURL(URL.createObjectURL(i));
+
+	      blah.src = URL.createObjectURL(i)
 	    }
 	  };
 
@@ -52,17 +85,11 @@ const AddNews = () => {
 	  };
 
 	return (<>
+		{(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
 
-
-		{/*<form  
-	      id='uploadForm' 
-	      onSubmit={uploadToServer} 
-	      encType="multipart/form-data">
-	        <input type="file" name="sampleFile" onChange={uploadToClient}/>
-	        <input type='submit' value='Upload!' />
-	    </form>*/} 
+		{(userStatus === true) && (user.role !== 'admin') && <><h1 className="errorHeader">403 Forbidden</h1><p className="errorText">Недостаточно прав доступа</p></>}
 		
-		<form onSubmit={uploadToServer} id="uploadForm">
+		{(userStatus === true) && (user.role === 'admin') && <><form onSubmit={uploadToServer} id="uploadForm">
 			<Group direction="column" position="center" grow>
 				<h1>Форма добавления новостей</h1>
 				<Input id="title"
@@ -84,6 +111,7 @@ const AddNews = () => {
 					onChange={e => setDesc(e.target.value)} />
 
 				<Input
+					id="file-chooser"
 					type="file"
 					name="sampleFile"
 					onChange={uploadToClient} />
@@ -101,13 +129,39 @@ const AddNews = () => {
 
 				<Button type="submit">Добавить новость</Button>
 				<Input type="reset" value="Сбросить"/>
+				<div>
+				<img className='photo'
+					id="blah"
+					src='#'
+					alt="Здесь будет картинка"
+				/>
 				<div dangerouslySetInnerHTML={{__html: value}}></div>
+				</div>
 			</Group>
 			<Link href='/news/edit'>
 				<Button>Редактировать новости</Button>
 			</Link>
-		</form>
+		</form></>}
 		<style jsx>{`
+			.errorText {
+				text-align: center;
+				font-size: 24px;
+			}
+
+			.errorHeader {
+				text-align: center;
+				font-size: 50px;
+				margin-bottom: 15px;
+			}
+
+			.photo {
+				width: 30%; 
+				height: auto;
+				float: left;
+				padding-right: 20px;
+				padding-bottom: 20px;
+			}
+
 			h1 {
 				text-align: center;
 			}

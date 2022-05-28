@@ -6,6 +6,7 @@ const axios = require('axios').default;
 import  RichTextEditor  from '../../../components/RichText.tsx';
 import { showNotification } from '@mantine/notifications';
 import { Input, Group, Button } from '@mantine/core';
+import { checkToken } from '/middleware/axios.js';
 
 
 export async function getServerSideProps(context) {
@@ -22,6 +23,35 @@ export async function getServerSideProps(context) {
 }
 
 const NewsPageEdit = ({news, pid}) => {
+	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
+	const [user, setUser] = useState('')
+
+	const changeUserStatus = () => {
+		setUserStatus(checkToken(router.pathname))
+		if (checkToken(router.pathname) === true) {
+			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
+			.then(function(response) {
+				let userId = response.data.user_id.user_id;
+				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
+				.then(function(response) {
+					setUser(response.data.user)
+				})
+				.catch(function (error) {
+						console.log(error);
+					})
+			})
+			.catch(function (error) {
+					console.log(error);
+				})
+		}
+	}
+
+	useEffect(() => {
+		changeUserStatus()
+
+	}, [])
+
 	const [value, onChange] = useState(news.html);
 	const [desc, setDesc] = useState(news.desc);
 	const [title, setTitle] = useState(news.title);
@@ -47,7 +77,12 @@ const NewsPageEdit = ({news, pid}) => {
 	};
 
 	return (<>
-		<form onSubmit={uploadToServer} id="uploadForm">
+		{(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
+
+		{(userStatus === true) && (user.role !== 'admin') && <><h1 className="errorHeader">403 Forbidden</h1><p className="errorText">Недостаточно прав доступа</p></>}
+
+
+		{(userStatus === true) && (user.role === 'admin') && <><form onSubmit={uploadToServer} id="uploadForm">
 			<Group direction="column" position="center" grow>
 				<h1>Форма добавления новостей</h1>
 				<Input id="title"
@@ -92,7 +127,7 @@ const NewsPageEdit = ({news, pid}) => {
 			<Link href='/news/add'>
 				<Button>Добавить новости</Button>
 			</Link>
-		</form>
+		</form></>}
 		<style jsx>{`
 			h1 {
 				text-align: center;
