@@ -5,6 +5,7 @@ import { Input } from '@mantine/core';
 export const JurData = () => {
 	const [orgName, setOrgName] = useState('');
 	const [jurAdress, setJurAdress] = useState('');
+	const [position, setPosition] = useState('');
 	const [inn, setInn] = useState('');
 	const [ogrn, setOgrn] = useState('');
 
@@ -13,6 +14,7 @@ export const JurData = () => {
 		const data = {
 			orgName,
 			jurAdress,
+			position,
 			inn,
 			ogrn
 		};
@@ -34,6 +36,14 @@ export const JurData = () => {
 				       placeholder="Юридический адрес" 
 				       className={styles.input} 
 				       onChange={e => setJurAdress(e.target.value)} 
+				       required
+				       minLength='3'
+				       maxLength='100'/>
+				<Input id='position' 
+				       type="text" 
+				       placeholder="Должность" 
+				       className={styles.input} 
+				       onChange={e => setPosition(e.target.value)} 
 				       required
 				       minLength='3'
 				       maxLength='100'/>
