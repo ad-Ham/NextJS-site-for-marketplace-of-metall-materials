@@ -15,7 +15,7 @@ function commentSimple(user) {
     const {classes} = mainStyles()
     const [postedAt, body, name, reply] = user
 
-    const classMessage = (reply) ? styles.replyMessage : styles.mainMessage
+    const classMessage = (reply) ?  styles.replyMessage : styles.mainMessage
     
     return (<>
         <div className={classMessage}>
@@ -36,7 +36,8 @@ function commentSimple(user) {
     </>);
 }
 
-export function GetUsersComments () {
+export function GetComments () {
+    
     const users = {
         'user1': ['10 минут назад', 'Тест', 'Noname1', false],
         'user2': ['5 минут назад', 'Тест2', 'Noname2', false],

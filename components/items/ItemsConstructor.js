@@ -29,7 +29,7 @@ export function armature(metalData, stampName, CallbackInput) {
                 placeholder="Выберите номинальный диаметр" 
                 data={diametrData} 
                 style={{width: '75%'}}
-                onChange={value => CallbackInput('diametr', `${value}`)} 
+                onChange={value => CallbackInput('Диаметр', `${value}`)} 
                 />
             </InputWrapper>
             <InputWrapper
@@ -39,7 +39,7 @@ export function armature(metalData, stampName, CallbackInput) {
             <Input
                 placeholder="Введите длину" 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -48,11 +48,74 @@ export function armature(metalData, stampName, CallbackInput) {
     <Image
         width='35%'
         // justify='center'
-        src='/Armature.png'
+        src='/items/Armature.png'
     />
     ]
     )
 }
+
+
+// export function beam (metalData, stampName, CallbackInput) {
+//     const data = {}
+
+//     const beamsType = [
+//         { value: 'ГОСТ 8239-89', label: 'ГОСТ 8239-89' },
+//         { value: 'Нормальный двутавр (Б)', label: 'Нормальный двутавр (Б)' },
+//         { value: 'Широкополочный двутавр (Ш)', label: 'Широкополочный двутавр (Ш)' },
+//         { value: 'Колонный двутавр (К)', label: 'Колонный двутавр (К)' },
+//         { value: 'Двутавр дополнительной серии (Д)', label: 'Двутавр дополнительной серии (Д)' },
+//         { value: 'Сварной двутавр (С)', label: 'Сварной двутавр (С)' }
+//     ]
+
+//     return ([<>
+//         <SimpleGrid cols={3} justify="center" align="center">     
+//             <InputWrapper
+//                 required
+//                 label={`Выберите тип балки`}
+//             >
+//             <Select
+//                 placeholder={`Выберите тип балки`}
+//                 data={metalData}
+//                 // style={{width: '75%'}}
+//                 onChange={value => CallbackInput('stamp', `${value}`)} 
+//                 />
+//             </InputWrapper>
+//             <InputWrapper
+//                 required
+//                 label="Введите сторону квадрата"
+//             >
+//             <Input
+//                 placeholder="Введите сторону квадрата"
+//                 // value={price} 
+//                 // style={{width: '75%'}}
+//                 onChange={event => CallbackInput('Сторона', `${event.target.value} мм.`)}   
+//                 rightSection="мм."
+//                 />
+//             </InputWrapper>
+//             <InputWrapper
+//                 required
+//                 label="Введите длину"
+//             >
+//             <Input
+//                 placeholder="Введите длину" 
+//                 // value={price} 
+//                 // style={{width: '75%'}}
+//                 onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+//                 rightSection="м."
+//                 />
+//             </InputWrapper>
+//         </SimpleGrid>
+//     </>,
+//     <>
+//         <Image
+//             width='35%'
+//             // justify='center'
+//             src='/Armature.png'
+//         />
+//     </>
+//     ])
+// }
+
 
 
 export function square (metalData, stampName, CallbackInput) {
@@ -77,7 +140,7 @@ export function square (metalData, stampName, CallbackInput) {
                 placeholder="Введите сторону квадрата"
                 // value={price} 
                 // style={{width: '75%'}}
-                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Сторона', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -89,7 +152,7 @@ export function square (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 // style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -99,7 +162,7 @@ export function square (metalData, stampName, CallbackInput) {
         <Image
             width='35%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/Square.png'
         />
     </>
     ])
@@ -128,7 +191,7 @@ export function circle (metalData, stampName, CallbackInput) {
                 placeholder="Введите диаметр круга"
                 // value={price} 
                 // style={{width: '75%'}}
-                onChange={event => CallbackInput('diametr', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Диаметр', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -140,7 +203,7 @@ export function circle (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 // style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -150,7 +213,7 @@ export function circle (metalData, stampName, CallbackInput) {
         <Image
             width='35%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/Circle.png'
         />
     </>
     ])
@@ -179,7 +242,7 @@ export function ribbon (metalData, stampName, CallbackInput) {
                 placeholder="Введите ширину ленты"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -191,7 +254,7 @@ export function ribbon (metalData, stampName, CallbackInput) {
                 placeholder="Введите толщину ленты"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -203,7 +266,7 @@ export function ribbon (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -211,10 +274,10 @@ export function ribbon (metalData, stampName, CallbackInput) {
     </>,
     <>
         <Image 
-            width='35%'
+            width='60%'
             // justify='center'
             // align='center'
-            src='/Armature.png'
+            src='/items/Ribbon.png'
         />
     </>
     ])
@@ -243,10 +306,12 @@ export function sheet (metalData, stampName, CallbackInput) {
                 placeholder="Введите ширину листа"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('width', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} м.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
+        </SimpleGrid>
+        <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
             <InputWrapper
                 required
                 label="Введите длину листа"
@@ -254,8 +319,8 @@ export function sheet (metalData, stampName, CallbackInput) {
             <Input
                 placeholder="Введите длину листа"
                 // value={price} 
-                style={{width: '75%'}}
-                onChange={event => CallbackInput('height', `${event.target.value} м.`)}
+                // style={{width: '75%'}}
+                onChange={event => CallbackInput('Длина листа', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -266,8 +331,8 @@ export function sheet (metalData, stampName, CallbackInput) {
             <Input
                 placeholder="Введите толщину ленты"
                 // value={price} 
-                style={{width: '75%'}}
-                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
+                // style={{width: '75%'}}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -278,8 +343,8 @@ export function sheet (metalData, stampName, CallbackInput) {
             <Input
                 placeholder="Введите длину" 
                 // value={price} 
-                style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                // style={{width: '75%'}}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -287,9 +352,9 @@ export function sheet (metalData, stampName, CallbackInput) {
     </>,
     <>
         <Image
-            width='35%'
+            width='30%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/Sheet.png'
         />
     </>
     ])
@@ -318,7 +383,7 @@ export function roundPipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите внешний диаметр трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('diametr', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Диаметр', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -330,7 +395,7 @@ export function roundPipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите толщину стенки"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -342,7 +407,7 @@ export function roundPipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -350,9 +415,9 @@ export function roundPipe (metalData, stampName, CallbackInput) {
     </>,
     <>
         <Image
-            width='35%'
+            width='40%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/RoundPipe.png'
         />
     </>
     ])
@@ -381,7 +446,7 @@ export function profilePipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите ширину трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('width', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -393,7 +458,7 @@ export function profilePipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите высоту трубы"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('height', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Высота', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -405,7 +470,7 @@ export function profilePipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите толщину стенки"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -417,7 +482,7 @@ export function profilePipe (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -425,9 +490,9 @@ export function profilePipe (metalData, stampName, CallbackInput) {
     </>,
     <>
         <Image
-            width='35%'
+            width='40%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/ProfilePipe.png'
         />
     </>
     ])
@@ -456,7 +521,7 @@ export function corner (metalData, stampName, CallbackInput) {
                 placeholder="Введите ширину уголка"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('width', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} м.`)}
                 rightSection="мм."
                 />    
             </InputWrapper>
@@ -468,7 +533,7 @@ export function corner (metalData, stampName, CallbackInput) {
                 placeholder="Введите высоту уголка"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('height', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Высота', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -480,7 +545,7 @@ export function corner (metalData, stampName, CallbackInput) {
                 placeholder="Введите толщину полки"
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('depth', `${event.target.value} мм.`)}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
                 rightSection="мм."
                 />
             </InputWrapper>
@@ -492,7 +557,7 @@ export function corner (metalData, stampName, CallbackInput) {
                 placeholder="Введите длину" 
                 // value={price} 
                 style={{width: '75%'}}
-                onChange={event => CallbackInput('length', `${event.target.value} м.`)}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
                 rightSection="м."
                 />
             </InputWrapper>
@@ -502,7 +567,7 @@ export function corner (metalData, stampName, CallbackInput) {
         <Image
             width='35%'
             // justify='center'
-            src='/Armature.png'
+            src='/items/Corner.png'
         />
     </>
     ])

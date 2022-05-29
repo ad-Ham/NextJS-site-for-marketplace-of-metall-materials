@@ -7,8 +7,12 @@ const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
 
-export const PromoBlock = ({promoData, previewState = false}) => {
+export const PromoBlock = ({promoData = null, previewState = false}) => {
 	const [opened, setOpened] = useState(false);
+
+	if (promoData === null) return (<>
+		<Comments />
+	</>)
 
 	// const elements = [
 	// 	{name: 'Труба водогазопроводная', price: 12.011, currency: 'RUB'},
@@ -28,7 +32,7 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 			<td>{item.price}</td>
 			<td>{item.currency}</td>
 		</tr>
-	));
+	))
 
 	const user = {
 		'name': 'Иван Иванов',

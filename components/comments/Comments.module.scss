@@ -1,14 +1,19 @@
 .mainMessage {
     position: relative;
     width: auto;
-    padding-bottom: 16px;
+    padding-bottom: 8px;
+    padding-top: 24px;
     margin-bottom: 16px;
-    border-bottom: 1px solid #B2BEB5;
+    border-top: 1px solid #B2BEB5;
 }
 
 .replyMessage {
-    padding-left: 32px;
-    padding-bottom: 16px;
+    border-top: 1px solid #B2BEB5;
+    position: relative;
+    width: auto;
+    padding-bottom: 8px;
+    padding-top: 24px;
     margin-bottom: 16px;
+    margin-left: 32px;
 }
 
