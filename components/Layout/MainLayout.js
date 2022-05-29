@@ -385,7 +385,7 @@ export const MainLayout = ({ children }) => {
 						</Footer>
 					}
 					header={
-						<Header height={70} p="md">
+						<Header height={70} p="md" style={{position: 'relative'}}>
 							<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
@@ -408,6 +408,7 @@ export const MainLayout = ({ children }) => {
 								</MediaQuery>
 								<Link href="/profile" passHref>
 									<UserCircle
+										style={{position:'absolute', right: 190}}
 										size={32}
 										strokeWidth={1}
 										color={'#191d4d'}

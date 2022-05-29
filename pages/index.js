@@ -17,10 +17,10 @@ export async function getServerSideProps(context) {
 	//const images = new Map();
 	let news = res.data.news
 	let i;
-	// for (i=0;i<news.length;++i) {
-		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		// news[i]['image'] = await imageToBase64(news[i].photopath)
-	// }
+	for (i=0;i<news.length;++i) {
+		images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+		news[i]['image'] = await imageToBase64(news[i].photopath)
+	}
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'

@@ -27,7 +27,7 @@ function openSecondModal() {
       children: (<>
             <LoginForm/>
 						<div className={styles.regDiv}>
-							<p>Вы еще не зарегистрированы?</p><a className={styles.regA} onClick={openSecondModal}>Зарегистрироваться</a>
+							<p style={{marginTop: 20, marginLeft: 50}}>Вы еще не зарегистрированы?</p><a className={styles.regA} style={{color:'#30d5c8', cursor: 'pointer', marginLeft:50}} onClick={openSecondModal}>Зарегистрироваться</a>
 						</div>
       </>)
     });
