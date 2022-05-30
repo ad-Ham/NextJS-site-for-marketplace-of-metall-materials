@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { useForm, formList } from '@mantine/form';
 import { TextInput, Input, Table, Select, Button, ActionIcon,
-    SimpleGrid, Grid, Group, Modal, InputWrapper, Textarea } from '@mantine/core';
+    SimpleGrid, Grid, Group, Modal, InputWrapper, Textarea, Space } from '@mantine/core';
 import { Plus, Trash } from 'tabler-icons-react';
 import { categories, darkMet, colorMet, steelItems, stainlessSteelItems, 
     stainlessSteelStamps, aluminumItems, copperItems, brassItems, bronzeItems, 
@@ -22,7 +22,9 @@ export function PromosAdd() {
     const [metal, setMetal] = useState('')
     const [size, setSize] = useState('')
     const [price, setPrice] = useState('')
-    const [currency, setCurrency] = useState('');
+    const [priceData, setPriceData] = useState('')
+    const [currency, setCurrency] = useState('')
+    const [count, setCount] = useState('')
 
     const [item, setItem] = useState('')
     const [stamp, setStamp] = useState('')
@@ -213,6 +215,12 @@ export function PromosAdd() {
         }
     }
 
+    const setPriceCurrency = (curr) => {
+        setCurrency(curr)
+
+        setPriceData(`${price} ${curr}`)
+    }
+
     const callbackInput = (key, value) => {
         if (key === 'stamp') setStamp(value)
         else sizeData[key] = value
@@ -227,19 +235,32 @@ export function PromosAdd() {
         setItemImage(image)
     }
 
+    // function getDataBreaks(key) {
+    //     return (<>
+    //         <Text>
+    //             {sizeData[key]}
+    //         </Text>
+    //         {key !== 'Длина' &&
+    //             <Space h='xs' />
+    //         }
+    //     </>
+    //     )
+    // }
+
     function setConcatSize() {
-        const sizeFields = ['diametr', 'width', 'depth', 'height', 'length']
+        const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Длина']
         var values = []
+        var data_values = []
 
         sizeFields.map(key => {
             if (key in sizeData) {
-                if ((key == 'width') && (item === 'Арматура')) values.push(sizeData[key])
-
-                values.push(sizeData[key])
+                values.push(`${key}: ${sizeData[key]}`)
+                // data_values.push(() => getDataBreaks(key))
             }
         })
 
-        setSize(values.join(' x '))
+        setSize(values.join(' '))
+        setSizeData(values.join(' \n '))
     }
 
     function addItem (callback) {
@@ -251,8 +272,11 @@ export function PromosAdd() {
             'stamp': stamp,
             'item': item,
             'size': size,
+            'size_data': sizeData,
             'price' : price,
-            'currency' : currency
+            'price_data': priceData,
+            'currency' : currency,
+            'count': count
         }
 
         callback(items)        
@@ -361,16 +385,15 @@ export function PromosAdd() {
                         <div style={{marginTop: 15}}>
                             {itemFields}
                         </div>
-                        <SimpleGrid cols={2} justify="center" align="center" style={{marginTop: 15}}>
+                        <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
                             <InputWrapper
                                 required
                                 label="Введите цену товара"
                             >
                             <Input
-                                label="Введите цену товара"
                                 placeholder="Введите цену товара" 
                                 value={price}
-                                style={{width: '75%'}}
+                                // style={{width: '75%'}}
                                 onChange={event => {setPrice(event.target.value)}}
                             />
                             </InputWrapper>
@@ -382,12 +405,24 @@ export function PromosAdd() {
                                 placeholder="Выберите валюту" 
                                 value={currency} 
                                 justify='center'
-                                style={{width: '75%'}}  
-                                onChange={value => setCurrency(value)} 
+                                // style={{width: '75%'}}  
+                                onChange={value => setPriceCurrency(value)} 
                                 data={[
                                     { value: 'RUB', label: 'RUB' },
                                     { value: 'USD', label: 'USD' },
                             ]}/>
+                            </InputWrapper>
+                            <InputWrapper
+                                required
+                                label="Введите количество"
+                            >
+                            <Input
+                                placeholder="Введите количество" 
+                                value={count}
+                                // style={{width: '75%'}}
+                                rightSection='т.'
+                                onChange={event => {setCount(event.target.value)}}
+                            />
                             </InputWrapper>
                         </SimpleGrid>
                     </>}
@@ -409,26 +444,28 @@ export function PromosAdd() {
             <Table style={{marginTop: 30}}>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Категория</th>
                         <th>Металл</th>
                         <th>Марка</th>
                         <th>Товар</th>
                         <th>Размеры</th>
                         <th>Цена</th>
-                        <th>Валюта</th>
+                        <th>Количество</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.values.items.map((itemFields, index) => 
                         <tr key={itemFields.name}>
+                            <td>{index + 1}</td>
                             <td>{itemFields.category}</td>
                             <td>{itemFields.metal}</td>
                             <td>{itemFields.stamp}</td>
                             <td>{itemFields.item}</td>
-                            <td>{itemFields.size}</td>
-                            <td>{itemFields.price}</td>
-                            <td>{itemFields.currency}</td>
+                            <td>{itemFields.size_data}</td>
+                            <td>{itemFields.price_data}</td>
+                            <td>{`${itemFields.count} т.`}</td>
                             <td>    
                             <ActionIcon
                                 color="red"

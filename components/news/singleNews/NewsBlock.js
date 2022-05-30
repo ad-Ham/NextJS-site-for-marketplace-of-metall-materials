@@ -39,7 +39,7 @@ export const NewsBlock = ({news, tags}) => {
 				</div>
 
 				<div>
-					<Comments />
+					<Comments entity={'news'} entity_id={news.id}/>
 				</div>
 			</SimpleGrid>
 		</div>

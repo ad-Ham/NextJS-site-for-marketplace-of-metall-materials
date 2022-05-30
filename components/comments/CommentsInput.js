@@ -1,10 +1,11 @@
 import { Textarea, Avatar, ActionIcon } from '@mantine/core';
 import { Send } from 'tabler-icons-react';
+import { axios, checkToken } from '../../middleware/axios';
 
 import styles from './CommentsInput.module.scss'
 
 
-export function NewsCommentsInput(username) {
+export function NewsCommentsInput() {
     return (<>
         <div className={styles.commentInput}>
             <Textarea 

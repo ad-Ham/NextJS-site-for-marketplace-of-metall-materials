@@ -223,7 +223,7 @@ const Promos = ({ promos }) => {
             </Head>
             <div className='headerDiv'>
                 <h1>Доска объявлений</h1>
-                <Link href="/promos/{pid}" passHref>
+                <Link href="/promos/add" passHref>
                   <Button variant="light">
                     Разместить объявление
                   </Button>

@@ -29,11 +29,6 @@ export const MainPromos = ({ promos }) => {
 				</Grid.Col>
 				<Grid.Col span={2} align={"right"}>
 				<Link href="/promos/add" passHref>
-						<Button variant="subtle">
-							Добавить
-						</Button>
-					</Link>
-				<Link href="/promos/{pid}" passHref>
 					<Button variant="subtle">
 						Разместить объявление
 					</Button>

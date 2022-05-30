@@ -7,8 +7,12 @@ const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
 
-export const PromoBlock = ({promoData, previewState = false}) => {
+export const PromoBlock = ({promoData = null, previewState = false}) => {
 	const [opened, setOpened] = useState(false);
+
+	if (promoData === null) return (<>
+		<Comments />
+	</>)
 
 	// const elements = [
 	// 	{name: 'Труба водогазопроводная', price: 12.011, currency: 'RUB'},
@@ -18,7 +22,7 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 	// 	{name: 'Арматура', price: 140.12, currency: 'RUB'},
 	// ]
 
-	const item_rows = promoData.items.map((item) => (
+	/*const item_rows = promoData.items.map((item) => (
 		<tr key={item.name}>
 			<td>{item.category}</td>
 			<td>{item.metal}</td>
@@ -28,7 +32,8 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 			<td>{item.price}</td>
 			<td>{item.currency}</td>
 		</tr>
-	));
+	))
+
 
 	const user = {
 		'name': 'Иван Иванов',
@@ -96,7 +101,7 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
 				<div className={styles.promotitle}>
-					{promoData.title}
+					Заголовок
 				</div>
 
 				<div className={styles.promodate}>
@@ -104,7 +109,7 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 				</div>
 				
 				<p className={styles.promodescription}>
-					{promoData.description}
+					Описание
 				</p>
 			
 				<Table className={styles.itemtable} striped>
@@ -120,7 +125,7 @@ export const PromoBlock = ({promoData, previewState = false}) => {
 					</tr>
 				</thead>
 				<tbody>
-					{item_rows}
+					item_rows
 				</tbody>
 				</Table>	
 
