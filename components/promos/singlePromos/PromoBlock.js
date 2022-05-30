@@ -156,7 +156,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 				
 				{(!previewState) && (
 				<div>
-					<Comments />
+					<CommentsBlock />
 				</div>
 				)}
 			</SimpleGrid>
