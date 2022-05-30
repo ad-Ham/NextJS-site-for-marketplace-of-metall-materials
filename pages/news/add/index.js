@@ -65,7 +65,7 @@ const AddNews = () => {
 	    }
 	  };
 
-	  	const uploadToServer = async (e) => {  
+	const uploadToServer = async (e) => {  
   	    e.preventDefault()
 	    const body = new FormData(document.getElementById("uploadForm"));
 	    console.log(body)

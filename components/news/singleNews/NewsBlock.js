@@ -1,7 +1,6 @@
 import { RepostLayout } from './RepostLayout'
 import { useState, useEffect } from 'react';
 import { SimpleGrid, Image, Badge } from '@mantine/core';
-import { Comments } from '../../comments/CommentsBlock';
 import styles from './NewsBlock.module.scss'
 const axios = require('axios').default;
 
@@ -36,10 +35,6 @@ export const NewsBlock = ({news, tags}) => {
 					{tags.map(tag => {
 						return (<Badge key={tag.id}>{tag.value}</Badge>)
 					})}
-				</div>
-
-				<div>
-					<Comments entity={'news'} entity_id={news.id}/>
 				</div>
 			</SimpleGrid>
 		</div>

@@ -1,10 +1,21 @@
-.commentsInput {
-	margin-top: 20px;
-	padding-top: 20px;
-}
-
 .comments {
 	position: relative;
-	padding-top: 20px;
 	margin: 20px;
+}
+
+.mainMessage {
+    position: relative;
+    width: auto;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    // margin-bottom: 16px;
+    border-top: 1px solid #B2BEB5;
+}
+
+.replyMessage {
+    position: relative;
+    width: auto;
+	margin-left: 54px;
+    padding-bottom: 16px;
+    padding-top: 16px;
 }

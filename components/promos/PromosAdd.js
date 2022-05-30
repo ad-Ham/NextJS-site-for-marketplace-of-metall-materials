@@ -260,7 +260,6 @@ export function PromosAdd() {
         })
 
         setSize(values.join(' '))
-        setSizeData(values.join(' \n '))
     }
 
     function addItem (callback) {
@@ -272,7 +271,6 @@ export function PromosAdd() {
             'stamp': stamp,
             'item': item,
             'size': size,
-            'size_data': sizeData,
             'price' : price,
             'price_data': priceData,
             'currency' : currency,
@@ -463,7 +461,7 @@ export function PromosAdd() {
                             <td>{itemFields.metal}</td>
                             <td>{itemFields.stamp}</td>
                             <td>{itemFields.item}</td>
-                            <td>{itemFields.size_data}</td>
+                            <td>{itemFields.size}</td>
                             <td>{itemFields.price_data}</td>
                             <td>{`${itemFields.count} т.`}</td>
                             <td>    

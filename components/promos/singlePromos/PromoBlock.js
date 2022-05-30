@@ -2,7 +2,7 @@ import { SimpleGrid, MediaQuery, Table, Group, Avatar, Text, Modal, Button } fro
 import { useViewportSize } from '@mantine/hooks';
 import React, { useState } from 'react';
 import styles from './PromoBlock.module.scss'
-import { Comments } from '../../comments/CommentsBlock';
+import { CommentsBlock } from '../../comments/CommentsBlock';
 const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
