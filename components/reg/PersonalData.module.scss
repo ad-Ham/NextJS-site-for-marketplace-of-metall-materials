@@ -1,24 +1,13 @@
 .inputpassword {
-	margin-bottom: 10px;
+	margin-bottom: 3px;
 	width: 327px;
 	height: 40px;
-	box-sizing: border-box;
-	border-radius: 4px;
 	padding-left: 11px;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 99.69%;
-	letter-spacing: 0.045em;
-	
 }
 
-.secondblock {
-	display: flex;
-	flex-direction: column;
-}
 
 .firstblock {
-	margin-top: 30px;
+	margin-top: 5px;
 }
 
 .maindiv {
@@ -26,29 +15,25 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #B6B6B6;
+	padding-bottom: 4px;
+	// border-bottom: 1px solid #B6B6B6;
 }
 
 .h2 {
-	margin-top: 11px;
-	font-weight: 600;
-	font-size: 20px;
+	font-weight: 500;
+	font-size: 17px;
 	line-height: 99.69%;
 	letter-spacing: 0.045em;
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 }
 
 .input {
 	width: 327px;
 	height: 40px;
-	box-sizing: border-box;
-	border-radius: 4px;
 	padding-left: 11px;
-	font-weight: 400;
-	font-size: 15px;
 	line-height: 99.69%;
 	letter-spacing: 0.045em;
+	padding-bottom: 4px;
 	
 }
 

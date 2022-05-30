@@ -58,7 +58,7 @@ const News = ({ news }) => {
 				</Grid>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'center'}>
-						<Text style={{ marginTop: '20px' }, {fontSize: '15px'}} color="gray" size="sm">{
+						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 							el.date.getFullYear() +' ' + el.time.slice(0, 5)

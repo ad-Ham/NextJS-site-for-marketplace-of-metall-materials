@@ -40,7 +40,7 @@ export const PersonalData = () => {
 						   maxLength='100'/>
 					<Input id='lastname' 
 						   type="text" 
-						   placeholder="Отчество" 
+						   placeholder="Отчество*" 
 						   className={styles.input} o
 						   nChange={e => setLastname(e.target.value)} 
 						   required

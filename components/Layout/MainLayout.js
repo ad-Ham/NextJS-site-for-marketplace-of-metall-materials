@@ -7,6 +7,7 @@ import styles from './MainLayout.module.scss'
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
 import { PersonalData } from '../profile/PersonalData';
+import { MenuUser } from '../menu/Menu';
 import {
 	AppShell,
 	Button,
@@ -385,8 +386,8 @@ export const MainLayout = ({ children }) => {
 						</Footer>
 					}
 					header={
-						<Header height={70} p="md" style={{position: 'relative'}}>
-							<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+						<Header height={70} p="md" style={{position:'relative'}}>
+							<div style={{ display: 'flex', alignItems: 'center', height: '100%'}}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
 										opened={opened}
@@ -406,15 +407,8 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								<Link href="/profile" passHref>
-									<UserCircle
-										style={{position:'absolute', right: 190}}
-										size={32}
-										strokeWidth={1}
-										color={'#191d4d'}
-									/>	
-								</Link>
-								{!userStatus && <LoginModal />}	
+								<MenuUser style={{}}/>	
+								{!userStatus && <LoginModal/>}
 							</div>
 						</Header>
 					}
