@@ -32,11 +32,8 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 			<td>{item.price}</td>
 			<td>{item.currency}</td>
 		</tr>
-<<<<<<< Updated upstream
 	))
-=======
-	));*/
->>>>>>> Stashed changes
+
 
 	const user = {
 		'name': 'Иван Иванов',

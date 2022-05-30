@@ -18,11 +18,6 @@ export async function getServerSideProps(context) {
 	let news = res.data.news
 	let i;
 	for (i=0;i<news.length;++i) {
-<<<<<<< Updated upstream
-		images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-=======
-		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
->>>>>>> Stashed changes
 		news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
