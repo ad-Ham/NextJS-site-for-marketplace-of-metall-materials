@@ -98,21 +98,12 @@ export function RegisterForm() {
 				<meta charSet="utf-8" />
 			</Head>
 			{/* <Adbannertop /> */}
-			<div className={styles.content}>
-				<div className={styles.regheaderblock}>
-					<h1 className={styles.regheader}>Регистрация</h1>
-					<p className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</p>
-				</div>
-				<form onSubmit={Submit} className={styles.form}>
-					<MainData onChange={e => setMainData(e.target.value)} />
-					<PersonalData onChange={e => setPersonalData(e.target.value)} />
-					<JurData onChange={e => setJurData(e.target.value)} />
-					<RegButton />
-				</form>
-			</div>
-			<style jsx>{`
-				
-			`}</style>
+				<h1 className={styles.regheader} style={{marginTop: -25}}>Регистрация</h1>
+				<p className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</p>
+				<MainData onChange={e => setMainData(e.target.value)} />
+				<PersonalData onChange={e => setPersonalData(e.target.value)} />
+				<JurData onChange={e => setJurData(e.target.value)} />
+				<RegButton />
 		</React.Fragment>
 		
 	)

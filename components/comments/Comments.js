@@ -1,6 +1,9 @@
 import React from 'react';
-import { createStyles, Text, Avatar, Group } from '@mantine/core';
+import Link from 'next/link'
+import { createStyles, Text, Avatar, Group, Menu } from '@mantine/core';
 import styles from './Comments.module.scss'
+import { useDisclosure } from '@mantine/hooks';
+import { User, MessageCircle2} from 'tabler-icons-react';
 
 const mainStyles = createStyles((theme) => ({
     body: {
@@ -14,14 +17,18 @@ const mainStyles = createStyles((theme) => ({
 function commentSimple(user) {
     const {classes} = mainStyles()
     const [postedAt, body, name, reply] = user
-
+    const [opened, handlers] = useDisclosure(false);
     const classMessage = (reply) ? styles.replyMessage : styles.mainMessage
     
     return (<>
         <div className={classMessage}>
             <Group>
             {/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
-            <Avatar alt={name} radius="xl" />
+            <Menu opened={opened} onOpen={handlers.open} onClose={handlers.close} control={<div><Avatar radius="xl" /></div>}>
+                <Link href="#" passHref><Menu.Item  icon={<MessageCircle2 size={14} color={'#00bfff'}/>}>Написать сообщение</Menu.Item></Link>
+                <Link href="#" passHref><Menu.Item  icon={<User size={14} color={'#00bfff'}/>}>Посмотреть профиль</Menu.Item></Link>
+            </Menu>
+            {/* <Avatar alt={name} radius="xl" opened={opened} onOpen={handlers.open} onClose={handlers.close} /> */}
                 <div>
                     <Text size="sm">{name}</Text>
                     <Text size="xs" color="dimmed">

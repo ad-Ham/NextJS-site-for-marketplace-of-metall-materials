@@ -19,7 +19,7 @@ export const MoreNewsCard = ({news}) => {
 
 	const showNews = news.map(el => {
 		return (<Grid.Col span={10} key={'0' + el.id}>
-			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
+			<Card p="sm" shadow="sm" style={{ marginBottom: '5px', minHeight: '75px', width: 900}}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{el.title}</Title>
 				</Group>
@@ -34,7 +34,7 @@ export const MoreNewsCard = ({news}) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-				    <Grid.Col span={4} justify={'end'} align={'center'}>
+				    <Grid.Col span={4} justify={'end'} align={'left'}>
 						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
@@ -43,12 +43,12 @@ export const MoreNewsCard = ({news}) => {
 						</Text>
 
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
+					<Grid.Col span={4} justify={'end'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'left'}>
+					<Grid.Col span={4} justify={'end'} align={'right'}>
 					    <Link href={"/news/" + el.id} passHref>
-							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+							<Button variant="subtle" style={{ marginTop: 14 }}>
 								Подробнее
 							</Button>
 						</Link>

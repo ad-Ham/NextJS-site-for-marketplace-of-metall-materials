@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { Mail, Phone, Lock, BuildingSkyscraper, Home,Login, FileText,Pencil, FileDescription, User } from 'tabler-icons-react';
+import { Mail, Phone, Lock, BuildingSkyscraper,Download,Trash, Home,Login, FileText,Pencil, FileDescription, User } from 'tabler-icons-react';
 import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
-import { Modal } from '@mantine/core';
+import { Modal, Image, Avatar } from '@mantine/core';
 // import styles from './PersonalData.module.scss'
 import { Card , Grid} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
@@ -11,108 +11,120 @@ import { useState } from 'react';
 
 
 const PersonalData = () => {
-    const [opened, setOpened] = useState(false);
-    const [open, setOpen] = useState(false);
+const [opened, setOpened] = useState(false);
+const [open, setOpen] = useState(false);
 
-	return (<>
-          <Head>
-                <title>Next Title</title>
-                <meta name="keywords" content="next, javascript" />
-                <meta name="description" content="this is" />
-                <meta charSet="utf-8" />
-            </Head>
-            <Card> 
-                    <Grid grow gutter="xs" style={{marginLeft: 40}}>
-                        <Grid.Col span={2} >
-                            <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>Хоменков Алексей Дмитриевич</p>
-                            <p style={{fontSize:18, marginBottom: 18}}>
-                                <Mail
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  aleks.khomenkov.03@mail.ru
-                            </p>
-                            <p style={{fontSize:18, marginBottom: 10}}>
-                                <Phone 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  88005553535</p>
-
-                        </Grid.Col>
-                        <Grid.Col span={2} offset={4} style={{marginTop: 40}}>
-                            <Profilepicture />
-                        </Grid.Col>
-                    </Grid>
-                    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
-                        <Grid.Col span={2}>
-                            <p style={{fontSize:18, marginBottom: 15}}><Lock 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Пароль:</p>
-                            <p style={{fontSize:18, marginBottom: 0}}><Login 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Логин:</p>
-                        </Grid.Col>
-                        <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
-                                <Modal 
-                                size="xl"
-                                opened={opened}
-                                onClose={() => setOpened(false)}>
-                                <YourData/>
-                                </Modal>
-                                <Pencil
-                                    onClick={() => setOpened(true)}
-                                    size={25}
-                                    strokeWidth={2}
-                                    color={'#42aaff'}
-                                />
+return (<>
+ <Head>
+    <title>Next Title</title>
+    <meta name="keywords" content="next, javascript" />
+    <meta name="description" content="this is" />
+    <meta charSet="utf-8" />
+</Head>
+<Card> 
+    <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40}}>
+        <Grid.Col span={3} >
+            <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>Хоменков Алексей Дмитриевич</p>
+            <p style={{fontSize:18, marginBottom: 18}}>
+            <Mail
+            size={20}
+            strokeWidth={2}
+            color={'#26194d'}/>  aleks.khomenkov.03@mail.ru
+            </p>
+            <p style={{fontSize:18, marginBottom: 10}}>
+            <Phone 
+            size={20}
+            strokeWidth={2}
+            color={'#26194d'}/>  88005553535</p>
+        </Grid.Col >      
+        <Grid.Col span={1} offset={6} style={{marginTop: 35}}>
+            <Avatar
+                radius={'50%'}
+                size={100}
+                src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+                alt="Random unsplash image"
+                />
+            <p style={{fontSize:14}}> <Download
+                size={18}
+                strokeWidth={2}
+                color={'#42aaff'} />  Загрузить</p>
+            <p style={{fontSize:14, marginTop: 5}}> <Trash
+                size={18}
+                strokeWidth={2}
+                color={'#42aaff'} />  Удалить</p>
+        </Grid.Col>
+    </Grid>
+    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+        <Grid.Col span={2}>
+            <p style={{fontSize:18, marginBottom: 15}}><Lock 
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}/>  Пароль:</p>
+            <p style={{fontSize:18, marginBottom: 0}}><Login 
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}/>  Логин:</p>
+        </Grid.Col>
+         <Grid.Col  span={2} offset={11.3} style={{marginTop: -30}}>
+            <Modal 
+                size="xl"
+                opened={opened}
+                onClose={() => setOpened(false)}>
+                <YourData/>
+            </Modal>
+            <Pencil
+                onClick={() => setOpened(true)}
+                size={20}
+                strokeWidth={2}
+                color={'#42aaff'}
+            />
                             
-                        </Grid.Col>
-                    </Grid>
-                    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
-                        <Grid.Col span={2}>
-                            <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Организация:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <Home 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Юридический адрес:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <User 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Должность:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <FileText
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  ИНН:</p>
-                            <p style={{fontSize:18}}>
-                                <FileDescription 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  ОГРН:</p>
-                        </Grid.Col>
-                        <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
-                            <Modal 
-                                size="xl"
-                                opened={open}
-                                onClose={() => setOpen(false)}>
-                                <JurData/>
-                                </Modal>
-                                <Pencil
-                                    onClick={() => setOpen(true)}
-                                    size={25}
-                                    strokeWidth={2}
-                                    color={'#42aaff'}
-                                />
+        </Grid.Col>
+    </Grid>
+    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+         <Grid.Col span={4}>
+            <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
+                size={20}
+                strokeWidth={2}
+                 color={'#26194d'}/>  Организация:</p>
+            <p style={{fontSize:18, marginBottom: 20}}>
+                <Home 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Юридический адрес:</p>
+            <p style={{fontSize:18, marginBottom: 20}}>
+                <User 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Должность:</p>
+            <p style={{fontSize:18, marginBottom: 20}}>
+                <FileText
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  ИНН:</p>
+            <p style={{fontSize:18}}>
+                <FileDescription 
+                     size={20}
+                     strokeWidth={2}
+                     color={'#26194d'}/>  ОГРН:</p>
+        </Grid.Col>
+        <Grid.Col  span={4} offset={11.3} style={{marginTop: -30}}>
+             <Modal 
+                size="xl"
+                opened={open}
+                onClose={() => setOpen(false)}>
+                <JurData/>
+            </Modal>
+            <Pencil
+                onClick={() => setOpen(true)}
+                size={20}
+                strokeWidth={2}
+                color={'#42aaff'}
+             />
                             
-                        </Grid.Col>
-        </Grid>
-            </Card>   
+        </Grid.Col>
+    </Grid>
+</Card>   
     {/* <Card>
 	 <Group>
         <Grid >

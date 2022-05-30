@@ -32,20 +32,20 @@ export const MainPageNews = ({ news, importantNews }) => {
 				</Grid.Col>
 			</Grid>
 			<Grid>
-			    <Grid.Col span={4} justify={'end'} align={'center'}>
-					<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
+			    <Grid.Col span={4} justify={'end'} align={'left'}>
+					<Text style={{ marginTop: '20px', marginLeft: 5 }} color="gray" size="sm">{
 						(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 						((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 						el.date.getFullYear() + ' ' + el.time.slice(0,5)
 					}
 					</Text>
 				</Grid.Col>
-				<Grid.Col span={4} justify={'center'} align={'center'}>
+				<Grid.Col span={4} justify={'end'} align={'center'}>
 					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 				</Grid.Col>
-				<Grid.Col span={4} justify={'center'} align={'left'}>
+				<Grid.Col span={4} justify={'end'} align={'left'}>
 					<Link href={'/news/'+el.id} passHref>
-						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+						<Button size="sm" variant="subtle" fullWidth style={{ marginTop: 14}}>
 						Подробнее
 						</Button>
 					</Link>
@@ -71,18 +71,18 @@ export const MainPageNews = ({ news, importantNews }) => {
 					</Grid.Col>
 				</Grid>
 				<Grid>
-					<Grid.Col span={4} justify={'end'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
+					<Grid.Col span={4} justify={'space-between'} align={'left'}>
+						<Text style={{ marginTop: '20px', marginLeft: 5  }} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 							el.date.getFullYear() + ' ' + el.time.slice(0,5)
 						}
 						</Text>
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+					<Grid.Col span={4} justify={'space-between'} align={'center'}>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 fgкомментариев</Text>
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'left'}>
+					<Grid.Col span={4} justify={'space-between'} align={'left'}>
 					<Link href={'/news/'+el.id} passHref>
 						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 						Подробнее
@@ -124,8 +124,8 @@ export const MainPageNews = ({ news, importantNews }) => {
 							{news[0].desc}
 						</Text>
 						<Grid>
-							<Grid.Col span={4} justify={'end'} align={'center'}>
-								<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
+							<Grid.Col span={4} justify={'end'} align={'left'}>
+								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
 									(news[0].date.getDate().toString().length === 1 ? '0' + news[0].date.getDate().toString() : news[0].date.getDate().toString()) + '.' +
 									((news[0].date.getMonth() + 1).toString().length === 1 ? '0' + (news[0].date.getMonth() + 1).toString() : (news[0].date.getMonth() + 1).toString()) + '.' +
 									news[0].date.getFullYear() + ' ' + news[0].time.slice(0,5)
