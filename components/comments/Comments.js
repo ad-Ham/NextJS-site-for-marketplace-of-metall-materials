@@ -17,16 +17,10 @@ const mainStyles = createStyles((theme) => ({
 function commentSimple(user) {
     const {classes} = mainStyles()
     const [postedAt, body, name, reply] = user
-<<<<<<< HEAD
     const [opened, handlers] = useDisclosure(false);
-    const classMessage = (reply) ? styles.replyMessage : styles.mainMessage
-=======
-
-    const classMessage = (reply) ?  styles.replyMessage : styles.mainMessage
->>>>>>> c2a7caad6e1478c7693eb3d9215bcbb7ef16a3fc
     
     return (<>
-        <div className={classMessage}>
+        <div>
             <Group>
             {/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
             <Menu opened={opened} onOpen={handlers.open} onClose={handlers.close} control={<div><Avatar radius="xl" /></div>}>

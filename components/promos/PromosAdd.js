@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useForm, formList } from '@mantine/form';
 import { TextInput, Input, Table, Select, Button, ActionIcon,
     SimpleGrid, Grid, Group, Modal, InputWrapper, Textarea, Space } from '@mantine/core';
@@ -9,9 +9,42 @@ import { categories, darkMet, colorMet, steelItems, stainlessSteelItems,
 // import styles from './PromosAdd.module.scss'
 import { PromoBlock } from './singlePromos/PromoBlock'
 import { armature, circle, profilePipe, ribbon, roundPipe, sheet, square } from '../items/ItemsConstructor'
+const axios = require('axios').default;
+import Link from 'next/link'
+import { checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 
 
 export function PromosAdd() {
+    const router = useRouter();
+    const [userStatus, setUserStatus] = useState('')
+    const [user, setUser] = useState('')
+
+    const changeUserStatus = () => {
+        setUserStatus(checkToken(router.pathname))
+        if (checkToken(router.pathname) === true) {
+            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+            .then(function(response) {
+                let userId = response.data.user_id.user_id;
+                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+                .then(function(response) {
+                    setUser(response.data.user)
+                })
+                .catch(function (error) {
+                        console.log(error);
+                    })
+            })
+            .catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
+
+    useEffect(() => {
+        changeUserStatus()
+
+    }, [])
+
     const [preview, setPreview] = useState(false)
     const [addPromo, setAddPromo] = useState(false)
 
@@ -291,6 +324,11 @@ export function PromosAdd() {
         checkCategory()
     }
 
+    const savePromo = () => {
+        const user_id=user.id
+        axios.post('http://localhost:3001/uploadPromo', {data, user_id})
+    }
+
     return (
     <>
     <h2>Размещение объявления</h2>
@@ -490,11 +528,15 @@ export function PromosAdd() {
                 {...data.getInputProps('description')} 
             />
         </div>
-        <Grid justify="center" align="center" style={{marginTop: 20}}>
-            <Grid.Col span={2}>
-                <Button type="submit">Разместить объявление</Button>
+        <Grid justify="center" align="space=between" style={{marginTop: 20}}>
+            <Grid.Col span={3}>
+                <Button type="submit"
+                disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')} 
+                onClick={() => savePromo()}>
+                Разместить объявление
+                </Button>
             </Grid.Col>
-            <Grid.Col span={2} style={{paddingLeft: 30}}> 
+            <Grid.Col span={3} style={{paddingLeft: 30}}> 
                 <Button 
                 type="submit" 
                 disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')}

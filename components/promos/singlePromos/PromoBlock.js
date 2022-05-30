@@ -32,7 +32,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 			<td>{item.price}</td>
 			<td>{item.currency}</td>
 		</tr>
-	))
+	))*/
 
 
 	const user = {
@@ -44,11 +44,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 
 	const user_rows = (
 		<Group noWrap>
-			{/* <Avatar size={94} radius="md" /> */}
 			<div>
-				{/* <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed"> */}
-					{/* {title} */}
-				{/* </Text> */}
 
 				<Text size="lg" weight={500}>
 					{user.name}
