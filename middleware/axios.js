@@ -23,7 +23,7 @@ function deleteToken() {
 function checkToken(pathname) {
 	if (localStorage.getItem("token") && pathname !== "/auth") {
 		let token = localStorage.getItem("token")
-		axios.post('http://localhost:3001/updateTokenDate', {token})
+		axios.post('https://api.metalmarket.pro/updateTokenDate', {token})
 		return true;
 	} else {
 		if (!axios.defaults.headers.common['Token'])

@@ -7,10 +7,43 @@ import { Modal } from '@mantine/core';
 import { Card , Grid} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+const axios = require('axios').default;
+import { checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 
 
 const PersonalData = () => {
+
+    const router = useRouter();
+    const [userStatus, setUserStatus] = useState('')
+    const [user, setUser] = useState('')
+
+    const changeUserStatus = () => {
+        setUserStatus(checkToken(router.pathname))
+        if (checkToken(router.pathname) === true) {
+            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+            .then(function(response) {
+                let userId = response.data.user_id.user_id;
+                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+                .then(function(response) {
+                    setUser(response.data.user)
+                })
+                .catch(function (error) {
+                        console.log(error);
+                    })
+            })
+            .catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
+
+    useEffect(() => {
+        changeUserStatus()
+
+    }, [])
+
     const [opened, setOpened] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -21,98 +54,99 @@ const PersonalData = () => {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <Card> 
-                    <Grid grow gutter="xs" style={{marginLeft: 40}}>
-                        <Grid.Col span={2} >
-                            <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>Хоменков Алексей Дмитриевич</p>
-                            <p style={{fontSize:18, marginBottom: 18}}>
-                                <Mail
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  aleks.khomenkov.03@mail.ru
-                            </p>
-                            <p style={{fontSize:18, marginBottom: 10}}>
-                                <Phone 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  88005553535</p>
+            {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
+            {(userStatus === true) && <><Card> 
+               <Grid grow gutter="xs" style={{marginLeft: 40}}>
+                   <Grid.Col span={2} >
+                       <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
+                       <p style={{fontSize:18, marginBottom: 18}}>
+                           <Mail
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {user.email}
+                       </p>
+                       <p style={{fontSize:18, marginBottom: 10}}>
+                           <Phone 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {user.phoneNumber}</p>
 
-                        </Grid.Col>
-                        <Grid.Col span={2} offset={4} style={{marginTop: 40}}>
-                            <Profilepicture />
-                        </Grid.Col>
-                    </Grid>
-                    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
-                        <Grid.Col span={2}>
-                            <p style={{fontSize:18, marginBottom: 15}}><Lock 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Пароль:</p>
-                            <p style={{fontSize:18, marginBottom: 0}}><Login 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Логин:</p>
-                        </Grid.Col>
-                        <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
-                                <Modal 
-                                size="xl"
-                                opened={opened}
-                                onClose={() => setOpened(false)}>
-                                <YourData/>
-                                </Modal>
-                                <Pencil
-                                    onClick={() => setOpened(true)}
-                                    size={25}
-                                    strokeWidth={2}
-                                    color={'#42aaff'}
-                                />
-                            
-                        </Grid.Col>
-                    </Grid>
-                    <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
-                        <Grid.Col span={2}>
-                            <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Организация:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <Home 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Юридический адрес:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <User 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  Должность:</p>
-                            <p style={{fontSize:18, marginBottom: 20}}>
-                                <FileText
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  ИНН:</p>
-                            <p style={{fontSize:18}}>
-                                <FileDescription 
-                                size={20}
-                                strokeWidth={2}
-                                color={'#26194d'}/>  ОГРН:</p>
-                        </Grid.Col>
-                        <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
-                            <Modal 
-                                size="xl"
-                                opened={open}
-                                onClose={() => setOpen(false)}>
-                                <JurData/>
-                                </Modal>
-                                <Pencil
-                                    onClick={() => setOpen(true)}
-                                    size={25}
-                                    strokeWidth={2}
-                                    color={'#42aaff'}
-                                />
-                            
-                        </Grid.Col>
-        </Grid>
-            </Card>   
+                   </Grid.Col>
+                   <Grid.Col span={2} offset={4} style={{marginTop: 40}}>
+                       <Profilepicture />
+                   </Grid.Col>
+               </Grid>
+               <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+                   <Grid.Col span={2}>
+                       <p style={{fontSize:18, marginBottom: 15}}><Lock 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  Пароль:</p>
+                       <p style={{fontSize:18, marginBottom: 0}}><Login 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  Логин:</p>
+                   </Grid.Col>
+                   <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
+                           <Modal 
+                           size="xl"
+                           opened={opened}
+                           onClose={() => setOpened(false)}>
+                           <YourData/>
+                           </Modal>
+                           <Pencil
+                               onClick={() => setOpened(true)}
+                               size={25}
+                               strokeWidth={2}
+                               color={'#42aaff'}
+                           />
+                       
+                   </Grid.Col>
+               </Grid>
+               <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+                   <Grid.Col span={2}>
+                       <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {'Организация: ' + user.orgName}</p>
+                       <p style={{fontSize:18, marginBottom: 20}}>
+                           <Home 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {'Юридический адрес: ' + user.jurAdress}</p>
+                       <p style={{fontSize:18, marginBottom: 20}}>
+                           <User 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {'Должность: ' + user.post}</p>
+                       <p style={{fontSize:18, marginBottom: 20}}>
+                           <FileText
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {'ИНН: ' + user.inn}</p>
+                       <p style={{fontSize:18}}>
+                           <FileDescription 
+                           size={20}
+                           strokeWidth={2}
+                           color={'#26194d'}/>  {'ОГРН: ' + user.ogrn}</p>
+                   </Grid.Col>
+                   <Grid.Col  span={2} offset={11.3} style={{marginTop: -40}}>
+                       <Modal 
+                           size="xl"
+                           opened={open}
+                           onClose={() => setOpen(false)}>
+                           <JurData/>
+                           </Modal>
+                           <Pencil
+                               onClick={() => setOpen(true)}
+                               size={25}
+                               strokeWidth={2}
+                               color={'#42aaff'}
+                           />
+                       
+                   </Grid.Col>
+   </Grid>
+       </Card></>}   
     {/* <Card>
 	 <Group>
         <Grid >

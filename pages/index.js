@@ -6,7 +6,7 @@ import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
-// const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64');
 
 export async function getServerSideProps(context) {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -18,7 +18,11 @@ export async function getServerSideProps(context) {
 	let news = res.data.news
 	let i;
 	for (i=0;i<news.length;++i) {
+<<<<<<< Updated upstream
 		images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+=======
+		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+>>>>>>> Stashed changes
 		news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {

@@ -22,7 +22,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 	// 	{name: 'Арматура', price: 140.12, currency: 'RUB'},
 	// ]
 
-	const item_rows = promoData.items.map((item) => (
+	/*const item_rows = promoData.items.map((item) => (
 		<tr key={item.name}>
 			<td>{item.category}</td>
 			<td>{item.metal}</td>
@@ -32,7 +32,11 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 			<td>{item.price}</td>
 			<td>{item.currency}</td>
 		</tr>
+<<<<<<< Updated upstream
 	))
+=======
+	));*/
+>>>>>>> Stashed changes
 
 	const user = {
 		'name': 'Иван Иванов',
@@ -100,7 +104,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
 				<div className={styles.promotitle}>
-					{promoData.title}
+					Заголовок
 				</div>
 
 				<div className={styles.promodate}>
@@ -108,7 +112,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 				</div>
 				
 				<p className={styles.promodescription}>
-					{promoData.description}
+					Описание
 				</p>
 			
 				<Table className={styles.itemtable} striped>
@@ -124,7 +128,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 					</tr>
 				</thead>
 				<tbody>
-					{item_rows}
+					item_rows
 				</tbody>
 				</Table>	
 
