@@ -51,28 +51,10 @@ const MyPromos = ({ promos }) => {
             <td>{element.region}</td>
             <td style={{textAlign: 'center'}}>                   
                 <Group spacing={0} style={{marginLeft: 40}}>
-                     <Modal
-                            opened={editPromo}
-                            onClose={() => setEditPromo(false)}
-                            
-                        >
-                            <p>Удалить объявление?</p>
-                            <Button>Да</Button>
-                            <Button>Отмена</Button>
-                    </Modal>
                     <ActionIcon variant="hover" color="#00bfff" onClick={() => setEditPromo(true)}>
                         <Pencil size={16} />
                     </ActionIcon>
-                    <Modal
-                            opened={deletePromo}
-                            onClose={() => setDeletePromo(false)}
-                            
-                        >
-                            <p>Удалить объявление?</p>
-                            <Button>Да</Button>
-                            <Button>Отмена</Button>
-                    </Modal>
-                    <ActionIcon color="red" onClick={() => setDeletePromo(true )} >
+                    <ActionIcon color="red" onClick={() => setDeletePromo(true)} >
                         <Trash size={16}/>
                     </ActionIcon>
                     </Group>
@@ -169,34 +151,6 @@ const MyPromos = ({ promos }) => {
             <td>{element.title}</td>
             <td>{element.organizationName}</td>
             <td>{element.region}</td>
-            {/* <td>
-            <Group spacing={0} style={{marginLeft: 40}}>
-                     <Modal
-                            opened={editPromo}
-                            onClose={() => setEditPromo(false)}
-                            
-                        >
-                            <p>Удалить объявление?</p>
-                            <Button>Да</Button>
-                            <Button>Отмена</Button>
-                    </Modal>
-                    <ActionIcon variant="hover" color="#00bfff" onClick={() => setEditPromo(true)}>
-                        <Pencil size={16} />
-                    </ActionIcon>
-                    <Modal
-                            opened={deletePromo}
-                            onClose={() => setDeletePromo(false)}
-                            
-                        >
-                            <p>Удалить объявление?</p>
-                            <Button>Да</Button>
-                            <Button>Отмена</Button>
-                    </Modal>
-                    <ActionIcon color="red" onClick={() => setDeletePromo(true)} >
-                        <Trash size={16}/>
-                    </ActionIcon>
-                    </Group>
-            </td> */}
         </tr>)
     }));
         })
@@ -352,6 +306,28 @@ const MyPromos = ({ promos }) => {
                 </thead>
                 <tbody>
                     {rows}
+                    <tr>
+                    <td>                   
+                            <Modal
+                                    opened={editPromo}
+                                    onClose={() => setEditPromo(false)}                                   
+                                >
+                                    <p align="center" style={{ marginBottom: 30,fontSize: 17}}>Редактировать объявление</p>                                   
+                            </Modal>
+                            <Modal
+                                    opened={deletePromo}
+                                    onClose={() => setDeletePromo(false)}                             
+                                >
+                                    <p align="center" style={{ marginBottom: 30,fontSize: 17}}>Удалить объявление?</p>
+                                    <Group style={{ display: 'flex', justifyContent: 'center' }}>
+                                        <Button  variant="outline">Да</Button>
+                                        <Space w="xl"/>
+                                        <Button  variant="outline">Отмена</Button>
+                                    </Group>
+                            </Modal>
+                           
+                    </td>
+             </tr>
                 </tbody>
             </Table>
             </Card>
