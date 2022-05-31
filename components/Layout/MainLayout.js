@@ -387,7 +387,7 @@ export const MainLayout = ({ children }) => {
 					}
 					header={
 						<Header height={70} p="md" style={{position:'relative'}}>
-							<div style={{ display: 'flex', alignItems: 'center', height: '100%'}}>
+							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', paddingRight: '15%'}}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
 										opened={opened}
@@ -407,8 +407,8 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								<MenuUser style={{}}/>	
-								{!userStatus && <LoginModal/>}
+								{(userStatus === true) && <><MenuUser style={{}}/></>}	
+								{(userStatus === false) && <><LoginModal/></>}
 							</div>
 						</Header>
 					}

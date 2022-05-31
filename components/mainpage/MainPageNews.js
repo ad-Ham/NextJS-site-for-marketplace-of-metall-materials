@@ -2,8 +2,40 @@ import Link from 'next/link'
 // import Image from 'next/image'
 import styles from './MainPageNews.module.scss'
 import { Button, Grid, Card, Title, Text, Badge, Image, Group, useMantineTheme } from '@mantine/core';
+import { useState, useEffect } from 'react';
+import { axios, checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 
-export const MainPageNews = ({ news, importantNews }) => {
+export const MainPageNews = ({ news, newsHot }) => {
+	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
+	const [user, setUser] = useState('')
+
+	const changeUserStatus = () => {
+		setUserStatus(checkToken(router.pathname))
+		if (checkToken(router.pathname) === true) {
+			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+			.then(function(response) {
+				let userId = response.data.user_id.user_id;
+				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				.then(function(response) {
+					setUser(response.data.user)
+				})
+				.catch(function (error) {
+						console.log(error);
+					})
+			})
+			.catch(function (error) {
+					console.log(error);
+				})
+		}
+	}
+
+	useEffect(() => {
+		changeUserStatus()
+
+	}, [])
+	const dateHot = new Date(newsHot.date)
 	const theme = useMantineTheme();
 	console.log(news)
 	news = news.map(el => {
@@ -16,7 +48,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 		}
 		return el;
 	})
-	const newsCards = news.slice(1, 3).map(el => {
+	const newsCards = news.slice(0, 2).map(el => {
 		return (<Card p="sm" key={news.id} shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
 			<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 				<Title order={3} weight={500}>{el.title}</Title>
@@ -54,7 +86,7 @@ export const MainPageNews = ({ news, importantNews }) => {
 		</Card>);
 	});
 
-	const bottomNews = news.slice(4,7).map(el => {
+	const bottomNews = news.slice(3,6).map(el => {
 		return (<Grid.Col span={6} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
@@ -100,10 +132,20 @@ export const MainPageNews = ({ news, importantNews }) => {
 				<Grid.Col span={10}>
 					<Title order={1}>Новости</Title>
 				</Grid.Col>
-				<Grid.Col span={2} align={"right"}>
+				<Grid.Col span={10} align={"right"}>
+					{(user.role === 'admin') && <><Link href={'/news/add'} passHref>
+						<Button variant="subtle" style={{ marginTop: 14 }}>
+							Добавить новость
+						</Button>
+					</Link>
+					<Link href={'/news/edit'} passHref>
+						<Button variant="subtle" style={{ marginTop: 14 }}>
+							Редактировать новости
+						</Button>
+					</Link></>}
 					<Link href="/news" passHref>
 						<Button variant="subtle">
-							Все Новости
+							Все новости
 						</Button>
 					</Link>
 				</Grid.Col>
@@ -112,32 +154,33 @@ export const MainPageNews = ({ news, importantNews }) => {
 				<Grid.Col span={6}>
 					<Card p="lg" style={{ height: '560px' }} shadow="md">
 						<Card.Section>
-							<Image src={'data:image/'+news[0].photopath.substr(news[0].photopath.length-3)+';base64,'+ news[0].image} height={260} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={260} alt="Norway" layout="fill" />
 						</Card.Section>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
-							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{news[0].title}</Title>
+							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{newsHot.title}</Title>
 						</Group>
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{news[0].desc}
+							{newsHot.desc}
 						</Text>
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'left'}>
 								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
-									(news[0].date.getDate().toString().length === 1 ? '0' + news[0].date.getDate().toString() : news[0].date.getDate().toString()) + '.' +
-									((news[0].date.getMonth() + 1).toString().length === 1 ? '0' + (news[0].date.getMonth() + 1).toString() : (news[0].date.getMonth() + 1).toString()) + '.' +
-									news[0].date.getFullYear() + ' ' + news[0].time.slice(0,5)
+									(dateHot.getDate().toString().length === 1 ? '0' + dateHot.getDate().toString() : dateHot.getDate().toString()) + '.' +
+									((dateHot.getMonth() + 1).toString().length === 1 ? '0' + (dateHot.getMonth() + 1).toString() : (dateHot.getMonth() + 1).toString()) + '.' +
+									dateHot.getFullYear() + ' ' + newsHot.time.slice(0,5)
+
 								}
 								</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
-							<Grid.Col span={4} justify={'center'} align={'right'}>
-							<Link href={'/news/'+news[0].id} passHref>
-								<Button variant="subtle" style={{ marginTop: 14 }}>
+							<Grid.Col span={4} justify={'center'} align={'left'}>
+							<Link href={'/news/'+newsHot.id} passHref>
+								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 									Подробнее
 								</Button>
 							</Link>

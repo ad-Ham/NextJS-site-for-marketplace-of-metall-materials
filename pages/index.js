@@ -16,10 +16,12 @@ export async function getServerSideProps(context) {
 	})
 	//const images = new Map();
 	let news = res.data.news
+	let newsHot = res.data.newsHot
+	//newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
-	// for (i=0;i<news.length;++i) {
-	// 	news[i]['image'] = await imageToBase64(news[i].photopath)
-	// }
+	for (i=0;i<news.length;++i) {
+		//news[i]['image'] = await imageToBase64(news[i].photopath)
+	}
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
@@ -28,12 +30,15 @@ export async function getServerSideProps(context) {
 	return {
 		props: {
 			news: news,
-			promos: promos.data.promos
+			promos: promos.data.promos,
+			newsHot: newsHot
 		},
 	}
 }
 
-export default function Index({ news, promos }) {
+export default function Index({ news, promos, newsHot }) {
+	console.log('NEWS HOT!!!!!!!')
+	console.log(newsHot)
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [dollarPrice, setDollarPrice] = useState('')
@@ -74,7 +79,7 @@ export default function Index({ news, promos }) {
 				<meta name="description" content="MetalMarket.pro" />
 			</Head>
 			<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
-			<MainPageNews news={news.slice(0, 100)} importantNews={news.slice(0, 1)} />
+			<MainPageNews news={news} newsHot={newsHot} />
 		</>
 	)
 }

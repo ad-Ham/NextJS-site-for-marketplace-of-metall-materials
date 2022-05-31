@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 
 const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64');
+//const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -14,17 +14,15 @@ export const getServerSideProps = async (context) => {
 			'Accept': 'application/json'
 		}
 	})
-	const images = new Map();
 	let news = res.data.news
 	let i;
 	for (i=0;i<news.length;++i) {
-		images.set(news[i].id, await imageToBase64(news[i].photopath))
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+
+		//news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
 		props: {
-			news: news,
-			images: images
+			news: news
 		},
 	}
 }
@@ -34,7 +32,11 @@ const handleDelete = async(e) => {
 	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
 }
 
-const NewsEdit = ({ news, images }) => {
+const handlePin = async(e) => {
+	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
+}
+
+const NewsEdit = ({ news }) => {
 	const router = useRouter();
 	const [userStatus, setUserStatus] = useState('')
 	const [user, setUser] = useState('')
@@ -77,7 +79,7 @@ const NewsEdit = ({ news, images }) => {
 	})
 	const [otherNews, setOtherNews] = useState([])
 	const showNews = news.map(el => {
-		return (<Grid.Col span={10} key={'0' + el.id}>
+		return (<Grid.Col span={12} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{el.title}</Title>
@@ -90,11 +92,14 @@ const NewsEdit = ({ news, images }) => {
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{el.desc}
 						</Text>
+						{(el.pinned === 1) && <><Badge color="pink" variant="light">
+							Горячая новость
+						</Badge></>}
 					</Grid.Col>
 				</Grid>
 				<Grid>
-				    <Grid.Col span={4} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }, {fontSize: '15px'}} color="gray" size="sm">{
+				    <Grid.Col span={2} justify={'center'} align={'right'}>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 							el.date.getFullYear() +' ' + el.time.slice(0, 5)
@@ -102,18 +107,27 @@ const NewsEdit = ({ news, images }) => {
 						</Text>
 
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
+					<Grid.Col span={2} justify={'center'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'left'}>
+					<Grid.Col span={3} justify={'center'} align={'center'}>
 					    <Link href={"/news/edit/" + el.id} passHref>
-							<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+							<Button variant="subtle" style={{ marginTop: 14 }}>
 								Редактировать
 							</Button>
 						</Link>
+					</Grid.Col>
+					<Grid.Col span={2} justify={'center'} align={'center'}>
 						<form id={el.id} key={'0'+el.id} onSubmit={handleDelete}>
-						<Button id={el.id} type="submit" variant="subtle" fullWidth style={{ marginTop: 14 }}>
+						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
 							Удалить
+						</Button>
+						</form>
+					</Grid.Col>
+					<Grid.Col span={3} justify={'center'} align={'center'}>
+						<form id={el.id} key={'0'+el.id} onSubmit={handlePin}>
+						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Закрепить
 						</Button>
 						</form>
 					</Grid.Col>
@@ -135,7 +149,9 @@ const NewsEdit = ({ news, images }) => {
 			{(userStatus === true) && (user.role !== 'admin') && <><h1 className="errorHeader">403 Forbidden</h1><p className="errorText">Недостаточно прав доступа</p></>}
 
 			{(userStatus === true) && (user.role === 'admin') && <><Link href='/news/add'>
-				<Button>Добавить новости</Button>
+			<div style={{display: "flex", justifyContent: "center", width: "100%", marginBottom: "2%"}}>
+				<Button>Добавить новость</Button>
+			</div>
 			</Link>
 			<Card p="sm" key={news.id}>
 				<Grid>
@@ -143,7 +159,9 @@ const NewsEdit = ({ news, images }) => {
 				</Grid>
 			</Card>
 			<Space h="md" />
-			<Pagination total={10} color="orange" withEdges /></>}
+			<div style={{display:"flex", justifyContent:"center"}}>	
+				<Pagination total={10} color="orange" withEdges />
+			</div></>}
 		</>
 	)
 }
