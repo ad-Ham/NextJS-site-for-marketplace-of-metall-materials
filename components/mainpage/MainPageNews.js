@@ -43,9 +43,9 @@ export const MainPageNews = ({ news, importantNews }) => {
 				<Grid.Col span={4} justify={'end'} align={'center'}>
 					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 				</Grid.Col>
-				<Grid.Col span={4} justify={'end'} align={'left'}>
+				<Grid.Col span={4} justify={'end'} align={'right'}>
 					<Link href={'/news/'+el.id} passHref>
-						<Button size="sm" variant="subtle" fullWidth style={{ marginTop: 14}}>
+						<Button size="sm" variant="subtle" style={{ marginTop: 14}}>
 						Подробнее
 						</Button>
 					</Link>
@@ -82,9 +82,9 @@ export const MainPageNews = ({ news, importantNews }) => {
 					<Grid.Col span={4} justify={'space-between'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 fgкомментариев</Text>
 					</Grid.Col>
-					<Grid.Col span={4} justify={'space-between'} align={'left'}>
+					<Grid.Col span={4} justify={'space-between'} align={'right'}>
 					<Link href={'/news/'+el.id} passHref>
-						<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+						<Button variant="subtle" style={{ marginTop: 14 }}>
 						Подробнее
 						</Button>
 					</Link>
@@ -135,9 +135,9 @@ export const MainPageNews = ({ news, importantNews }) => {
 							<Grid.Col span={4} justify={'center'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
-							<Grid.Col span={4} justify={'center'} align={'left'}>
+							<Grid.Col span={4} justify={'center'} align={'right'}>
 							<Link href={'/news/'+news[0].id} passHref>
-								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+								<Button variant="subtle" style={{ marginTop: 14 }}>
 									Подробнее
 								</Button>
 							</Link>
