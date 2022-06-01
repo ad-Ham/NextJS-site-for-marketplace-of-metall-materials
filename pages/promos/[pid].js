@@ -8,7 +8,7 @@ import { PromoBlock } from '../../components/promos/singlePromos/PromoBlock'
 import { MorePromosCard } from '../../components/promopage/MorePromosCard'
 import { Adbannertop } from '../../components/Adbannertop'
 import Adbannerside from '../../public/adbannerside.svg'
-import { CommentsBlock } from '../../comments/CommentsBlock';
+import { CommentsBlock } from '../../components/comments/CommentsBlock';
 import Link from 'next/link'
 import styles from '../../styles/promopage.module.scss'
 
