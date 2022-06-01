@@ -2,6 +2,7 @@ import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { ModalsProvider, useModals } from '@mantine/modals';
 import { axios, checkToken } from '/middleware/axios.js';
+import { showNotification } from '@mantine/notifications';
 import Link from 'next/link'
 
 export const LoginForm = ({ id }) => {
@@ -25,20 +26,44 @@ export const LoginForm = ({ id }) => {
 			password: values.password
 		})
 			.then(function (response) {
+				console.log(response.status)
 				if (response.status === 200) {
 					localStorage.setItem('token', response.data.token);
-					alert('Вы успешно вошли!')
-					form.reset()
+					showNotification({
+						title: 'Отлично!',
+			            message: 'Вы успешно вошли в аккаунт ' + values.email,
+			            autoClose: 5000,
+			            color: "green"
+			        })					
+			        form.reset()
 					modals.closeAll()
 
-				} else if (response.status === 404) {
-					alert('Пользователь не найден')
-				} else if (response.status === 403) {
-					alert('Неверный пароль')
 				}
 			})
 			.catch(function (error) {
-				console.log(error);
+				console.log(error.status)
+				if (error.status === 403) {
+					showNotification({
+						title: 'Ошибка!',
+			            message: 'Неверный пароль',
+			            autoClose: 5000,
+			            color: "red"
+			        })
+				} else if (error.status === 404) {
+					showNotification({
+						title: 'Ошибка!',
+			            message: 'Пользователь не найден',
+			            autoClose: 5000,
+			            color: "red"
+			        })
+				} else if (error.status	=== 400) {
+					showNotification({
+						title: 'Ошибка!',
+			            message: 'Дождитесь подтверждения аккаунта',
+			            autoClose: 5000,
+			            color: "red"
+			        })
+				}
 			});
 	}
 

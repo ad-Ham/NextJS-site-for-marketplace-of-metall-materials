@@ -52,7 +52,8 @@ export function RegisterForm() {
 				orgname.value,
 				juradress.value,
 				inn.value,
-				ogrn.value
+				ogrn.value,
+				position.value
 			],
 		};
 
@@ -109,12 +110,13 @@ export function RegisterForm() {
 					juradress: data.jurData[1],
 					inn: data.jurData[2],
 					ogrn: data.jurData[3],
+					post: data.jurData[4]
 				})
 				.then(response => {
 					modals.closeAll()
 					showNotification({
-						title: 'Регистрация прошла успешно!',
-			            message: 'Теперь вы можете войти в свой аккаунт',
+						title: 'Заявка на регистрацию отправлена',
+			            message: 'Дождитесь проверки данных. Обычно подтверждение аккаунта занимает от 5 минут до 24 часов',
 			            autoClose: false,
 			            
 			            color: "green"
@@ -137,14 +139,6 @@ export function RegisterForm() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-
-			{/* <Adbannertop /> */}
-				<h1 className={styles.regheader} style={{marginTop: -25}}>Регистрация</h1>
-				<p className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</p>
-				<MainData onChange={e => setMainData(e.target.value)} />
-				<PersonalData onChange={e => setPersonalData(e.target.value)} />
-				<JurData onChange={e => setJurData(e.target.value)} />
-				<RegButton />
 
 			<div className={styles.content}>
 				<div className={styles.regheaderblock}>
