@@ -41,8 +41,9 @@ const News = ({ news }) => {
 	})
 	const [otherNews, setOtherNews] = useState([])
 	const showNews = news.map(el => {
-		return (<Grid.Col span={10} key={'0' + el.id}>
-			<Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}>
+		return (<Card span={10} key={'0' + el.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
+			
+			{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
 				<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
 					<Title order={3} weight={500}>{el.title}</Title>
 				</Group>
@@ -77,8 +78,8 @@ const News = ({ news }) => {
 						</Link>
 					</Grid.Col>
 				</Grid>
-			</Card>
-		</Grid.Col>);
+			{/* </Card> */}
+		</Card>);
 	})
 
 	return (

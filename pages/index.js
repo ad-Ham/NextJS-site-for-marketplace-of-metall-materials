@@ -6,7 +6,7 @@ import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
-// const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64');
 
 export async function getServerSideProps(context) {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -16,12 +16,10 @@ export async function getServerSideProps(context) {
 	})
 	//const images = new Map();
 	let news = res.data.news
+
 	let newsHot = res.data.newsHot
-	//newsHot['image'] = await imageToBase64(newsHot.photopath)
-	let i;
-	for (i=0;i<news.length;++i) {
-		//news[i]['image'] = await imageToBase64(news[i].photopath)
-	}
+	newsHot['image'] = await imageToBase64(newsHot.photopath)
+	
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
@@ -30,15 +28,12 @@ export async function getServerSideProps(context) {
 	return {
 		props: {
 			news: news,
-			promos: promos.data.promos,
-			newsHot: newsHot
+			promos: promos.data.promos
 		},
 	}
 }
 
-export default function Index({ news, promos, newsHot }) {
-	console.log('NEWS HOT!!!!!!!')
-	console.log(newsHot)
+export default function Index({ news, promos }) {
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [dollarPrice, setDollarPrice] = useState('')
@@ -79,7 +74,7 @@ export default function Index({ news, promos, newsHot }) {
 				<meta name="description" content="MetalMarket.pro" />
 			</Head>
 			<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
-			<MainPageNews news={news} newsHot={newsHot} />
+			<MainPageNews news={news.slice(0, 100)} importantNews={news.slice(0, 1)} />
 		</>
 	)
 }

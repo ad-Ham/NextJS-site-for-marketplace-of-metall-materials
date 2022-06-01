@@ -52,7 +52,8 @@ export function RegisterForm() {
 				orgname.value,
 				juradress.value,
 				inn.value,
-				ogrn.value
+				ogrn.value,
+				position.value
 			],
 		};
 
@@ -109,12 +110,13 @@ export function RegisterForm() {
 					juradress: data.jurData[1],
 					inn: data.jurData[2],
 					ogrn: data.jurData[3],
+					post: data.jurData[4]
 				})
 				.then(response => {
 					modals.closeAll()
 					showNotification({
-						title: 'Регистрация прошла успешно!',
-			            message: 'Теперь вы можете войти в свой аккаунт',
+						title: 'Заявка на регистрацию отправлена',
+			            message: 'Дождитесь проверки данных. Обычно подтверждение аккаунта занимает от 5 минут до 24 часов',
 			            autoClose: false,
 			            
 			            color: "green"
