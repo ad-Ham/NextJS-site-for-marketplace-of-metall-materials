@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
 	let newsHot = res.data.newsHot
 	newsHot['image'] = await imageToBase64(newsHot.photopath)
 	
+	
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
