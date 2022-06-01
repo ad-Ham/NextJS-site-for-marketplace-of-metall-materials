@@ -7,6 +7,7 @@ import { Button, Grid, Card, Title, Table, Space, Group, ActionIcon, Modal, Unst
 import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useSetState } from '@mantine/hooks';
+import { EditPromos} from '../../components/promos/EditPromos'
 
 
 export async function getServerSideProps(context) {
@@ -301,7 +302,7 @@ const MyPromos = ({ promos }) => {
                         <th>Название объявления</th>
                         <th>Организация</th>
                         <th>Регион</th>
-                        <th>Редактирование</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -309,20 +310,21 @@ const MyPromos = ({ promos }) => {
                     <tr>
                     <td>                   
                             <Modal
+                                    size="60%"
                                     opened={editPromo}
                                     onClose={() => setEditPromo(false)}                                   
-                                >
-                                    <p align="center" style={{ marginBottom: 30,fontSize: 17}}>Редактировать объявление</p>                                   
+                                >                                   
+                                    <EditPromos />
                             </Modal>
                             <Modal
                                     opened={deletePromo}
                                     onClose={() => setDeletePromo(false)}                             
                                 >
-                                    <p align="center" style={{ marginBottom: 30,fontSize: 17}}>Удалить объявление?</p>
+                                    <h2 align="center" style={{ marginBottom: 30,fontSize: 17}}>Удалить объявление?</h2>
                                     <Group style={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Button  variant="outline">Да</Button>
+                                        <Button  variant="light">Да</Button>
                                         <Space w="xl"/>
-                                        <Button  variant="outline">Отмена</Button>
+                                        <Button  variant="light">Отмена</Button>
                                     </Group>
                             </Modal>
                            
