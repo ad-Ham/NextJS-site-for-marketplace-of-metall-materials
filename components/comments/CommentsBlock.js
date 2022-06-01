@@ -6,8 +6,20 @@ import { TextInput, ActionIcon, createStyles, Text, Avatar, Group, SimpleGrid, U
 import { Send } from 'tabler-icons-react'
 
 
-const uploadToServer = async (comment) => {     
-    const response = await axios.post("http://localhost:3001/addcomment", comment)
+const addComment = async (user, comment) => {     
+    comment.user_id = user.id
+    comment.sender_id = user.id
+
+    const response = await axios.post("http://api.metalmarket.pro/addcomment", comment)
+
+    Router.reload(window.location.pathname, { scroll: false })
+}
+
+const deleteComment = async (user, comment) => {     
+    comment.user_id = user.id
+    comment.deleter_id = user.id
+
+    const response = await axios.post("http://api.metalmarket.pro/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -16,18 +28,19 @@ const uploadToServer = async (comment) => {
 const mainStyles = createStyles((theme) => ({
     body: {
         paddingLeft: 54,
-        paddingTop: theme.spacing.sm,
+        paddingTop: 10,
     },
 }));
 
 
-function commentInput(entity, entity_id, reply_id) {
+function commentInput(user, userComment) {
     const [comment, setComment] = useSetState({
-        user_id: 78,
-        entity: entity,
-        entity_id: entity_id,
+        id: userComment.id,
+        entity: userComment.entity,
+        entity_id: userComment.entity_id,
         data: '',
-        reply_id: reply_id
+        reply_id: userComment.id,
+        parent_id: (userComment.parent_id !== null) ? userComment.parent_id : userComment.id
     })
 
     return (<>
@@ -36,7 +49,7 @@ function commentInput(entity, entity_id, reply_id) {
                 placeholder="Введите комментарий" 
                 // placeholder={comment.reply_id}
                 rightSection={
-                    <ActionIcon style={{ paddingRight: 10 }} onClick={() => uploadToServer(comment)}>
+                    <ActionIcon style={{ paddingRight: 10 }} onClick={() => addComment(user, comment)}>
                         <Send size={16}/>
                     </ActionIcon>}
                 onChange={event => setComment({data: event.target.value})}
@@ -46,13 +59,14 @@ function commentInput(entity, entity_id, reply_id) {
 }
 
 
-function commentSimple(comment) {
+function commentSimple(comment, user) {
     // const { hovered, ref } = useHover();
+    // user.role = 'admin'
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
     // const [postedAt, body, name, reply] = user
 
-    const answerMessage = commentInput(comment.entity, comment.entity_id, comment.id)
+    const answerMessage = commentInput(user, comment)
 
     const classMessage = (comment.reply_id === null) ? styles.mainMessage : styles.replyMessage 
 
@@ -63,13 +77,19 @@ function commentSimple(comment) {
             <Avatar alt={comment.id} radius="xl" />
                 <div>
                     <Group position="left">
-                        <Text size="sm">{comment.user_id}</Text>
+                        <Text size="sm">{`${user.firstName} ${user.surName}`}</Text>
                         <UnstyledButton onClick={() => setReplied({ reply: true })}>
                             <Text size="sm" color="blue">Ответить</Text>
                         </UnstyledButton>
+                        {((user.id === comment.user_id) || (user.role === 'admin')) &&
+                            <UnstyledButton onClick={() => deleteComment(user, comment)}>
+                                <Text size="sm" color="blue">Удалить</Text>
+                            </UnstyledButton>
+                        }
                     </Group>
-                    <Text size="xs" color="dimmed">
-                    {comment.entity_id}
+                    <Text size="xs" style={{marginTop: 1}}>{`${user.post}, ${user.orgName}` }</Text>
+                    <Text size="xs" color="dimmed" style={{marginTop: 3}}>
+                    {`${comment.date.slice(8, 10)}.${comment.date.slice(5, 7)}.${comment.date.slice(0, 4)} ${comment.time.slice(0, 5)}`}
                     </Text>
                 </div>
             </Group>
@@ -89,14 +109,14 @@ function commentSimple(comment) {
 }
 
 
-export const CommentsBlock = ({entity, entity_id, comments}) => {
+export const CommentsBlock = ({entity, entity_id, comments, user}) => {
     return (<>
         <div style={{marginTop: 10, marginLeft: 20, marginRight: 20}}>
-            {commentInput(entity, entity_id, null)}
+            {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
         </div>
 
         <div className={styles.comments}>
-            {comments.map(comment => commentSimple(comment))}
+            {comments.map(comment => commentSimple(comment, user))}
         </div>
     </>)
 }
