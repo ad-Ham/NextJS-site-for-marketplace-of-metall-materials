@@ -1,16 +1,18 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MainPromos } from '../../components/mainpage/MainPromos'
 import { MainPageNews } from '../../components/mainpage/MainPageNews'
 import { NewsBlock } from '../../components/news/singleNews/NewsBlock'
 import { MoreNewsCard } from '../../components/news/singleNews/MoreNewsCard'
 import { Adbannertop } from '../../components/Adbannertop'
+import { CommentsBlock } from '../../components/comments/CommentsBlock';
 import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
-const axios = require('axios').default;
+import { axios, checkToken } from '/middleware/axios.js';
+// const axios = require('axios').default;
 // const imageToBase64 = require('image-to-base64');
-
+	
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
@@ -33,25 +35,59 @@ export async function getServerSideProps(context) {
 	//const images = new Map();
 	let newsList = res.data.news
 	
-	for (i=0;i<newsList.length;++i) {
+	// for (i=0;i<newsList.length;++i) {
 		// //images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
 		// newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
-	}
+	// }
 
 	if (newsList.indexOf(news) !== -1) {
 		newsList.splice(newsList.indexOf(news))
 	}
 
 
+	const response = await axios.get("http://api.metalmarket.pro/getcomments", 
+		{params : { entity: 'news', entity_id: id, headers: {'Accept': 'application/json' }}}
+	)
+
+	let comments = response.data.comments
+	
 	return {
-		props: {news: news, tags: tags, newsList: newsList}
+		props: {news: news, tags: tags, newsList: newsList, comments: comments}
 	}
 }
 
-const NewsPage = ({news, tags, newsList}) => {
+const NewsPage = ({news, tags, newsList, comments}) => {
+	const router = useRouter();
+    const [userStatus, setUserStatus] = useState('')
+    const [user, setUser] = useState('')
+
+    const changeUserStatus = () => {
+        setUserStatus(checkToken(router.pathname))
+        if (checkToken(router.pathname) === true) {
+            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+            .then(function(response) {
+                let userId = response.data.user_id.user_id;
+                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+                .then(function(response) {
+                    setUser(response.data.user)
+                })
+                .catch(function (error) {
+                        console.log(error);
+                    })
+            })
+            .catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
+
+	useEffect(() => {
+        changeUserStatus()
+    }, [])
+
 	const [singleNew, setSingleNew] = useState([])
-	console.log('!!!!!!!!!!!!!!')
-	console.log(newsList)
+	// console.log('!!!!!!!!!!!!!!')
+	// console.log(comments)
 	// useEffect(() => {
 	// 	axios.get('https://api.metalmarket.pro/singlenews', {
 	// 		id: id
@@ -66,17 +102,15 @@ const NewsPage = ({news, tags, newsList}) => {
 	// 		})
 	// }, [])
 
-
-
 	return (
 		<>
 			<div className={styles.content}>
-
 				<div className={styles.leftside}>
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
-					<NewsBlock news={news} tags={tags}/>
+					<NewsBlock news={news} tags={tags} comments={comments}/>
+					<CommentsBlock entity={'news'} entity_id={news.id} comments={comments} user={user}/>
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
 						<div className={styles.morenewsrow}>
@@ -84,7 +118,6 @@ const NewsPage = ({news, tags, newsList}) => {
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</>
 	)

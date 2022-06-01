@@ -2,17 +2,13 @@ import { SimpleGrid, MediaQuery, Table, Group, Avatar, Text, Modal, Button } fro
 import { useViewportSize } from '@mantine/hooks';
 import React, { useState } from 'react';
 import styles from './PromoBlock.module.scss'
-import { Comments } from '../../comments/CommentsBlock';
+import { CommentsBlock } from '../../comments/CommentsBlock';
 const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
 
-export const PromoBlock = ({promoData = null, previewState = false}) => {
+export const PromoBlock = ({promoData = null}) => {
 	const [opened, setOpened] = useState(false);
-
-	if (promoData === null) return (<>
-		<Comments />
-	</>)
 
 	// const elements = [
 	// 	{name: 'Труба водогазопроводная', price: 12.011, currency: 'RUB'},
@@ -148,17 +144,7 @@ export const PromoBlock = ({promoData = null, previewState = false}) => {
 							</Group>
 						)}
 					</div>
-				</SimpleGrid>
-				
-				{/* <div> */}
-					{/* {} */}
-				{/* </div> */}
-				
-				{(!previewState) && (
-				<div>
-					<Comments />
-				</div>
-				)}
+				</SimpleGrid>			
 			</SimpleGrid>
 		</div>
 	</>)

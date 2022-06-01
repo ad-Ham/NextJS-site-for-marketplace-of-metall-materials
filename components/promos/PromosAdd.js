@@ -8,42 +8,12 @@ import { categories, darkMet, colorMet, steelItems, stainlessSteelItems,
     titanItems, steelStamps,aluminumStamps, copperStamps, brassStamps, bronzeStamps, titanStamps} from '../items/itemList'
 // import styles from './PromosAdd.module.scss'
 import { PromoBlock } from './singlePromos/PromoBlock'
-import { armature, circle, profilePipe, ribbon, roundPipe, sheet, square } from '../items/ItemsConstructor'
-const axios = require('axios').default;
-import Link from 'next/link'
-import { checkToken } from '/middleware/axios.js';
-import { useRouter } from 'next/router'
+import { armature, channel, circle, corner, hexagon, profilePipe, ribbon, roundPipe, sheet, square } from '../items/ItemsConstructor'
+import { countries, russiaObjects, kyrgyzstanObjects, uzbekistanObjects, kazakhstanObjects } from '../items/placeList'
 
 
 export function PromosAdd() {
-    const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-    useEffect(() => {
-        changeUserStatus()
-
-    }, [])
+    const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 
     const [preview, setPreview] = useState(false)
     const [addPromo, setAddPromo] = useState(false)
@@ -58,10 +28,16 @@ export function PromosAdd() {
     const [priceData, setPriceData] = useState('')
     const [currency, setCurrency] = useState('')
     const [count, setCount] = useState('')
+    const [country, setCountry] = useState('Россия')
+    const [countryData, setCountryData] = useState(countries)
+    const [region, setRegion] = useState('г. Москва')
+    const [regionData, setRegionData] = useState(russiaObjects)
 
     const [item, setItem] = useState('')
     const [stamp, setStamp] = useState('')
     const [sizeData, setSizeData] = useState({})
+    const [chars, setChars] = useState('')
+    const [charsData, setCharsData] = useState({})
     const [stamps, setStamps] = useState([])
     const [stampName, setStampName] = useState('')
 
@@ -111,6 +87,8 @@ export function PromosAdd() {
             // setStampName('')
             
             setSizeData({})
+            setCharsData({})
+            setChars('')
             setSize('')
             setPrice('')
             setCurrency('')
@@ -217,6 +195,10 @@ export function PromosAdd() {
             setItemTrue(armature)
         }
 
+        if (value == 'Балка/Двутавр') {
+            setItem('Балка/Двутавр')
+        }
+
         if ((value === 'Квадрат')) {
             setItem('Квадрат')
             setItemTrue(square)
@@ -236,6 +218,10 @@ export function PromosAdd() {
             setItem('Лист/Плита')
             setItemTrue(sheet)
         }
+        
+        if (value === 'Отвод') {
+            setItem('Отвод')
+        }
 
         if (value === 'Труба круглая') {
             setItem('Труба круглая')
@@ -246,19 +232,46 @@ export function PromosAdd() {
             setItem('Труба профильная')
             setItemTrue(profilePipe)
         }
+
+        if (value === 'Уголок') {
+            setItem('Труба профильная')
+            setItemTrue(corner)
+        }
+
+        if (value === 'Фланец плоский') {
+            setItem('Фланец плоский')
+        }
+
+        if (value === 'Швеллер') {
+            setItem('Швеллер')
+            setItemTrue(channel)
+        }
+
+        if (value === 'Шестигранник') {
+            setItem('Шестигранник')
+            setItemTrue(hexagon)
+        }
     }
 
-    const setPriceCurrency = (curr) => {
-        setCurrency(curr)
+    const setCountryRegion = (value) => {
+        setCountry(value)
 
-        setPriceData(`${price} ${curr}`)
-    }
-
-    const callbackInput = (key, value) => {
-        if (key === 'stamp') setStamp(value)
-        else sizeData[key] = value
-
-        setConcatSize()
+		if (value === "Россия") {
+            setRegionData(russiaObjects)
+            setRegion('г. Москва')
+		}
+		else if (value === "Казахстан") {
+            setRegionData(kazakhstanObjects)
+            setRegion('г. Нур-Султан')
+		}
+		else if (value === "Кыргызстан") {
+            setRegionData(kyrgyzstanObjects)
+            setRegion('г. Бишкек')
+		}
+		else if (value === "Узбекистан") {
+            setRegionData(uzbekistanObjects)
+            setRegion('г. Ташкент')
+		}
     }
 
     const setItemTrue = (func) => {
@@ -268,53 +281,54 @@ export function PromosAdd() {
         setItemImage(image)
     }
 
-    // function getDataBreaks(key) {
-    //     return (<>
-    //         <Text>
-    //             {sizeData[key]}
-    //         </Text>
-    //         {key !== 'Длина' &&
-    //             <Space h='xs' />
-    //         }
-    //     </>
-    //     )
-    // }
+    const callbackInput = (key, value) => {
+        if (key === 'stamp') setStamp(value)
+        if (sizeFields.includes(key)) sizeData[key] = value
+        if (!sizeFields.includes(key)) charsData[key] = value
 
-    function setConcatSize() {
-        const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Длина']
+        setConcatSizeChars()
+    }
+
+    function setConcatSizeChars(callback) {
         var values = []
-        var data_values = []
-
+        var char_values = []
+        
         sizeFields.map(key => {
             if (key in sizeData) {
                 values.push(`${key}: ${sizeData[key]}`)
-                // data_values.push(() => getDataBreaks(key))
             }
         })
+        
+        Object.entries(charsData)
+        .map(([key, value]) => {
+            console.log(charsData, key, value)
+            char_values.push(`${key}: ${value}`) 
+        })
 
-        setSize(values.join(' '))
-        setSizeData(values.join(' \n '))
+        setSize(values.join(' ')),
+        setChars(char_values.join(' '))
     }
 
     function addItem (callback) {
         console.log(size)
 
         const items = {
-            'category' : category,
-            'metal' : metal,
-            'stamp': stamp,
-            'item': item,
-            'size': size,
-            'size_data': sizeData,
-            'price' : price,
-            'price_data': priceData,
-            'currency' : currency,
-            'count': count
+            category : category,
+            metal : metal,
+            stamp : stamp,
+            item : item,
+            chars : chars,
+            size : size,
+            price : price,
+            currency : currency,
+            count : count,
+            country: country,
+            region: region
         }
 
         callback(items)        
     }
-    
+
     const confirmItem = () => {
         addItem(function (items) {
             data.addListItem('items', items)
@@ -322,11 +336,6 @@ export function PromosAdd() {
 
         setAddPromo(false)
         checkCategory()
-    }
-
-    const savePromo = () => {
-        const user_id=user.id
-        axios.post('https://api.metalmarket.pro/uploadPromo', {data, user_id})
     }
 
     return (
@@ -444,7 +453,7 @@ export function PromosAdd() {
                                 value={currency} 
                                 justify='center'
                                 // style={{width: '75%'}}  
-                                onChange={value => setPriceCurrency(value)} 
+                                onChange={value => setCurrency(value)} 
                                 data={[
                                     { value: 'RUB', label: 'RUB' },
                                     { value: 'USD', label: 'USD' },
@@ -461,6 +470,32 @@ export function PromosAdd() {
                                 rightSection='т.'
                                 onChange={event => {setCount(event.target.value)}}
                             />
+                            </InputWrapper>
+                        </SimpleGrid>
+                        <SimpleGrid cols={2} justify="center" align="center" style={{marginTop: 15}}>
+                        <InputWrapper
+                                required
+                                label="Выберите страну"
+                            >
+                            <Select
+                                placeholder="Выберите страну" 
+                                value={country} 
+                                justify='center'
+                                style={{width: '75%'}}  
+                                onChange={value => setCountryRegion(value)}
+                                data={countryData}/>
+                            </InputWrapper>
+                            <InputWrapper
+                                required
+                                label="Выберите регион"
+                            >
+                            <Select
+                                placeholder="Выберите регион" 
+                                value={region} 
+                                justify='center'
+                                style={{width: '75%'}}  
+                                onChange={value => setRegion(value)} 
+                                data={regionData}/>
                             </InputWrapper>
                         </SimpleGrid>
                     </>}
@@ -487,9 +522,11 @@ export function PromosAdd() {
                         <th>Металл</th>
                         <th>Марка</th>
                         <th>Товар</th>
+                        <th>Характеристики</th>
                         <th>Размеры</th>
                         <th>Цена</th>
                         <th>Количество</th>
+                        <th>Регион</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -501,9 +538,11 @@ export function PromosAdd() {
                             <td>{itemFields.metal}</td>
                             <td>{itemFields.stamp}</td>
                             <td>{itemFields.item}</td>
-                            <td>{itemFields.size_data}</td>
-                            <td>{itemFields.price_data}</td>
+                            <td>{itemFields.chars}</td>
+                            <td>{itemFields.size}</td>
+                            <td>{`${itemFields.price} ${itemFields.currency}`}</td>
                             <td>{`${itemFields.count} т.`}</td>
+                            <td>{`${itemFields.country}, ${itemFields.region}`}</td>
                             <td>    
                             <ActionIcon
                                 color="red"
