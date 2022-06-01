@@ -35,7 +35,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 		changeUserStatus()
 
 	}, [])
-	// const dateHot = new Date(newsHot.date)
+	const dateHot = new Date(newsHot.date)
 	const theme = useMantineTheme();
 	console.log(news)
 	news = news.map(el => {
@@ -154,23 +154,23 @@ export const MainPageNews = ({ news, newsHot }) => {
 				<Grid.Col span={6}>
 					<Card p="lg" style={{ height: '560px' }} shadow="md">
 						<Card.Section>
-							{/* <Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={260} alt="Norway" layout="fill" /> */}
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={260} alt="Norway" layout="fill" />
 						</Card.Section>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
-							{/* <Title order={3} style={{ maxWidth: '100%' }} weight={500}>{newsHot.title}</Title> */}
+							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{newsHot.title}</Title>
 						</Group>
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{/* {newsHot.desc} */}
+							{newsHot.desc}
 						</Text>
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'left'}>
 								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
-									// (dateHot.getDate().toString().length === 1 ? '0' + dateHot.getDate().toString() : dateHot.getDate().toString()) + '.' +
-									// ((dateHot.getMonth() + 1).toString().length === 1 ? '0' + (dateHot.getMonth() + 1).toString() : (dateHot.getMonth() + 1).toString()) + '.' +
-									// dateHot.getFullYear() + ' ' + newsHot.time.slice(0,5)
+									(dateHot.getDate().toString().length === 1 ? '0' + dateHot.getDate().toString() : dateHot.getDate().toString()) + '.' +
+									((dateHot.getMonth() + 1).toString().length === 1 ? '0' + (dateHot.getMonth() + 1).toString() : (dateHot.getMonth() + 1).toString()) + '.' +
+									dateHot.getFullYear() + ' ' + newsHot.time.slice(0,5)
 
 								}
 								</Text>
@@ -179,11 +179,11 @@ export const MainPageNews = ({ news, newsHot }) => {
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'left'}>
-							{/* <Link href={'/news/'+newsHot.id} passHref> */}
+							<Link href={'/news/'+newsHot.id} passHref>
 								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
 									Подробнее
 								</Button>
-							{/* </Link> */}
+							</Link>
 							</Grid.Col>
 						</Grid>
 					</Card>
