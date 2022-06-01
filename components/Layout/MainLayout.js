@@ -407,7 +407,6 @@ export const MainLayout = ({ children }) => {
 										/>
 									</Link>
 								</MediaQuery>
-								<MenuUser/>
 								{(userStatus === true) && <><MenuUser style={{}}/></>}	
 								{(userStatus === false) && <><LoginModal/></>}
 							</div>
