@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("http://api.metalmarket.pro/addcomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,7 +19,7 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("http://api.metalmarket.pro/deletecomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -34,6 +34,7 @@ const mainStyles = createStyles((theme) => ({
 
 
 function commentInput(user, userComment) {
+    console.log(userComment)
     const [comment, setComment] = useSetState({
         id: userComment.id,
         entity: userComment.entity,
@@ -46,10 +47,11 @@ function commentInput(user, userComment) {
     return (<>
         <div className={styles.commentsInput}>
             <TextInput
-                placeholder="Введите комментарий" 
+                disabled={user === null}
+                placeholder={user === null ? "Войдите, чтобы написать комментарий" : "Введите комментарий"} 
                 // placeholder={comment.reply_id}
                 rightSection={
-                    <ActionIcon style={{ paddingRight: 10 }} onClick={() => addComment(user, comment)}>
+                    <ActionIcon style={{ paddingRight: 10 }} onClick={() => {if (comment.data.length > 0) addComment(user, comment)}}>
                         <Send size={16}/>
                     </ActionIcon>}
                 onChange={event => setComment({data: event.target.value})}
@@ -60,11 +62,8 @@ function commentInput(user, userComment) {
 
 
 function commentSimple(comment, user) {
-    // const { hovered, ref } = useHover();
-    // user.role = 'admin'
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
-    // const [postedAt, body, name, reply] = user
 
     const answerMessage = commentInput(user, comment)
 
@@ -77,17 +76,19 @@ function commentSimple(comment, user) {
             <Avatar alt={comment.id} radius="xl" />
                 <div>
                     <Group position="left">
-                        <Text size="sm">{`${user.firstName} ${user.surName}`}</Text>
-                        <UnstyledButton onClick={() => setReplied({ reply: true })}>
-                            <Text size="sm" color="blue">Ответить</Text>
-                        </UnstyledButton>
-                        {((user.id === comment.user_id) || (user.role === 'admin')) &&
-                            <UnstyledButton onClick={() => deleteComment(user, comment)}>
-                                <Text size="sm" color="blue">Удалить</Text>
+                        <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
+                        {(user !== null) && <>
+                            <UnstyledButton onClick={() => setReplied({ reply: true })}>
+                                <Text size="sm" color="blue">Ответить</Text>
                             </UnstyledButton>
+                            {((user.id === comment.user_id) || (user.role === 'admin')) &&
+                                <UnstyledButton onClick={() => deleteComment(user, comment)}>
+                                    <Text size="sm" color="blue">Удалить</Text>
+                                </UnstyledButton>
+                            } </>
                         }
                     </Group>
-                    <Text size="xs" style={{marginTop: 1}}>{`${user.post}, ${user.orgName}` }</Text>
+                    <Text size="xs" style={{marginTop: 1}}>{`${comment.post}, ${comment.orgName}` }</Text>
                     <Text size="xs" color="dimmed" style={{marginTop: 3}}>
                     {`${comment.date.slice(8, 10)}.${comment.date.slice(5, 7)}.${comment.date.slice(0, 4)} ${comment.time.slice(0, 5)}`}
                     </Text>
@@ -97,7 +98,7 @@ function commentSimple(comment, user) {
                 <Text size="sm">
                 {comment.reply_id !== null && 
                     <Text size="xs" color="dimmed">
-                        В ответ на комментарий {comment.reply_id}
+                        В ответ пользователю {`${comment.reply_firstName} ${comment.reply_surName}`}
                     </Text>
                 }
                 {comment.data}
@@ -111,11 +112,13 @@ function commentSimple(comment, user) {
 
 export const CommentsBlock = ({entity, entity_id, comments, user}) => {
     return (<>
-        <div style={{marginTop: 10, marginLeft: 20, marginRight: 20}}>
-            {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
-        </div>
-
         <div className={styles.comments}>
+            {/* <Text size='lg' weight={700} className={styles.commentsCount}>Комментарии: {comments.length}</Text> */}
+            
+            <div style={{marginBottom: 20}}>
+                {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
+            </div>
+            
             {comments.map(comment => commentSimple(comment, user))}
         </div>
     </>)

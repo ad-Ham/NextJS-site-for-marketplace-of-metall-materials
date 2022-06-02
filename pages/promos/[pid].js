@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
 	// 	newsList.splice(newsList.indexOf(news))
 	// }
 
-	res = await axios.get('http://api.metalmarket.pro/comments', {
+	res = await axios.get('https://api.metalmarket.pro/comments', {
 		params : { entity: 'promo', entity_id: id },
 		headers : {
 			'Accept': 'application/json'

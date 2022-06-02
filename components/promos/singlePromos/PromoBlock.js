@@ -93,7 +93,7 @@ export const PromoBlock = ({promoData = null}) => {
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
 				<div className={styles.promotitle}>
-					Заголовок
+					{promoData.title}
 				</div>
 
 				<div className={styles.promodate}>
@@ -101,23 +101,39 @@ export const PromoBlock = ({promoData = null}) => {
 				</div>
 				
 				<p className={styles.promodescription}>
-					Описание
+					{promoData.description}
 				</p>
 			
 				<Table className={styles.itemtable} striped>
 				<thead>
-					<tr>
+                    <tr>
+                        <th></th>
                         <th>Категория</th>
                         <th>Металл</th>
                         <th>Марка</th>
                         <th>Товар</th>
+                        <th>Характеристики</th>
                         <th>Размеры</th>
                         <th>Цена</th>
-                        <th>Валюта</th>
-					</tr>
-				</thead>
+                        <th>Количество</th>
+                        <th>Регион</th>
+                    </tr>
+                </thead>
 				<tbody>
-					item_rows
+					{promoData.items.map((itemFields, index) => 
+						<tr key={itemFields.name}>
+							<td>{index + 1}</td>
+							<td>{itemFields.category}</td>
+							<td>{itemFields.metal}</td>
+							<td>{itemFields.stamp}</td>
+							<td>{itemFields.item}</td>
+							<td>{itemFields.chars}</td>
+							<td>{itemFields.size}</td>
+							<td>{`${itemFields.price} ${itemFields.currency}`}</td>
+							<td>{`${itemFields.count} т.`}</td>
+							<td>{`${itemFields.country}, ${itemFields.region}`}</td>
+						</tr>
+					)}
 				</tbody>
 				</Table>	
 
@@ -129,20 +145,6 @@ export const PromoBlock = ({promoData = null}) => {
 				>
 					<div style={{marginLeft: 5, position: 'left'}}>
 						{user_rows}
-					</div>
-					<div>
-						<Modal
-							opened={opened}
-							onClose={() => setOpened(false)}
-							title="Ответить на объявление"
-						>
-						</Modal>
-
-						{(!previewState) && (
-							<Group position='right' style={{marginTop: 35}}>
-								<Button onClick={() => setOpened(true)}>Ответить на объявление</Button>
-							</Group>
-						)}
 					</div>
 				</SimpleGrid>			
 			</SimpleGrid>

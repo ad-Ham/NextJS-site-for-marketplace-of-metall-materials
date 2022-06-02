@@ -8,7 +8,7 @@ import { categories, darkMet, colorMet, steelItems, stainlessSteelItems,
     titanItems, steelStamps,aluminumStamps, copperStamps, brassStamps, bronzeStamps, titanStamps} from '../items/itemList'
 // import styles from './PromosAdd.module.scss'
 import { PromoBlock } from './singlePromos/PromoBlock'
-import { armature, channel, circle, corner, hexagon, profilePipe, ribbon, roundPipe, sheet, square } from '../items/ItemsConstructor'
+import { armature, beam, channel, circle, corner, flatFlange, hexagon, profilePipe, ribbon, roundPipe, sheet, square, tap } from '../items/ItemsConstructor'
 import { countries, russiaObjects, kyrgyzstanObjects, uzbekistanObjects, kazakhstanObjects } from '../items/placeList'
 
 
@@ -197,6 +197,7 @@ export function PromosAdd() {
 
         if (value == 'Балка/Двутавр') {
             setItem('Балка/Двутавр')
+            setItemTrue(beam)
         }
 
         if ((value === 'Квадрат')) {
@@ -221,6 +222,7 @@ export function PromosAdd() {
         
         if (value === 'Отвод') {
             setItem('Отвод')
+            setItemTrue(tap)
         }
 
         if (value === 'Труба круглая') {
@@ -240,6 +242,7 @@ export function PromosAdd() {
 
         if (value === 'Фланец плоский') {
             setItem('Фланец плоский')
+            setItemTrue(flatFlange)
         }
 
         if (value === 'Швеллер') {

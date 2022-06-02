@@ -281,7 +281,7 @@ export function EditPromos() {
     // }
 
     function setConcatSize() {
-        const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Длина']
+        const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Размер', 'Длина']
         var values = []
         var data_values = []
 

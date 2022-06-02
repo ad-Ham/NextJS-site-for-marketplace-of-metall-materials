@@ -1,6 +1,12 @@
 .comments {
 	position: relative;
-	margin: 20px;
+	margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.commentsCount {
+    margin-bottom: 10px;
 }
 
 .mainMessage {
@@ -9,11 +15,11 @@
     padding-bottom: 16px;
     padding-top: 16px;
     // margin-bottom: 16px;
-    border-bottom: 1px solid #B2BEB5;
+    border-top: 1px solid #B2BEB5;
 }
 
 .replyMessage {
-    border-bottom: 1px solid #B2BEB5;
+    border-top: 1px solid #B2BEB5;
     position: relative;
     width: auto;
 	margin-left: 54px;
