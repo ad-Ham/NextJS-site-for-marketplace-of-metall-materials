@@ -1,10 +1,12 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { checkToken } from '/middleware/axios.js';
+import { useRouter } from 'next/router'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 
 const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64');
+//const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -16,11 +18,11 @@ export const getServerSideProps = async (context) => {
 	let news = res.data.news
 	
 	let newsHot = res.data.newsHot
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
+	//newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
 		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+		//news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
 		props: {
@@ -31,7 +33,45 @@ export const getServerSideProps = async (context) => {
 	}
 }
 
+const handleDelete = async(e) => {
+	console.log(e.target.id)
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+}
+
+const handlePin = async(e) => {
+	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
+}
+
 const News = ({ news, newsHot }) => {
+	const router = useRouter();
+	const [userStatus, setUserStatus] = useState('')
+	const [user, setUser] = useState('')
+
+	const changeUserStatus = () => {
+		setUserStatus(checkToken(router.pathname))
+		if (checkToken(router.pathname) === true) {
+			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+			.then(function(response) {
+				let userId = response.data.user_id.user_id;
+				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				.then(function(response) {
+					setUser(response.data.user)
+				})
+				.catch(function (error) {
+						console.log(error);
+					})
+			})
+			.catch(function (error) {
+					console.log(error);
+				})
+		}
+	}
+
+	useEffect(() => {
+		changeUserStatus()
+
+	}, [])
+
 	const theme = useMantineTheme();
 	news = news.map(el => {
 		if (!el.date) {
@@ -85,6 +125,29 @@ const News = ({ news, newsHot }) => {
 						</Link>
 					</Grid.Col>
 				</Grid>
+				
+				{(user.role === 'admin') && <><Grid><Grid.Col span={4} justify={'center'} align={'left'}>
+					    <Link href={"/news/edit/" + el.id} passHref>
+							<Button variant="subtle" style={{ marginTop: 14 }}>
+								Редактировать
+							</Button>
+						</Link>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'center'}>
+						<form id={el.id} key={'0'+el.id} onSubmit={handleDelete}>
+						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Удалить
+						</Button>
+						</form>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'right'}>
+						<form id={el.id} key={'0'+el.id} onSubmit={handlePin}>
+						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Закрепить
+						</Button>
+						</form>
+					</Grid.Col></Grid></>}
+				
 			{/* </Card> */}
 		</Card>);
 	})
@@ -102,7 +165,6 @@ const News = ({ news, newsHot }) => {
 				<Grid>
 					<Card span={10} key={'0' + newsHot.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 			
-				{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
 					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
 						<Title order={3} weight={500}>{newsHot.title}</Title>
 					</Group>
@@ -140,6 +202,27 @@ const News = ({ news, newsHot }) => {
 							</Link>
 						</Grid.Col>
 					</Grid>
+					{(user.role === 'admin') && <><Grid><Grid.Col span={4} justify={'center'} align={'left'}>
+					    <Link href={"/news/edit/" + newsHot.id} passHref>
+							<Button variant="subtle" style={{ marginTop: 14 }}>
+								Редактировать
+							</Button>
+						</Link>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'center'}>
+						<form id={newsHot.id} key={'0'+newsHot.id} onSubmit={handleDelete}>
+						<Button id={newsHot.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Удалить
+						</Button>
+						</form>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'right'}>
+						<form id={newsHot.id} key={'0'+newsHot.id} onSubmit={handlePin}>
+						<Button id={newsHot.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Закрепить
+						</Button>
+						</form>
+					</Grid.Col></Grid></>}
 				{/* </Card> */}
 			</Card>
 					{showNews}

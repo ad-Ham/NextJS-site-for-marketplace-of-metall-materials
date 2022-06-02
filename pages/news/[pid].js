@@ -10,9 +10,18 @@ import { CommentsBlock } from '../../components/comments/CommentsBlock';
 import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
 import { axios, checkToken } from '/middleware/axios.js';
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
 // const imageToBase64 = require('image-to-base64');
 	
+const handleDelete = async(e) => {
+	console.log(e.target.id)
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+}
+
+const handlePin = async(e) => {
+	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
+}
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
@@ -57,7 +66,7 @@ export async function getServerSideProps(context) {
 const NewsPage = ({news, tags, newsList, comments}) => {
 	const router = useRouter();
     const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState('')
 
     const changeUserStatus = async () => {
         setUserStatus(checkToken(router.pathname))
@@ -108,6 +117,27 @@ const NewsPage = ({news, tags, newsList, comments}) => {
 				</div>
 				<div className={styles.rightside}>
 					<NewsBlock news={news} tags={tags} comments={comments}/>
+					{(user.role === 'admin') && <><Grid><Grid.Col span={4} justify={'center'} align={'left'}>
+					    <Link href={"/news/edit/" + news.id} passHref>
+							<Button variant="subtle" style={{ marginTop: 14 }}>
+								Редактировать
+							</Button>
+						</Link>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'center'}>
+						<form id={news.id} key={'0'+news.id} onSubmit={handleDelete}>
+						<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Удалить
+						</Button>
+						</form>
+					</Grid.Col>
+					<Grid.Col span={4} justify={'center'} align={'right'}>
+						<form id={news.id} key={'0'+news.id} onSubmit={handlePin}>
+						<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+							Закрепить
+						</Button>
+						</form>
+					</Grid.Col></Grid></>}
 					<CommentsBlock entity={'news'} entity_id={news.id} comments={comments} user={user}/>
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
