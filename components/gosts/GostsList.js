@@ -518,7 +518,8 @@ export const GOSTS = [
 
 export const GostsList = () => {
     return (<>
-      <Card style={{width: 950, marginLeft: 90}}> 
+    <div style={{ width: 800, margin: 'auto' }}>
+      <Card style={{width: 1000}}> 
             <Table>
                 <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
@@ -1154,5 +1155,6 @@ export const GostsList = () => {
             </Table>
         
     </Card>
+    </div>
     </>)
 }

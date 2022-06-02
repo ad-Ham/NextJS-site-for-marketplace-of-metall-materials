@@ -3,7 +3,8 @@ import styles from './GostsMainText.module.scss'
 
 export const GostsMainText = () => {
     return (<>
-    <Card style={{width: 950, marginLeft: 90}}>
+    <div style={{ width: 800, margin: 'auto' }}>
+    <Card style={{width: 1000}}>
         <div className={styles.maindiv}>
             <div className={styles.gostsheader}>
                 <h2 className={styles.gostsheadertext}>ГОСТы металлургической продукции</h2>
@@ -28,5 +29,6 @@ export const GostsMainText = () => {
 
         </div>
         </Card>
+        </div>
     </>)
 }
