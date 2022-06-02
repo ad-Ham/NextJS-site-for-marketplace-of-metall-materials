@@ -104,7 +104,7 @@ const AddNews = () => {
 					name="desc"
 					placeholder="Введите краткое описание статьи"
 					required
-					maxLength="150"
+					maxLength="300"
 					className="input"
 					length="100%"
 					onChange={e => setDesc(e.target.value)} />

@@ -2,7 +2,7 @@ import { Button, TextInput, Box, Group} from '@mantine/core';
 import { useModals } from '@mantine/modals';
 import styles from './LoginModal.module.scss'
 import {RegisterForm} from '../login/RegisterForm'
-import { Login } from 'tabler-icons-react';
+import { DoorEnter } from 'tabler-icons-react';
 import {LoginForm} from '../mainlayout/LoginForm'
 
 
@@ -31,7 +31,7 @@ function openSecondModal() {
 						</div>
       </>)
     });
-    return  <Login size={35} strokeWidth={1.3} style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#000080' }} onClick={openMultiStepModal}>Вход / Регистрация</Login>
+    return  <DoorEnter size={35} strokeWidth={1.3} style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#007D34' }} onClick={openMultiStepModal}>Вход / Регистрация</DoorEnter>
     // <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Вход / Регистрация</Button>;
 
 }
