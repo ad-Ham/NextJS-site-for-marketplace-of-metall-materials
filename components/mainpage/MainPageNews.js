@@ -1,7 +1,7 @@
 import Link from 'next/link'
 // import Image from 'next/image'
 import styles from './MainPageNews.module.scss'
-import { Button, Grid, Card, Title, Text, Badge, Image, Group, useMantineTheme } from '@mantine/core';
+import { Button, Grid, Card, Title, Text, Badge, Image, Group, useMantineTheme, Space } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
@@ -112,7 +112,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 						</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'space-between'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 fgкомментариев</Text>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'space-between'} align={'right'}>
 					<Link href={'/news/'+el.id} passHref>
@@ -129,17 +129,17 @@ export const MainPageNews = ({ news, newsHot }) => {
 	return (<>
 		<Card style={{ marginTop: '20px' }}>
 			<Grid justify={'right'}>
-				<Grid.Col span={10}>
+				<Grid.Col span={2} >
 					<Title order={1}>Новости</Title>
 				</Grid.Col>
 				<Grid.Col span={10} align={"right"}>
 					{(user.role === 'admin') && <><Link href={'/news/add'} passHref>
-						<Button variant="subtle" style={{ marginTop: 14 }}>
+						<Button variant="subtle">
 							Добавить новость
 						</Button>
 					</Link>
 					<Link href={'/news/edit'} passHref>
-						<Button variant="subtle" style={{ marginTop: 14 }}>
+						<Button variant="subtle" >
 							Редактировать новости
 						</Button>
 					</Link></>}
@@ -156,7 +156,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 						<Card.Section>
 							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={260} alt="Norway" layout="fill" />
 						</Card.Section>
-						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
+						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm, maxWidth: '100%' }}>
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
@@ -175,17 +175,18 @@ export const MainPageNews = ({ news, newsHot }) => {
 								}
 								</Text>
 							</Grid.Col>
-							<Grid.Col span={4} justify={'center'} align={'center'}>
+							<Grid.Col span={4} justify={'end'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
-							<Grid.Col span={4} justify={'center'} align={'left'}>
+							<Grid.Col span={4} justify={'end'} align={'right'}>
 							<Link href={'/news/'+newsHot.id} passHref>
-								<Button variant="subtle" fullWidth style={{ marginTop: 14 }}>
+								<Button size="sm" variant="subtle" style={{ marginTop: 14 }}>
 									Подробнее
 								</Button>
 							</Link>
 							</Grid.Col>
 						</Grid>
+					
 					</Card>
 				</Grid.Col>
 				<Grid.Col span={6}>

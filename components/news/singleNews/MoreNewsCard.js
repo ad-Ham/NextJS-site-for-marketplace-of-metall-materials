@@ -18,8 +18,8 @@ export const MoreNewsCard = ({news}) => {
 	const [otherNews, setOtherNews] = useState([])
 
 	const showNews = news.map(el => {
-		return (<Card span={10} key={'0' + el.id} p="sm" shadow="sm" style={{ marginBottom: '5px', minHeight: '75px'}}>
-			{/* <Card p="sm" shadow="sm" style={{ marginBottom: '5px', minHeight: '75px', width: 900}}> */}
+		return (<Card  key={'0' + el.id} p="sm" style={{ marginBottom: '5px', minHeight: '75px'}}>
+			<Card p="sm" shadow="md" span={10}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{el.title}</Title>
 				</Group>
@@ -54,11 +54,11 @@ export const MoreNewsCard = ({news}) => {
 						</Link>
 					</Grid.Col>
 				</Grid>
-			{/* </Card> */}
+			</Card>
 		</Card>);
 	})
 	return (<>
-		<Card p="sm" key={news.id}>
+		<Card p="sm" key={news.id}>			
 			<Grid>
 				{showNews}
 			</Grid>

@@ -16,15 +16,15 @@ const Gosts = () => {
             </Head>
             {/* <Adbannertop /> */}
             {/* <div className={styles.adbannertop}><Link href="https://www.example.com"><Adbannertop /></Link></div> */}
-            <div className={styles.content, styles.bothsides}>
-                <div className={styles.leftside}>
+            {/* <div className={styles.content}>
+                <div className={styles.leftside}> */}
                     {/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
-                </div>
-                <div className={styles.rightside}>
+                {/* </div> */}
+                
                     <GostsMainText />
                     <GostsList />
-                </div>
-            </div>
+                {/* </div>
+            </div> */}
         </>
     )
 }

@@ -19,7 +19,7 @@ export const getServerSideProps = async (context) => {
 	newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
-		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
 		news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
@@ -99,7 +99,6 @@ const News = ({ news, newsHot }) => {
 				<meta name="description" content="this is" />
 			</Head>
 			<Card p="sm" key={news.id}>
-				<Grid>
 					<Card span={10} key={'0' + newsHot.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 			
 				{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
@@ -111,12 +110,13 @@ const News = ({ news, newsHot }) => {
 							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={100} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
+						{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
+								Горячая новость
+							</Badge></>}
+							<Space h="xs"/>
 							<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 								{newsHot.desc}
 							</Text>
-							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
-								Горячая новость
-							</Badge></>}
 						</Grid.Col>
 					</Grid>
 					<Grid>
@@ -143,10 +143,10 @@ const News = ({ news, newsHot }) => {
 				{/* </Card> */}
 			</Card>
 					{showNews}
-				</Grid>
+				
 			</Card>
 			<Space h="xs" />
-			<Pagination total={10} color="orange" withEdges style={{display:'flex', marginLeft: 250}}/>
+			<Pagination total={10} color="orange" withEdges style={{display:'flex', marginLeft: '32%'}}/>
 		</>
 	)
 }
