@@ -175,7 +175,9 @@ return (<>
                 <Mail
                 size={20}
                 strokeWidth={2}
-                color={'#26194d'}/>  {user.email}
+                color={'#26194d'}
+                alt="Электронная почта"
+                title="Электронная почта"/>  {user.email}
                 </p>
                 <p style={{fontSize:18, marginBottom: 10}}>
                 <Phone 
@@ -278,7 +280,21 @@ return (<>
         </Grid>
     </>
     }
-
+    <style jsx>{`
+        .email:hover:after {
+            content: attr(data-name);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(5,13,156,.55);
+            color: #fff;
+            text-align: center;
+            font-family: cursive;
+            font-size: 14px;
+            padding: 3px 0;
+            width: 100%;
+        }
+    `}</style>
         
     </>)
 }
