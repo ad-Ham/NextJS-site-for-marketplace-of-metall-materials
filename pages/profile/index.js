@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Mail, Phone, Lock, BuildingSkyscraper,Download,Trash, Home,Login, FileText,Pencil, FileDescription, User } from 'tabler-icons-react';
 import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
-import { Modal, Image, Avatar, Group, Title, Button, Badge } from '@mantine/core';
+import { Modal, Image, Avatar, Group, Title, Button, Badge, Input } from '@mantine/core';
 // import styles from './PersonalData.module.scss'
 import { Card , Grid} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 const axios = require('axios').default;
 import { checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
+import { useModals } from '@mantine/modals';
 
 
 const PersonalData = () => {
@@ -18,6 +19,7 @@ const router = useRouter();
 const [userStatus, setUserStatus] = useState('')
 const [user, setUser] = useState('')
 const [users, setUsers] = useState([])
+const [format, setFormat] = useState('')
 
 const changeUserStatus = () => {
     setUserStatus(checkToken(router.pathname))
@@ -28,6 +30,7 @@ const changeUserStatus = () => {
             axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
             .then(function(response) {
                 setUser(response.data.user)
+                setFormat(response.data.user.photopath.substr(user.photopath.length-3))
                 if (response.data.user.role === 'admin') {
                     axios.get('https://api.metalmarket.pro/getUnapprovedUsers')
                     .then(function(response) {
@@ -52,6 +55,7 @@ useEffect(() => {
     changeUserStatus()
 
 }, [])
+const modals = useModals();
 
 const [opened, setOpened] = useState(false);
 const [open, setOpen] = useState(false);
@@ -103,6 +107,58 @@ const showUsers = users.map(el => {
         </Grid.Col>);
     })
 
+const uploadToClient = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+
+      setImage(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+      blah.src = URL.createObjectURL(i)
+    }
+  };
+
+const [image, setImage] = useState(null);
+const [createObjectURL, setCreateObjectURL] = useState(null);
+
+const uploadToServer = async (e) => {  
+        e.preventDefault()
+        const body = new FormData(document.getElementById("uploadForm"));
+        body.append("id", user.id)
+        body.append("photopath", user.photopath)
+        fetch("https://api.metalmarket.pro/updateAvatar", {
+          method: "POST",
+          body
+        }).then(function() {router.reload(window.location.pathname)})
+        
+}
+
+const openAvatarModal = () =>
+    modals.openModal({
+      title: 'Загрузите фото для вашего профиля',
+      closeOnConfirm: false,
+      labels: { confirm: 'Загрузить' },
+      children: (<>
+            <form id="uploadForm" onSubmit={uploadToServer} style={{display: 'flex', alignItems:'center', flexDirection: 'column'}}>
+                <Input
+                    required
+                    id="file-chooser"
+                    type="file"
+                    name="sampleFile"
+                    onChange={uploadToClient} 
+                    style={{marginBottom: "2%"}}/>
+                <div style={{display: 'flex', alignItems:'center', marginBottom: "2%"}}>
+                    <img className='photo'
+                        id="blah"
+                        src='#'
+                        height='200px'
+                        width='200px'
+                        alt="Загрузите логотип"/>
+                </div>
+                <Button type="submit">Сохранить</Button>
+            </form>
+      </>)
+    });
+
 return (<>
     <Head>
         <title>Next Title</title>
@@ -119,7 +175,9 @@ return (<>
                 <Mail
                 size={20}
                 strokeWidth={2}
-                color={'#26194d'}/>  {user.email}
+                color={'#26194d'}
+                alt="Электронная почта"
+                title="Электронная почта"/>  {user.email}
                 </p>
                 <p style={{fontSize:18, marginBottom: 10}}>
                 <Phone 
@@ -128,20 +186,19 @@ return (<>
                 color={'#26194d'}/>  {user.phoneNumber}</p>
             </Grid.Col >      
             <Grid.Col span={1} offset={6} style={{marginTop: 35}}>
+                
                 <Avatar
                     radius={'50%'}
                     size={100}
-                    src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                    alt="Random unsplash image"
+                    src={'data:image/'+ format+';base64,' + user.image}
+                    alt="Avatar"
                     />
-                <p style={{fontSize:14}}> <Download
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:14, marginTop: "10%"}}> <Download
                     size={18}
                     strokeWidth={2}
-                    color={'#42aaff'} />  Загрузить</p>
-                <p style={{fontSize:14, marginTop: 5}}> <Trash
-                    size={18}
-                    strokeWidth={2}
-                    color={'#42aaff'} />  Удалить</p>
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>
             </Grid.Col>
         </Grid>
         <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
@@ -223,7 +280,21 @@ return (<>
         </Grid>
     </>
     }
-
+    <style jsx>{`
+        .email:hover:after {
+            content: attr(data-name);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(5,13,156,.55);
+            color: #fff;
+            text-align: center;
+            font-family: cursive;
+            font-size: 14px;
+            padding: 3px 0;
+            width: 100%;
+        }
+    `}</style>
         
     </>)
 }

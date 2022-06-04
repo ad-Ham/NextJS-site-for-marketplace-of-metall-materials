@@ -53,7 +53,7 @@ const News = ({ news, newsHot }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>

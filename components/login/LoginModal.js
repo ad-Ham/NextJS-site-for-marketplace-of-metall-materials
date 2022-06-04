@@ -32,6 +32,5 @@ function openSecondModal() {
       </>)
     });
     return  <DoorEnter size={35} strokeWidth={1.3} style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#007D34' }} onClick={openMultiStepModal}>Вход / Регистрация</DoorEnter>
-    // <Button style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#0000ff' }} onClick={openMultiStepModal}>Вход / Регистрация</Button>;
 
 }
