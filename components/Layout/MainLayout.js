@@ -1,6 +1,5 @@
 import { ModalsProvider } from '@mantine/modals';
 import { MantineProvider } from '@mantine/core';
-import { UserCircle } from 'tabler-icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
@@ -35,7 +34,7 @@ import { useRouter } from 'next/router'
 
 import { LoginModal } from '../login/LoginModal';
 
-export const MainLayout = ({ children }) => {
+export const MainLayout = ({ onlineUsers, children }) => {
 	const router = useRouter();
 	const [userStatus, setUserStatus] = useState('')
 

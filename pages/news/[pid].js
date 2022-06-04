@@ -116,28 +116,32 @@ const NewsPage = ({news, tags, newsList, comments}) => {
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
 				</div>
 				<div className={styles.rightside}>
+					{(user.role === 'admin') && <>
+						<Grid>
+							<Grid.Col span={4} justify={'center'} align={'left'}>
+								<Link href={"/news/edit/" + news.id} passHref>
+									<Button variant="subtle" style={{ marginTop: 14 }}>
+										Редактировать
+									</Button>
+								</Link>
+							</Grid.Col>
+							<Grid.Col span={4} justify={'center'} align={'center'}>
+								<form id={news.id} key={'0'+news.id} onSubmit={handleDelete}>
+								<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+									Удалить
+								</Button>
+								</form>
+							</Grid.Col>
+							<Grid.Col span={4} justify={'center'} align={'right'}>
+								<form id={news.id} key={'0'+news.id} onSubmit={handlePin}>
+								<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+									Закрепить
+								</Button>
+								</form>
+							</Grid.Col>
+						</Grid>
+					</>}
 					<NewsBlock news={news} tags={tags} comments={comments}/>
-					{(user.role === 'admin') && <><Grid><Grid.Col span={4} justify={'center'} align={'left'}>
-					    <Link href={"/news/edit/" + news.id} passHref>
-							<Button variant="subtle" style={{ marginTop: 14 }}>
-								Редактировать
-							</Button>
-						</Link>
-					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'center'}>
-						<form id={news.id} key={'0'+news.id} onSubmit={handleDelete}>
-						<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
-							Удалить
-						</Button>
-						</form>
-					</Grid.Col>
-					<Grid.Col span={4} justify={'center'} align={'right'}>
-						<form id={news.id} key={'0'+news.id} onSubmit={handlePin}>
-						<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
-							Закрепить
-						</Button>
-						</form>
-					</Grid.Col></Grid></>}
 					<CommentsBlock entity={'news'} entity_id={news.id} comments={comments} user={user}/>
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
