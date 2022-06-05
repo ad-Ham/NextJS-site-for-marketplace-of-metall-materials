@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Input, Group, Button } from '@mantine/core';
+import { Input, Group, Button, Text,Box } from '@mantine/core';
 import { useState } from 'react';
 import { MainData } from '../reg/MainData'
 import { PersonalData } from '../reg/PersonalData'
@@ -10,7 +10,7 @@ import React from 'react'
 const axios = require('axios').default;
 import { showNotification } from '@mantine/notifications';
 import { useModals } from '@mantine/modals';
-import { Group, Text,Box } from '@mantine/core';
+
 
 export function RegisterForm() {
 	const modals = useModals();
