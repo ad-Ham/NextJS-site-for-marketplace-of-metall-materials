@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './JurData.module.scss'
-import { Input } from '@mantine/core';
+import { Input,Text,Group } from '@mantine/core';
 
 export const JurData = () => {
 	const [orgName, setOrgName] = useState('');
@@ -21,8 +21,8 @@ export const JurData = () => {
 		console.log(data);
 	};
 	return (<>
-		<div className={styles.maindiv}>
-			<h2 className={styles.h2}>Юридические данные</h2>
+		<Group className={styles.maindiv}>
+			<Text className={styles.h2}>Юридические данные</Text>
 				<Input id='orgname' 
 				       type="text" 
 				       placeholder="Название организации*" 
@@ -63,7 +63,7 @@ export const JurData = () => {
 				       minLength="13"
 				       maxLength="13"/>
 			<label className={styles.btnpanel}><input type="radio" className={styles.radiobtn} required/><p className={styles.p}>Я принимаю условия передачи данных*</p></label>
-		</div>
+		</Group>
 		<style jsx>{`
 			
 		`}</style>

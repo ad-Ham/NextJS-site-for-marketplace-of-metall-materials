@@ -9,6 +9,7 @@ import React from 'react'
 const axios = require('axios').default;
 import { showNotification } from '@mantine/notifications';
 import { useModals } from '@mantine/modals';
+import { Group, Text,Box } from '@mantine/core';
 
 export function RegisterForm() {
 	const modals = useModals();
@@ -139,8 +140,19 @@ export function RegisterForm() {
 				<meta name="description" content="this is" />
 				<meta charSet="utf-8" />
 			</Head>
-
-			<div className={styles.content}>
+			<Box sx={{ maxWidth: 300 }} mx="auto">
+			<Group position='center'>
+					<Text align="center"className={styles.regheader}>Регистрация</Text>
+					<Text className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</Text>
+					<form onSubmit={Submit}>
+						<MainData onChange={e => setMainData(e.target.value)} />
+						<PersonalData onChange={e => setPersonalData(e.target.value)} />
+						<JurData onChange={e => setJurData(e.target.value)} />
+						<RegButton />
+					</form>
+			</Group>
+			</Box>
+			{/* <div className={styles.content}>
 				<div className={styles.regheaderblock}>
 					<h1 className={styles.regheader}>Регистрация</h1>
 					<p className={styles.regtext}>Регистрация позволяет Вам участовать в обсуждении статей, добавлять объявления, обновлять информацию о Вашей компании, публиковать свои прайс-листы или получать ежедневно новости по металлургии. Наш сайт постоянно развивается и мы будем рады предложить Вам новые сервисы.</p>
@@ -154,7 +166,7 @@ export function RegisterForm() {
 			</div>
 			<style jsx>{`
 				
-			`}</style>
+			`}</style> */}
 
 		</React.Fragment>
 		

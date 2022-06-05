@@ -4,7 +4,7 @@ import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
 import { Modal, Image, Avatar, Group, Title, Button, Badge } from '@mantine/core';
 // import styles from './PersonalData.module.scss'
-import { Card , Grid} from '@mantine/core';
+import { Card , Grid, MediaQuery} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
 import { useEffect, useState } from 'react';
@@ -111,8 +111,9 @@ return (<>
         <meta charSet="utf-8" />
     </Head>
     {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
-    {(userStatus === true) && <><Card> 
-        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40}}>
+    {(userStatus === true) && <>
+    <Card> 
+        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40,borderBottom: ' 2px solid #42aaff'}}>  
             <Grid.Col span={3} >
                 <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
                 <p style={{fontSize:18, marginBottom: 18}}>
@@ -121,19 +122,27 @@ return (<>
                 strokeWidth={2}
                 color={'#26194d'}/>  {user.email}
                 </p>
-                <p style={{fontSize:18, marginBottom: 10}}>
+                <p style={{fontSize:18, marginBottom: 15}}>
                 <Phone 
                 size={20}
                 strokeWidth={2}
                 color={'#26194d'}/>  {user.phoneNumber}</p>
-            </Grid.Col >      
-            <Grid.Col span={1} offset={6} style={{marginTop: 35}}>
-                <Avatar
-                    radius={'50%'}
-                    size={100}
-                    src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                    alt="Random unsplash image"
-                    />
+                <p style={{fontSize:18, marginBottom: 15}}><Login 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Логин:</p>
+                <p style={{fontSize:18, marginBottom: 0}}><Lock 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Пароль:</p>
+            </Grid.Col>
+            <Grid.Col span={1} offset={6} style={{marginTop: 35}}>   
+                    <Avatar
+                        radius={'50%'}
+                        size={100}
+                        src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+                        alt="Random unsplash image"
+                     />
                 <p style={{fontSize:14}}> <Download
                     size={18}
                     strokeWidth={2}
@@ -143,18 +152,8 @@ return (<>
                     strokeWidth={2}
                     color={'#42aaff'} />  Удалить</p>
             </Grid.Col>
-        </Grid>
-        <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
-            <Grid.Col span={2}>
-                <p style={{fontSize:18, marginBottom: 15}}><Lock 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Пароль:</p>
-                <p style={{fontSize:18, marginBottom: 0}}><Login 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Логин:</p>
-            </Grid.Col>
+        </Grid>    
+        <Grid grow gutter="xs" style={{marginLeft: 40}}>
              <Grid.Col  span={2} offset={11.3} style={{marginTop: -30}}>
                 <Modal 
                     size="xl"
@@ -176,27 +175,27 @@ return (<>
                 <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
                     size={20}
                     strokeWidth={2}
-                     color={'#26194d'}/>{'Организация: ' + user.orgName}</p>
+                     color={'#26194d'}/> {'Организация: ' + user.orgName}</p>
                 <p style={{fontSize:18, marginBottom: 20}}>
                     <Home 
                         size={20}
                         strokeWidth={2}
-                        color={'#26194d'}/>{'Юридический адрес: ' + user.jurAdress}</p>
+                        color={'#26194d'}/> {'Юридический адрес: ' + user.jurAdress}</p>
                 <p style={{fontSize:18, marginBottom: 20}}>
                     <User 
                         size={20}
                         strokeWidth={2}
-                        color={'#26194d'}/>{'Должность: ' + user.post}</p>
+                        color={'#26194d'}/> {'Должность: ' + user.post}</p>
                 <p style={{fontSize:18, marginBottom: 20}}>
                     <FileText
                         size={20}
                         strokeWidth={2}
-                        color={'#26194d'}/>{'ИНН: ' + user.inn}</p>
+                        color={'#26194d'}/> {'ИНН: ' + user.inn}</p>
                 <p style={{fontSize:18}}>
                     <FileDescription 
                          size={20}
                          strokeWidth={2}
-                         color={'#26194d'}/>{'ОГРН: ' + user.ogrn}</p>
+                         color={'#26194d'}/> {'ОГРН: ' + user.ogrn}</p>
             </Grid.Col>
             <Grid.Col  span={4} offset={11.3} style={{marginTop: -30}}>
                  <Modal 
