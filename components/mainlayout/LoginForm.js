@@ -4,9 +4,11 @@ import { ModalsProvider, useModals } from '@mantine/modals';
 import { axios, checkToken } from '/middleware/axios.js';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export const LoginForm = ({ id }) => {
 	const modals = useModals();
+	const router = useRouter();
 
 	const form = useForm({
 		initialValues: {
@@ -37,7 +39,7 @@ export const LoginForm = ({ id }) => {
 			        })					
 			        form.reset()
 					modals.closeAll()
-
+					router.reload(window.location.pathname)
 				}
 			})
 			.catch(function (error) {

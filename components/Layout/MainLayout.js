@@ -4,6 +4,7 @@ import { UserCircle } from 'tabler-icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
+import { UserButton } from '../mainlayout/UserButton'
 import { useState, useEffect } from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
 import { PersonalData } from '../profile/PersonalData';
@@ -387,7 +388,7 @@ export const MainLayout = ({ children }) => {
 					}
 					header={
 						<Header height={70} p="md" style={{position:'relative'}}>
-							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', paddingRight: '15%'}}>
+							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', paddingRight: '5%'}}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
 										opened={opened}
