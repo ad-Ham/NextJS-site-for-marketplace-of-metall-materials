@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
 
 	let newsHot = res.data.newsHot
 	newsHot['image'] = await imageToBase64(newsHot.photopath)
-	// let i;
+	let i;
 	for (i=0;i<news.length;++i) {
 		news[i]['image'] = await imageToBase64(news[i].photopath)
 	 }

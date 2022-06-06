@@ -103,9 +103,10 @@ const AddPromo = ({ user }) => {
 			})
 	}
 
-	return (
+	return (<>
+		<h1>{user.email}</h1>
 		<PromosAdd user={user}/>
-	)
+	</>)
 }
 
 export default AddPromo;
