@@ -1,22 +1,19 @@
 .inputpassword {
-	margin-bottom: 3px;
+	// margin-bottom: 3px;
 	width: 327px;
 	height: 40px;
-	padding-left: 11px;
+	// padding-left: 11px;
 }
 
-
-.firstblock {
-	margin-top: 5px;
-}
 
 .maindiv {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-bottom: 4px;
+	// padding-bottom: 4px;
 	// border-bottom: 1px solid #B6B6B6;
+	margin-bottom: 10px;
 }
 
 .h2 {
@@ -24,18 +21,9 @@
 	font-size: 17px;
 	line-height: 99.69%;
 	letter-spacing: 0.045em;
-	margin-bottom: 5px;
+	// margin-bottom: 5px;
 }
 
-.input {
-	width: 327px;
-	height: 40px;
-	padding-left: 11px;
-	line-height: 99.69%;
-	letter-spacing: 0.045em;
-	padding-bottom: 4px;
-	
-}
 
 @media (max-width: 660px) {
 	.input {

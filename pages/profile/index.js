@@ -4,7 +4,7 @@ import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
 import { Modal, Image, Avatar, Group, Title, Button, Badge, Input } from '@mantine/core';
 // import styles from './PersonalData.module.scss'
-import { Card , Grid} from '@mantine/core';
+import { Card , Grid, MediaQuery} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
 import { useEffect, useState } from 'react';
@@ -160,6 +160,7 @@ const PersonalData = () => {
         </>)
         });
 
+<<<<<<< HEAD
     return (<>
         <Head>
             <title>Next Title</title>
@@ -280,6 +281,184 @@ const PersonalData = () => {
                 {showUsers}
             </Grid>
         </>
+=======
+return (<>
+    <Head>
+        <title>Next Title</title>
+        <meta name="keywords" content="next, javascript" />
+        <meta name="description" content="this is" />
+        <meta charSet="utf-8" />
+    </Head>
+    {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
+    {(userStatus === true) && <>
+    <Card> 
+        <MediaQuery smallerThan={1400} styles={{ display: 'none' }}>
+        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40,borderBottom: ' 2px solid #42aaff'}}>  
+            <Grid.Col span={3} >               
+                <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
+                <p style={{fontSize:18, marginBottom: 18}}>
+                <Mail
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}
+                alt="Электронная почта"
+                title="Электронная почта"/>  {user.email}
+                </p>
+                <p style={{fontSize:18, marginBottom: 15}}>
+                <Phone 
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}/>  {user.phoneNumber}</p>
+                <p style={{fontSize:18, marginBottom: 15}}><Login 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Логин:</p>
+                <p style={{fontSize:18, marginBottom: 0}}><Lock 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Пароль:</p>
+            </Grid.Col>                 
+            <Grid.Col span={1} offset={6} style={{marginTop: 35}}>                              
+                <Avatar
+                    radius={'50%'}
+                    size={90}
+                    src={'data:image/'+ format+';base64,' + user.image}
+                    alt="Avatar"
+                    />
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:14, marginTop: "10%"}}> <Download
+                    size={18}
+                    strokeWidth={2}
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>
+            </Grid.Col>
+        </Grid> 
+        </MediaQuery> 
+        <MediaQuery largerThan={1400} styles={{ display: 'none' }}>
+        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40,borderBottom: ' 2px solid #42aaff'}}>  
+            <Grid.Col offset={2} style={{marginTop: 10}}>                              
+                <Avatar
+                    radius={'50%'}
+                    size={90}
+                    src={'data:image/'+ format+';base64,' + user.image}
+                    alt="Avatar"
+                    />
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:14, marginTop: "10%"}}> <Download
+                    size={18}
+                    strokeWidth={2}
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>
+            </Grid.Col>
+            <Grid.Col >               
+                <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
+                <p style={{fontSize:18, marginBottom: 18}}>
+                <Mail
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}
+                alt="Электронная почта"
+                title="Электронная почта"/>  {user.email}
+                </p>
+                <p style={{fontSize:18, marginBottom: 15}}>
+                <Phone 
+                size={20}
+                strokeWidth={2}
+                color={'#26194d'}/>  {user.phoneNumber}</p>
+                <p style={{fontSize:18, marginBottom: 15}}><Login 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Логин:</p>
+                <p style={{fontSize:18, marginBottom: 0}}><Lock 
+                    size={20}
+                    strokeWidth={2}
+                    color={'#26194d'}/>  Пароль:</p>
+            </Grid.Col>       
+        </Grid>    
+        </MediaQuery>  
+        <Grid grow gutter="xs" style={{marginLeft: 40}}>
+             <Grid.Col  span={2} offset={11.3} style={{marginTop: -30}}>
+                <Modal 
+                    size="xl"
+                    opened={opened}
+                    onClose={() => setOpened(false)}>
+                    <YourData/>
+                </Modal>
+                <Pencil
+                    onClick={() => setOpened(true)}
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'}
+                />
+                                
+            </Grid.Col>
+        </Grid>
+        <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+             <Grid.Col span={4}>
+                <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
+                    size={20}
+                    strokeWidth={2}
+                     color={'#26194d'}/> {'Организация: ' + user.orgName}</p>
+                <p style={{fontSize:18, marginBottom: 20}}>
+                    <Home 
+                        size={20}
+                        strokeWidth={2}
+                        color={'#26194d'}/> {'Юридический адрес: ' + user.jurAdress}</p>
+                <p style={{fontSize:18, marginBottom: 20}}>
+                    <User 
+                        size={20}
+                        strokeWidth={2}
+                        color={'#26194d'}/> {'Должность: ' + user.post}</p>
+                <p style={{fontSize:18, marginBottom: 20}}>
+                    <FileText
+                        size={20}
+                        strokeWidth={2}
+                        color={'#26194d'}/> {'ИНН: ' + user.inn}</p>
+                <p style={{fontSize:18}}>
+                    <FileDescription 
+                         size={20}
+                         strokeWidth={2}
+                         color={'#26194d'}/> {'ОГРН: ' + user.ogrn}</p>
+            </Grid.Col>
+            <Grid.Col  span={4} offset={11.3} style={{marginTop: -30}}>
+                 <Modal 
+                    size="xl"
+                    opened={open}
+                    onClose={() => setOpen(false)}>
+                    <JurData/>
+                </Modal>
+                <Pencil
+                    onClick={() => setOpen(true)}
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'}
+                 />
+                                
+            </Grid.Col>
+        </Grid>
+    </Card></>}
+    {(userStatus === true) && (user.role === 'admin') && 
+    <>
+        <h1 style={{margin: "2% 0"}}>Заявки на регистрацию</h1>
+        <Grid>
+            {showUsers}
+        </Grid>
+    </>
+    }
+    <style jsx>{`
+        .email:hover:after {
+            content: attr(data-name);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: rgba(5,13,156,.55);
+            color: #fff;
+            text-align: center;
+            font-family: cursive;
+            font-size: 14px;
+            padding: 3px 0;
+            width: 100%;
+>>>>>>> d58a1290ee1f9cdec9f8558ceeb8d1b27ed6441c
         }
         <style jsx>{`
             .email:hover:after {

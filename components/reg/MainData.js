@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './MainData.module.scss'
-import { Input } from '@mantine/core';
+import { Input,Group,Text} from '@mantine/core';
 
 export const MainData = () => {
 	const [email, setEmail] = useState('');
@@ -12,9 +12,8 @@ export const MainData = () => {
 		setPasswordRepeat(e.target.value)
 	};
 	return (<>
-		<div className={styles.maindiv}>
-			<h2 className={styles.h2}>Основные данные</h2>
-			<div>
+		<Group className={styles.maindiv}>
+			<Text className={styles.h2}>Основные данные</Text>
 				<Input id='email' 
 					   type="email" 
 					   placeholder="E-mail адрес*" 
@@ -22,8 +21,6 @@ export const MainData = () => {
 					   onChange={e => setEmail(e.target.value)}
 					   required 
 					   maxLength='255'/>
-			</div>
-			<div>
 				<Input id='password' 
 				       type="password" 
 					   placeholder="Пароль*" 
@@ -40,9 +37,7 @@ export const MainData = () => {
 					   placeholder="Повторите пароль*" 
 					   className={styles.input}
 					   onChange={e => changePasswordRepeat(e)}/>
-			</div>
-
-		</div>
+		</Group>
 		<style jsx>{`
 			
 		`}</style>

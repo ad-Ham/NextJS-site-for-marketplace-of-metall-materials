@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react';
 import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
-
+import { Plus, Pencil } from 'tabler-icons-react';
 const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
 
@@ -99,6 +99,31 @@ const News = ({ news, newsHot }) => {
 				<meta name="description" content="this is" />
 			</Head>
 			<Card p="sm" key={news.id}>
+			<Grid justify={'right'}>
+				<Grid.Col  align={"right"}>
+					 <>
+					<Link href={'/news/add'} passHref>
+						<Button variant="subtle">
+							Добавить новость
+						</Button>
+						{/* <Plus
+							size={35}
+							strokeWidth={1}
+							color={'blue'}
+						/> */}
+					</Link>
+					<Link href={'/news/edit'} passHref>
+						<Button variant="subtle" >
+							Редактировать новости
+						</Button>
+						{/* <Pencil		
+							size={34}
+							strokeWidth={1}
+							color={'blue'}
+						/> */}
+					</Link></>
+				</Grid.Col>
+			</Grid>
 					<Card span={10} key={'0' + newsHot.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 			
 				{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
