@@ -9,8 +9,6 @@ import { PromosAdd } from '../../../components/promos/PromosAdd'
 
 
 const AddPromo = ({ user }) => {
-	
-
 	const [newsStatus, setNewsStatus] = useState('');
 
 	const [title, setTitle] = useState('');
@@ -104,7 +102,6 @@ const AddPromo = ({ user }) => {
 	}
 
 	return (<>
-		<h1>{user.email}</h1>
 		<PromosAdd user={user}/>
 	</>)
 }

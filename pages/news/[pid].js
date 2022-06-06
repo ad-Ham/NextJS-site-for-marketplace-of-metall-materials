@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 		tags.push({id: i, value: tagsMas[i]})
 	}
 	let news = res.data.news
-	// news['image'] = await imageToBase64(news.photopath)
+	news['image'] = await imageToBase64(news.photopath)
 
 	res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {

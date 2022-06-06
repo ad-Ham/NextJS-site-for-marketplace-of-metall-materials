@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
 	}
 }
 
-export default function Index({ news, promos, newsHot }) {
+export default function Index({ news, promos, newsHot, user }) {
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [dollarPrice, setDollarPrice] = useState('')
