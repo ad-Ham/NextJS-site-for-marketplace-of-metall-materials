@@ -6,8 +6,8 @@ import io from 'socket.io-client'
 import { axios, checkToken } from '/middleware/axios.js'
 import { useRouter } from 'next/router'
 
-const users_socket = io.connect('http://localhost:3002/users')
-const messages_socket = io.connect('http://localhost:3002/messages', { autoConnect: false })
+const users_socket = io.connect('https://api.metalmarket.pro/users')
+const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
