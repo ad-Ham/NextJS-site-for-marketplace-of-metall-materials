@@ -12,7 +12,7 @@ import styles from '../../styles/news/newspage.module.scss'
 import { axios, checkToken } from '/middleware/axios.js';
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
-// const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64');
 	
 const handleDelete = async(e) => {
 	console.log(e.target.id)
