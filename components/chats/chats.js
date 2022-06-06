@@ -150,8 +150,7 @@ export function UserChats({ userDialogs, user }) {
 	const [section, setSection] = useState('account')
 	const [active, setActive] = useState('')
 
-	const links = tabs[section].map((item) => (
-	<>
+	const links = tabs[section].map((item) => (<>
 		{user && <>
 			<Group 
 			position="apart"
@@ -181,24 +180,24 @@ export function UserChats({ userDialogs, user }) {
 			</Group>
 		</>}
 	</>)
-)
+	)
 
-return (<>
-	<Grid justify='space-between' align='flex-end'>
-		<Grid.Col span={8}>
-			<Textarea
-				autosize
-				minRows={2}
-				maxRows={4}
-			/>
-		</Grid.Col>
-		<Grid.Col span={4}>
-			<Navbar height={height - 150} width={{ sm: 400 }} className={classes.navbar}>
-				<Navbar.Section component={ScrollArea} grow scrollbarSize={2}>
-					{links}
-				</Navbar.Section>
-			</Navbar>
-		</Grid.Col>
-	</Grid>
+	return (<>
+		<Grid justify='space-between' align='flex-end'>
+			<Grid.Col span={8}>
+				<Textarea
+					autosize
+					minRows={2}
+					maxRows={4}
+				/>
+			</Grid.Col>
+			<Grid.Col span={4}>
+				<Navbar height={height - 150} width={{ sm: 400 }} className={classes.navbar}>
+					<Navbar.Section component={ScrollArea} grow scrollbarSize={2}>
+						{links}
+					</Navbar.Section>
+				</Navbar>
+			</Grid.Col>
+		</Grid>
 	</>)
 }
