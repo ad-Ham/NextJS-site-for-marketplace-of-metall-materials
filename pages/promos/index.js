@@ -7,7 +7,7 @@ import { Select, Tooltip } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 export async function getServerSideProps(context) {
-    const promos = await axios.get('http://localhost:3001/promosquery', {
+    const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
         headers: {
             'Accept': 'application/json'
         }

@@ -16,7 +16,7 @@ import { axios, checkToken } from '/middleware/axios.js';
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('http://localhost:3001/singlepromo', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('https://api.metalmarket.pro/singlepromo', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let promo = res.data.promo
 	// let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	// let tagsMas = res.data.news.tags.split(', ')

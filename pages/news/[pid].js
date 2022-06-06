@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
 	}
 
 	// !!
-	const response = await axios.get("http://localhost:3001/getcomments", 
+	const response = await axios.get("https://api.metalmarket.pro/getcomments", 
 		{params : { entity: 'news', entity_id: id, headers: {'Accept': 'application/json' }}}
 	)
 

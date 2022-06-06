@@ -109,6 +109,7 @@ export const PromoBlock = ({promo}) => {
                     <tr>
                         <th>Металл</th>
                         <th>Товар</th>
+                        <th>Марка</th>
                         <th>Характеристики</th>
                         <th>Размеры</th>
                         <th>Цена</th>
@@ -121,6 +122,7 @@ export const PromoBlock = ({promo}) => {
 						<tr key={itemFields.name}>
 							<td>{itemFields.categories[1]}</td>
 							<td>{itemFields.categories[2]}</td>
+							<td>{itemFields.stamp}</td>
 							<td>{itemFields.chars}</td>
 							<td>{itemFields.size}</td>
 							<td>{`${itemFields.price} ${itemFields.currency}`}</td>

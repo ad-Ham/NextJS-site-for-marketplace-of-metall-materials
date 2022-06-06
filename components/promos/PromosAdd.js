@@ -10,9 +10,13 @@ import { categories, darkMet, colorMet, steelItems, stainlessSteelItems,
 import { PromoBlock } from './singlePromos/PromoBlock'
 import { armature, beam, channel, circle, corner, flatFlange, hexagon, profilePipe, ribbon, roundPipe, sheet, square, tap } from '../items/ItemsConstructor'
 import { countries, russiaObjects, kyrgyzstanObjects, uzbekistanObjects, kazakhstanObjects } from '../items/placeList'
+import { axios, checkToken } from '/middleware/axios.js';
+import { showNotification } from '@mantine/notifications';
+import { useRouter } from 'next/router'
 
 
-export function PromosAdd() {
+export function PromosAdd({ user }) {
+    const router = useRouter()
     const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 
     const [preview, setPreview] = useState(false)
@@ -285,7 +289,7 @@ export function PromosAdd() {
     }
 
     const callbackInput = (key, value) => {
-        if (key === 'Марка') setStamp(value)
+        if (key === 'stamp') setStamp(value)
         if (sizeFields.includes(key)) sizeData[key] = value
         if (!sizeFields.includes(key) && !(key === 'stamp')) charsData[key] = value
 
@@ -343,7 +347,7 @@ export function PromosAdd() {
 
     const savePromo = () => {
         console.log(data.values)
-        axios.post('http://localhost:3001/uploadPromo', {data: data, user_id: user.id})
+        axios.post('https://api.metalmarket.pro/uploadPromo', {data: data, user_id: user.id})
         .then(function() {
             showNotification({
                 title: 'Объявление оптравлено на рассмотрение',

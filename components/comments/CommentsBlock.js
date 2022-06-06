@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("http://localhost:3001/addcomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,7 +19,7 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("http://localhost:3001/deletecomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
