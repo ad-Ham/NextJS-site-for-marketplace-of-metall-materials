@@ -314,7 +314,8 @@ return (<>
                                 
             </Grid.Col>
         </Grid>
-    </Card></>}
+    </Card>
+    </>}
     {(userStatus === true) && (user.role === 'admin') && 
     <>
         <h1 style={{margin: "2% 0"}}>Заявки на регистрацию</h1>
@@ -336,24 +337,10 @@ return (<>
             font-size: 14px;
             padding: 3px 0;
             width: 100%;
+        `
         }
-        <style jsx>{`
-            .email:hover:after {
-                content: attr(data-name);
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                background: rgba(5,13,156,.55);
-                color: #fff;
-                text-align: center;
-                font-family: cursive;
-                font-size: 14px;
-                padding: 3px 0;
-                width: 100%;
-            }
-        `}</style>
-            
-        </>)
+        </style>            
+    </>)
 }
 
 export default PersonalData;

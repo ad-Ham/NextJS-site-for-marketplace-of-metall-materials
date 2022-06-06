@@ -403,7 +403,6 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 										mr="xl"
 									/>
 								</MediaQuery>
-<<<<<<< HEAD
 								<Group spacing='xl'>
 									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 										<Link href="/" passHref>
@@ -421,20 +420,6 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 									</Group>
 								</Group>
 								{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}	
-=======
-								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-									<Link href="/" passHref>
-										<Image className={styles.logo}
-											alt="metall-market.pro"
-											src="/logo.svg"
-											width={300}
-											height={75}
-										/>
-									</Link>
-								</MediaQuery>
-								<LoginModal/>
-								{(userStatus === true) && <><MenuUser style={{}}/></>}	
->>>>>>> d58a1290ee1f9cdec9f8558ceeb8d1b27ed6441c
 								{(userStatus === false) && <><LoginModal/></>}
 							</div>
 						</Header>
