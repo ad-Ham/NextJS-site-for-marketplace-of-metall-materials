@@ -4,9 +4,10 @@ import styles from './MainPromos.module.scss'
 
 export const MainPromos = ({ promos }) => {
 
-	const rows = [...promos, ...promos].filter(el => el.id).map((element) => {
+	const rows = [...promos].filter(el => el.id).map((element) => {
 		let date = new Date(element.date);
-		return (<tr key={element.id}>
+		let link = '/promos/'+element.id
+		return (<Link href={link} passHref><tr key={element.id}>
 			<td>
 				{
 					(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
@@ -16,9 +17,8 @@ export const MainPromos = ({ promos }) => {
 			</td>
 			<td>{element.category}</td>
 			<td>{element.title}</td>
-			<td>ООО Рога и копыта</td>
-			<td>Россия, Урал</td>
-		</tr>)
+			<td>{element.user.orgName}</td>
+		</tr></Link>)
 	});
 
 	return (<>
@@ -50,7 +50,6 @@ export const MainPromos = ({ promos }) => {
 						<th>Категория</th>
 						<th>Название объявления</th>
 						<th>Организация</th>
-						<th>Регион</th>
 					</tr>
 				</thead>
 				<tbody>

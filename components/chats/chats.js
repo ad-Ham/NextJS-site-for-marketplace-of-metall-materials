@@ -150,8 +150,7 @@ export function UserChats({ userDialogs, user }) {
 	const [section, setSection] = useState('account')
 	const [active, setActive] = useState('')
 
-	const links = tabs[section].map((item) => (
-	<>
+	const links = tabs[section].map((item) => (<>
 		{user && <>
 			<Group 
 			position="apart"
@@ -181,7 +180,7 @@ export function UserChats({ userDialogs, user }) {
 			</Group>
 		</>}
 	</>)
-)
+	)
 
 return (<>
 <Card>

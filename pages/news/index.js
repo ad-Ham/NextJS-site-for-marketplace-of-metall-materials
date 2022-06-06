@@ -12,7 +12,7 @@ export const getServerSideProps = async (context) => {
 			'Accept': 'application/json'
 		}
 	})
-	//const images = new Map();
+	// const images = new Map();
 	let news = res.data.news
 	
 	let newsHot = res.data.newsHot
@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
 		props: {
 			news: news,
 			newsHot: newsHot
-			//images: images
+			// images: images
 		},
 	}
 }

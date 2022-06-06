@@ -65,7 +65,7 @@ export function UserButton({ user }) {
 	{user ? <>
     <UnstyledButton className={classes.user}>
       <Group>
-        <Avatar src={'data:image/'+ format+';base64,' + user.image} radius="xl" />
+        <Avatar src={'data:image/'+ format +';base64,' + user.image} radius="xl" />
 
         <div style={{ flex: 1 }}>
           <Text size="sm" weight={500}>

@@ -8,7 +8,7 @@ import { PromosMultiSelect } from '../../../components/promos/PromosMultiSelect'
 import { PromosAdd } from '../../../components/promos/PromosAdd'
 
 
-const AddPromo = () => {
+const AddPromo = ({ user }) => {
 	const [newsStatus, setNewsStatus] = useState('');
 
 	const [title, setTitle] = useState('');
@@ -101,9 +101,9 @@ const AddPromo = () => {
 			})
 	}
 
-	return (
-		<PromosAdd />
-	)
+	return (<>
+		<PromosAdd user={user}/>
+	</>)
 }
 
 export default AddPromo;

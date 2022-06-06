@@ -7,7 +7,7 @@ const axios = require('axios').default;
 import { PhoneCall, At } from 'tabler-icons-react';
 
 
-export const PromoBlock = ({promoData = null}) => {
+export const PromoBlock = ({promo}) => {
 	const [opened, setOpened] = useState(false);
 
 	// const elements = [
@@ -32,10 +32,10 @@ export const PromoBlock = ({promoData = null}) => {
 
 
 	const user = {
-		'name': 'Иван Иванов',
-		'job': 'ООО ЯндексСбербанкОзон, менеджер',
-		'email': 'test1@gmail.com',
-		'phone': '88005553535'
+		'name': promo.user.surName + ' ' + promo.user.firstName + ' ' + promo.user.lastName,
+		'job': promo.user.orgName + ', ' + promo.user.post,
+		'email': promo.user.email,
+		'phone': promo.user.phoneNumber
 	}
 
 	const user_rows = (
@@ -93,7 +93,7 @@ export const PromoBlock = ({promoData = null}) => {
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
 				<div className={styles.promotitle}>
-					{promoData.title}
+					{promo.title}
 				</div>
 
 				<div className={styles.promodate}>
@@ -101,17 +101,15 @@ export const PromoBlock = ({promoData = null}) => {
 				</div>
 				
 				<p className={styles.promodescription}>
-					{promoData.description}
+					{promo.description}
 				</p>
 			
 				<Table className={styles.itemtable} striped>
 				<thead>
                     <tr>
-                        <th></th>
-                        <th>Категория</th>
                         <th>Металл</th>
-                        <th>Марка</th>
                         <th>Товар</th>
+                        <th>Марка</th>
                         <th>Характеристики</th>
                         <th>Размеры</th>
                         <th>Цена</th>
@@ -120,17 +118,15 @@ export const PromoBlock = ({promoData = null}) => {
                     </tr>
                 </thead>
 				<tbody>
-					{promoData.items.map((itemFields, index) => 
+					{promo.items.map((itemFields, index) => 
 						<tr key={itemFields.name}>
-							<td>{index + 1}</td>
-							<td>{itemFields.category}</td>
-							<td>{itemFields.metal}</td>
+							<td>{itemFields.categories[1]}</td>
+							<td>{itemFields.categories[2]}</td>
 							<td>{itemFields.stamp}</td>
-							<td>{itemFields.item}</td>
 							<td>{itemFields.chars}</td>
 							<td>{itemFields.size}</td>
 							<td>{`${itemFields.price} ${itemFields.currency}`}</td>
-							<td>{`${itemFields.count} т.`}</td>
+							<td>{`${itemFields.amount} т.`}</td>
 							<td>{`${itemFields.country}, ${itemFields.region}`}</td>
 						</tr>
 					)}

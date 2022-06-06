@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("http://localhost:3001/addcomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,7 +19,7 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("http://localhost:3001/deletecomment", comment)
+    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -34,7 +34,6 @@ const mainStyles = createStyles((theme) => ({
 
 
 function commentInput(user, userComment) {
-    console.log(userComment)
     const [comment, setComment] = useSetState({
         id: userComment.id,
         entity: userComment.entity,
@@ -68,7 +67,7 @@ function commentSimple(comment, user) {
     const answerMessage = commentInput(user, comment)
 
     const classMessage = (comment.reply_id === null) ? styles.mainMessage : styles.replyMessage 
-
+    
     return (<>
         <div className={classMessage}>
             <Group>
@@ -119,7 +118,11 @@ export const CommentsBlock = ({entity, entity_id, comments, user}) => {
                 {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
             </div>
             
-            {comments && <>{comments.map(comment => commentSimple(comment, user))}</>}
+            {comments && <> 
+                {comments.map(comment => 
+                    <div key={comment.id}>{commentSimple(comment, user)}</div>
+                )}
+            </>}
         </div>
     </>)
 }
