@@ -285,7 +285,7 @@ export function PromosAdd() {
     }
 
     const callbackInput = (key, value) => {
-        if (key === 'stamp') setStamp(value)
+        if (key === 'Марка') setStamp(value)
         if (sizeFields.includes(key)) sizeData[key] = value
         if (!sizeFields.includes(key) && !(key === 'stamp')) charsData[key] = value
 
@@ -339,6 +339,21 @@ export function PromosAdd() {
 
         setAddPromo(false)
         checkCategory()
+    }
+
+    const savePromo = () => {
+        console.log(data.values)
+        axios.post('http://localhost:3001/uploadPromo', {data: data, user_id: user.id})
+        .then(function() {
+            showNotification({
+                title: 'Объявление оптравлено на рассмотрение',
+                message: 'Дождитесь проверки данных. Обычно проверка объявления занимает от 5 минут до 24 часов',
+                autoClose: false,
+                
+                color: "green"
+            })
+            setTimeout(router.reload(window.location.pathname), 45000);
+        })
     }
 
     return (

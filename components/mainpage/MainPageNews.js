@@ -86,7 +86,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 		</Card>);
 	});
 
-	const bottomNews = news.slice(3,6).map(el => {
+	const bottomNews = news.slice(2,6).map(el => {
 		return (<Grid.Col span={6} key={'0' + el.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '275px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>

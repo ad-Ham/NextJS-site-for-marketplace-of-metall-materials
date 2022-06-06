@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
 import { Button, Grid, Card, Title, Table, Space, Group } from '@mantine/core';
-import { Select } from '@mantine/core';
+import { Select, Tooltip } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 export async function getServerSideProps(context) {
-    const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
+    const promos = await axios.get('http://localhost:3001/promosquery', {
         headers: {
             'Accept': 'application/json'
         }
@@ -20,21 +20,42 @@ export async function getServerSideProps(context) {
 }
 
 const Promos = ({ promos }) => {
+    const handleMouseEnter = e => {
+        alert('111')
+    }
+
     const [rows, setRows] = useState([...promos].filter(el => el.id).map((element) => {
         let date = new Date(element.date);
-        return (<tr key={element.id}>
-            <td>
-                {
-                    (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-                    ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-                    date.getFullYear()
-                }
-            </td>
-            <td>{element.category}</td>
-            <td>{element.title}</td>
-            <td>{element.organizationName}</td>
-            <td>{element.region}</td>
-        </tr>)
+        let categories = '';
+        let i;
+        let j;
+        for (i=0;i<element.items.length;++i) {
+
+            for (j=1;j<element.items[i].categories.length;++j) {
+                
+                categories += element.items[i].categories[j] + ' '
+            }
+            categories = categories.substr(0, categories.length-1) +  ';     '
+        }
+
+        return (
+            <tbody>
+                <tr key={element.id} >
+                    <td>
+                        {
+                            (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+                            ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+                            date.getFullYear() + ' ' + element.time.slice(0,5)
+                        }
+                    </td>
+                    <td>{element.category}</td>
+                    <td>{element.title}</td>
+                    <td>{element.user.orgName}</td>
+                    <td>{element.region}</td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label=<>{categories}</> position="bottom" withArrow><Button>Подробнее</Button></Tooltip></Link></td>
+                </tr>
+            </tbody>
+            )
     })); 
 
   const [darkMetallStatus, setDarkMetallStatus] = useState(false)
@@ -277,12 +298,11 @@ const Promos = ({ promos }) => {
                         <th>Категория</th>
                         <th>Название объявления</th>
                         <th>Организация</th>
-                        <th>Регион</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                
                     {rows}
-                </tbody>
             </Table>
             <style jsx>{`
                 .headerDiv {

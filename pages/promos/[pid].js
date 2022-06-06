@@ -11,10 +11,13 @@ import Adbannerside from '../../public/adbannerside.svg'
 import { CommentsBlock } from '../../components/comments/CommentsBlock';
 import Link from 'next/link'
 import styles from '../../styles/promopage.module.scss'
+import { axios, checkToken } from '/middleware/axios.js';
 
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
+	let res = await axios.get('http://localhost:3001/singlepromo', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let promo = res.data.promo
 	// let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	// let tagsMas = res.data.news.tags.split(', ')
 	// let tags = []
@@ -43,7 +46,7 @@ export async function getServerSideProps(context) {
 	// 	newsList.splice(newsList.indexOf(news))
 	// }
 
-	res = await axios.get('https://api.metalmarket.pro/comments', {
+	res = await axios.get('https://api.metalmarket.pro/getcomments', {
 		params : { entity: 'promo', entity_id: id },
 		headers : {
 			'Accept': 'application/json'
@@ -54,14 +57,16 @@ export async function getServerSideProps(context) {
 
 	return {
 		// props: {news: news, tags: tags, newsList: newsList, comments: comments}
-		props: {comments: comments}
+		props: {promo: promo, comments: comments}
 	}
 }
 
-const Index = ({ comments }) => {
+const Index = ({ promo, comments }) => {
 	const router = useRouter();
     const [userStatus, setUserStatus] = useState('')
     const [user, setUser] = useState('')
+    console.log('PROMO')
+    console.log(promo)
 
     const changeUserStatus = () => {
         setUserStatus(checkToken(router.pathname))
@@ -90,10 +95,10 @@ const Index = ({ comments }) => {
 
 	return (<>
 		<div>
-			<PromoBlock />
+			<PromoBlock promo={promo}/>
 		</div>
 		<div>
-			<CommentsBlock entity={'promo'} entity_id={1} comments={comments} user={user}/>
+			{/*<CommentsBlock entity={'promo'} entity_id={1} comments={comments} user={user}/>*/}
 		</div>
 	</>)
 }
