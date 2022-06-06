@@ -1,9 +1,8 @@
-// import React, { useEffect } from 'react';
-// import { TextInput, ActionIcon, Group } from '@mantine/core';
-// import { showNotification } from '@mantine/notifications';
+// import React, { useEffect } from 'react'
+// import { TextInput, ActionIcon, Group } from '@mantine/core'
+// import { showNotification } from '@mantine/notifications'
 // import { Send } from 'tabler-icons-react'
-// import io from 'socket.io-client'
-// const socket = io.connect('http://localhost:3002')
+
 
 
 // function UserChat({}) {
@@ -57,31 +56,149 @@
 // 	// 		</Group>
 // 	// 		</td>
 // 	// 	</tr>
-// 	// ));
+// 	// ))
 
-// 	// return (<>
-// 	// 	<Text size='xl' weight={500} style={{marginBottom: 20}}> Мои сообщения</Text>
-// 	// 	<ScrollArea>
-// 	// 		<Table highlightOnHover verticalSpacing="md" horizontalSpacing='xs' >
-// 	// 		<tbody>{rows}</tbody>
-// 	// 		</Table>
-// 	// 	</ScrollArea>
-// 	// </>);
+import React, { useState } from 'react'
+import { useViewportSize } from '@mantine/hooks'
+import { Navbar, SegmentedControl, Text, createStyles, Group, Avatar, Textarea, Grid, ScrollArea } from '@mantine/core'
 
-// 	useEffect(() => {
-// 		socket.emit('user_connect', {user_id: 1})
+const useStyles = createStyles((theme, _params, getRef) => {
+	const icon = getRef('icon')
 
-// 		socket.on('receive_message', (data) => {
-// 			showNotification({
-// 				title: 'Новое сообщения',
-// 	            message: `Новое сообщения от пользователя ${data.firstName} ${data.surName}`,
-// 	            autoClose: true,
+	return {
+		navbar: {
+			// borderRadius: theme.radius.sm,
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+		},
 
-// 	            color: "green"
-// 	        })
-// 		})
-// 	}, [socket])
+		title: {
+			textTransform: 'uppercase',
+			letterSpacing: -0.25,
+		},
 
-// 	return (<>
-// 	</>)
-// }
+		link: {
+			...theme.fn.focusStyles(),
+			display: 'flex',
+			alignItems: 'center',
+			textDecoration: 'none',
+			fontSize: theme.fontSizes.sm,
+			color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
+			padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+			borderRadius: theme.radius.sm,
+			fontWeight: 500,
+
+			'&:hover': {
+				backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+				color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+
+				[`& .${icon}`]: {
+					color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+				},
+			},
+		},
+
+		linkIcon: {
+			ref: icon,
+			color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+			marginRight: theme.spacing.sm,
+		},
+
+		linkActive: {
+			'&, &:hover': {
+				backgroundColor:
+					theme.colorScheme === 'dark'
+					? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
+					: theme.colors[theme.primaryColor][0],
+				color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 7],
+				[`& .${icon}`]: {
+					color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 7],
+				},
+			},
+		},
+
+		footer: {
+			borderTop: `1px solid ${
+				theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+			}`,
+			paddingTop: theme.spacing.md,
+		}
+	}
+})
+
+const tabs = {
+	account: [
+		{ link: '', label: 'Notifications'},
+		{ link: '', label: 'Billing'},
+		{ link: '', label: 'Security'},
+		{ link: '', label: 'SSH Keys'},
+		{ link: '', label: 'Databases'},
+		{ link: '', label: 'Authentication'},
+		{ link: '', label: 'Other Settings'},
+		{ link: '', label: 'Notifications'},
+		{ link: '', label: 'Billing'},
+		{ link: '', label: 'Security'},
+		{ link: '', label: 'SSH Keys'},
+		{ link: '', label: 'Databases'},
+		{ link: '', label: 'Authentication'},
+		{ link: '', label: 'Other Settings'},
+	]
+}
+
+export function UserChats({ userDialogs, user }) {
+	const { height, width } = useViewportSize()
+	const { classes, cx } = useStyles()
+	const [section, setSection] = useState('account')
+	const [active, setActive] = useState('')
+
+	const links = tabs[section].map((item) => (
+	<>
+		{user && <>
+			<Group 
+			position="apart"
+			className={cx(classes.link, { [classes.linkActive]: item.label === active })}
+			href={item.link}
+			key={item.label}
+			onClick={(event) => {
+				event.preventDefault()
+				setActive(item.label)
+			}}>
+				<Group>
+					<Avatar src={'data:image/' + 'base64,' + user.image} size='lg' radius="xl" />
+
+					<Grid align='center'>
+						<Grid.Col>
+							<Text size="sm" weight={500}>
+								{user.surName + ' ' + user.firstName}
+							</Text>
+							<Text size="sm" weight={400} style={{ paddingTop: 5 }}>
+								Сообщение
+							</Text>
+						</Grid.Col>
+					</Grid>
+				</Group>
+
+				<Text size="sm" weight={500} position='right' style={{ paddingRight: 5 }}>123</Text>
+			</Group>
+		</>}
+	</>)
+)
+
+return (<>
+	<Grid justify='space-between' align='flex-end'>
+		<Grid.Col span={8}>
+			<Textarea
+				autosize
+				minRows={2}
+				maxRows={4}
+			/>
+		</Grid.Col>
+		<Grid.Col span={4}>
+			<Navbar height={height - 150} width={{ sm: 400 }} className={classes.navbar}>
+				<Navbar.Section component={ScrollArea} grow scrollbarSize={2}>
+					{links}
+				</Navbar.Section>
+			</Navbar>
+		</Grid.Col>
+	</Grid>
+	</>)
+}

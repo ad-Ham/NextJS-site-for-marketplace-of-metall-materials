@@ -16,11 +16,9 @@ export async function getServerSideProps(context) {
 }
 
 
-const ChatsPage = ({ dialogs }) => {
+const ChatsPage = ({ dialogs, user }) => {
 	return (<>
-		<div>
-			<UserChats dialogs={dialogs}/>
-		</div>
+		<UserChats dialogs={dialogs} user={user}/>
 	</>)
 }
 

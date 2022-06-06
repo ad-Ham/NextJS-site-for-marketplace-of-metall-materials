@@ -27,7 +27,9 @@ import {
 	Grid,
 	Group,
 	TextInput,
-	Breadcrumbs, Anchor
+	Breadcrumbs, 
+	Anchor,
+	ThemeIcon
 } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { CaretUp, CaretDown, News, ChartInfographic, Box, Calculator, FileText, Book, Train, ChartLine, Users, Help } from 'tabler-icons-react';
@@ -35,7 +37,7 @@ import { useRouter } from 'next/router'
 
 import { LoginModal } from '../login/LoginModal';
 
-export const MainLayout = ({ onlineUsers, children }) => {
+export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 	const router = useRouter();
 	const [userStatus, setUserStatus] = useState('')
 
@@ -272,100 +274,104 @@ export const MainLayout = ({ onlineUsers, children }) => {
 							</Navbar.Section>
 						</Navbar>
 					}
-					aside={
-						<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-							<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }} className={styles.aside}>
-								<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
-									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
-									<Grid className={styles.priceButtonContainer}>
-										<Grid.Col span={6} align={"left"}>
-											<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
-										</Grid.Col>
-										<Grid.Col span={6} align={"right"}>
-											<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
-										</Grid.Col>
-									</Grid>
-								</div>
-	
-								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на металлы</Title>
-								<Table className={styles.metallsTable} fontSize="15px">
-									<thead>
-										<tr>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Металлы</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
-										</tr>
-									</thead>
-									<tbody>
-										{metalls.map(metalls => (
-											<tr key={metalls.id}>
-												<td style={{ fontWeight: 400 }}>{metallsIcon[0].image} {metalls.name}</td>
-												<td >{metalls.price}</td>
-												<td style={{
-													color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
-													display: 'flex',
-													alignItems: 'center'
-												}}>
-													{metalls.price_change.toString().replace('-', '')}
-													{
-														parseFloat(metalls.price_change) < 0 ?
-															<CaretDown
-																size={18}
-																strokeWidth={1}
-																color={'#ff0000'}
-															/> :
-															<CaretUp
-																size={18}
-																strokeWidth={1}
-																color={'#008000'}
-															/>
-													}
-												</td>
+					aside={<>
+						{!chats && <>
+							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+								<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }} className={styles.aside}>
+									<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
+										<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Курс ЦБ</Title>
+										<Grid className={styles.priceButtonContainer}>
+											<Grid.Col span={6} align={"left"}>
+												<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1$ = {dollarPrice}</Badge>
+											</Grid.Col>
+											<Grid.Col span={6} align={"right"}>
+												<Badge className={styles.priceBadge} color="orange" size="xl" radius="md" variant="outline">1€ = {euroPrice}</Badge>
+											</Grid.Col>
+										</Grid>
+									</div>
+		
+									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на металлы</Title>
+									<Table className={styles.metallsTable} fontSize="15px">
+										<thead>
+											<tr>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Металлы</th>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
 											</tr>
-										))}
-									</tbody>
-								</Table>
+										</thead>
+										<tbody>
+											{metalls.map(metalls => (
+												<tr key={metalls.id}>
+													<td style={{ fontWeight: 400 }}>{metallsIcon[0].image} {metalls.name}</td>
+													<td >{metalls.price}</td>
+													<td style={{
+														color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
+														display: 'flex',
+														alignItems: 'center'
+													}}>
+														{metalls.price_change.toString().replace('-', '')}
+														{
+															parseFloat(metalls.price_change) < 0 ?
+																<CaretDown
+																	size={18}
+																	strokeWidth={1}
+																	color={'#ff0000'}
+																/> :
+																<CaretUp
+																	size={18}
+																	strokeWidth={1}
+																	color={'#008000'}
+																/>
+														}
+													</td>
+												</tr>
+											))}
+										</tbody>
+									</Table>
 
-								<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на акции</Title>
-								<Table className={styles.metallsTable} fontSize="15px">
-									<thead>
-										<tr>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Акции</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
-											<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
-										</tr>
-									</thead>
-									<tbody>
-										{stock.map(stock => (
-											<tr key={stock.id}>
-												<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}   {stock.name}</td>
-												<td >{stock.price}</td>
-												<td style={{
-													color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),
-													display: 'flex',
-													alignItems: 'center'
-												}}>
-													{stock.price_change.toString().replace('-', '')}
-													{
-														parseFloat(stock.price_change) < 0 ?
-															<CaretDown
-																size={18}
-																strokeWidth={1}
-																color={'#ff0000'}
-															/> :
-															<CaretUp
-																size={18}
-																strokeWidth={1}
-																color={'#008000'}
-															/>
-													}
-												</td>
+									<Title className={styles.priceTitle} order={2} style={{ marginTop: '10px', marginBottom: '10px', fontWeight: '400' }}>Индекс цен на акции</Title>
+									<Table className={styles.metallsTable} fontSize="15px">
+										<thead>
+											<tr>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Акции</th>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Цена</th>
+												<th style={{ fontWeight: 400, borderTop: ' 2px solid grey', borderBottom: ' 2px solid grey' }}>Изм</th>
 											</tr>
-										))}
-									</tbody>
-								</Table>
-							</Aside>
-						</MediaQuery>
+										</thead>
+										<tbody>
+											{stock.map(stock => (
+												<tr key={stock.id}>
+													<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}   {stock.name}</td>
+													<td >{stock.price}</td>
+													<td style={{
+														color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),
+														display: 'flex',
+														alignItems: 'center'
+													}}>
+														{stock.price_change.toString().replace('-', '')}
+														{
+															parseFloat(stock.price_change) < 0 ?
+																<CaretDown
+																	size={18}
+																	strokeWidth={1}
+																	color={'#ff0000'}
+																/> :
+																<CaretUp
+																	size={18}
+																	strokeWidth={1}
+																	color={'#008000'}
+																/>
+														}
+													</td>
+												</tr>
+											))}
+										</tbody>
+									</Table>
+								</Aside>
+							</MediaQuery>
+						</>
+						}
+					</>
 					}
 					footer={
 						<Footer height={60} p="md" className={styles.footercontainer}>
@@ -387,7 +393,7 @@ export const MainLayout = ({ onlineUsers, children }) => {
 					}
 					header={
 						<Header height={70} p="md" style={{position:'relative'}}>
-							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', paddingRight: '5%'}}>
+							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', paddingRight: '20px'}}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
 										opened={opened}
@@ -397,17 +403,23 @@ export const MainLayout = ({ onlineUsers, children }) => {
 										mr="xl"
 									/>
 								</MediaQuery>
-								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-									<Link href="/" passHref>
-										<Image className={styles.logo}
-											alt="metall-market.pro"
-											src="/logo.svg"
-											width={300}
-											height={75}
-										/>
-									</Link>
-								</MediaQuery>
-								{(userStatus === true) && <><MenuUser style={{}}/></>}	
+								<Group spacing='xl'>
+									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+										<Link href="/" passHref>
+											<Image className={styles.logo}
+												alt="metall-market.pro"
+												src="/logo.svg"
+												width={300}
+												height={75}
+											/>
+										</Link>
+									</MediaQuery>
+									<Group spacing='xs'>
+										<ThemeIcon color="green" variant="light"><Users/></ThemeIcon>
+										<Text>{`Сейчас на сайте: ${onlineUsers}`}</Text>
+									</Group>
+								</Group>
+								{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}	
 								{(userStatus === false) && <><LoginModal/></>}
 							</div>
 						</Header>

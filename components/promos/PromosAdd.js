@@ -10,42 +10,9 @@ import { categories, darkMet, colorMet, steelItems, stainlessSteelItems,
 import { PromoBlock } from './singlePromos/PromoBlock'
 import { armature, beam, channel, circle, corner, flatFlange, hexagon, profilePipe, ribbon, roundPipe, sheet, square, tap } from '../items/ItemsConstructor'
 import { countries, russiaObjects, kyrgyzstanObjects, uzbekistanObjects, kazakhstanObjects } from '../items/placeList'
-import { axios, checkToken } from '/middleware/axios.js';
-import { useRouter } from 'next/router'
-import { showNotification } from '@mantine/notifications';
 
 
 export function PromosAdd() {
-
-    const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-    useEffect(() => {
-        changeUserStatus()
-
-    }, [])
-
     const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 
     const [preview, setPreview] = useState(false)
@@ -320,7 +287,7 @@ export function PromosAdd() {
     const callbackInput = (key, value) => {
         if (key === 'stamp') setStamp(value)
         if (sizeFields.includes(key)) sizeData[key] = value
-        if (!sizeFields.includes(key)) charsData[key] = value
+        if (!sizeFields.includes(key) && !(key === 'stamp')) charsData[key] = value
 
         setConcatSizeChars()
     }
@@ -372,21 +339,6 @@ export function PromosAdd() {
 
         setAddPromo(false)
         checkCategory()
-    }
-
-    const savePromo = () => {
-        console.log(data.values)
-        axios.post('https://api.metalmarket.pro/uploadPromo', {data: data, user_id: user.id})
-        .then(function() {
-            showNotification({
-                title: 'Объявление оптравлено на рассмотрение',
-                message: 'Дождитесь проверки данных. Обычно проверка объявления занимает от 5 минут до 24 часов',
-                autoClose: false,
-                
-                color: "green"
-            })
-            setTimeout(router.reload(window.location.pathname), 45000);
-        })
     }
 
     return (
@@ -639,7 +591,7 @@ export function PromosAdd() {
                     onClose={() => setPreview(false)}
                     title="Предпросмотр объявления"
                 >
-                <PromoBlock promoData={data.values} previewState={true}/>
+                <PromoBlock promoData={data.values}/>
                 </Modal>
             </Grid.Col>
         </Grid>

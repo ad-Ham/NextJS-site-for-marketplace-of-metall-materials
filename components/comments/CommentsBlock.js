@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
+    const response = await axios.post("http://localhost:3001/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,7 +19,7 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
+    const response = await axios.post("http://localhost:3001/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -47,8 +47,8 @@ function commentInput(user, userComment) {
     return (<>
         <div className={styles.commentsInput}>
             <TextInput
-                disabled={user === null}
-                placeholder={user === null ? "Войдите, чтобы написать комментарий" : "Введите комментарий"} 
+                disabled={user === undefined}
+                placeholder={user === undefined ? "Войдите, чтобы написать комментарий" : "Введите комментарий"} 
                 // placeholder={comment.reply_id}
                 rightSection={
                     <ActionIcon style={{ paddingRight: 10 }} onClick={() => {if (comment.data.length > 0) addComment(user, comment)}}>
@@ -77,7 +77,7 @@ function commentSimple(comment, user) {
                 <div>
                     <Group position="left">
                         <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
-                        {(user !== null) && <>
+                        {(user !== undefined) && <>
                             <UnstyledButton onClick={() => setReplied({ reply: true })}>
                                 <Text size="sm" color="blue">Ответить</Text>
                             </UnstyledButton>
@@ -98,7 +98,7 @@ function commentSimple(comment, user) {
                 <Text size="sm">
                 {comment.reply_id !== null && 
                     <Text size="xs" color="dimmed">
-                        В ответ пользователю {`${comment.reply_firstName} ${comment.reply_surName}`}
+                        В ответ пользователю {`${comment.replyUserFirstName} ${comment.replyUserSurName}`}
                     </Text>
                 }
                 {comment.data}
@@ -119,7 +119,7 @@ export const CommentsBlock = ({entity, entity_id, comments, user}) => {
                 {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
             </div>
             
-            {comments.map(comment => commentSimple(comment, user))}
+            {comments && <>{comments.map(comment => commentSimple(comment, user))}</>}
         </div>
     </>)
 }

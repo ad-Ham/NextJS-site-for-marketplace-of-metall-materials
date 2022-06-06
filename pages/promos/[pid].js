@@ -93,7 +93,7 @@ const Index = ({ comments }) => {
 			<PromoBlock />
 		</div>
 		<div>
-		<CommentsBlock entity={'promo'} entity_id={1} comments={comments} user={user}/>
+			<CommentsBlock entity={'promo'} entity_id={1} comments={comments} user={user}/>
 		</div>
 	</>)
 }

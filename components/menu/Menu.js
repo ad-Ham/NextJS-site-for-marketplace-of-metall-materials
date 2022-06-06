@@ -5,7 +5,7 @@ import { User, Logout, FileText, MessageCircle, UserCircle} from 'tabler-icons-r
 import { UserButton } from '../mainlayout/UserButton'
 import { useRouter } from 'next/router'
 
-export function MenuUser () {
+export function MenuUser ({ user }) {
   const router = useRouter();
   const [opened, handlers] = useDisclosure(false);
 
@@ -16,7 +16,7 @@ export function MenuUser () {
 
   return (
     <>
-    <Menu opened={opened} onOpen={handlers.open} onClose={handlers.close} control={<div><UserButton/></div>}>
+    <Menu opened={opened} onOpen={handlers.open} onClose={handlers.close} control={<div><UserButton user={user}/></div>}>
         <Link href="/profile" passHref><Menu.Item  icon={<User size={14} />}>Личный кабинет</Menu.Item></Link>
         <Link href="#" passHref><Menu.Item  icon={<MessageCircle size={14} />}>Мои сообщения</Menu.Item></Link>
         <Link href="/myPromos" passHref><Menu.Item  icon={<FileText size={14} />}>Мои объявления</Menu.Item></Link>

@@ -6,13 +6,21 @@ import io from 'socket.io-client'
 import { axios, checkToken } from '/middleware/axios.js'
 import { useRouter } from 'next/router'
 
-const socket = io.connect('http://localhost:3002')
+const users_socket = io.connect('http://localhost:3002/users')
+const messages_socket = io.connect('http://localhost:3002/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
 	const router = useRouter()
+	const [chats, setChats] = useState(undefined)
 	const [userStatus, setUserStatus] = useState('')
-	const [user, setUser] = useState('')
+	const [user, setUser] = useState({
+		image: '',
+		surName: '',
+		firstName: '',
+		lastName: '',
+		email: ''
+	})
 	const [currOnlineUsers, setCurrOnlineUsers] = useState(0)
 
 	const changeUserStatus = () => {
@@ -23,8 +31,10 @@ const MyApp = ({ Component, pageProps }) => {
 				let userId = response.data.user_id.user_id;
 				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
 				.then(function(response) {
+					console.log(response.data.user)
 					setUser(response.data.user)
-					socket.emit('user_connect', {user_id: 1})
+					pageProps['user'] = response.data.user
+					users_socket.emit('user_connect', {user_id: response.data.user.id})
 				})
 				.catch(function (error) {
 						console.log(error);
@@ -34,25 +44,21 @@ const MyApp = ({ Component, pageProps }) => {
 					console.log(error);
 				})
 		}
+		else {
+			users_socket.emit('user_connect', {user_id: null})
+		}
 	}
 
 	useEffect(() => {
+		if (router.pathname === '/chats') setChats(true)
+
 		changeUserStatus()
 		
-		socket.on('update_online_users', (data) => {
+		users_socket.on('update_online_users', (data) => {
 			setCurrOnlineUsers(data.users)
-
-			showNotification({
-				title: 'Количество пользователей на сайте',
-				message: `${data.users}`,
-				// ${data.firstName} ${data.surName}
-				autoClose: true,
-	
-				color: "green"
-			})
 		})
 
-		socket.on('receive_message', (data) => {
+		messages_socket.on('receive_message', (data) => {
 			showNotification({
 				title: 'Новое сообщения',
 				message: `Новое сообщения от пользователя`,
@@ -62,13 +68,11 @@ const MyApp = ({ Component, pageProps }) => {
 				color: "green"
 			})
 		})
-	}, [socket])	
-
-	pageProps.user = user 
+	}, [users_socket, messages_socket, user])	
 
 	return (
 		<>
-			<MainLayout onlineUsers={currOnlineUsers}>
+			<MainLayout onlineUsers={currOnlineUsers} user={user} chats={chats}>
 				<Component {...pageProps} />
 			</MainLayout>
 		</>

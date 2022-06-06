@@ -25,43 +25,44 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function UserButton() {
-  const { classes } = useStyles();
+export function UserButton({ user }) {
+  	const { classes } = useStyles();
 
-const router = useRouter();
-const [userStatus, setUserStatus] = useState('')
-const [user, setUser] = useState('')
-const [users, setUsers] = useState([])
-const [format, setFormat] = useState('')
+// const router = useRouter();
+// const [userStatus, setUserStatus] = useState('')
+	// const [user, setUser] = useState('')
+// const [users, setUsers] = useState([])
+  	const [format, setFormat] = useState('')
 
-const changeUserStatus = () => {
-    setUserStatus(checkToken(router.pathname))
-    if (checkToken(router.pathname) === true) {
-        axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-        .then(function(response) {
-            let userId = response.data.user_id.user_id;
-            axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-            .then(function(response) {
-                setUser(response.data.user)
-                setFormat(response.data.user.photopath.substr(user.photopath.length-3))
+// const changeUserStatus = () => {
+//     setUserStatus(checkToken(router.pathname))
+//     if (checkToken(router.pathname) === true) {
+//         axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+//         .then(function(response) {
+//             let userId = response.data.user_id.user_id;
+//             axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+//             .then(function(response) {
+//                 setUser(response.data.user)
+//                 setFormat(response.data.user.photopath.substr(user.photopath.length-3))
                 
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        })
-        .catch(function (error) {
-                console.log(error);
-            })
-    }
-}
+//             })
+//             .catch(function (error) {
+//                     console.log(error);
+//                 })
+//         })
+//         .catch(function (error) {
+//                 console.log(error);
+//             })
+//     }
+// }
 
-useEffect(() => {
-    changeUserStatus()
+// useEffect(() => {
+//     changeUserStatus()
 
-}, [])
+// }, [])
 
-  return (
+  return (<>
+	{user ? <>
     <UnstyledButton className={classes.user}>
       <Group>
         <Avatar src={'data:image/'+ format+';base64,' + user.image} radius="xl" />
@@ -79,5 +80,6 @@ useEffect(() => {
         
       </Group>
     </UnstyledButton>
-  );
+  </> : <>Hi!</>}
+  </>)
 }
