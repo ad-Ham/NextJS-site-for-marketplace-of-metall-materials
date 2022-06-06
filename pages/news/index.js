@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 import { Plus, Pencil } from 'tabler-icons-react';
 const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64');
+// const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -16,11 +16,11 @@ export const getServerSideProps = async (context) => {
 	let news = res.data.news
 	
 	let newsHot = res.data.newsHot
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
+	// newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
 		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+		// news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
 		props: {

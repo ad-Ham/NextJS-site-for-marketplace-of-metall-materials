@@ -2,9 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
-import { Button, Grid, Card, Title, Table, Space, Group } from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space, Group, MediaQuery } from '@mantine/core';
 import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
+import { FilePlus } from 'tabler-icons-react';
 
 export async function getServerSideProps(context) {
     const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
@@ -221,13 +222,15 @@ const Promos = ({ promos }) => {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
+            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Card>
             <div className='headerDiv'>
                 <h1>Доска объявлений</h1>
                 <Link href="/promos/add" passHref>
                   <Button variant="light">
                     Разместить объявление
                   </Button>
-                </Link>                                                            
+                </Link>                                                             
             </div>
             <Select
               id='mainSections'
@@ -284,6 +287,75 @@ const Promos = ({ promos }) => {
                     {rows}
                 </tbody>
             </Table>
+            </Card>
+            </MediaQuery>
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <Card>
+            <div>
+                <Link href="/promos/add" passHref>
+                  <Button variant="light">
+                    Разместить объявление
+                  </Button>
+                </Link>   
+                <Space h="xs" />
+                <h1 style={{fontSize: 20}}>Доска объявлений</h1>                                                             
+            </div>
+            <Space h="xs" />
+            <Select
+              id='mainSections'
+              data={categories}
+              label="Выберите раздел"
+              placeholder="--Разделы--"
+              searchable
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+              onChange={updateSectionsValue}
+            />
+
+            {(buySellStatus === true) && <><Select
+              data={[{value: 'Продам', label: 'Продам'}, {value: 'Куплю', label: 'Куплю'}]}
+              label="Выберите категорию"
+              placeholder="--Продам/Куплю--"
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+              onChange={updateServiceCategory}
+            /></>}
+
+            {(servicesStatus === true) && <><Select
+                  data={[{value: 'Предложение', label: 'Предложение'}, {value: 'Поиск', label: 'Поиск'}]}
+                  label="Выберите категорию"
+                  placeholder="--предложение/поиск--"
+                  nothingFound="Ничего не найдено"
+                  clearButtonLabel="Clear selection"
+                  clearable
+                  onChange={updateServiceCategory}
+                /></>}
+
+            {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><Select
+                  data={data}
+                  label="Выберите подраздел"
+                  searchable
+                  nothingFound="Ничего не найдено"
+                  clearButtonLabel="Clear selection"
+                  clearable
+                  onChange={updateSubsectionsValue}
+                /></>}
+            <Table striped highlightOnHover>
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Категория</th>
+                        <th>Название объявления</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </Table>
+            </Card>
+            </MediaQuery>
             <style jsx>{`
                 .headerDiv {
                     display: flex;

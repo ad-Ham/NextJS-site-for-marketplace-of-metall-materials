@@ -210,27 +210,30 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 					styles={{
 						main: {
 							background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-						},
+						}, position: "relative"
 					}}
 					navbarOffsetBreakpoint="sm"
 					asideOffsetBreakpoint="sm"
 					navbar={
 						<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
 							<Navbar.Section>
+								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+									<div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
+								</MediaQuery>
 								<Text className={styles.navbarSectionText} size="xl" weight={600}>Разделы</Text>
 							</Navbar.Section>
 							<Divider my="md" />
 							<Navbar.Section>
 								<Stack spacing="xs">
-									<Link href='/help' passHref>
+									<a><Link href='/help' passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
-									</Link>
-									<Link href='/promos' passHref>
+									</Link></a>
+									<a><Link href='/promos' passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
-									</Link>
-									<Link href='/news' passHref>
+									</Link></a>
+									<a><Link href='/news' passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
-									</Link>
+									</Link></a>
 								</Stack>
 							</Navbar.Section>
 							<Navbar.Section>
@@ -240,12 +243,12 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 							</Navbar.Section>
 							<Navbar.Section>
 								<Stack spacing="xs">
-									<Link href="/underconstruction" passHref>
+								<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
-									</Link>
-									<Link href="/underconstruction" passHref>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
-									</Link>
+									</Link></a>
 								</Stack>
 							</Navbar.Section>
 							<Navbar.Section>
@@ -255,21 +258,21 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 							</Navbar.Section>
 							<Navbar.Section>
 								<Stack spacing="xs">
-									<Link href="/underconstruction" passHref>
+								<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
-									</Link>
-									<Link href="/underconstruction" passHref>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
-									</Link>
-									<Link href="/gosts" passHref>
+									</Link></a>
+									<a><Link href="/gosts" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
-									</Link>
-									<Link href="/underconstruction" passHref>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
-									</Link>
-									<Link href="/underconstruction" passHref>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
-									</Link>
+									</Link></a>
 								</Stack>
 							</Navbar.Section>
 						</Navbar>
@@ -374,7 +377,7 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 					</>
 					}
 					footer={
-						<Footer height={60} p="md" className={styles.footercontainer}>
+						<Footer height={60} p="md" className={styles.footercontainer} style={{position: "fixed"}}>
 							<div className={styles.footerleft}>
 								<Link href="/" passHref>
 									<Image
@@ -385,10 +388,10 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 									/>
 								</Link>
 							</div>
-							<ul className={styles.footerul}>
-								<li>г.Уфа, Республика Башкортостан</li>
-								<li>© ООО &quot;Технические системы&quot;, 2022</li>
-							</ul>
+								<ul className={styles.footerul}>
+									<li>г.Уфа, Республика Башкортостан</li>
+									<li>© ООО &quot;Технические системы&quot;, 2022</li>
+								</ul>
 						</Footer>
 					}
 					header={
@@ -419,7 +422,9 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 										<Text>{`Сейчас на сайте: ${onlineUsers}`}</Text>
 									</Group>
 								</Group>
-								{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}	
+								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+									<div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
+								</MediaQuery>
 								{(userStatus === false) && <><LoginModal/></>}
 							</div>
 						</Header>

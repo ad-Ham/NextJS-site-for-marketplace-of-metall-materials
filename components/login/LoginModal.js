@@ -1,8 +1,8 @@
-import { Button, TextInput, Box, Group} from '@mantine/core';
-import { useModals } from '@mantine/modals';
+import { Button, TextInput, Box, Group, UnstyledButton, Text, Space} from '@mantine/core';
+import { useModals} from '@mantine/modals';
 import styles from './LoginModal.module.scss'
 import {RegisterForm} from '../login/RegisterForm'
-import { DoorEnter } from 'tabler-icons-react';
+import { ArrowBarToLeft } from 'tabler-icons-react';
 import {LoginForm} from '../mainlayout/LoginForm'
 
 
@@ -31,6 +31,19 @@ function openSecondModal() {
 						</div>
       </>)
     });
-    return  <DoorEnter size={35} strokeWidth={1.3} style={{ position: 'fixed', right: '20px', background: '#ffffff', color: '#007D34' }} onClick={openMultiStepModal}>Вход / Регистрация</DoorEnter>
+    return <><UnstyledButton onClick={openMultiStepModal}>
+      <Group>
+                <ArrowBarToLeft
+                  size={25}
+                  strokeWidth={1.5}
+                  color={'blue'}
+                  style={{marginRight:-12}}
+                />
+                <Text size="md" color="blue" weight="600" >
+                  Войти 
+                </Text>
+      </Group>
+           </UnstyledButton>
+           </>
 
 }

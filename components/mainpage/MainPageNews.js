@@ -129,7 +129,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 	return (<>
 		<Card style={{ marginTop: '20px' }}>
 			<Grid justify={'right'}>
-				<Grid.Col span={2} >
+				<Grid.Col span={2} style={{marginTop: -10}}>
 					<Title order={1}>Новости</Title>
 				</Grid.Col>
 				<Grid.Col span={10} align={"right"}>
@@ -165,8 +165,8 @@ export const MainPageNews = ({ news, newsHot }) => {
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{newsHot.desc}
 						</Text>
-						<Grid>
-							<Grid.Col span={4} justify={'end'} align={'left'}>
+						<Grid position="absolute">
+							<Grid.Col span={4} justify={'end'} align={'left'} style={{marginBottom:-50}}>
 								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
 									(dateHot.getDate().toString().length === 1 ? '0' + dateHot.getDate().toString() : dateHot.getDate().toString()) + '.' +
 									((dateHot.getMonth() + 1).toString().length === 1 ? '0' + (dateHot.getMonth() + 1).toString() : (dateHot.getMonth() + 1).toString()) + '.' +

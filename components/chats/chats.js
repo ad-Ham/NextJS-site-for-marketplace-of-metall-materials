@@ -60,7 +60,7 @@
 
 import React, { useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'
-import { Navbar, SegmentedControl, Text, createStyles, Group, Avatar, Textarea, Grid, ScrollArea } from '@mantine/core'
+import { Navbar, SegmentedControl, Text, createStyles, Group, Avatar, Textarea, Grid, ScrollArea, Card } from '@mantine/core'
 
 const useStyles = createStyles((theme, _params, getRef) => {
 	const icon = getRef('icon')
@@ -184,6 +184,7 @@ export function UserChats({ userDialogs, user }) {
 )
 
 return (<>
+<Card>
 	<Grid justify='space-between' align='flex-end'>
 		<Grid.Col span={8}>
 			<Textarea
@@ -193,12 +194,13 @@ return (<>
 			/>
 		</Grid.Col>
 		<Grid.Col span={4}>
-			<Navbar height={height - 150} width={{ sm: 400 }} className={classes.navbar}>
-				<Navbar.Section component={ScrollArea} grow scrollbarSize={2}>
-					{links}
-				</Navbar.Section>
-			</Navbar>
+			<ScrollArea style={{height: 750}}>
+				<Card.Section height={height - 100} width={{ sm: 400 }}>
+					{links}	
+				</Card.Section>
+			</ScrollArea>
 		</Grid.Col>
 	</Grid>
+</Card>
 	</>)
 }

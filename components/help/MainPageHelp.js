@@ -9,9 +9,9 @@ export const MainPageHelp = () =>  {
             <Text align="center" size="xl" color="blue" style={{marginBottom: 20}}>Здесь вы можете задать любой вопрос <strong>о нашем сайте</strong>!</Text>
                 <Grid>
                     <Grid.Col align="center">
-                        <TextInput style={{width: 800, marginBottom: 15}} placeholder="Введите e-mail для обратной связи" />
-                        <TextInput style={{width: 800, marginBottom: 15}} placeholder="Опишите вашу проблему или вопрос в двух словах" />
-                        <Textarea  minRows={5} style={{width: 800, marginBottom: 20}} placeholder="Расскажите о проблеме немного подробнее" />
+                        <TextInput style={{width:"80%",marginBottom: 15}} placeholder="Введите e-mail для обратной связи" />
+                        <TextInput style={{width:"80%",marginBottom: 15}} placeholder="Опишите вашу проблему или вопрос в двух словах" />
+                        <Textarea  minRows={5} style={{width:"80%" , marginBottom: 20}} placeholder="Расскажите о проблеме немного подробнее" />
                     </Grid.Col>
                     <Grid.Col align="center">
                         <Button style={{marginBottom: 15}} variant="outline">Отправить</Button>
