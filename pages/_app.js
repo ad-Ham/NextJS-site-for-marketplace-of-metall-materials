@@ -6,8 +6,8 @@ import io from 'socket.io-client'
 import { axios, checkToken } from '/middleware/axios.js'
 import { useRouter } from 'next/router'
 
-const users_socket = io.connect('http://localhost:3002/users')
-const messages_socket = io.connect('http://localhost:3002/messages', { autoConnect: false })
+const users_socket = io.connect('https://api.metalmarket.pro/users')
+const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
@@ -33,7 +33,6 @@ const MyApp = ({ Component, pageProps }) => {
 				.then(function(response) {
 					console.log(response.data.user)
 					setUser(response.data.user)
-					pageProps['user'] = response.data.user
 					users_socket.emit('user_connect', {user_id: response.data.user.id})
 				})
 				.catch(function (error) {
@@ -73,7 +72,7 @@ const MyApp = ({ Component, pageProps }) => {
 	return (
 		<>
 			<MainLayout onlineUsers={currOnlineUsers} user={user} chats={chats}>
-				<Component {...pageProps} />
+				<Component {...pageProps} user={user} />
 			</MainLayout>
 		</>
 	)

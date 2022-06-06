@@ -308,7 +308,6 @@ export function PromosAdd({ user }) {
         
         Object.entries(charsData)
         .map(([key, value]) => {
-            console.log(charsData, key, value)
             char_values.push(`${key}: ${value}`) 
         })
 
@@ -317,8 +316,6 @@ export function PromosAdd({ user }) {
     }
 
     function addItem (callback) {
-        console.log(size)
-
         const items = {
             category : category,
             metal : metal,
