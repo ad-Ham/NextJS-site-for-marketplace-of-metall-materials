@@ -171,7 +171,7 @@ return (<>
     {(userStatus === true) && <>
     <Card> 
         <MediaQuery smallerThan={1400} styles={{ display: 'none' }}>
-        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40,borderBottom: ' 2px solid #42aaff'}}>  
+        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 20,borderBottom: ' 2px solid #42aaff'}}>  
             <Grid.Col span={3} >               
                 <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
                 <p style={{fontSize:18, marginBottom: 18}}>
@@ -213,8 +213,8 @@ return (<>
         </Grid> 
         </MediaQuery> 
         <MediaQuery largerThan={1400} styles={{ display: 'none' }}>
-        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 40,borderBottom: ' 2px solid #42aaff'}}>  
-            <Grid.Col offset={2} style={{marginTop: 10}}>                              
+        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 20,borderBottom: ' 2px solid #42aaff'}}>  
+            <Grid.Col style={{marginTop: 10}}>                              
                 <Avatar
                     radius={'50%'}
                     size={90}
@@ -254,7 +254,7 @@ return (<>
             </Grid.Col>       
         </Grid>    
         </MediaQuery>  
-        <Grid grow gutter="xs" style={{marginLeft: 40}}>
+        <Grid grow gutter="xs" style={{marginLeft: 20}}>
              <Grid.Col  span={2} offset={11.3} style={{marginTop: -30}}>
                 <Modal 
                     size="xl"
@@ -271,7 +271,7 @@ return (<>
                                 
             </Grid.Col>
         </Grid>
-        <Grid grow gutter="xs" style={{marginLeft: 40, borderBottom: ' 2px solid #42aaff'}}>
+        <Grid grow gutter="xs" style={{marginLeft: 20, borderBottom: ' 2px solid #42aaff'}}>
              <Grid.Col span={4}>
                 <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
                     size={20}
@@ -318,7 +318,7 @@ return (<>
     </>}
     {(userStatus === true) && (user.role === 'admin') && 
     <>
-        <h1 style={{margin: "2% 0"}}>Заявки на регистрацию</h1>
+        <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginLeft: 10}}><h1 style={{margin: "2% 0"}}>Заявки на регистрацию</h1></MediaQuery>
         <Grid>
             {showUsers}
         </Grid>
