@@ -84,7 +84,7 @@ function commentSimple(comment, user, comments) {
         <div className={classMessage}>
             <Group>
             {/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
-            <Avatar alt={comment.id} radius="xl" />
+            <Avatar src={'data:image/' + 'base64,' + comment.user_image} alt={comment.id} radius="xl" />
                 <div>
                     <Group position="left">
                         <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
