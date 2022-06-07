@@ -8,8 +8,9 @@ import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
 
+
 export async function getServerSideProps(context) {
-	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
+	const res = await axios.get('http://localhost:3001/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
@@ -25,7 +26,7 @@ export async function getServerSideProps(context) {
 	 }
 	
 	
-	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
+	const promos = await axios.get('http://localhost:3001/promosquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
@@ -39,7 +40,7 @@ export async function getServerSideProps(context) {
 	}
 }
 
-export default function Index({ news, promos, newsHot, user }) {
+export default function Index({ news, promos, newsHot }) {
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [dollarPrice, setDollarPrice] = useState('')
@@ -52,7 +53,7 @@ export default function Index({ news, promos, newsHot, user }) {
 			setIsMobile(true)
 		}
 
-		axios.get('https://api.metalmarket.pro/getExchangeRates')
+		axios.get('http://localhost:3001/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -63,7 +64,7 @@ export default function Index({ news, promos, newsHot, user }) {
 				console.log(error);
 			})
 
-		axios.get('https://api.metalmarket.pro/getMetalsPrice')
+		axios.get('http://localhost:3001/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})

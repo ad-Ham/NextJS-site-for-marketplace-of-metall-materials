@@ -12,7 +12,7 @@ import { EditPromos} from '../../components/promos/EditPromos'
 
 export async function getServerSideProps(context) {
     
-    const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
+    const promos = await axios.get('http://localhost:3001/promosquery', {
         
         headers: {
             'Accept': 'application/json'
@@ -134,7 +134,7 @@ const MyPromos = ({ promos }) => {
     { value: 'Прочие цветные металлы', label: 'Прочие цветные металлы' },
   ];
   function updateSectionRows(sections, subsections, category) {
-        axios.get('https://api.metalmarket.pro/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
+        axios.get('http://localhost:3001/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
         .then(function(response) {
             promos = response.data.promos
             setRows([...promos].filter(el => el.id).map((element) => {

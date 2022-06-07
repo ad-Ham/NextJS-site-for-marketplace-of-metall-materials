@@ -90,7 +90,7 @@ export function RegisterForm() {
 			return;
 		}
 
-		axios.post('https://api.metalmarket.pro/validateEmail', {email: data.mainData[0]})
+		axios.post('http://localhost:3001/validateEmail', {email: data.mainData[0]})
 		.then(res => {
 			if (res.data.id.length !== 0) {
 				showNotification({
@@ -101,7 +101,7 @@ export function RegisterForm() {
 		            color: "red"
 		        })
 			} else {
-				axios.post('https://api.metalmarket.pro/regquery', {
+				axios.post('http://localhost:3001/regquery', {
 					email: data.mainData[0],
 					password: data.mainData[1],
 					surname: data.personalData[0],
@@ -200,7 +200,7 @@ export function RegisterForm() {
 			return;
 		}
 
-		axios.post('https://api.metalmarket.pro/validateEmail', {email: data.mainData[0]})
+		axios.post('http://localhost:3001/validateEmail', {email: data.mainData[0]})
 		.then(res => {
 			if (res.data.id.length !== 0) {
 				showNotification({
@@ -222,7 +222,7 @@ export function RegisterForm() {
 				body.append("inn", data.jurData[2])
 				body.append("ogrn", data.jurData[3])
 				body.append("post", data.jurData[4])
-				fetch("https://api.metalmarket.pro/regquery", {
+				fetch("http://localhost:3001/regquery", {
 			      method: "POST",
 			      body
 			    })

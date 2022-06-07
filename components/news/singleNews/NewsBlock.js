@@ -14,10 +14,10 @@ export const NewsBlock = ({news, tags}) => {
     // const changeUserStatus = () => {
     //     setUserStatus(checkToken(router.pathname))
     //     if (checkToken(router.pathname) === true) {
-    //         axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+    //         axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
     //         .then(function(response) {
     //             let userId = response.data.user_id.user_id;
-    //             axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+    //             axios.get('http://localhost:3001/getUser', {params:{id: userId}})
     //             .then(function(response) {
     //                 setUser(response.data.user)
     //             })

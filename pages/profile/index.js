@@ -24,15 +24,15 @@ const PersonalData = () => {
     const changeUserStatus = () => {
         setUserStatus(checkToken(router.pathname))
         if (checkToken(router.pathname) === true) {
-            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+            axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
             .then(function(response) {
                 let userId = response.data.user_id.user_id;
-                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+                axios.get('http://localhost:3001/getUser', {params:{id: userId}})
                 .then(function(response) {
                     setUser(response.data.user)
                     setFormat(response.data.user.photopath.substr(user.photopath.length-3))
                     if (response.data.user.role === 'admin') {
-                        axios.get('https://api.metalmarket.pro/getUnapprovedUsers')
+                        axios.get('http://localhost:3001/getUnapprovedUsers')
                         .then(function(response) {
                             setUsers(response.data.users)
                         })
@@ -62,11 +62,11 @@ const PersonalData = () => {
     const [open, setOpen] = useState(false);
 
     const handleApprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/approveUser', {email:e.target.id})
+        await axios.post('http://localhost:3001/approveUser', {email:e.target.id})
     }
 
     const handleDisapprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/disapproveUser', {email:e.target.id})
+        await axios.post('http://localhost:3001/disapproveUser', {email:e.target.id})
     }
 
     const showUsers = users.map(el => {
@@ -126,7 +126,7 @@ const PersonalData = () => {
             const body = new FormData(document.getElementById("uploadForm"));
             body.append("id", user.id)
             body.append("photopath", user.photopath)
-            fetch("https://api.metalmarket.pro/updateAvatar", {
+            fetch("http://localhost:3001/updateAvatar", {
             method: "POST",
             body
             }).then(function() {router.reload(window.location.pathname)})

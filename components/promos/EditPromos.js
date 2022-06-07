@@ -23,10 +23,10 @@ export function EditPromos() {
     const changeUserStatus = () => {
         setUserStatus(checkToken(router.pathname))
         if (checkToken(router.pathname) === true) {
-            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+            axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
             .then(function(response) {
                 let userId = response.data.user_id.user_id;
-                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+                axios.get('http://localhost:3001/getUser', {params:{id: userId}})
                 .then(function(response) {
                     setUser(response.data.user)
                 })
@@ -326,7 +326,7 @@ export function EditPromos() {
 
     const savePromo = () => {
         const user_id=user.id
-        axios.post('https://api.metalmarket.pro/uploadPromo', {data, user_id})
+        axios.post('http://localhost:3001/uploadPromo', {data, user_id})
     }
 
     return (

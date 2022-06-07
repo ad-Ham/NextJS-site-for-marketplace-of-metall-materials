@@ -3,11 +3,13 @@ import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
 import '/styles/_app.scss'
 import io from 'socket.io-client'
-import { axios, checkToken } from '/middleware/axios.js'
+import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
 
-const users_socket = io.connect('https://api.metalmarket.pro/users')
-const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
+// const users_socket = io.connect('http://localhost:3001/users')
+// const messages_socket = io.connect('http://localhost:3001/messages', { autoConnect: false })
+const users_socket = io.connect('http://localhost:3001/users')
+const messages_socket = io.connect('http://localhost:3001/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
@@ -26,12 +28,12 @@ const MyApp = ({ Component, pageProps }) => {
 	const changeUserStatus = () => {
 		setUserStatus(checkToken(router.pathname))
 		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+			axios.get('http://localhost:3001/getUserId', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
+				console.log(123)
 				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				axios.get('http://localhost:3001/getUser', {params: {id: userId}})
 				.then(function(response) {
-					console.log(response.data.user)
 					setUser(response.data.user)
 					users_socket.emit('user_connect', {user_id: response.data.user.id})
 				})
@@ -40,7 +42,7 @@ const MyApp = ({ Component, pageProps }) => {
 					})
 			})
 			.catch(function (error) {
-					console.log(error);
+					console.log('error', error);
 				})
 		}
 		else {
@@ -49,29 +51,29 @@ const MyApp = ({ Component, pageProps }) => {
 	}
 
 	useEffect(() => {
-		if (router.pathname === '/chats') setChats(true)
+	// 	if (router.pathname === '/chats') setChats(true)
 
 		changeUserStatus()
 		
-		users_socket.on('update_online_users', (data) => {
-			setCurrOnlineUsers(data.users)
-		})
+	// 	users_socket.on('update_online_users', (data) => {
+	// 		setCurrOnlineUsers(data.users)
+	// 	})
 
-		messages_socket.on('receive_message', (data) => {
-			showNotification({
-				title: 'Новое сообщения',
-				message: `Новое сообщения от пользователя`,
-				// ${data.firstName} ${data.surName}
-				autoClose: true,
+	// 	messages_socket.on('receive_message', (data) => {
+	// 		showNotification({
+	// 			title: 'Новое сообщения',
+	// 			message: `Новое сообщения от пользователя`,
+	// 			// ${data.firstName} ${data.surName}
+	// 			autoClose: true,
 	
-				color: "green"
-			})
-		})
+	// 			color: "green"
+	// 		})
+	// 	})
 	}, [users_socket, messages_socket, user])	
 
 	return (
 		<>
-			<MainLayout onlineUsers={currOnlineUsers} user={user} chats={chats}>
+			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
 				<Component {...pageProps} user={user} />
 			</MainLayout>
 		</>

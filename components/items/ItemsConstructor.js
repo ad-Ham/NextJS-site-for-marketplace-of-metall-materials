@@ -247,8 +247,6 @@ export function beam (metalData, stampName, CallbackInput) {
         if (value === 'Двутавр дополнительной серии (Д)') numberData = additionalBeam
         if (value === 'Сварной двутавр (С)') numberData = weldedBeam
 
-        console.log(value, numberData)
-
         CallbackInput('Тип балки', `${value}`)
     }
 

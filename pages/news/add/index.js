@@ -18,10 +18,10 @@ const AddNews = () => {
 	const changeUserStatus = () => {
 		setUserStatus(checkToken(router.pathname))
 		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
 			.then(function(response) {
 				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
 				.then(function(response) {
 					setUser(response.data.user)
 				})
@@ -71,7 +71,7 @@ const AddNews = () => {
 	    console.log(body)
 	    // console.log("file", image)
 	    body.append("html", value);    
-	    const response = await fetch("https://api.metalmarket.pro/uploadNews", {
+	    const response = await fetch("http://localhost:3001/uploadNews", {
 	      method: "POST",
 	      body,
 	    });

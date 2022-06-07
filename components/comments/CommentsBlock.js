@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
+    const response = await axios.post("http://localhost:3001/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,11 +19,23 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
+    const response = await axios.post("http://localhost:3001/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
 
+const deleteCommentTree = async (user, comment, comments) => {     
+    comment.user_id = user.id
+    comment.deleter_id = user.id
+
+    const comments_ids = comments.filter(function(tree_comment) {
+        return (tree_comment.id >= comment.id) && (tree_comment.parent_id === comment.parent_id)
+    }).flat().map(tree_comment => tree_comment.id)
+
+    const response = await axios.post("http://localhost:3001/deletetreecomments", comments_ids)
+
+    Router.reload(window.location.pathname, { scroll: false })
+}
 
 const mainStyles = createStyles((theme) => ({
     body: {
@@ -60,7 +72,7 @@ function commentInput(user, userComment) {
 }
 
 
-function commentSimple(comment, user) {
+function commentSimple(comment, user, comments) {
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
 
@@ -77,19 +89,28 @@ function commentSimple(comment, user) {
                     <Group position="left">
                         <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
                         {(user !== undefined) && <>
-                            <UnstyledButton onClick={() => setReplied({ reply: true })}>
-                                <Text size="sm" color="blue">Ответить</Text>
-                            </UnstyledButton>
-                            {((user.id === comment.user_id) || (user.role === 'admin')) &&
+                            {(comment.deleted !== true) &&
+                                <UnstyledButton onClick={() => setReplied({ reply: true })}>
+                                    <Text size="sm" color="blue">Ответить</Text>
+                                </UnstyledButton>
+                            } 
+                            {((user.id === comment.user_id) || (user.role === 'admin')) && (comment.deleted !== true) &&
                                 <UnstyledButton onClick={() => deleteComment(user, comment)}>
                                     <Text size="sm" color="blue">Удалить</Text>
                                 </UnstyledButton>
-                            } </>
+                            }
+                            {(user.role === 'admin') &&
+                                <UnstyledButton onClick={() => deleteCommentTree(user, comment, comments)}>
+                                    <Text size="sm" color="blue">Удалить ветку ниже</Text>
+                                </UnstyledButton>
+                            }
+                        </>
                         }
                     </Group>
                     <Text size="xs" style={{marginTop: 1}}>{`${comment.post}, ${comment.orgName}` }</Text>
                     <Text size="xs" color="dimmed" style={{marginTop: 3}}>
-                    {`${comment.date.slice(8, 10)}.${comment.date.slice(5, 7)}.${comment.date.slice(0, 4)} ${comment.time.slice(0, 5)}`}
+                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)},
+                    ${comment.comment_date.slice(11)}`}
                     </Text>
                 </div>
             </Group>
@@ -115,12 +136,12 @@ export const CommentsBlock = ({entity, entity_id, comments, user}) => {
             {/* <Text size='lg' weight={700} className={styles.commentsCount}>Комментарии: {comments.length}</Text> */}
             
             <div style={{marginBottom: 20}}>
-                {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1})}
+                {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1} )}
             </div>
             
             {comments && <> 
                 {comments.map(comment => 
-                    <div key={comment.id}>{commentSimple(comment, user)}</div>
+                    <div key={comment.id}>{commentSimple(comment, user, comments)}</div>
                 )}
             </>}
         </div>

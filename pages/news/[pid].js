@@ -16,16 +16,16 @@ const imageToBase64 = require('image-to-base64');
 	
 const handleDelete = async(e) => {
 	console.log(e.target.id)
-	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+	await axios.post('http://localhost:3001/newsdelete', {id:e.target.id})
 }
 
 const handlePin = async(e) => {
-	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
+	await axios.post('http://localhost:3001/newspin', {id:e.target.id})
 }
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('http://localhost:3001/singlenews', {params: {id: id}, headers: {'Accept': 'application/json'}})
 	let tagsMas = res.data.news.tags.split(', ')
 	let tags = []
 	let i;
@@ -35,30 +35,37 @@ export async function getServerSideProps(context) {
 	let news = res.data.news
 	news['image'] = await imageToBase64(news.photopath)
 
-	res = await axios.get('https://api.metalmarket.pro/newsquery', {
+	res = await axios.get('http://localhost:3001/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
 	//const images = new Map();
-	let newsList = res.data.news
+	const newsList = res.data.news.map(async (news, index) => {
+		news['image'] = await imageToBase64(news.photopath)
+
+		return news
+	})
 	
 	for (i=0;i<newsList.length;++i) {
-		// //images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+		//images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
 		newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
 	}
 
 	if (newsList.indexOf(news) !== -1) {
 		newsList.splice(newsList.indexOf(news))
 	}
-
-	// !!
-	const response = await axios.get("https://api.metalmarket.pro/getcomments", 
+	
+	const response = await axios.get("http://localhost:3001/getcomments",
 		{params : { entity: 'news', entity_id: id, headers: {'Accept': 'application/json' }}}
 	)
 
-	let comments = response.data.comments
-	
+	const comments = response.data.comments.map(async (comment, index) => {
+		comment['image'] = await imageToBase64(comment.photopath)
+
+		return comment
+	})
+
 	return {
 		props: {news: news, tags: tags, newsList: newsList, comments: comments}
 	}
@@ -72,10 +79,10 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
     // const changeUserStatus = async () => {
     //     setUserStatus(checkToken(router.pathname))
     //     if (checkToken(router.pathname) === true) {
-    //         axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+    //         axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
     //         .then(function(response) {
     //             let userId = response.data.user_id.user_id;
-    //             axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+    //             axios.get('http://localhost:3001/getUser', {params:{id: userId}})
     //             .then(function(response) {
     //                 setUser(response.data.user)
     //             })
@@ -97,7 +104,7 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
 	// console.log('!!!!!!!!!!!!!!')
 	// console.log(comments)
 	// useEffect(() => {
-	// 	axios.get('https://api.metalmarket.pro/singlenews', {
+	// 	axios.get('http://localhost:3001/singlenews', {
 	// 		id: id
 	// 	})
 	// 		.then(function (response) {

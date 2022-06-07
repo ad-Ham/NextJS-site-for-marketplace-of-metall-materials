@@ -11,7 +11,7 @@ import { checkToken } from '/middleware/axios.js';
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('http://localhost:3001/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let news = res.data.news
 	//news['image'] = await imageToBase64(news.photopath)
 
@@ -30,10 +30,10 @@ const NewsPageEdit = ({news, pid}) => {
 	const changeUserStatus = () => {
 		setUserStatus(checkToken(router.pathname))
 		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
 			.then(function(response) {
 				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
 				.then(function(response) {
 					setUser(response.data.user)
 				})
@@ -64,7 +64,7 @@ const NewsPageEdit = ({news, pid}) => {
 	    // console.log("file", image)
 	    body.append("html", value); 
 	    body.append("id", pid);    
-	    const response = await fetch("https://api.metalmarket.pro/updateNews", {
+	    const response = await fetch("http://localhost:3001/updateNews", {
 	      method: "POST",
 	      body,
 	    });
