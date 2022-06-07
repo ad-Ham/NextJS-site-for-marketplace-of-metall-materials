@@ -2,11 +2,11 @@ import Link from 'next/link'
 import { Button, Grid, Card, Title, Table, Space, MediaQuery, Group, ScrollArea} from '@mantine/core';
 import styles from './MainPromos.module.scss'
 
-export const MainPromos = ({ promos }) => {
+export const MainPromos = ({ promos, user }) => {
 
 	const rows = [...promos].filter(el => el.id).map((element) => {
 		let date = new Date(element.date);
-		let link = '/promos/'+element.id
+		let link = '/promos/' + element.id
 		return (<Link href={link} passHref key={element.id}>
 			<tr key={element.id}>
 			<td>

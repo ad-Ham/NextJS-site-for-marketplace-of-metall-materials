@@ -7,7 +7,7 @@ import { axios, checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
 import { MessageCircle2 } from 'tabler-icons-react';
 
-export const MainPageNews = ({ news, newsHot }) => {
+export const MainPageNews = ({ news, newsHot, user }) => {
 	const dateHot = new Date(newsHot.date)
 	const theme = useMantineTheme();
 	console.log(news)
