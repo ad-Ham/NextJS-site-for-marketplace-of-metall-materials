@@ -38,21 +38,14 @@ const MyApp = ({ Component, pageProps }) => {
 		setUserStatus(checkStatus)
 
 		if (checkStatus === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params: {token: localStorage.getItem("token")}})
+			axios.get('https://api.metalmarket.pro/getUser', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
-				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params: {id: userId}})
-				.then(function(response) {
-					setUser(response.data.user)
-					users_socket.emit('user_connect', {user_id: response.data.user.id})
-				})
-				.catch(function (error) {
-						console.log(error);
-					})
+				setUser(response.data.user)
+				users_socket.emit('user_connect', {user_id: response.data.user.id})
 			})
 			.catch(function (error) {
-					console.log('error', error);
-				})
+					console.log(error);
+			})
 		}
 		else {
 			users_socket.emit('user_connect', {user_id: null})
