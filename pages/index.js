@@ -8,6 +8,7 @@ import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
 
+
 export async function getServerSideProps(context) {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {

@@ -1,37 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
+import { Center, Group, Image } from '@mantine/core'
+import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
 import io from 'socket.io-client'
-import { axios, checkToken } from '/middleware/axios.js'
+import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
+import { ClockLoader } from 'react-spinners'
 
+// const users_socket = io.connect('https://api.metalmarket.pro/users')
+// const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 const users_socket = io.connect('https://api.metalmarket.pro/users')
 const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
 	const router = useRouter()
+
+	const { height, width } = useViewportSize();
+
 	const [chats, setChats] = useState(undefined)
-	const [userStatus, setUserStatus] = useState('')
+	const [userStatus, setUserStatus] = useState(null)
 	const [user, setUser] = useState({
-		image: '',
-		surName: '',
-		firstName: '',
-		lastName: '',
-		email: ''
+		id : null,
+		image : '',
+		surName : '',
+		firstName : '',
+		lastName : '',
+		email : ''
 	})
 	const [currOnlineUsers, setCurrOnlineUsers] = useState(0)
 
 	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
+		const checkStatus = checkToken(router.pathname)
+
+		setUserStatus(checkStatus)
+
+		if (checkStatus === true) {
+			axios.get('https://api.metalmarket.pro/getUserId', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
 				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
+				axios.get('https://api.metalmarket.pro/getUser', {params: {id: userId}})
 				.then(function(response) {
-					console.log(response.data.user)
 					setUser(response.data.user)
 					users_socket.emit('user_connect', {user_id: response.data.user.id})
 				})
@@ -40,7 +51,7 @@ const MyApp = ({ Component, pageProps }) => {
 					})
 			})
 			.catch(function (error) {
-					console.log(error);
+					console.log('error', error);
 				})
 		}
 		else {
@@ -67,15 +78,39 @@ const MyApp = ({ Component, pageProps }) => {
 				color: "green"
 			})
 		})
-	}, [users_socket, messages_socket, user])	
+	}, [users_socket, messages_socket])	
 
 	return (
-		<>
-			<MainLayout onlineUsers={currOnlineUsers} user={user} chats={chats}>
-				<Component {...pageProps} user={user} />
+		<>	
+			{((user.id) || (userStatus !== true)) ? 
+			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
+				<Component {...pageProps} user={user} userStatus={userStatus}/>
 			</MainLayout>
+			:
+			<>
+				<div 
+				style = {{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					height: '100vh',
+				}}>
+					<Group spacing="xl" position="center">
+						<ClockLoader
+							color='#F5A623'
+							size={ 60 }
+						/>
+						<Image
+							alt="metal-merket.pro"
+							src="/logo.svg"
+							width='60%'
+						/>
+					</Group>
+				</div>
+			</> 
+			}
 		</>
-	)
+		)
 }
 
 export default MyApp;

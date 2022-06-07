@@ -25,7 +25,7 @@ const handlePin = async(e) => {
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id: id}, headers: {'Accept': 'application/json'}})
 	let tagsMas = res.data.news.tags.split(', ')
 	let tags = []
 	let i;
@@ -40,75 +40,36 @@ export async function getServerSideProps(context) {
 			'Accept': 'application/json'
 		}
 	})
+
 	//const images = new Map();
-	let newsList = res.data.news
-	
-	for (i=0;i<newsList.length;++i) {
-		// //images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+	const newsList = res.data.news
+		
+	// for (i=0;i<newsList.length;++i) {
+		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
 		newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
-	}
+	// }
 
 	if (newsList.indexOf(news) !== -1) {
 		newsList.splice(newsList.indexOf(news))
 	}
-
-	// !!
-	const response = await axios.get("https://api.metalmarket.pro/getcomments", 
-		{params : { entity: 'news', entity_id: id, headers: {'Accept': 'application/json' }}}
+	
+	const response = await axios.get("https://api.metalmarket.pro/getcomments",
+		{ params : { entity: 'news', entity_id: id, headers: { 'Accept': 'application/json' }} }
 	)
 
-	let comments = response.data.comments
-	
+	const comments = response.data.comments
+
+	for (i = 0; i < comments.length; i++) {
+		comments[i]['user_image'] = await imageToBase64(comments[i].photopath)
+	}
+
 	return {
 		props: {news: news, tags: tags, newsList: newsList, comments: comments}
 	}
 }
 
 const NewsPage = ({news, tags, newsList, comments, user}) => {
-	// const router = useRouter();
-    // const [userStatus, setUserStatus] = useState('')
-    // const [user, setUser] = useState('')
-
-    // const changeUserStatus = async () => {
-    //     setUserStatus(checkToken(router.pathname))
-    //     if (checkToken(router.pathname) === true) {
-    //         axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-    //         .then(function(response) {
-    //             let userId = response.data.user_id.user_id;
-    //             axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-    //             .then(function(response) {
-    //                 setUser(response.data.user)
-    //             })
-    //             .catch(function (error) {
-    //                     console.log(error);
-    //                 })
-    //         })
-    //         .catch(function (error) {
-    //                 console.log(error);
-    //             })
-    //     }
-    // }
-
-	// useEffect(() => {
-    //     changeUserStatus()
-    // }, [])
-
 	const [singleNew, setSingleNew] = useState([])
-	// console.log('!!!!!!!!!!!!!!')
-	// console.log(comments)
-	// useEffect(() => {
-	// 	axios.get('https://api.metalmarket.pro/singlenews', {
-	// 		id: id
-	// 	})
-	// 		.then(function (response) {
-	// 			console.log(response);
-	// 			const singleNew = response;
-	// 			setSingleNew(singleNew)
-	// 		})
-	// 		.catch(function (error) {
-	// 			console.log(error);
-	// 		})
-	// }, [])
 
 	return (
 		<>

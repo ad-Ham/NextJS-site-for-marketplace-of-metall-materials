@@ -13,44 +13,15 @@ export async function getServerSideProps(context) {
 	const id = context.params.pid
 	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let news = res.data.news
-	//news['image'] = await imageToBase64(news.photopath)
-
-
+	news['image'] = await imageToBase64(news.photopath)
 
 	return {
 		props: {news: news, pid: id}
 	}
 }
 
-const NewsPageEdit = ({news, pid}) => {
+const NewsPageEdit = ({ news, pid, user, userStatus }) => {
 	const router = useRouter();
-	const [userStatus, setUserStatus] = useState('')
-	const [user, setUser] = useState('')
-
-	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-			.then(function(response) {
-				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-				.then(function(response) {
-					setUser(response.data.user)
-				})
-				.catch(function (error) {
-						console.log(error);
-					})
-			})
-			.catch(function (error) {
-					console.log(error);
-				})
-		}
-	}
-
-	useEffect(() => {
-		changeUserStatus()
-
-	}, [])
 
 	const [value, onChange] = useState(news.html);
 	const [desc, setDesc] = useState(news.desc);

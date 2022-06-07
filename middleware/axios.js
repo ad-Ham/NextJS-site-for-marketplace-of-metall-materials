@@ -10,7 +10,7 @@ axios.interceptors.response.use(function (response) {
 	return response
 }, function (response) {
 	// Место, где сервер отвечает статусом с ошибкой, обработка ошибки и дельнейшие действия
-	let error = response.toJSON();
+	let error = JSON.stringify(response)
 	//deleteToken()
 	return Promise.reject(error);
 });

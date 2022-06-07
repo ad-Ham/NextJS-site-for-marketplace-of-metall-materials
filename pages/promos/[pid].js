@@ -62,37 +62,6 @@ export async function getServerSideProps(context) {
 }
 
 const Index = ({ promo, comments }) => {
-	const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
-    console.log('PROMO')
-    console.log(promo)
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-	useEffect(() => {
-        changeUserStatus()
-
-    }, [])
-
 	return (<>
 		<div>
 			<PromoBlock promo={promo}/>

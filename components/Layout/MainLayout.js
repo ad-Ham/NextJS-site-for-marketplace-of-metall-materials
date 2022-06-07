@@ -37,22 +37,12 @@ import { useRouter } from 'next/router'
 
 import { LoginModal } from '../login/LoginModal';
 
-export const MainLayout = ({ onlineUsers, children, user, chats }) => {
+export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) => {
 	const router = useRouter();
-	const [userStatus, setUserStatus] = useState('')
-
-	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-	}
-
-	useEffect(() => {
-		changeUserStatus()
-	}, [])
 
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [isMobile, setIsMobile] = useState(false)
-
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -74,16 +64,13 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 				e.target.reset();
 			})
 			.catch(function (error) {
-				alert('Не верный email или пароль!')
+				alert('Неверный email или пароль!')
 				console.log(error);
 			});
 	}
 
 	const [opened, setOpened] = useState(false);
 	const [openedMobile, setOpenedMobile] = useState(false);
-	const onLogin = (state) => {
-		setUserStatus(state)
-	}
 
 	const theme = useMantineTheme();
 

@@ -144,7 +144,7 @@ const tabs = {
 	]
 }
 
-export function UserChats({ userDialogs, user }) {
+export function UserChats({ userDialogs, user, userStatus }) {
 	const { height, width } = useViewportSize()
 	const { classes, cx } = useStyles()
 	const [section, setSection] = useState('account')

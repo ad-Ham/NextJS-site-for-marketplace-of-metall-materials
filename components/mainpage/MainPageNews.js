@@ -8,34 +8,6 @@ import { useRouter } from 'next/router'
 import { MessageCircle2 } from 'tabler-icons-react';
 
 export const MainPageNews = ({ news, newsHot }) => {
-	const router = useRouter();
-	const [userStatus, setUserStatus] = useState('')
-	const [user, setUser] = useState('')
-
-	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-		if (checkToken(router.pathname) === true) {
-			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
-			.then(function(response) {
-				let userId = response.data.user_id.user_id;
-				axios.get('https://api.metalmarket.pro/getUser', {params:{id: userId}})
-				.then(function(response) {
-					setUser(response.data.user)
-				})
-				.catch(function (error) {
-						console.log(error);
-					})
-			})
-			.catch(function (error) {
-					console.log(error);
-				})
-		}
-	}
-
-	useEffect(() => {
-		changeUserStatus()
-
-	}, [])
 	const dateHot = new Date(newsHot.date)
 	const theme = useMantineTheme();
 	console.log(news)
@@ -58,7 +30,7 @@ export const MainPageNews = ({ news, newsHot }) => {
 			</Group>
 			<Grid justify={"center"}>
 				<Grid.Col span={4}>
-					<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+					<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} layout="fill" />
 				</Grid.Col>
 				<Grid.Col span={8}>
 					<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
