@@ -79,7 +79,7 @@ const AddPromo = ({ user }) => {
 			description
 		}))
 
-		axios.post('http://localhost:3001/promosquery', {
+		axios.post('https://api.metalmarket.pro/promosquery', {
 			title,
 			name,
 			email,

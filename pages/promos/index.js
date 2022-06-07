@@ -2,13 +2,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
-import { Button, Grid, Card, Title, Table, Space, Group, MediaQuery } from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space, Group, MediaQuery, Tooltip } from '@mantine/core';
 import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { FilePlus } from 'tabler-icons-react';
 
 export async function getServerSideProps(context) {
-    const promos = await axios.get('http://localhost:3001/promosquery', {
+    const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
         headers: {
             'Accept': 'application/json'
         }
@@ -53,7 +53,7 @@ const Promos = ({ promos }) => {
                     <td>{element.title}</td>
                     <td>{element.user.orgName}</td>
                     <td>{element.region}</td>
-                    <td><Link href={'/promos/'+element.id}><Tooltip label=<>{categories}</> position="bottom" withArrow><Button>Подробнее</Button></Tooltip></Link></td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow><Button>Подробнее</Button></Tooltip></Link></td>
                 </tr>
             </tbody>
             )
@@ -129,7 +129,7 @@ const Promos = ({ promos }) => {
   ];
 
   function updateSectionRows(sections, subsections, category) {
-        axios.get('http://localhost:3001/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
+        axios.get('https://api.metalmarket.pro/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
         .then(function(response) {
             promos = response.data.promos
             setRows([...promos].filter(el => el.id).map((element) => {

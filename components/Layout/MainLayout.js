@@ -37,26 +37,16 @@ import { useRouter } from 'next/router'
 
 import { LoginModal } from '../login/LoginModal';
 
-export const MainLayout = ({ onlineUsers, children, user, chats }) => {
+export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) => {
 	const router = useRouter();
-	const [userStatus, setUserStatus] = useState('')
-
-	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-	}
-
-	useEffect(() => {
-		changeUserStatus()
-	}, [])
 
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [isMobile, setIsMobile] = useState(false)
 
-
 	const handleSubmit = e => {
 		e.preventDefault();
-		axios.post('http://localhost:3001/login', {
+		axios.post('https://api.metalmarket.pro/login', {
 			login: login,
 			password: password
 		})
@@ -74,16 +64,13 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 				e.target.reset();
 			})
 			.catch(function (error) {
-				alert('Не верный email или пароль!')
+				alert('Неверный email или пароль!')
 				console.log(error);
 			});
 	}
 
 	const [opened, setOpened] = useState(false);
 	const [openedMobile, setOpenedMobile] = useState(false);
-	const onLogin = (state) => {
-		setUserStatus(state)
-	}
 
 	const theme = useMantineTheme();
 
@@ -173,7 +160,7 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 			setIsMobile(true)
 		}
 
-		axios.get('http://localhost:3001/getExchangeRates')
+		axios.get('https://api.metalmarket.pro/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -184,7 +171,7 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3001/getMetalsPrice')
+		axios.get('https://api.metalmarket.pro/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})
@@ -192,7 +179,7 @@ export const MainLayout = ({ onlineUsers, children, user, chats }) => {
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3001/getStockRates')
+		axios.get('https://api.metalmarket.pro/getStockRates')
 			.then(function (response) {
 				setStock(response.data.stock)
 			})

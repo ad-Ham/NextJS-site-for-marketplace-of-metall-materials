@@ -14,47 +14,9 @@ import { useRouter } from 'next/router'
 import { useModals } from '@mantine/modals';
 
 
-const PersonalData = () => {
+const PersonalData = ({ user, userStatus }) => {
     const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
     const [users, setUsers] = useState([])
-    const [format, setFormat] = useState('')
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('http://localhost:3001/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                    setFormat(response.data.user.photopath.substr(user.photopath.length-3))
-                    if (response.data.user.role === 'admin') {
-                        axios.get('http://localhost:3001/getUnapprovedUsers')
-                        .then(function(response) {
-                            setUsers(response.data.users)
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
-                    }
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-    useEffect(() => {
-        changeUserStatus()
-
-    }, [])
     
     const modals = useModals();
 
@@ -62,11 +24,11 @@ const PersonalData = () => {
     const [open, setOpen] = useState(false);
 
     const handleApprove = async(e) => {
-        await axios.post('http://localhost:3001/approveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/approveUser', {email:e.target.id})
     }
 
     const handleDisapprove = async(e) => {
-        await axios.post('http://localhost:3001/disapproveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/disapproveUser', {email:e.target.id})
     }
 
     const showUsers = users.map(el => {
@@ -126,7 +88,7 @@ const PersonalData = () => {
             const body = new FormData(document.getElementById("uploadForm"));
             body.append("id", user.id)
             body.append("photopath", user.photopath)
-            fetch("http://localhost:3001/updateAvatar", {
+            fetch("https://api.metalmarket.pro/updateAvatar", {
             method: "POST",
             body
             }).then(function() {router.reload(window.location.pathname)})
@@ -200,7 +162,7 @@ return (<>
                 <Avatar
                     radius={'50%'}
                     size={90}
-                    src={'data:image/'+ format+';base64,' + user.image}
+                    src={'data:image/' + ';base64,' + user.image}
                     alt="Avatar"
                     />
                 <Button onClick={openAvatarModal} variant="outline"
@@ -218,7 +180,7 @@ return (<>
                 <Avatar
                     radius={'50%'}
                     size={90}
-                    src={'data:image/'+ format+';base64,' + user.image}
+                    src={'data:image/'+ ';base64,' + user.image}
                     alt="Avatar"
                     />
                 <Button onClick={openAvatarModal} variant="outline"

@@ -16,9 +16,9 @@ import { axios, checkToken } from '/middleware/axios.js';
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('http://localhost:3001/singlepromo', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('https://api.metalmarket.pro/singlepromo', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let promo = res.data.promo
-	// let res = await axios.get('http://localhost:3001/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	// let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	// let tagsMas = res.data.news.tags.split(', ')
 	// let tags = []
 	// let i;
@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
 	// // news['image'] = await imageToBase64(news.photopath)
 
 
-	// res = await axios.get('http://localhost:3001/newsquery', {
+	// res = await axios.get('https://api.metalmarket.pro/newsquery', {
 	// 	headers: {
 	// 		'Accept': 'application/json'
 	// 	}
@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
 	// 	newsList.splice(newsList.indexOf(news))
 	// }
 
-	res = await axios.get('http://localhost:3001/getcomments', {
+	res = await axios.get('https://api.metalmarket.pro/getcomments', {
 		params : { entity: 'promo', entity_id: id },
 		headers : {
 			'Accept': 'application/json'
@@ -62,37 +62,6 @@ export async function getServerSideProps(context) {
 }
 
 const Index = ({ promo, comments }) => {
-	const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
-    console.log('PROMO')
-    console.log(promo)
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('http://localhost:3001/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-	useEffect(() => {
-        changeUserStatus()
-
-    }, [])
-
 	return (<>
 		<div>
 			<PromoBlock promo={promo}/>

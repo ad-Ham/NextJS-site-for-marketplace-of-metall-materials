@@ -72,7 +72,7 @@ export const PromoBlock = ({promo}) => {
 	// const [news, setNews] = useState([])
 
 	// useEffect(() => {
-	// 	axios.get('http://localhost:3001/newsquery', {
+	// 	axios.get('https://api.metalmarket.pro/newsquery', {
 	// 		headers: {
 	// 			'Accept': 'application/json'
 	// 		}

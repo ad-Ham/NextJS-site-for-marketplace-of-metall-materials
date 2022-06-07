@@ -2,7 +2,7 @@ import axios from "axios";
 import { UserChats } from "../../components/chats/chats";
 
 export async function getServerSideProps(context) {
-	// const dialogs = await axios.get('http://localhost:3001/getdialogs', {
+	// const dialogs = await axios.get('https://api.metalmarket.pro/getdialogs', {
 	// 	headers: {
 	// 		'Accept': 'application/json'
 	// 	}

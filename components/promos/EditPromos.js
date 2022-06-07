@@ -15,36 +15,7 @@ import { checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
 
 
-export function EditPromos() {
-    const router = useRouter();
-    const [userStatus, setUserStatus] = useState('')
-    const [user, setUser] = useState('')
-
-    const changeUserStatus = () => {
-        setUserStatus(checkToken(router.pathname))
-        if (checkToken(router.pathname) === true) {
-            axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
-            .then(function(response) {
-                let userId = response.data.user_id.user_id;
-                axios.get('http://localhost:3001/getUser', {params:{id: userId}})
-                .then(function(response) {
-                    setUser(response.data.user)
-                })
-                .catch(function (error) {
-                        console.log(error);
-                    })
-            })
-            .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    }
-
-    useEffect(() => {
-        changeUserStatus()
-
-    }, [])
-
+export function EditPromos({ user }) {
     const [preview, setPreview] = useState(false)
     const [addPromo, setAddPromo] = useState(false)
 
@@ -326,7 +297,7 @@ export function EditPromos() {
 
     const savePromo = () => {
         const user_id=user.id
-        axios.post('http://localhost:3001/uploadPromo', {data, user_id})
+        axios.post('https://api.metalmarket.pro/uploadPromo', {data, user_id})
     }
 
     return (

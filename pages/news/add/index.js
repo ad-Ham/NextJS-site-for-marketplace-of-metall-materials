@@ -9,36 +9,9 @@ import { useRouter } from 'next/router'
 const initialValue =
   		'<p>Оформите вашу новость здесь</p> <p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>';
 
-const AddNews = () => {
+const AddNews = ({ user, userStatus }) => {
 	
 	const router = useRouter();
-	const [userStatus, setUserStatus] = useState('')
-	const [user, setUser] = useState('')
-
-	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-		if (checkToken(router.pathname) === true) {
-			axios.get('http://localhost:3001/getUserId', {params:{token: localStorage.getItem("token")}})
-			.then(function(response) {
-				let userId = response.data.user_id.user_id;
-				axios.get('http://localhost:3001/getUser', {params:{id: userId}})
-				.then(function(response) {
-					setUser(response.data.user)
-				})
-				.catch(function (error) {
-						console.log(error);
-					})
-			})
-			.catch(function (error) {
-					console.log(error);
-				})
-		}
-	}
-
-	useEffect(() => {
-		changeUserStatus()
-
-	}, [])
 
 	const [newsStatus, setNewsStatus] = useState('');
 	const [value, onChange] = useState(initialValue);
@@ -71,7 +44,7 @@ const AddNews = () => {
 	    console.log(body)
 	    // console.log("file", image)
 	    body.append("html", value);    
-	    const response = await fetch("http://localhost:3001/uploadNews", {
+	    const response = await fetch("https://api.metalmarket.pro/uploadNews", {
 	      method: "POST",
 	      body,
 	    });
