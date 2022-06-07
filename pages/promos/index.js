@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
-import { Button, Grid, Card, Title, Table, Space, Group, MediaQuery, Tooltip } from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space, Group, MediaQuery, Tooltip, ScrollArea} from '@mantine/core';
 import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { FilePlus } from 'tabler-icons-react';
@@ -40,22 +40,24 @@ const Promos = ({ promos }) => {
         }
 
         return (
+          <>
             <tbody>
-                <tr key={element.id} >
-                    <td>
+                <tr key={element.id}><Tooltip label={categories} position="bottom" withArrow>{element.category}</Tooltip>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>
                         {
                             (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
                             ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
                             date.getFullYear() + ' ' + element.time.slice(0,5)
-                        }
+                        }</Tooltip></Link>
                     </td>
-                    <td>{element.category}</td>
-                    <td>{element.title}</td>
-                    <td>{element.user.orgName}</td>
-                    <td>{element.region}</td>
-                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow><Button>Подробнее</Button></Tooltip></Link></td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.category}</Tooltip></Link></td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.title}</Tooltip></Link></td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.user.orgName}</Tooltip></Link></td>
+                    <td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.region}</Tooltip></Link></td>
+               
                 </tr>
             </tbody>
+            </>
             )
     })); 
 
@@ -243,16 +245,19 @@ const Promos = ({ promos }) => {
                 <meta name="description" content="this is" />
                 <meta charSet="utf-8" />
             </Head>
-            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Card>
-            <div className='headerDiv'>
-                <h1>Доска объявлений</h1>
-                <Link href="/promos/add" passHref>
-                  <Button variant="light">
-                    Разместить объявление
-                  </Button>
-                </Link>                                                             
-            </div>
+                <Group justify="space-between" spacing={"60%"}>
+              {/* <div className='headerDiv'> */}
+                  <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginBottom: 10}}><h1>Доска объявлений</h1></MediaQuery>
+                    <Link href="/promos/add" passHref>
+                    <MediaQuery smallerThan="sm" styles={{ marginBottom: 10}}>
+                      <Button variant="light">
+                        Разместить объявление
+                      </Button>
+                      </MediaQuery>
+                    </Link>                
+                  </Group>                                                             
+              {/* </div> */}
             <Select
               id='mainSections'
               data={categories}
@@ -294,88 +299,21 @@ const Promos = ({ promos }) => {
                   clearable
                   onChange={updateSubsectionsValue}
                 /></>}
-            <Table striped highlightOnHover>
+            <ScrollArea>
+            <Table striped highlightOnHover sx={{ minWidth: 800 }} verticalSpacing="sm">
                 <thead>
                     <tr>
                         <th>Дата</th>
                         <th>Категория</th>
                         <th>Название объявления</th>
                         <th>Организация</th>
-                        <th></th>
                     </tr>
                 </thead>
-                
                     {rows}
             </Table>
+            </ScrollArea>
             </Card>
-            </MediaQuery>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Card>
-            <div>
-                <Link href="/promos/add" passHref>
-                  <Button variant="light">
-                    Разместить объявление
-                  </Button>
-                </Link>   
-                <Space h="xs" />
-                <h1 style={{fontSize: 20}}>Доска объявлений</h1>                                                             
-            </div>
-            <Space h="xs" />
-            <Select
-              id='mainSections'
-              data={categories}
-              label="Выберите раздел"
-              placeholder="--Разделы--"
-              searchable
-              nothingFound="Ничего не найдено"
-              clearButtonLabel="Clear selection"
-              clearable
-              onChange={updateSectionsValue}
-            />
-
-            {(buySellStatus === true) && <><Select
-              data={[{value: 'Продам', label: 'Продам'}, {value: 'Куплю', label: 'Куплю'}]}
-              label="Выберите категорию"
-              placeholder="--Продам/Куплю--"
-              nothingFound="Ничего не найдено"
-              clearButtonLabel="Clear selection"
-              clearable
-              onChange={updateServiceCategory}
-            /></>}
-
-            {(servicesStatus === true) && <><Select
-                  data={[{value: 'Предложение', label: 'Предложение'}, {value: 'Поиск', label: 'Поиск'}]}
-                  label="Выберите категорию"
-                  placeholder="--предложение/поиск--"
-                  nothingFound="Ничего не найдено"
-                  clearButtonLabel="Clear selection"
-                  clearable
-                  onChange={updateServiceCategory}
-                /></>}
-
-            {((darkMetallStatus === true) || (colorMetallStatus === true)) && <><Select
-                  data={data}
-                  label="Выберите подраздел"
-                  searchable
-                  nothingFound="Ничего не найдено"
-                  clearButtonLabel="Clear selection"
-                  clearable
-                  onChange={updateSubsectionsValue}
-                /></>}
-            <Table striped highlightOnHover>
-                <thead>
-                    <tr>
-                        <th>Дата</th>
-                        <th>Категория</th>
-                        <th>Название объявления</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </Table>
-            </Card>
-            </MediaQuery>
+        
             <style jsx>{`
                 .headerDiv {
                     display: flex;

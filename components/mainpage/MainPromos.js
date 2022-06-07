@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Button, Grid, Card, Title, Table, Space } from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space, MediaQuery, Group, ScrollArea} from '@mantine/core';
 import styles from './MainPromos.module.scss'
 
 export const MainPromos = ({ promos }) => {
@@ -7,7 +7,8 @@ export const MainPromos = ({ promos }) => {
 	const rows = [...promos].filter(el => el.id).map((element) => {
 		let date = new Date(element.date);
 		let link = '/promos/'+element.id
-		return (<Link href={link} passHref><tr key={element.id}>
+		return (<Link href={link} passHref key={element.id}>
+			<tr key={element.id}>
 			<td>
 				{
 					(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
@@ -22,40 +23,60 @@ export const MainPromos = ({ promos }) => {
 	});
 
 	return (<>
-		<Card className={styles.promosMainBox}>
-		<Grid className={styles.promosMainButton} justify={'right'}>
+		<Card>
+		<Grid>
 				<Grid.Col span={8}>
-					<Title className={styles.promosMainTitle} order={1}>Объявления</Title>
+				<MediaQuery smallerThan="sm" styles={{fontSize:25}}><Title order={1}>Объявления</Title></MediaQuery>
 				</Grid.Col>
-				<Grid.Col span={2} align={"right"}>
-				<Link href="/promos/add" passHref>
-					<Button variant="subtle">
-						Разместить объявление
-					</Button>
-				</Link>
-				</Grid.Col>
-				<Grid.Col span={2} align={"right"}>
-					<Link href="/promos" passHref>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+					<Grid.Col span={2} align={"right"}>
+					<Link href="/promos/add" passHref>
 						<Button variant="subtle">
-							Все объявления
+							Разместить объявление
 						</Button>
 					</Link>
-				</Grid.Col>
+					</Grid.Col>
+				</MediaQuery>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+					<Grid.Col span={2} align={"right"}>
+						<Link href="/promos" passHref>
+							<Button variant="subtle">
+								Все объявления
+							</Button>
+						</Link>
+					</Grid.Col>
+				</MediaQuery>
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+						<Group position="right" spacing="xs">
+							<Link href="/promos/add" passHref>
+								<Button variant="subtle">
+									Разместить объявление
+								</Button>
+							</Link>						
+							<Link href="/promos" passHref>
+								<Button variant="subtle">
+									Все объявления
+								</Button>
+							</Link>
+					</Group>
+				</MediaQuery>
 			</Grid>
 			<Space h="md" />
-			<Table className={styles.promosMainTable} striped highlightOnHover>
-				<thead>
-					<tr>
-						<th>Дата</th>
-						<th>Категория</th>
-						<th>Название объявления</th>
-						<th>Организация</th>
-					</tr>
-				</thead>
-				<tbody>
-					{rows}
-				</tbody>
-			</Table>
+			<ScrollArea>
+				<Table striped highlightOnHover sx={{ minWidth: 800 }} verticalSpacing="sm">
+					<thead>
+						<tr>
+							<th>Дата</th>
+							<th>Категория</th>
+							<th>Название объявления</th>
+							<th>Организация</th>
+						</tr>
+					</thead>
+					<tbody>
+						{rows}
+					</tbody>
+				</Table>
+			</ScrollArea>
 		</Card>
 	</>)
 }

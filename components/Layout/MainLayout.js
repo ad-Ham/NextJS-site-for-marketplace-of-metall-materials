@@ -353,9 +353,10 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 						}
 					</>
 					}
-					footer={
-						<Footer height={60} p="md" className={styles.footercontainer} style={{position: "fixed"}}>
-							<div className={styles.footerleft}>
+					footer={<>
+					<MediaQuery smallerThan="sm" maxHeight={30}>
+						<Footer height={60} p="md" className={styles.footercontainer}>
+							<div>
 								<Link href="/" passHref>
 									<Image
 										alt="metal-merket.pro"
@@ -366,10 +367,11 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 								</Link>
 							</div>
 								<ul className={styles.footerul}>
-									<li>г.Уфа, Республика Башкортостан</li>
 									<li>© ООО &quot;Технические системы&quot;, 2022</li>
 								</ul>
 						</Footer>
+					</MediaQuery>
+						</>
 					}
 					header={
 						<Header height={70} p="md" style={{position:'relative'}}>

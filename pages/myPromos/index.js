@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Pencil, Trash } from 'tabler-icons-react';
 import { PromosMultiSelect } from '../../components/promos/PromosMultiSelect.js'
 const axios = require('axios').default;
-import { Button, Grid, Card, Title, Table, Space, Group, ActionIcon, Modal, UnstyledButton} from '@mantine/core';
+import { Button, Grid, Card, Title, Table, Space, Group, ActionIcon, Modal,MediaQuery, UnstyledButton, ScrollArea} from '@mantine/core';
 import { Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useSetState } from '@mantine/hooks';
@@ -251,7 +251,7 @@ const MyPromos = ({ promos }) => {
             </Head>
             <Card>
             <div className='headerDiv'>
-                <h1>Мои объявления</h1>                                                            
+                <MediaQuery smallerThan="sm" styles={{fontSize: 20, marginBottom: 10}}><h1>Мои объявления</h1></MediaQuery>                                                            
             </div>
             <Select
               id='mainSections'
@@ -294,15 +294,13 @@ const MyPromos = ({ promos }) => {
                   clearable
                   onChange={updateSubsectionsValue}
                 /></>}
-            <Table striped highlightOnHover>
+            <ScrollArea>
+            <Table striped highlightOnHover sx={{ minWidth: 800 }} verticalSpacing="sm">
                 <thead>
                     <tr>
                         <th>Дата</th>
                         <th>Категория</th>
                         <th>Название объявления</th>
-                        <th>Организация</th>
-                        <th>Регион</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -332,6 +330,7 @@ const MyPromos = ({ promos }) => {
              </tr>
                 </tbody>
             </Table>
+            </ScrollArea>
             </Card>
             <style jsx>{`
                 .headerDiv {

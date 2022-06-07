@@ -1,4 +1,4 @@
-import { Card, Table } from '@mantine/core';
+import { Card, Table, MediaQuery, ScrollArea } from '@mantine/core';
 import Link from 'next/link'
 import styles from './GostsList.module.scss'
 
@@ -519,17 +519,18 @@ export const GOSTS = [
 export const GostsList = () => {
     return (<>
     <div style={{ width: '100%'}}>
-      <Card> 
+      <Card>      
             <Table>
                 <li className={styles.listitemheader}>
-                    <p className={styles.listitemsubheadertext}>
+                <p className={styles.listitemsubheadertext}>
                         Катанка
-                    </p>
+                </p>                
                 </li>
                 <li className={styles.listitem}>
-                    <p className={styles.listitemtext}>
+                   <p className={styles.listitemtext}>
                         Прутки стальные круглого сечения для холодной высадки и холодной экструзии
                     </p>
+                    
                     <Link href="https://docs.cntd.ru/document/1200005128" >
                     <p>
                         DIN EN 10108-2005
@@ -1153,7 +1154,6 @@ export const GostsList = () => {
                     </p>
                 </li>
             </Table>
-        
     </Card>
     </div>
     </>)
