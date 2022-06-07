@@ -24,8 +24,9 @@ const MyApp = ({ Component, pageProps }) => {
 	const [currOnlineUsers, setCurrOnlineUsers] = useState(0)
 
 	const changeUserStatus = () => {
-		setUserStatus(checkToken(router.pathname))
-		if (checkToken(router.pathname) === true) {
+		let usr = checkToken(router.pathname)
+		setUserStatus(usr)
+		if (usr === true) {
 			axios.get('https://api.metalmarket.pro/getUserId', {params:{token: localStorage.getItem("token")}})
 			.then(function(response) {
 				let userId = response.data.user_id.user_id;
