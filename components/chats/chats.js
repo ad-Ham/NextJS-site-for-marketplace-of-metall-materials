@@ -183,23 +183,23 @@ export function UserChats({ userDialogs, user, userStatus }) {
 	)
 
 return (<>
-<Card>
-	<Grid justify='space-between' align='flex-end'>
-		<Grid.Col span={8}>
-			<Textarea
-				autosize
-				minRows={2}
-				maxRows={4}
-			/>
-		</Grid.Col>
-		<Grid.Col span={4}>
-			<ScrollArea style={{height: 750}}>
-				<Card.Section height={height - 100} width={{ sm: 400 }}>
-					{links}	
-				</Card.Section>
-			</ScrollArea>
-		</Grid.Col>
-	</Grid>
-</Card>
+	<Card>
+		<Grid justify='space-between' align='flex-end'>
+			<Grid.Col span={8}>
+				<Textarea
+					autosize
+					minRows={2}
+					maxRows={4}
+				/>
+			</Grid.Col>
+			<Grid.Col span={4}>
+				<ScrollArea style={{height: 750}}>
+					<Card.Section height={height - 100} width={{ sm: 400 }}>
+						{links}	
+					</Card.Section>
+				</ScrollArea>
+			</Grid.Col>
+		</Grid>
+	</Card>
 	</>)
 }

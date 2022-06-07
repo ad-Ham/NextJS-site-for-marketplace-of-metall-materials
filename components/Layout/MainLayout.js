@@ -29,10 +29,14 @@ import {
 	TextInput,
 	Breadcrumbs, 
 	Anchor,
-	ThemeIcon
+	ThemeIcon,
+	ScrollArea
 } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { CaretUp, CaretDown, News, ChartInfographic, Box, Calculator, FileText, Book, Train, ChartLine, Users, Help } from 'tabler-icons-react';
+import { 
+	CaretUp, CaretDown, News, ChartInfographic, Box, 
+	Calculator, FileText, Book, Train, ChartLine, 
+	Users, Help, Certificate, AddressBook } from 'tabler-icons-react';
 import { useRouter } from 'next/router'
 
 import { LoginModal } from '../login/LoginModal';
@@ -203,15 +207,13 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 					asideOffsetBreakpoint="sm"
 					navbar={
 						<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
-							<Navbar.Section>
+							<Navbar.Section style={{ marginBottom: 10 }}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-									<div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
+									<div style={{ marginBottom: 20}}>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
 								</MediaQuery>
-								<Text className={styles.navbarSectionText} size="xl" weight={600}>Разделы</Text>
 							</Navbar.Section>
-							<Divider my="md" />
-							<Navbar.Section>
-								<Stack spacing="xs">
+							<Navbar.Section grow component={ScrollArea}>
+								<Stack spacing='md'>
 									<a><Link href='/help' passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
 									</Link></a>
@@ -221,31 +223,19 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									<a><Link href='/news' passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
 									</Link></a>
-								</Stack>
-							</Navbar.Section>
-							<Navbar.Section>
-								<Divider my="md" />
-								<Text className={styles.navbarSectionText} size="lg" weight={500}>Инструменты металлурга</Text>
-								<Divider my="md" />
-							</Navbar.Section>
-							<Navbar.Section>
-								<Stack spacing="xs">
-								<a><Link href="/underconstruction" passHref>
+									<a><Link href='/news' passHref>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Certificate />}>Тендеры</Button>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
 									</Link></a>
 									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
 									</Link></a>
-								</Stack>
-							</Navbar.Section>
-							<Navbar.Section>
-								<Divider my="md" />
-								<Text className={styles.navbarSectionText} size="lg" weight={500}>Информация</Text>
-								<Divider my="md" />
-							</Navbar.Section>
-							<Navbar.Section>
-								<Stack spacing="xs">
-								<a><Link href="/underconstruction" passHref>
+									<a><Link href="/underconstruction" passHref>
+										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<AddressBook />}>Каталог компаний</Button>
+									</Link></a>
+									<a><Link href="/underconstruction" passHref>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
 									</Link></a>
 									<a><Link href="/underconstruction" passHref>
