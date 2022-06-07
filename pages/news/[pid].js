@@ -12,7 +12,7 @@ import styles from '../../styles/news/newspage.module.scss'
 import { axios, checkToken } from '/middleware/axios.js';
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
-// const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64');
 	
 const handleDelete = async(e) => {
 	console.log(e.target.id)
@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 		tags.push({id: i, value: tagsMas[i]})
 	}
 	let news = res.data.news
-	// news['image'] = await imageToBase64(news.photopath)
+	news['image'] = await imageToBase64(news.photopath)
 
 	res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
 		
 	// for (i=0;i<newsList.length;++i) {
 		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		// newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
+		newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
 	// }
 
 	if (newsList.indexOf(news) !== -1) {
@@ -59,10 +59,9 @@ export async function getServerSideProps(context) {
 
 	const comments = response.data.comments
 
-	// for (i = 0; i < comments.length; i++) {
-		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		// comments[i]['user_image'] = await imageToBase64(comments[i].photopath)
-	// }
+	for (i = 0; i < comments.length; i++) {
+		comments[i]['user_image'] = await imageToBase64(comments[i].photopath)
+	}
 
 	return {
 		props: {news: news, tags: tags, newsList: newsList, comments: comments}

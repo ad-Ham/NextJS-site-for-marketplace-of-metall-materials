@@ -13,9 +13,7 @@ export async function getServerSideProps(context) {
 	const id = context.params.pid
 	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let news = res.data.news
-	//news['image'] = await imageToBase64(news.photopath)
-
-
+	news['image'] = await imageToBase64(news.photopath)
 
 	return {
 		props: {news: news, pid: id}
