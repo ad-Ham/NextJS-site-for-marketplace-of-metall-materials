@@ -20,6 +20,7 @@ const MyApp = ({ Component, pageProps }) => {
 
 	const { height, width } = useViewportSize();
 
+	const [loading, setLoading] = useState(true)
 	const [chats, setChats] = useState(undefined)
 	const [userStatus, setUserStatus] = useState(null)
 	const [user, setUser] = useState({
@@ -42,9 +43,11 @@ const MyApp = ({ Component, pageProps }) => {
 			.then(function(response) {
 				setUser(response.data.user)
 				users_socket.emit('user_connect', {user_id: response.data.user.id})
+				setLoading(false)
 			})
 			.catch(function (error) {
-					console.log(error);
+				console.log(error);
+				setLoading(false)
 			})
 		}
 		else {
@@ -75,11 +78,7 @@ const MyApp = ({ Component, pageProps }) => {
 
 	return (
 		<>	
-			{((user.id) || (userStatus !== true)) ? 
-			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
-				<Component {...pageProps} user={user} userStatus={userStatus}/>
-			</MainLayout>
-			:
+		{loading ? 
 			<>
 				<div 
 				style = {{
@@ -100,10 +99,14 @@ const MyApp = ({ Component, pageProps }) => {
 						/>
 					</Group>
 				</div>
-			</> 
-			}
-		</>
-		)
+			</> 	
+		:
+		<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
+			<Component {...pageProps} user={user} userStatus={userStatus}/>
+		</MainLayout>	
+	}
+	</>
+	)
 }
 
 export default MyApp;
