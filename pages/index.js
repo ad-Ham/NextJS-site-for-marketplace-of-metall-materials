@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
 		props: {
 			news: news,
 			promos: promos.data.promos,
-			// newsHot: newsHot
+			newsHot: newsHot
 		},
 	}
 }
