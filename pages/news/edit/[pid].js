@@ -22,7 +22,6 @@ export async function getServerSideProps(context) {
 
 const NewsPageEdit = ({ news, pid, user, userStatus }) => {
 	const router = useRouter();
-	const [user, setUser] = useState('')
 
 	const [value, onChange] = useState(news.html);
 	const [desc, setDesc] = useState(news.desc);
