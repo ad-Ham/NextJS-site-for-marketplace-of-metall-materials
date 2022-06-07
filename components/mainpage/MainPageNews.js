@@ -196,7 +196,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							{newsHot.desc}
 						</Text>
 						<Grid position="absolute">
-							<Grid.Col span={4} justify={'end'} align={'left'} style={{marginBottom:-50}}>
+							{/* <Grid.Col span={4} justify={'end'} align={'left'} style={{marginBottom:-50}}>
 								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
 									(dateHot.getDate().toString().length === 1 ? '0' + dateHot.getDate().toString() : dateHot.getDate().toString()) + '.' +
 									((dateHot.getMonth() + 1).toString().length === 1 ? '0' + (dateHot.getMonth() + 1).toString() : (dateHot.getMonth() + 1).toString()) + '.' +
@@ -204,7 +204,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 
 								}
 								</Text>
-							</Grid.Col>
+							</Grid.Col> */}
 							<Grid.Col span={4} justify={'end'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 							</Grid.Col>
@@ -227,12 +227,12 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							</Badge>
 						</Group>
 						<Group>
-							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
+							{/* <Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
 								(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 								((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 								el.date.getFullYear() + ' ' + el.time.slice(0,5)
 							}
-							</Text>
+							</Text> */}
 							<Text style={{ marginTop: '9px' }}>|</Text>
 							<Group spacing={5} style={{ marginTop: '10px' }}>
 								<MessageCircle2
