@@ -25,10 +25,10 @@ export async function getServerSideProps(context) {
 		news = news.slice(1)
 	}
 
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
+	// newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+		// news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	
 	
@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
 		props: {
 			news: news,
 			promos: promos.data.promos,
-			newsHot: newsHot
+			// newsHot: newsHot
 		},
 	}
 }
