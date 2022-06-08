@@ -50,7 +50,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		axios.post('http://localhost:3001/login', {
+		axios.post('https://api.metalmarket.pro/login', {
 			login: login,
 			password: password
 		})
@@ -164,7 +164,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 			setIsMobile(true)
 		}
 
-		axios.get('http://localhost:3001/getExchangeRates')
+		axios.get('https://api.metalmarket.pro/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -175,7 +175,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3001/getMetalsPrice')
+		axios.get('https://api.metalmarket.pro/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})
@@ -183,7 +183,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 				console.log(error);
 			})
 
-		axios.get('http://localhost:3001/getStockRates')
+		axios.get('https://api.metalmarket.pro/getStockRates')
 			.then(function (response) {
 				setStock(response.data.stock)
 			})

@@ -345,7 +345,7 @@ export function PromosAdd({ user }) {
 
     const savePromo = () => {
         console.log(data.values)
-        axios.post('http://localhost:3001/uploadPromo', {data: data, user_id: user.id})
+        axios.post('https://api.metalmarket.pro/uploadPromo', {data: data, user_id: user.id})
         .then(function() {
             showNotification({
                 title: 'Объявление оптравлено на рассмотрение',

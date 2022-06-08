@@ -9,7 +9,7 @@ const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
-	const res = await axios.get('http://localhost:3001/newsquery', {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
@@ -30,11 +30,11 @@ export const getServerSideProps = async (context) => {
 
 const handleDelete = async(e) => {
 	console.log(e.target.id)
-	await axios.post('http://localhost:3001/newsdelete', {id:e.target.id})
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
 }
 
 const handlePin = async(e) => {
-	await axios.post('http://localhost:3001/newspin', {id:e.target.id})
+	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
 }
 
 const NewsEdit = ({ news, user, userStatus }) => {

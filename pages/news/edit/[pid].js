@@ -11,7 +11,7 @@ import { checkToken } from '/middleware/axios.js';
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('http://localhost:3001/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id:id}, headers: {'Accept': 'application/json'}})
 	let news = res.data.news
 	news['image'] = await imageToBase64(news.photopath)
 
@@ -35,7 +35,7 @@ const NewsPageEdit = ({ news, pid, user, userStatus }) => {
 	    // console.log("file", image)
 	    body.append("html", value); 
 	    body.append("id", pid);    
-	    const response = await fetch("http://localhost:3001/updateNews", {
+	    const response = await fetch("https://api.metalmarket.pro/updateNews", {
 	      method: "POST",
 	      body,
 	    });

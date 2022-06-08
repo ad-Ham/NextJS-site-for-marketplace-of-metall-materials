@@ -44,7 +44,7 @@ const AddNews = ({ user, userStatus }) => {
 	    console.log(body)
 	    // console.log("file", image)
 	    body.append("html", value);    
-	    const response = await fetch("http://localhost:3001/uploadNews", {
+	    const response = await fetch("https://api.metalmarket.pro/uploadNews", {
 	      method: "POST",
 	      body,
 	    });

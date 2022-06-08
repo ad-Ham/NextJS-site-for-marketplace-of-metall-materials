@@ -2,7 +2,7 @@ import axios from "axios"
 
 // Базовая настройка axios
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://api.metalmarket.pro';
 
 // Перехватчик всех ответов
 axios.interceptors.response.use(function (response) {
@@ -23,7 +23,7 @@ function deleteToken() {
 function checkToken(pathname) {
 	if (localStorage.getItem("token") && pathname !== "/auth") {
 		let token = localStorage.getItem("token")
-		axios.post('http://localhost:3001/updateTokenDate', {token})
+		axios.post('https://api.metalmarket.pro/updateTokenDate', {token})
 		return true;
 	} else {
 		if (!axios.defaults.headers.common['Token'])

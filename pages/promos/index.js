@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { FilePlus } from 'tabler-icons-react';
 
 export async function getServerSideProps(context) {
-    const promos = await axios.get('http://localhost:3001/promosquery', {
+    const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
         headers: {
             'Accept': 'application/json'
         }
@@ -131,7 +131,7 @@ const Promos = ({ promos }) => {
   ];
 
   function updateSectionRows(sections, subsections, category) {
-        axios.get('http://localhost:3001/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
+        axios.get('https://api.metalmarket.pro/getNewRows', {params: {sections: sections, subsections: subsections, category: category}})
         .then(function(response) {
             promos = response.data.promos
             setRows([...promos].filter(el => el.id).map((element) => {

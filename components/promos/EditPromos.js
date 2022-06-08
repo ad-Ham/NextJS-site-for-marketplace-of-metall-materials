@@ -297,7 +297,7 @@ export function EditPromos({ user }) {
 
     const savePromo = () => {
         const user_id=user.id
-        axios.post('http://localhost:3001/uploadPromo', {data, user_id})
+        axios.post('https://api.metalmarket.pro/uploadPromo', {data, user_id})
     }
 
     return (

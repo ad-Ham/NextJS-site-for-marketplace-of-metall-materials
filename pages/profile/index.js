@@ -24,11 +24,11 @@ const PersonalData = ({ user, userStatus }) => {
     const [open, setOpen] = useState(false);
 
     const handleApprove = async(e) => {
-        await axios.post('http://localhost:3001/approveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/approveUser', {email:e.target.id})
     }
 
     const handleDisapprove = async(e) => {
-        await axios.post('http://localhost:3001/disapproveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/disapproveUser', {email:e.target.id})
     }
 
     const showUsers = users.map(el => {
@@ -88,7 +88,7 @@ const PersonalData = ({ user, userStatus }) => {
             const body = new FormData(document.getElementById("uploadForm"));
             body.append("id", user.id)
             body.append("photopath", user.photopath)
-            fetch("http://localhost:3001/updateAvatar", {
+            fetch("https://api.metalmarket.pro/updateAvatar", {
             method: "POST",
             body
             }).then(function() {router.reload(window.location.pathname)})

@@ -7,7 +7,7 @@ const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
-	const res = await axios.get('http://localhost:3001/newsquery', {
+	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
