@@ -44,6 +44,7 @@ const News = ({ news, newsHot }) => {
 		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
+
 	const showNews = news.map(newsObj => {
 		return (<Card span={10} key={'0' + newsObj.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 			
@@ -133,7 +134,7 @@ const News = ({ news, newsHot }) => {
 							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={100} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
-						{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
+							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
 								Горячая новость
 							</Badge></>}
 							<Space h="xs"/>
@@ -145,8 +146,8 @@ const News = ({ news, newsHot }) => {
 					<Grid>
 					    <Grid.Col span={4} justify={'end'} align={'left'}>
 							<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
-							${newsObj.news_date.slice(11)}`}
+							`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
+							${newsHot.news_date.slice(11)}`}
 							</Text>
 
 						</Grid.Col>
