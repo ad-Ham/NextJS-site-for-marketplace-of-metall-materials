@@ -3,12 +3,13 @@ import { Button, Grid, Card, Title, Table, Space, MediaQuery, Group, ScrollArea}
 import styles from './MainPromos.module.scss'
 
 export const MainPromos = ({ promos, user }) => {
+	console.log(promos)
 
-	const rows = [...promos].filter(el => el.id).map((element) => {
-		let date = new Date(element.date);
-		let link = '/promos/' + element.id
-		return (<Link href={link} passHref key={element.id}>
-			<tr key={element.id}>
+	const rows = [...promos].filter(el => el.id).map((promo) => {
+		let date = new Date(promo.date);
+		let link = '/promos/' + promo.id
+		return (<Link href={link} passHref key={promo.id}>
+			<tr key={promo.id}>
 			<td>
 				{
 					(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
@@ -16,9 +17,9 @@ export const MainPromos = ({ promos, user }) => {
 					date.getFullYear()
 				}
 			</td>
-			<td>{element.category}</td>
-			<td>{element.title}</td>
-			<td>{element.user.orgName}</td>
+			<td>{promo.category}</td>
+			<td>{promo.title}</td>
+			<td>{promo.user.orgName}</td>
 		</tr></Link>)
 	});
 

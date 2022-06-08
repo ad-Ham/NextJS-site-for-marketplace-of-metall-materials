@@ -6,10 +6,7 @@ import styles from './NewsBlock.module.scss'
 const axios = require('axios').default;
 
 
-export const NewsBlock = ({news, tags}) => {
-	let date = new Date(news.date);
-	console.log(tags)
-
+export const NewsBlock = ({news, tags}) => {	
 	return (<>
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
@@ -18,9 +15,8 @@ export const NewsBlock = ({news, tags}) => {
 				</p>
 
 				<p className={styles.newsdate}>
-					{(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-                    ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-                    date.getFullYear() + '  ' + news.time.slice(0,5)}
+					{`${news.news_date.slice(8, 10)}.${news.news_date.slice(5, 7)}.${news.news_date.slice(0, 4)}
+                    ${news.news_date.slice(11)}`}
 				</p>
 
 				<div>

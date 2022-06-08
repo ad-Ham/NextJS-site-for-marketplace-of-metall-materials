@@ -10,7 +10,7 @@ const addComment = async (user, comment) => {
     comment.user_id = user.id
     comment.sender_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/addcomment", comment)
+    const response = await axios.post("http://localhost:3001/addcomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -19,7 +19,7 @@ const deleteComment = async (user, comment) => {
     comment.user_id = user.id
     comment.deleter_id = user.id
 
-    const response = await axios.post("https://api.metalmarket.pro/deletecomment", comment)
+    const response = await axios.post("http://localhost:3001/deletecomment", comment)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -32,7 +32,7 @@ const deleteCommentTree = async (user, comment, comments) => {
         return (tree_comment.id >= comment.id) && (tree_comment.parent_id === comment.parent_id)
     }).flat().map(tree_comment => tree_comment.id)
 
-    const response = await axios.post("https://api.metalmarket.pro/deletetreecomments", comments_ids)
+    const response = await axios.post("http://localhost:3001/deletetreecomments", comments_ids)
 
     Router.reload(window.location.pathname, { scroll: false })
 }
@@ -76,12 +76,12 @@ function commentSimple(comment, user, comments) {
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
 
-    const answerMessage = commentInput(user, comment)
+    const answerCommentInput = commentInput(user, comment)
 
-    const classMessage = (comment.reply_id === null) ? styles.mainMessage : styles.replyMessage 
+    const classComment = (comment.reply_id === null) ? styles.mainComment : styles.replyComment
     
     return (<>
-        <div className={classMessage}>
+        <div className={classComment}>
             <Group>
             {/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
             <Avatar src={'data:image/' + ';base64,' + comment.user_image} alt={comment.id} radius="xl" />
@@ -109,7 +109,7 @@ function commentSimple(comment, user, comments) {
                     </Group>
                     <Text size="xs" style={{marginTop: 1}}>{`${comment.post}, ${comment.orgName}` }</Text>
                     <Text size="xs" color="dimmed" style={{marginTop: 3}}>
-                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)},
+                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)}
                     ${comment.comment_date.slice(11)}`}
                     </Text>
                 </div>
@@ -123,7 +123,7 @@ function commentSimple(comment, user, comments) {
                 }
                 {comment.data}
                 </Text>
-                {replied.reply && answerMessage}
+                {replied.reply && answerCommentInput}
             </SimpleGrid>
         </div>
     </>);

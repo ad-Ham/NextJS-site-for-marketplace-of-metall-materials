@@ -77,7 +77,7 @@ export const PromoBlock = () => {
 			description
 		}))
 
-		axios.post('https://api.metalmarket.pro/promosquery', {
+		axios.post('http://localhost:3001/promosquery', {
 			title,
 			name,
 			email,
@@ -352,7 +352,7 @@ export const PromoBlock = () => {
 // 	const [promos, setPromos] = useState([])
 
 // 	// useEffect(() => {
-// 	// 	axios.get('https://api.metalmarket.pro/promosquery', {
+// 	// 	axios.get('http://localhost:3001/promosquery', {
 // 	// 		headers: {
 // 	// 			'Accept': 'application/json'
 // 	// 		}

@@ -50,7 +50,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		axios.post('https://api.metalmarket.pro/login', {
+		axios.post('http://localhost:3001/login', {
 			login: login,
 			password: password
 		})
@@ -164,7 +164,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 			setIsMobile(true)
 		}
 
-		axios.get('https://api.metalmarket.pro/getExchangeRates')
+		axios.get('http://localhost:3001/getExchangeRates')
 			.then(function (response) {
 				const dollarPrice = response.data.dollar_price
 				const euroPrice = response.data.euro_price
@@ -175,7 +175,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 				console.log(error);
 			})
 
-		axios.get('https://api.metalmarket.pro/getMetalsPrice')
+		axios.get('http://localhost:3001/getMetalsPrice')
 			.then(function (response) {
 				setMetalls(response.data.metals)
 			})
@@ -183,7 +183,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 				console.log(error);
 			})
 
-		axios.get('https://api.metalmarket.pro/getStockRates')
+		axios.get('http://localhost:3001/getStockRates')
 			.then(function (response) {
 				setStock(response.data.stock)
 			})
@@ -214,42 +214,42 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 							</Navbar.Section>
 							<Navbar.Section grow component={ScrollArea}>
 								<Stack spacing='md'>
-									<a><Link href='/help' passHref>
+									<Link href='/help' passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
-									</Link></a>
-									<a><Link href='/promos' passHref>
+									</Link>
+									<Link href='/promos' passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Box />} style={{ color: '#e84f22' }}>Доска объявлений</Button>
-									</Link></a>
-									<a><Link href='/news' passHref>
+									</Link>
+									<Link href='/news' passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<News />}>Новости</Button>
-									</Link></a>
-									<a><Link href='/news' passHref>
+									</Link>
+									<Link href='/news' passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Certificate />}>Тендеры</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Calculator />}>Калькулятор металлурга</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Train />}>Расчет логистики</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<AddressBook />}>Каталог компаний</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartLine />}>Индекс цен и акций</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<ChartInfographic />}>Аналитика</Button>
-									</Link></a>
-									<a><Link href="/gosts" passHref>
+									</Link>
+									<Link href="/gosts" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<FileText />}>ГОСТы</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Book />}>Справочник металлурга</Button>
-									</Link></a>
-									<a><Link href="/underconstruction" passHref>
+									</Link>
+									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
-									</Link></a>
+									</Link>
 								</Stack>
 							</Navbar.Section>
 						</Navbar>
@@ -354,23 +354,24 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 					</>
 					}
 					footer={<>
-					<MediaQuery smallerThan="sm" maxHeight={30}>
-						<Footer height={60} p="md" className={styles.footercontainer}>
-							<div>
-								<Link href="/" passHref>
-									<Image
-										alt="metal-merket.pro"
-										src="/logo.svg"
-										width={300}
-										height={75}
-									/>
-								</Link>
-							</div>
-								<ul className={styles.footerul}>
-									<li>© ООО &quot;Технические системы&quot;, 2022</li>
-								</ul>
-						</Footer>
-					</MediaQuery>
+						<MediaQuery smallerThan="sm" maxHeight={30}>
+							<Footer height={60} p="md" className={styles.footercontainer}>
+								<div>
+									<Link href="/" passHref>
+										<Image
+											style={{ cursor: 'pointer' }}
+											alt="metal-merket.pro"
+											src="/logo.svg"
+											width={300}
+											height={75}
+										/>
+									</Link>
+								</div>
+									<ul className={styles.footerul}>
+										<li>© ООО &quot;Технические системы&quot;, 2022</li>
+									</ul>
+							</Footer>
+						</MediaQuery>
 						</>
 					}
 					header={
@@ -389,6 +390,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 										<Link href="/" passHref>
 											<Image className={styles.logo}
+											 	style={{ cursor: 'pointer' }}
 												alt="metall-market.pro"
 												src="/logo.svg"
 												width={300}

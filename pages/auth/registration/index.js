@@ -66,7 +66,7 @@ export default function Index() {
 			ogrn: data.jurData[3],
 		}));
 
-		axios.post('https://api.metalmarket.pro/regquery', {
+		axios.post('http://localhost:3001/regquery', {
 			email: data.mainData[0],
 			password: data.mainData[1],
 			surname: data.personalData[0],

@@ -9,10 +9,10 @@ import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
 import { ClockLoader } from 'react-spinners'
 
-// const users_socket = io.connect('https://api.metalmarket.pro/users')
-// const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
-const users_socket = io.connect('https://api.metalmarket.pro/users')
-const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
+// const users_socket = io.connect('http://localhost:3001/users')
+// const messages_socket = io.connect('http://localhost:3001/messages', { autoConnect: false })
+const users_socket = io.connect('http://localhost:3001/users')
+const messages_socket = io.connect('http://localhost:3001/messages', { autoConnect: false })
 
 
 const MyApp = ({ Component, pageProps }) => {
@@ -39,7 +39,7 @@ const MyApp = ({ Component, pageProps }) => {
 		setUserStatus(checkStatus)
 
 		if (checkStatus === true) {
-			axios.get('https://api.metalmarket.pro/getUser', {params: {token: localStorage.getItem("token")}})
+			axios.get('http://localhost:3001/getUser', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
 				setUser(response.data.user)
 				users_socket.emit('user_connect', {user_id: response.data.user.id})
