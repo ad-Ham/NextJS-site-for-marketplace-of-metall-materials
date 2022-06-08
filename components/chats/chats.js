@@ -1,66 +1,7 @@
-// import React, { useEffect } from 'react'
-// import { TextInput, ActionIcon, Group } from '@mantine/core'
-// import { showNotification } from '@mantine/notifications'
-// import { Send } from 'tabler-icons-react'
-
-
-
-// function UserChat({}) {
-// 	const sendMessage = () => {
-// 		socket.emit('send_message', 
-// 			{user_id: 1}
-// 		)
-// 	}
-
-// 	return (<>
-// 		<div className={styles.chat}>
-// 			<Group>
-// 				<TextInput
-// 				/>
-// 				<ActionIcon style={{ paddingRight: 10 }} onClick={sendMessage}>
-// 					<Send size={16}/>
-// 				</ActionIcon>
-// 			</Group>
-//         </div>
-// 	</>)
-// }
-
-
-// export function UserChats({  }) {
-
-// 	// const rows = data.map((item) => (
-// 	// 	<tr key={item.name} style={{border: 5}}>
-// 	// 		<td>
-// 	// 		<Group spacing="sm">
-// 	// 			<Avatar size={40} src={item.avatar} radius={40} />
-// 	// 			<div>
-// 	// 			<Text size="sm" weight={500}>
-// 	// 				{item.name}
-// 	// 			</Text>
-// 	// 			<Text size="xs">
-// 	// 				{item.job}
-// 	// 			</Text>
-// 	// 			</div>
-// 	// 		</Group>
-// 	// 		</td>
-// 	// 		<td>
-// 	// 		</td>
-// 	// 		<td>Пожалуйста, переведите диалог в telegram</td>
-// 	// 		<td>
-// 	// 		<Group spacing={0} position="right">
-// 	// 			<Menu transition="pop" withArrow placement="end">
-// 	// 			<Menu.Item icon={<Trash size={16} />} color="red">
-// 	// 				Удалить переписку
-// 	// 			</Menu.Item>
-// 	// 			</Menu>
-// 	// 		</Group>
-// 	// 		</td>
-// 	// 	</tr>
-// 	// ))
-
 import React, { useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'
-import { Navbar, SegmentedControl, Text, createStyles, Group, Avatar, Textarea, Grid, ScrollArea, Card } from '@mantine/core'
+import styles from './chats.module.scss'
+import { Navbar, SegmentedControl, Text, createStyles, Group, Avatar, Textarea, Grid, ScrollArea, Card, SimpleGrid } from '@mantine/core'
 
 const useStyles = createStyles((theme, _params, getRef) => {
 	const icon = getRef('icon')
@@ -121,6 +62,12 @@ const useStyles = createStyles((theme, _params, getRef) => {
 				theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
 			}`,
 			paddingTop: theme.spacing.md,
+		},
+
+		messageBody: {
+			paddingLeft: 74,
+			paddingRight: 50,
+			paddingTop: 5
 		}
 	}
 })
@@ -144,11 +91,104 @@ const tabs = {
 	]
 }
 
+
 export function UserChats({ userDialogs, user, userStatus }) {
 	const { height, width } = useViewportSize()
 	const { classes, cx } = useStyles()
 	const [section, setSection] = useState('account')
-	const [active, setActive] = useState('')
+	const [active, setActive] = useState(null)
+	const [dialog, setDialog] = useState()
+
+	const messages = [
+		{
+			id: 1,
+			user_firstName: 'Тимур',
+			user_surName: 'Тимур',
+			message_date: '2022-07-07 08:40',
+			user_post: 'Тимур',
+			user_orgName: 'Тимур',
+			data: 'Хочу спать'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Привет'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Ну давай тогда'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Привет'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Привет'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Привет'
+		},
+		{
+			id: 2,
+			user_firstName: 'Иван',
+			user_surName: 'Иванов',
+			message_date: '2022-07-07 09:40',
+			user_post: 'Иван',
+			user_orgName: 'Иван',
+			data: 'Привет'
+		}	
+	]
+
+	const activeDialog = messages.map(message => (
+		<>
+			<div key={message.id} className={styles.mainMessage}>
+				<Group>
+				{/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
+				<Avatar radius="xl" size='lg' />
+				{/* src={'data:image/' + ';base64,' + message.user_image} */}
+					<div>
+						<Group position="left">
+							<Text size="sm">{`${message.user_firstName} ${message.user_surName}`}</Text>
+							<Text size="xs" color="dimmed">
+							{`${message.message_date.slice(8, 10)}.${message.message_date.slice(5, 7)}.${message.message_date.slice(0, 4)}
+							${message.message_date.slice(11)}`}
+							</Text>
+						</Group>
+						<Text size="xs" style={{marginTop: 3}}>{`${message.user_post}, ${message.user_orgName}`}</Text>
+					</div>
+				</Group>
+				<Text className={classes.messageBody} size="sm">
+					{message.data}
+				</Text>
+			</div>
+		</>
+	))
 
 	const links = tabs[section].map((item) => (<>
 		{user && <>
@@ -158,10 +198,13 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			href={item.link}
 			key={item.label}
 			onClick={(event) => {
-				event.preventDefault()
-				setActive(item.label)
+				if (active && item.label === active) setActive(null)
+				else {
+					event.preventDefault()
+					setActive(item.label)
+				}
 			}}>
-				<Group>
+				<Group style={{ cursor : 'pointer' }}>
 					<Avatar src={'data:image/' + 'base64,' + user.image} size='lg' radius="xl" />
 
 					<Grid align='center'>
@@ -185,12 +228,20 @@ export function UserChats({ userDialogs, user, userStatus }) {
 return (<>
 	<Card>
 		<Grid justify='space-between' align='flex-end'>
-			<Grid.Col span={8}>
+			<Grid.Col span={8} style={{ marginTop: 10 }}>
+			{active && <>
+				<ScrollArea>
+					<SimpleGrid height={height - 100} cols={1} style={{ paddingBottom: 30 }}>	
+						{activeDialog}
+					</SimpleGrid>
+				</ScrollArea>
 				<Textarea
 					autosize
 					minRows={2}
 					maxRows={4}
 				/>
+			</>
+			}
 			</Grid.Col>
 			<Grid.Col span={4}>
 				<ScrollArea style={{height: 750}}>

@@ -76,15 +76,15 @@ function commentSimple(comment, user, comments) {
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
 
-    const answerMessage = commentInput(user, comment)
+    const answerCommentInput = commentInput(user, comment)
 
-    const classMessage = (comment.reply_id === null) ? styles.mainMessage : styles.replyMessage 
+    const classComment = (comment.reply_id === null) ? styles.mainComment : styles.replyComment
     
     return (<>
-        <div className={classMessage}>
+        <div className={classComment}>
             <Group>
             {/* <Avatar src={author.image} alt={author.name} radius="xl" /> */}
-            <Avatar alt={comment.id} radius="xl" />
+            <Avatar src={'data:image/' + ';base64,' + comment.user_image} alt={comment.id} radius="xl" />
                 <div>
                     <Group position="left">
                         <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
@@ -109,7 +109,7 @@ function commentSimple(comment, user, comments) {
                     </Group>
                     <Text size="xs" style={{marginTop: 1}}>{`${comment.post}, ${comment.orgName}` }</Text>
                     <Text size="xs" color="dimmed" style={{marginTop: 3}}>
-                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)},
+                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)}
                     ${comment.comment_date.slice(11)}`}
                     </Text>
                 </div>
@@ -123,7 +123,7 @@ function commentSimple(comment, user, comments) {
                 }
                 {comment.data}
                 </Text>
-                {replied.reply && answerMessage}
+                {replied.reply && answerCommentInput}
             </SimpleGrid>
         </div>
     </>);

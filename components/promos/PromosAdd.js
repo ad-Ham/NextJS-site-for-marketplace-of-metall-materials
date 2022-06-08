@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 
 
 export function PromosAdd({ user }) {
+    console.log(user)
     const router = useRouter()
     const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 

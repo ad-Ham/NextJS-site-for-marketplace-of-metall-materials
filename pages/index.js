@@ -19,6 +19,12 @@ export async function getServerSideProps(context) {
 	let news = res.data.news
 
 	let newsHot = res.data.newsHot
+
+	if (!newsHot) {
+		newsHot = news[0]
+		news = news.slice(1)
+	}
+
 	newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
@@ -81,7 +87,7 @@ export default function Index({ news, promos, newsHot, user }) {
 				<meta name="description" content="MetalMarket.pro" />
 			</Head>
 			<MainPromos promos={promos.slice(2, 9)} firstImportantPromos={promos.slice(0, 1)} secondImportantPromos={promos.slice(1, 2)} />
-			<MainPageNews news={news.slice(0, 100)} newsHot={newsHot} user={user}/>
+			<MainPageNews news={news.slice(0, 7)} newsHot={newsHot} user={user}/>
 		</>
 	)
 }
