@@ -45,25 +45,6 @@ const News = ({ news, newsHot }) => {
 		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
-<<<<<<< HEAD
-
-	const showNews = news.map(newsObj => {
-		return (<Card span={10} key={'0' + newsObj.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
-			
-			{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
-				<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-					<Title order={3} weight={500}>{newsObj.title}</Title>
-				</Group>
-				<Grid justify={"center"}>
-					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} height={100} alt="Norway" layout="fill" />
-					</Grid.Col>
-					<Grid.Col span={8}>
-						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{newsObj.desc}
-						</Text>
-						{(newsObj.pinned === 1) && <><Badge color="pink" variant="light">
-=======
 	const showNews = news.map(el => {
 		return (
 	  
@@ -152,7 +133,6 @@ const News = ({ news, newsHot }) => {
 							{el.desc}
 						</Text>						
 						{(el.pinned === 1) &&<><Badge color="pink" variant="light">
->>>>>>> a39fc52f36c6b19e9a3e0793fdf427900634a6c9
 							Горячая новость
 						</Badge></>}
 					</Grid.Col>
@@ -194,7 +174,7 @@ const News = ({ news, newsHot }) => {
 			</Head>
 			<Card p="sm" key={news.id}>
 			<Group position="right" style={{marginBottom:10}}>
-					 <>
+					<>
 					<Link href={'/news/add'} passHref>
 						<Plus
 							cursor={"pointer"}
@@ -217,10 +197,8 @@ const News = ({ news, newsHot }) => {
 						<Group position="apart">
 							<Group style={{marginBottom: 10}}>
 								<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
-									(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-									((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-									el.date.getFullYear() +' ' + el.time.slice(0, 5)
-									}
+									`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
+									${newsHot.news_date.slice(11)}`}
 								</Text>						
 								<Text style={{ marginTop: '9px' }}>|</Text>
 								<Group spacing={5} style={{ marginTop: '10px' }}>
@@ -298,26 +276,14 @@ const News = ({ news, newsHot }) => {
 							</Text>
 						</Grid.Col>
 					</Grid>
-<<<<<<< HEAD
-					<Grid>
-					    <Grid.Col span={4} justify={'end'} align={'left'}>
-							<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-							`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
-							${newsHot.news_date.slice(11)}`}
-							</Text>
-=======
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'left'}>
-								<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-									(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-									((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-									date.getFullYear() +' ' + newsHot.time.slice(0, 5)
-								}
-								</Text>
->>>>>>> a39fc52f36c6b19e9a3e0793fdf427900634a6c9
-
+							<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
+								`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
+								${newsHot.news_date.slice(11)}`}
+							</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>

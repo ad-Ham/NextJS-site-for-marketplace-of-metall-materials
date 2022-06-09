@@ -195,12 +195,14 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 	return (
 		<>
 			<MantineProvider>
-			 <ModalsProvider>
-			 <NotificationsProvider>
+			<ModalsProvider>
+			<NotificationsProvider>
 				<AppShell
 					styles={{
 						main: {
-							background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+							padding: 0,
+							paddingBottom: 16,
+							background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : 'white',
 						}, position: "relative"
 					}}
 					navbarOffsetBreakpoint="sm"
@@ -354,9 +356,9 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 					</>
 					}
 					footer={<>					
-							<Footer maxHeight={80}>	
+							<Footer height={80}>	
 							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>					
-								<Group position="apart" style={{marginRight: 20, marginLeft:20}} >
+								<Group position="apart" style={{marginRight: 20, marginLeft: 20	}}>
 									<Group>
 										<Link href="/" passHref>						
 											<Image
@@ -369,7 +371,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										</Link>
 									</Group>									
 										<Group position="right">										
-												<Text>© ООО &quot;Технические системы&quot;, 2022</Text>										
+											<Text>© ООО &quot;Технические системы&quot;, 2022</Text>										
 										</Group>									
 								</Group>
 							</MediaQuery>
@@ -388,7 +390,6 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 								</Group>
 							</MediaQuery>
 							</Footer>
-								
 						</>
 					}
 					header={
