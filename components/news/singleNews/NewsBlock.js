@@ -13,7 +13,7 @@ export const NewsBlock = ({news, tags}) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}><p className={styles.newstitle}>
 					{news.title}
 				</p></MediaQuery>
-				<MediaQuery largerThan="sm" styles={{ display: 'none' }}><p style={{fontSize:20, fontWeight:700, align:"center"}}>
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}><p style={{fontSize:20, fontWeight:700}}>
 					{news.title}
 				</p></MediaQuery>
 
