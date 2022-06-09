@@ -46,12 +46,13 @@ const MyApp = ({ Component, pageProps }) => {
 				setLoading(false)
 			})
 			.catch(function (error) {
-				console.log(error);
+				console.log(error)
 				setLoading(false)
 			})
 		}
 		else {
 			users_socket.emit('user_connect', {user_id: null})
+			setLoading(false)
 		}
 	}
 

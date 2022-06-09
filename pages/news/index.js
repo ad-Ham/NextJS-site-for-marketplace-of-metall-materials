@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { useState } from 'react';
 import Link from 'next/link'
-import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
-import { Plus, Pencil } from 'tabler-icons-react';
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge, MediaQuery } from '@mantine/core';
+import { Plus, Pencil, X } from 'tabler-icons-react';
 const axios = require('axios').default;
+import { MessageCircle2 } from 'tabler-icons-react';
 const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
@@ -44,6 +45,7 @@ const News = ({ news, newsHot }) => {
 		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
+<<<<<<< HEAD
 
 	const showNews = news.map(newsObj => {
 		return (<Card span={10} key={'0' + newsObj.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
@@ -61,10 +63,102 @@ const News = ({ news, newsHot }) => {
 							{newsObj.desc}
 						</Text>
 						{(newsObj.pinned === 1) && <><Badge color="pink" variant="light">
+=======
+	const showNews = news.map(el => {
+		return (
+	  
+		<Card span={10} key={'0' + el.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
+			
+			{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+				<Group position="apart">
+					<Group style={{marginBottom: 10}}>
+						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
+							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
+							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
+							el.date.getFullYear() +' ' + el.time.slice(0, 5)
+							}
+						</Text>						
+						<Text style={{ marginTop: '9px' }}>|</Text>
+						<Group spacing={5} style={{ marginTop: '10px' }}>
+							<MessageCircle2
+								size={14}
+								strokeWidth={1}
+								color={'gray'}
+								/>
+							<Text color="gray" size="xs">100</Text>		
+						</Group>
+					</Group>
+					<Group >
+									<Link href={'/news/edit'} passHref>
+										<Pencil	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+									<Link href="#" passHref>
+										<X	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}											
+										/>
+									</Link>
+							</Group>
+				 </Group>
+				</MediaQuery>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+					<Group position="apart">
+					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
+						<Link href={"/news/" + el.id} passHref><Title order={3} weight={500}>{el.title}</Title></Link>
+					</Group>
+					<Group >
+									<Link href={'/news/edit'} passHref>
+										<Pencil	
+											cursor={"pointer"}	
+											size={20}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+									<Link href="#" passHref>
+										<X		
+											cursor={"pointer"}
+											size={20}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+							</Group>
+							</Group>
+				</MediaQuery>
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
+						<Link href={"/news/" + el.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{el.title}</Title></Link>
+					</Group>
+				</MediaQuery>
+				{(el.pinned === 1) &&<><Badge color="pink" variant="light">
+							Горячая новость
+						</Badge></>}
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+				<Grid justify={"center"}>
+					<Grid.Col span={4}>
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image} height={120} alt="Norway" layout="fill" />
+					</Grid.Col>
+					<Grid.Col span={8}>
+						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
+							{el.desc}
+						</Text>						
+						{(el.pinned === 1) &&<><Badge color="pink" variant="light">
+>>>>>>> a39fc52f36c6b19e9a3e0793fdf427900634a6c9
 							Горячая новость
 						</Badge></>}
 					</Grid.Col>
 				</Grid>
+				</MediaQuery>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'left'}>
 						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
@@ -84,6 +178,7 @@ const News = ({ news, newsHot }) => {
 						</Link>
 					</Grid.Col>
 				</Grid>
+				</MediaQuery>
 			{/* </Card> */}
 		</Card>);
 	})
@@ -98,40 +193,100 @@ const News = ({ news, newsHot }) => {
 				<meta name="description" content="this is" />
 			</Head>
 			<Card p="sm" key={news.id}>
-			<Grid justify={'right'}>
-				<Grid.Col  align={"right"}>
+			<Group position="right" style={{marginBottom:10}}>
 					 <>
 					<Link href={'/news/add'} passHref>
-						<Button variant="subtle">
-							Добавить новость
-						</Button>
-						{/* <Plus
-							size={35}
+						<Plus
+							cursor={"pointer"}
+							size={20}
 							strokeWidth={1}
 							color={'blue'}
-						/> */}
+						/>
 					</Link>
-					<Link href={'/news/edit'} passHref>
-						<Button variant="subtle" >
-							Редактировать новости
-						</Button>
-						{/* <Pencil		
-							size={34}
-							strokeWidth={1}
-							color={'blue'}
-						/> */}
-					</Link></>
-				</Grid.Col>
-			</Grid>
+					</>
+			</Group>
 					<Card span={10} key={'0' + newsHot.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
-			
+					<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+						<Group>
+						{(newsHot.pinned === 1) && <Badge color="pink" variant="light">
+								Горячая новость
+								</Badge>}
+						</Group>
+						</MediaQuery>
+						<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+						<Group position="apart">
+							<Group style={{marginBottom: 10}}>
+								<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
+									(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
+									((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
+									el.date.getFullYear() +' ' + el.time.slice(0, 5)
+									}
+								</Text>						
+								<Text style={{ marginTop: '9px' }}>|</Text>
+								<Group spacing={5} style={{ marginTop: '10px' }}>
+									<MessageCircle2
+										size={14}
+										strokeWidth={1}
+										color={'gray'}
+										/>
+									<Text color="gray" size="xs">100</Text>		
+								</Group>
+							</Group>
+							<Group >
+									<Link href={'/news/edit'} passHref>
+										<Pencil	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+									<Link href="#" passHref>
+										<X	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+							</Group>
+						</Group>
+					</MediaQuery>
 				{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
-					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-						<Title order={3} weight={500}>{newsHot.title}</Title>
-					</Group>
+					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+						<Group position="apart">
+							<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
+								<Link href={"/news/" + newsHot.id} passHref><Title order={3} weight={500}>{newsHot.title}</Title></Link>
+							</Group>							
+							<Group >
+								<Link href={'/news/edit'} passHref>
+									<Pencil	
+										cursor={"pointer"}	
+										size={20}
+										strokeWidth={1}
+										color={'blue'}
+									/>
+								</Link>
+								<Link href="#" passHref>
+									<X	
+										cursor={"pointer"}	
+										size={20}
+										strokeWidth={1}
+										color={'blue'}
+									/>
+								</Link>
+							</Group>
+						</Group>
+					</MediaQuery>
+					<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+						<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
+							<Link href={"/news/" + newsHot.id} passHref><Title order={3} weight={300} style={{fontSize: 15}}>{newsHot.title}</Title></Link>
+						</Group>
+					</MediaQuery>
+					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 					<Grid justify={"center"}>
 						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={100} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={120} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
 							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
@@ -143,32 +298,47 @@ const News = ({ news, newsHot }) => {
 							</Text>
 						</Grid.Col>
 					</Grid>
+<<<<<<< HEAD
 					<Grid>
 					    <Grid.Col span={4} justify={'end'} align={'left'}>
 							<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
 							`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
 							${newsHot.news_date.slice(11)}`}
 							</Text>
+=======
+					</MediaQuery>
+					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+						<Grid>
+							<Grid.Col span={4} justify={'end'} align={'left'}>
+								<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
+									(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+									((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+									date.getFullYear() +' ' + newsHot.time.slice(0, 5)
+								}
+								</Text>
+>>>>>>> a39fc52f36c6b19e9a3e0793fdf427900634a6c9
 
-						</Grid.Col>
-						<Grid.Col span={4} justify={'center'} align={'center'}>
-							<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
-						</Grid.Col>
-						<Grid.Col span={4} justify={'center'} align={'right'}>
-						    <Link href={"/news/" + newsHot.id} passHref>
-								<Button variant="subtle"  style={{ marginTop: 14}}>
-									Подробнее
-								</Button>
-							</Link>
-						</Grid.Col>
-					</Grid>
+							</Grid.Col>
+							<Grid.Col span={4} justify={'center'} align={'center'}>
+								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+							</Grid.Col>
+							<Grid.Col span={4} justify={'center'} align={'right'}>
+								<Link href={"/news/" + newsHot.id} passHref>
+									<Button variant="subtle"  style={{ marginTop: 14}}>
+										Подробнее
+									</Button>
+								</Link>
+							</Grid.Col>
+						</Grid>
+					</MediaQuery>
+					
 				{/* </Card> */}
 			</Card>
 					{showNews}
-				
+				<Group position="center" >
+						<Pagination total={10} color="orange" withEdges />
+				</Group>
 			</Card>
-			<Space h="xs" />
-			<Pagination total={10} color="orange" withEdges style={{display:'flex', marginLeft: '32%'}}/>
 		</>
 	)
 }

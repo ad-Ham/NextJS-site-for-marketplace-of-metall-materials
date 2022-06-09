@@ -30,7 +30,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 			</Group>
 			<Grid justify={"center"}>
 				<Grid.Col span={4}>
-					<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={100} layout="fill" />
+					<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={120} layout="fill" />
 				</Grid.Col>
 				<Grid.Col span={8}>
 					<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -59,7 +59,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 		</Card>
 		</MediaQuery>
 		<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-		<Card p="sm" key={news.id} shadow="xl" style={{ marginBottom: '10px', minHeight: '185px' }}>
+		<Card p="sm" key={news.id} shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group>
 					<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
 						`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
@@ -68,7 +68,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						<Text style={{ marginTop: '9px' }}>|</Text>
 						<Group spacing={5} style={{ marginTop: '10px' }}>
 							<MessageCircle2
-								size={16}
+								size={14}
 								strokeWidth={1}
 								color={'gray'}
 								/>
@@ -76,7 +76,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						</Group>		
 				</Group>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-					<Link href={'/news/'+newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:18}}>{newsObj.title}</Title></Link>
+					<Link href={'/news/'+newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{newsObj.title}</Title></Link>
 				</Group>
 		</Card>
 		</MediaQuery>
@@ -93,7 +93,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={100} layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={120} layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -122,8 +122,8 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 			</Card>
 		</Grid.Col>
 		</MediaQuery>
-		<MediaQuery largerThan="sm" styles={{ display: 'none' }} key={'0' + newsObj.id}>
-			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '185px' }}>
+		<MediaQuery largerThan="sm" styles={{ display: 'none' }} key={'0' + el.id}>
+			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group>
 						<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
 							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
@@ -132,7 +132,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						<Text style={{ marginTop: '9px' }}>|</Text>
 						<Group spacing={5} style={{ marginTop: '10px' }}>
 							<MessageCircle2
-								size={16}
+								size={14}
 								strokeWidth={1}
 								color={'gray'}
 								/>
@@ -140,7 +140,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						</Group>				
 				</Group>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm}}>
-					<Link href={'/news/'+newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:18}}>{newsObj.title}</Title></Link>
+					<Link href={'/news/'+newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{newsObj.title}</Title></Link>
 				</Group>
 			</Card>
 
@@ -211,7 +211,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 				</Grid.Col>	
 				</MediaQuery>
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>					
-					<Card  p="lg" pm="sm" style={{ minHeight: '185px', width: '100%', marginBottom: "20px", marginTop:"10px"}} shadow="xl">
+					<Card  p="lg" pm="sm" style={{ minHeight: '75px', width: '100%', marginBottom: "20px", marginTop:"10px"}} shadow="xl">
 						<Group>
 							{newsHot.pinned &&
 							<Badge color="pink" variant="light">
@@ -227,7 +227,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							<Text style={{ marginTop: '9px' }}>|</Text>
 							<Group spacing={5} style={{ marginTop: '10px' }}>
 								<MessageCircle2
-									size={16}
+									size={14}
 									strokeWidth={1}
 									color={'gray'}
 									/>
@@ -236,7 +236,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						</Group>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm, maxWidth: '100%' }}>
 							<Link href={'/news/'+newsHot.id} passHref>
-							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{newsHot.title}</Title>
+							<Title order={3} style={{ maxWidth: '100%', fontSize: 15 }} weight={300}>{newsHot.title}</Title>
 							</Link>
 						</Group>
 					</Card>									

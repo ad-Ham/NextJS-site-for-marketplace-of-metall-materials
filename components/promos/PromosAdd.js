@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useForm, formList } from '@mantine/form';
 import { TextInput, Input, Table, Select, Button, ActionIcon,
-    SimpleGrid, Grid, Group, Modal, InputWrapper, Textarea, Space } from '@mantine/core';
+    SimpleGrid, Grid, Group, Modal, InputWrapper, Textarea, Space, MediaQuery, Card, ScrollArea} from '@mantine/core';
 import { Plus, Trash } from 'tabler-icons-react';
 import { categories, darkMet, colorMet, steelItems, stainlessSteelItems, 
     stainlessSteelStamps, aluminumItems, copperItems, brassItems, bronzeItems, 
@@ -359,9 +359,11 @@ export function PromosAdd({ user }) {
     }
 
     return (<>
-        <h2>Размещение объявления</h2>
-        <SimpleGrid cols={1}>
-            <Grid justify="space-between" align='flex-end' columns={5} style={{marginTop: 15}}>
+        <Card>
+        <MediaQuery smallerThan="sm" styles={{fontSize: 18}}><h2>Размещение объявления</h2></MediaQuery>
+        <SimpleGrid cols={1}>        
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Grid justify="space-between" align='flex-end' columns={5} style={{marginTop: 15}}>          
                 <Grid.Col span={4}>
                     <TextInput
                     placeholder="Введите название объявления"
@@ -374,7 +376,7 @@ export function PromosAdd({ user }) {
                 </Grid.Col>
                 <Grid.Col span={1}>
                     <Select
-                    label='Выберите тип объявления'
+                    label='Тип объявления'
                     placeholder="Куплю/Продам"
                     data={[
                         { value: 'Куплю', label: 'Куплю' },
@@ -387,14 +389,43 @@ export function PromosAdd({ user }) {
                     />
                 </Grid.Col>
             </Grid>
-                
+         </MediaQuery>  
+         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>           
+            <Grid justify="space-between" align='flex-end' style={{marginTop: 15}}>                     
+                <Grid.Col span={0}>
+                    <TextInput
+                    placeholder="Введите название объявления"
+                    label="Название объявления"
+                    radius="sm"
+                    size="sm"                  
+                    required
+                    {...data.getInputProps('title')}
+                    />
+                </Grid.Col>
+                <Grid.Col span={0}>
+                    <Select
+                    label='Тип объявления'
+                    placeholder="Куплю/Продам"
+                    data={[
+                        { value: 'Куплю', label: 'Куплю' },
+                        { value: 'Продам', label: 'Продам' },
+                    ]}
+                    radius="sm"
+                    size="sm"
+                    required
+                    {...data.getInputProps('category')}
+                    />
+                </Grid.Col>
+            </Grid>
+         </MediaQuery>           
+         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>  
             <Grid justify="space-between" columns={2} style={{marginTop: 15}}>
                 <Grid.Col span={1}>
                     <div>
                         <h2>Добавление товаров</h2>
-                    </div>
-                </Grid.Col>
-                <Grid.Col span={1}>
+                    </div>                   
+                </Grid.Col>                          
+                   <Grid.Col span={1}>
                     <Group position='right'>
                         <Button 
                         leftIcon={<Plus size={18}/>} 
@@ -406,15 +437,39 @@ export function PromosAdd({ user }) {
                             Добавить товар
                         </Button>
                     </Group>
-                </Grid.Col>
+                </Grid.Col>                                         
             </Grid>
-            <Grid columns={7} justify="flex-start" align="center">
-                {(addPromo) && <>
-                    <Grid.Col span={5}>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>  
+            <Grid justify="space-between" columns={2} style={{marginTop: 5}}>
+                <Grid.Col span={0}>
+                    <div>
+                        <h2 style={{fontSize:18}}>Добавление товаров</h2>
+                    </div>                   
+                </Grid.Col>                          
+                   <Grid.Col span={0}>
+                    <Group position='center'>
+                        <Button 
+                        leftIcon={<Plus size={18}/>} 
+                        variant='outline' 
+                        align="center"
+                        size='sm' 
+                        disabled={addPromo}
+                        onClick={() => setAddPromo(true)}>
+                            Добавить товар
+                        </Button>
+                    </Group>
+                </Grid.Col>                                         
+            </Grid>
+        </MediaQuery>
+            <MediaQuery smallerThan="sm" styles={{display: 'none' }}>
+                <Grid columns={7} justify="flex-start" align="center">          
+                {(addPromo) && <>             
+                    <Grid.Col span={5}>              
                         <Grid columns={3} align='flex-end' spacing='10px' style={{marginTop: 20}}>
                             <Grid.Col span={1}>
                                 <Select
-                                label='Выберите категорию товара'
+                                label='Категория товара'
                                 value={category}
                                 data={categories}
                                 nothingFound="Ничего не найдено"
@@ -437,7 +492,7 @@ export function PromosAdd({ user }) {
                             {((category !== '') && (metal !== ''))  && <>
                                 <Grid.Col span={1}>
                                     <Select
-                                    label='Выберите наименование товара'
+                                    label='Наименование товара'
                                     value={item}
                                     data={itemsData}
                                     nothingFound="Ничего не найдено"
@@ -446,15 +501,15 @@ export function PromosAdd({ user }) {
                                     </Select>
                                 </Grid.Col>
                             </>}
-                        </Grid>
+                        </Grid>                      
                         {((category !== '') && (metal !== '') && (item != '')) && <>
                             <div style={{marginTop: 15}}>
                                 {itemFields}
-                            </div>
-                            <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
+                            </div>                         
+                                <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
                                 <InputWrapper
                                     required
-                                    label="Введите цену товара"
+                                    label="Цена товара"
                                 >
                                 <Input
                                     placeholder="Введите цену товара" 
@@ -465,7 +520,7 @@ export function PromosAdd({ user }) {
                                 </InputWrapper>
                                 <InputWrapper
                                     required
-                                    label="Выберите валюту"
+                                    label="Валюта"
                                 >
                                 <Select
                                     placeholder="Выберите валюту" 
@@ -480,7 +535,7 @@ export function PromosAdd({ user }) {
                                 </InputWrapper>
                                 <InputWrapper
                                     required
-                                    label="Введите количество"
+                                    label="Количество"
                                 >
                                 <Input
                                     placeholder="Введите количество" 
@@ -490,11 +545,11 @@ export function PromosAdd({ user }) {
                                     onChange={event => {setCount(event.target.value)}}
                                 />
                                 </InputWrapper>
-                            </SimpleGrid>
+                            </SimpleGrid>                         
                             <SimpleGrid cols={2} justify="center" align="center" style={{marginTop: 15}}>
                             <InputWrapper
                                     required
-                                    label="Выберите страну"
+                                    label="Страна"
                                 >
                                 <Select
                                     placeholder="Выберите страну" 
@@ -506,7 +561,7 @@ export function PromosAdd({ user }) {
                                 </InputWrapper>
                                 <InputWrapper
                                     required
-                                    label="Выберите регион"
+                                    label="Регион"
                                 >
                                 <Select
                                     placeholder="Выберите регион" 
@@ -517,10 +572,12 @@ export function PromosAdd({ user }) {
                                     data={regionData}/>
                                 </InputWrapper>
                             </SimpleGrid>
+                            
                         </>}
                     </Grid.Col>
                 {((category !== '') && (metal !== '') && (item != '')) && <>
-                    <Grid.Col span={2} justify="center" align="center" style={{marginTop: 45}}>
+                    
+                        <Grid.Col span={2} justify="center" align="center" style={{marginTop: 45}}>
                     {itemImage}
                     <Button style={{marginTop: 20}}
                         onClick={confirmItem}
@@ -528,12 +585,144 @@ export function PromosAdd({ user }) {
                         >
                         Добавить товар в объявление
                     </Button>
-                    </Grid.Col>
+                    </Grid.Col>                  
                 </>}
             </>}
-            </Grid>    
+            </Grid>  
+            </MediaQuery> 
+            <MediaQuery largerThan="sm" styles={{display: 'none' }}>
+                <Grid justify="flex-start" align="center">          
+                {(addPromo) && <>             
+                    <Grid.Col span={0}>              
+                        <Grid align='flex-end'  style={{marginTop: 5}}>
+                            <Grid.Col span={0}>
+                                <Select
+                                label='Категория товара'
+                                value={category}
+                                data={categories}
+                                nothingFound="Ничего не найдено"
+                                clearButtonLabel="Clear selection"
+                                onChange={value => updateValueMetals(value)}>
+                                </Select>
+                            </Grid.Col>
+                            {(category !== '') && <>
+                                <Grid.Col span={0}>
+                                    <Select
+                                    label='Выберите металл'
+                                    value={metal}
+                                    data={metalData}
+                                    nothingFound="Ничего не найдено"
+                                    clearButtonLabel="Clear selection"
+                                    onChange={value => updateMetalItems(value)}>
+                                    </Select>
+                                </Grid.Col>
+                            </>}
+                            {((category !== '') && (metal !== ''))  && <>
+                                <Grid.Col span={0}>
+                                    <Select
+                                    label='Наименование товара'
+                                    value={item}
+                                    data={itemsData}
+                                    nothingFound="Ничего не найдено"
+                                    clearButtonLabel="Clear selection"
+                                    onChange={value => updateItemItems(value)}>
+                                    </Select>
+                                </Grid.Col>
+                            </>}
+                        </Grid>  
+                        {((category !== '') && (metal !== '') && (item != '')) && <>                  
+                        <Grid.Col span={0} justify="center" align="center" style={{marginTop: 5}}>
+                    {itemImage}</Grid.Col> </>}                 
+                        {((category !== '') && (metal !== '') && (item != '')) && <>
+                            <div style={{marginTop: 5}}>
+                                {itemFields}
+                            </div>                         
+                                <SimpleGrid justify="center" align="left" style={{marginTop: 5}}>
+                                <InputWrapper
+                                    required
+                                    label="Цена товара"
+                                >
+                                <Input
+                                    placeholder="Введите цену товара" 
+                                    value={price}
+                                    // style={{width: '75%'}}
+                                    onChange={event => {setPrice(event.target.value)}}
+                                />
+                                </InputWrapper>
+                                <InputWrapper
+                                    required
+                                    label="Валюта"
+                                >
+                                <Select
+                                    placeholder="Выберите валюту" 
+                                    value={currency} 
+                                    justify='center'
+                                    // style={{width: '75%'}}  
+                                    onChange={value => setCurrency(value)} 
+                                    data={[
+                                        { value: 'RUB', label: 'RUB' },
+                                        { value: 'USD', label: 'USD' },
+                                ]}/>
+                                </InputWrapper>
+                                <InputWrapper
+                                    required
+                                    label="Количество"
+                                >
+                                <Input
+                                    placeholder="Введите количество" 
+                                    value={count}
+                                    // style={{width: '75%'}}
+                                    rightSection='т.'
+                                    onChange={event => {setCount(event.target.value)}}
+                                />
+                                </InputWrapper>
+                            </SimpleGrid>                         
+                            <SimpleGrid cols={1} justify="center" align="left" style={{marginTop: 5}}>
+                            <InputWrapper
+                                    required
+                                    label="Страна"
+                                >
+                                <Select
+                                    placeholder="Выберите страну" 
+                                    value={country} 
+                                    justify='center'
+                                    style={{width: '100%'}}  
+                                    onChange={value => setCountryRegion(value)}
+                                    data={countryData}/>
+                                </InputWrapper>
+                                <InputWrapper
+                                    required
+                                    label="Регион"
+                                >
+                                <Select
+                                    placeholder="Выберите регион" 
+                                    value={region} 
+                                    justify='center'
+                                    style={{width: '100%'}}  
+                                    onChange={value => setRegion(value)} 
+                                    data={regionData}/>
+                                </InputWrapper>
+                            </SimpleGrid>
+                            
+                        </>}
+                    </Grid.Col>
+                {/* {((category !== '') && (metal !== '') && (item != '')) && <>                   */}
+                        <Grid.Col span={0} justify="center" align="center" style={{marginTop: 10}}>
+                    {/* {itemImage} */}
+                    <Button style={{marginTop: 20}}
+                        onClick={confirmItem}
+                        // disabled={result.length == 0}
+                        >
+                        Добавить товар в объявление
+                    </Button>
+                    </Grid.Col>                  
+                {/* </>} */}
+            </>}
+            </Grid>  
+            </MediaQuery>   
             {data.values.items.length > 0 && 
-                <Table style={{marginTop: 30}}>
+            <ScrollArea>
+                <Table style={{marginTop: 30}} sx={{ minWidth: 800 }} verticalSpacing="sm">
                     <thead>
                         <tr>
                             <th></th>
@@ -565,7 +754,7 @@ export function PromosAdd({ user }) {
                                 <td>    
                                 <ActionIcon
                                     color="red"
-                                    variant="hove"
+                                    variant="hover"
                                     onClick={() => data.removeListItem('items', index)}
                                 >
                                     <Trash size={16} />
@@ -575,18 +764,20 @@ export function PromosAdd({ user }) {
                         )}
                     </tbody>
                 </Table>
+            </ScrollArea>
             }
             <div style={{marginTop: 20}}>
                 <Textarea id="description"
-                    label='Описание товара или услуги'
-                    placeholder="Опишите товар"
+                    label='Описание'
+                    placeholder="Опишите товар или услугу"
                     required
                     cols="100"
                     minRows={5}
                     {...data.getInputProps('description')} 
                 />
             </div>
-            <Grid justify="center" align="space=between" style={{marginTop: 20}}>
+           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+               <Grid justify="center" align="space=between" style={{marginTop: 20}}>
                 <Grid.Col span={3}>
                     <Button type="submit"
                     disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')} 
@@ -611,6 +802,34 @@ export function PromosAdd({ user }) {
                     </Modal>
                 </Grid.Col>
             </Grid>
+        </MediaQuery> 
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+               <Group position="center" >
+                
+                    <Button type="submit"
+                    disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')} 
+                    onClick={() => savePromo()}>
+                    Разместить объявление
+                    </Button>
+                
+                    <Button 
+                    type="submit" 
+                    disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')}
+                    onClick={() => setPreview(true)}>
+                        Предпросмотр
+                    </Button>
+                    <Modal
+                        size="80%"
+                        opened={preview}
+                        onClose={() => setPreview(false)}
+                        title="Предпросмотр объявления"
+                    >
+                    <PromoBlock promoData={data.values}/>
+                    </Modal>
+                
+            </Group>
+        </MediaQuery> 
         </SimpleGrid>
+        </Card>
     </>)
 }

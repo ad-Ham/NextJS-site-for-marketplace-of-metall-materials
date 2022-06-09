@@ -1,5 +1,5 @@
 import { ModalsProvider } from '@mantine/modals';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, Space} from '@mantine/core';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
@@ -353,25 +353,42 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 						}
 					</>
 					}
-					footer={<>
-						<MediaQuery smallerThan="sm" maxHeight={30}>
-							<Footer height={60} p="md" className={styles.footercontainer}>
-								<div>
-									<Link href="/" passHref>
-										<Image
-											style={{ cursor: 'pointer' }}
-											alt="metal-merket.pro"
-											src="/logo.svg"
-											width={300}
-											height={75}
-										/>
-									</Link>
-								</div>
-									<ul className={styles.footerul}>
-										<li>© ООО &quot;Технические системы&quot;, 2022</li>
-									</ul>
+					footer={<>					
+							<Footer maxHeight={80}>	
+							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>					
+								<Group position="apart" style={{marginRight: 20, marginLeft:20}} >
+									<Group>
+										<Link href="/" passHref>						
+											<Image
+												style={{ cursor: 'pointer' }}
+												alt="metal-merket.pro"
+												src="/logo.svg"
+												width={300}
+												height={75}
+											/>								
+										</Link>
+									</Group>									
+										<Group position="right">										
+												<Text>© ООО &quot;Технические системы&quot;, 2022</Text>										
+										</Group>									
+								</Group>
+							</MediaQuery>
+							<MediaQuery largerThan="sm" styles={{ display: 'none' }}>					
+								<Group position="center">									
+										<Link href="/" passHref>						
+											<Image
+												style={{ cursor: 'pointer'}}
+												alt="metal-merket.pro"
+												src="/logo.svg"
+												width={250}
+												height={65}
+											/>								
+										</Link>																													
+									<Text style={{fontSize:12, marginTop: -30}}>© ООО &quot;Технические системы&quot;, 2022</Text>																													
+								</Group>
+							</MediaQuery>
 							</Footer>
-						</MediaQuery>
+								
 						</>
 					}
 					header={
