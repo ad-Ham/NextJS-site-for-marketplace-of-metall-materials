@@ -72,7 +72,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 								strokeWidth={1}
 								color={'gray'}
 								/>
-							<Text color="gray" size="xs">0</Text>		
+							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 						</Group>		
 				</Group>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
@@ -136,7 +136,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 								strokeWidth={1}
 								color={'gray'}
 								/>
-							<Text color="gray" size="xs">0</Text>		
+							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 						</Group>				
 				</Group>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm}}>
@@ -233,7 +233,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 									strokeWidth={1}
 									color={'gray'}
 									/>
-							<Text color="gray" size="xs">0</Text>		
+							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 						</Group>
 						</Group>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm, maxWidth: '100%' }}>
