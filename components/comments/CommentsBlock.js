@@ -45,7 +45,7 @@ const mainStyles = createStyles((theme) => ({
 }));
 
 
-function commentInput(user, userComment) {
+function commentInput(user, userComment, userStatus) {
     const [comment, setComment] = useSetState({
         id: userComment.id,
         entity: userComment.entity,
@@ -58,8 +58,8 @@ function commentInput(user, userComment) {
     return (<>
         <div className={styles.commentsInput}>
             <TextInput
-                disabled={user === undefined}
-                placeholder={user === undefined ? "Войдите, чтобы написать комментарий" : "Введите комментарий"} 
+                disabled={userStatus === false}
+                placeholder={userStatus === false ? "Войдите, чтобы написать комментарий" : "Введите комментарий"} 
                 // placeholder={comment.reply_id}
                 rightSection={
                     <ActionIcon style={{ paddingRight: 10 }} onClick={() => {if (comment.data.length > 0) addComment(user, comment)}}>
@@ -72,7 +72,7 @@ function commentInput(user, userComment) {
 }
 
 
-function commentSimple(comment, user, comments) {
+function commentSimple(comment, user, comments, userStatus) {
     const { classes } = mainStyles()
     const [replied, setReplied] = useSetState({reply: false})
 
@@ -88,7 +88,7 @@ function commentSimple(comment, user, comments) {
                 <div>
                     <Group position="left">
                         <Text size="sm">{`${comment.firstName} ${comment.surName}`}</Text>
-                        {(user !== undefined) && <>
+                        {(userStatus !== false) && <>
                             {(comment.deleted !== true) &&
                                 <UnstyledButton onClick={() => setReplied({ reply: true })}>
                                     <Text size="sm" color="blue">Ответить</Text>
@@ -130,18 +130,18 @@ function commentSimple(comment, user, comments) {
 }
 
 
-export const CommentsBlock = ({entity, entity_id, comments, user}) => {
+export const CommentsBlock = ({entity, entity_id, comments, user, userStatus}) => {
     return (<>
         <div className={styles.comments}>
             {/* <Text size='lg' weight={700} className={styles.commentsCount}>Комментарии: {comments.length}</Text> */}
             
             <div style={{marginBottom: 20}}>
-                {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1} )}
+                {commentInput(user, {id: null, entity: entity, entity_id: entity_id, parent_id: -1}, userStatus)}
             </div>
             
             {comments && <> 
                 {comments.map(comment => 
-                    <div key={comment.id}>{commentSimple(comment, user, comments)}</div>
+                    <div key={comment.id}>{commentSimple(comment, user, comments, userStatus)}</div>
                 )}
             </>}
         </div>

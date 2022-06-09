@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 		tags.push({id: i, value: tagsMas[i]})
 	}
 	let news = res.data.news
-	// news['image'] = await imageToBase64(news.photopath)
+	news['image'] = await imageToBase64(news.photopath)
 
 	res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
@@ -67,7 +67,7 @@ export async function getServerSideProps(context) {
 	}
 }
 
-const NewsPage = ({news, tags, newsList, comments, user}) => {
+const NewsPage = ({news, tags, newsList, comments, user, userStatus}) => {
 	const [singleNew, setSingleNew] = useState([])
 
 	return (
@@ -121,7 +121,7 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
 						</>}
 					</>}
 					<NewsBlock news={news} tags={tags} comments={comments} user={user}/>
-					<CommentsBlock entity={'news'} entity_id={news.id} comments={comments} user={user}/>
+					<CommentsBlock entity={'news'} entity_id={news.id} comments={comments} user={user} userStatus={userStatus}/>
 					<div className={styles.moreniewsdiv}>
 						<p className={styles.morenews}>Еще новости:</p>
 						<div className={styles.morenewsrow}>

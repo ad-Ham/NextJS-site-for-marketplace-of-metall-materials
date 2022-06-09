@@ -32,7 +32,7 @@ export const getServerSideProps = async (context) => {
 	}
 }
 
-const News = ({ news, newsHot }) => {
+const News = ({ news, newsHot, user }) => {
 	const theme = useMantineTheme();
 	news = news.map(newsObj => {
 		if (!newsObj.date) {
@@ -65,7 +65,7 @@ const News = ({ news, newsHot }) => {
 								strokeWidth={1}
 								color={'gray'}
 								/>
-							<Text color="gray" size="xs">100</Text>		
+							<Text color="gray" size="xs">0</Text>		
 						</Group>
 					</Group>
 					<Group >
@@ -172,7 +172,7 @@ const News = ({ news, newsHot }) => {
 			</Head>
 			<Card p="sm" key={news.id}>
 			<Group position="right" style={{marginBottom:10}}>
-					<>
+					{ user.role === 'admin' &&
 					<Link href={'/news/add'} passHref>
 						<Plus
 							cursor={"pointer"}
@@ -181,7 +181,7 @@ const News = ({ news, newsHot }) => {
 							color={'blue'}
 						/>
 					</Link>
-					</>
+					}
 			</Group>
 					<Card span={10} key={'0' + newsHot.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 					<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
@@ -208,7 +208,8 @@ const News = ({ news, newsHot }) => {
 									<Text color="gray" size="xs">100</Text>		
 								</Group>
 							</Group>
-							<Group >
+							<Group>
+								{user.role === 'admin' && <>
 									<Link href={'/news/edit'} passHref>
 										<Pencil	
 											cursor={"pointer"}	
@@ -225,6 +226,7 @@ const News = ({ news, newsHot }) => {
 											color={'blue'}
 										/>
 									</Link>
+								</>}
 							</Group>
 						</Group>
 					</MediaQuery>
