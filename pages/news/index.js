@@ -45,21 +45,18 @@ const News = ({ news, newsHot }) => {
 		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
-	const showNews = news.map(el => {
+	const showNews = news.map(newsObj => {
 		return (
 	  
-		<Card span={10} key={'0' + el.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
+		<Card span={10} key={'0' + newsObj.id} p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px'}} >
 			
 			{/* <Card p="sm" shadow="md" style={{ marginBottom: '10px', minHeight: '75px', width: 935}}> */}
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 				<Group position="apart">
 					<Group style={{marginBottom: 10}}>
-						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">
-							{
-							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear() +' ' + el.time.slice(0, 5)
-							}
+						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
+								`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
+								${newsObj.news_date.slice(11)}`}
 						</Text>						
 						<Text style={{ marginTop: '9px' }}>|</Text>
 						<Group spacing={5} style={{ marginTop: '10px' }}>
@@ -94,7 +91,7 @@ const News = ({ news, newsHot }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 					<Group position="apart">
 					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-						<Link href={"/news/" + el.id} passHref><Title order={3} weight={500}>{el.title}</Title></Link>
+						<Link href={"/news/" + newsObj.id} passHref><Title order={3} weight={500}>{newsObj.title}</Title></Link>
 					</Group>
 					<Group >
 									<Link href={'/news/edit'} passHref>
@@ -118,22 +115,22 @@ const News = ({ news, newsHot }) => {
 				</MediaQuery>
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-						<Link href={"/news/" + el.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{el.title}</Title></Link>
+						<Link href={"/news/" + newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{newsObj.title}</Title></Link>
 					</Group>
 				</MediaQuery>
-				{(el.pinned === 1) &&<><Badge color="pink" variant="light">
+				{(newsObj.pinned === 1) &&<><Badge color="pink" variant="light">
 							Горячая новость
 						</Badge></>}
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image} height={120} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} height={120} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{el.desc}
+							{newsObj.desc}
 						</Text>						
-						{(el.pinned === 1) &&<><Badge color="pink" variant="light">
+						{(newsObj.pinned === 1) &&<><Badge color="pink" variant="light">
 							Горячая новость
 						</Badge></>}
 					</Grid.Col>
