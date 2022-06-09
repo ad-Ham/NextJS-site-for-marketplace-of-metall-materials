@@ -74,7 +74,6 @@ const MyApp = ({ Component, pageProps }) => {
 				color: "green"
 			})
 		})
-	}, [])
 	}, [users_socket, messages_socket])	
 
 	return (
