@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
-import { Center, Group, Image } from '@mantine/core'
+import { Center, Group, Image, Grid,Space, Card, MediaQuery, SimpleGrid } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
 import io from 'socket.io-client'
@@ -78,39 +78,37 @@ const MyApp = ({ Component, pageProps }) => {
 	// }, [users_socket, messages_socket])	
 
 	return (
-		<>	
-		{loadingUser ? 
-			<>
-				<div 
-				style = {{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					height: '100vh',
-				}}>
-					<Group spacing='xl' position="center">
-						<ClockLoader
-							color='#F5A623'
-							size={ (width + height) / 45 }
-						/>
-						<Image
-							alt="metal-merket.pro"
-							src="/logo.svg"
-							style={{
-								display: 'block',
-  								width: '50%'
-							}}
-						/>
-					</Group>
-				</div>
-			</> 	
-		:
-		<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
-			<Component {...pageProps} user={user} userStatus={userStatus}/>
-		</MainLayout>	
-	}
+		<>
+		{loadingUser ?
+			<div 
+			style = {{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				height: '100vh',
+			}}>
+				<Group spacing='xl' position="center">
+					<ClockLoader
+						color='#F5A623'
+						size={ (width + height) / 45 }
+					/>
+					<Image
+						alt="metal-merket.pro"
+						src="/logo.svg"
+						style={{
+							display: 'block',
+							width: '50%'
+						}}
+					/>
+				</Group>							
+			</div>
+			:
+			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
+				<Component {...pageProps} user={user} userStatus={userStatus}/>
+			</MainLayout>	
+		}
 	</>
 	)
 }
 
-export default MyApp;
+export default MyApp

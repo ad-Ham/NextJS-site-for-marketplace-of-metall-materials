@@ -122,7 +122,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 			</Card>
 		</Grid.Col>
 		</MediaQuery>
-		<MediaQuery largerThan="sm" styles={{ display: 'none' }} key={'0' + el.id}>
+		<MediaQuery largerThan="sm" styles={{ display: 'none' }} >
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group>
 						<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
@@ -191,7 +191,8 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						</Text>
 						<Grid position="absolute">
 							<Grid.Col span={4} justify={'end'} align={'left'} style={{marginBottom:-50}}>
-								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">{
+								<Text style={{ marginTop: '20px', marginLeft: 0}} color="gray" size="sm">
+									{
 									`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
 									${newsHot.news_date.slice(11)}`}
 								</Text>
@@ -220,7 +221,8 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							}
 						</Group>
 						<Group>
-							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
+							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">
+								{
 								`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
 								${newsHot.news_date.slice(11)}`}
 							</Text>

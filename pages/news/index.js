@@ -54,7 +54,8 @@ const News = ({ news, newsHot }) => {
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 				<Group position="apart">
 					<Group style={{marginBottom: 10}}>
-						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
+						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">
+							{
 							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
 							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
 							el.date.getFullYear() +' ' + el.time.slice(0, 5)
