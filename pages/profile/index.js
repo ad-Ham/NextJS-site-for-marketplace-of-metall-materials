@@ -4,7 +4,7 @@ import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
 import { Modal, Image, Avatar, Group, Title, Button, Badge, Input } from '@mantine/core';
 // import styles from './PersonalData.module.scss'
-import { Card , Grid, MediaQuery} from '@mantine/core';
+import { Card , Grid, MediaQuery,SimpleGrid} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
 import { useEffect, useState } from 'react';
@@ -131,11 +131,27 @@ return (<>
     </Head>
     {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
     {(userStatus === true) && <>
-    <Card> 
-        <MediaQuery smallerThan={1400} styles={{ display: 'none' }}>
-        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 20,borderBottom: ' 2px solid #42aaff'}}>  
-            <Grid.Col span={3} >               
-                <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
+    <Card>   
+    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <Group position="center">     
+            <Avatar
+                    radius={'50%'}
+                    size={90}
+                    src={'data:image/' + ';base64,' + user.image}
+                    alt="Avatar"
+                    />
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:12, marginTop: "15%"}}> <Download
+                    size={8}
+                    strokeWidth={2}
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>                                          
+             </Group>  
+             </MediaQuery> 
+        <Group position="apart" >      
+            <Group>                       
+            <SimpleGrid cols={1}> 
+                <MediaQuery smallerThan="sm" styles={{marginTop: 0, marginLeft:10}}><p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p></MediaQuery>
                 <p style={{fontSize:18, marginBottom: 18}}>
                 <Mail
                 size={20}
@@ -156,10 +172,11 @@ return (<>
                 <p style={{fontSize:18, marginBottom: 0}}><Lock 
                     size={20}
                     strokeWidth={2}
-                    color={'#26194d'}/>  Пароль:</p>
-            </Grid.Col>                 
-            <Grid.Col span={1} offset={6} style={{marginTop: 35}}>                              
-                <Avatar
+                    color={'#26194d'}/>  Пароль:</p></SimpleGrid>
+            </Group>
+            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Group>     
+            <SimpleGrid cols={1} style={{marginBottom:50, marginRight:50}}><Avatar
                     radius={'50%'}
                     size={90}
                     src={'data:image/' + ';base64,' + user.image}
@@ -170,54 +187,13 @@ return (<>
                     size={18}
                     strokeWidth={2}
                     color={'#42aaff'} 
-                    />  Загрузить</Button>
-            </Grid.Col>
-        </Grid> 
-        </MediaQuery> 
-        <MediaQuery largerThan={1400} styles={{ display: 'none' }}>
-        <Grid grow gutter={3} justify="space-between" style={{marginLeft: 20,borderBottom: ' 2px solid #42aaff'}}>  
-            <Grid.Col style={{marginTop: 10}}>                              
-                <Avatar
-                    radius={'50%'}
-                    size={90}
-                    src={'data:image/'+ ';base64,' + user.image}
-                    alt="Avatar"
-                    />
-                <Button onClick={openAvatarModal} variant="outline"
-                    style={{fontSize:14, marginTop: "10%"}}> <Download
-                    size={18}
-                    strokeWidth={2}
-                    color={'#42aaff'} 
-                    />  Загрузить</Button>
-            </Grid.Col>
-            <Grid.Col >               
-                <p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p>
-                <p style={{fontSize:18, marginBottom: 18}}>
-                <Mail
-                size={20}
-                strokeWidth={2}
-                color={'#26194d'}
-                alt="Электронная почта"
-                title="Электронная почта"/>  {user.email}
-                </p>
-                <p style={{fontSize:18, marginBottom: 15}}>
-                <Phone 
-                size={20}
-                strokeWidth={2}
-                color={'#26194d'}/>  {user.phoneNumber}</p>
-                <p style={{fontSize:18, marginBottom: 15}}><Login 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Логин:</p>
-                <p style={{fontSize:18, marginBottom: 0}}><Lock 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Пароль:</p>
-            </Grid.Col>       
-        </Grid>    
-        </MediaQuery>  
-        <Grid grow gutter="xs" style={{marginLeft: 20}}>
-             <Grid.Col  span={2} offset={11.3} style={{marginTop: -30}}>
+                    />  Загрузить</Button>  
+                    </SimpleGrid>                         
+             </Group>  
+             </MediaQuery>          
+        </Group>
+
+        <Group style={{marginTop:20}} position="right">
                 <Modal 
                     size="xl"
                     opened={opened}
@@ -230,12 +206,10 @@ return (<>
                     strokeWidth={2}
                     color={'#42aaff'}
                 />
-                                
-            </Grid.Col>
-        </Grid>
-        <Grid grow gutter="xs" style={{marginLeft: 20, borderBottom: ' 2px solid #42aaff'}}>
-             <Grid.Col span={4}>
-                <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
+        </Group>
+        <Group>
+        <SimpleGrid cols={1}>
+        <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
                     size={20}
                     strokeWidth={2}
                      color={'#26194d'}/> {'Организация: ' + user.orgName}</p>
@@ -259,23 +233,22 @@ return (<>
                          size={20}
                          strokeWidth={2}
                          color={'#26194d'}/> {'ОГРН: ' + user.ogrn}</p>
-            </Grid.Col>
-            <Grid.Col  span={4} offset={11.3} style={{marginTop: -30}}>
-                 <Modal 
-                    size="xl"
-                    opened={open}
-                    onClose={() => setOpen(false)}>
-                    <JurData/>
-                </Modal>
-                <Pencil
-                    onClick={() => setOpen(true)}
-                    size={20}
-                    strokeWidth={2}
-                    color={'#42aaff'}
+                </SimpleGrid>
+        </Group>
+        <Group position="right">
+            <Modal 
+                size="xl"
+                opened={open}
+                onClose={() => setOpen(false)}>
+                 <JurData/>
+            </Modal>
+            <Pencil
+                onClick={() => setOpen(true)}
+                size={20}
+                strokeWidth={2}
+                color={'#42aaff'}
                  />
-                                
-            </Grid.Col>
-        </Grid>
+        </Group>     
     </Card>
     </>}
     {(userStatus === true) && (user.role === 'admin') && 

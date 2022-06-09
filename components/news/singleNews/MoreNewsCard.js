@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { useState } from 'react';
 import Link from 'next/link'
-import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme } from '@mantine/core';
-
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, MediaQuery } from '@mantine/core';
+import { MessageCircle2 } from 'tabler-icons-react';
 export const MoreNewsCard = ({news}) => {
 	const theme = useMantineTheme();
 	news = news.map(newsObj => {
@@ -18,8 +18,9 @@ export const MoreNewsCard = ({news}) => {
 	const [otherNews, setOtherNews] = useState([])
 
 	const showNews = news.map(newsObj => {
-		return (<Card  key={'0' + newsObj.id} p="sm" style={{ marginBottom: '5px', minHeight: '75px'}}>
-			<Card p="sm" shadow="md" span={10}>
+		return (<>
+			<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+				<Card p="sm" shadow="md" span={10} key={'0' + newsObj.id}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{newsObj.title}</Title>
 				</Group>
@@ -53,7 +54,30 @@ export const MoreNewsCard = ({news}) => {
 					</Grid.Col>
 				</Grid>
 			</Card>
-		</Card>);
+			</MediaQuery>
+			<MediaQuery largerThan="sm" styles={{ display: 'none' }} >
+				<Card pm="sm" p="lg" shadow="md" span={10} style={{ marginBottom: '10px', minHeight: '75px'}} key={'0' + newsObj.id}>
+				<Group style={{marginTop:-10}}>					
+							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
+								`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
+								${newsObj.news_date.slice(11)}`}
+							</Text>					
+					<Text style={{ marginTop: '9px' }}>|</Text>
+					<Group spacing={5} style={{ marginTop: '10px' }}>
+							<MessageCircle2
+								size={14}
+								strokeWidth={1}
+								color={'gray'}
+								/>
+							<Text color="gray" size="xs">100</Text>		
+					</Group>
+				</Group>
+				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
+				<Link href={"/news/" + newsObj.id} passHref><Title order={3} weight={300} style={{fontSize:15}}>{newsObj.title}</Title></Link>
+				</Group>							
+			</Card>
+			</MediaQuery>
+			</>);
 	})
 	return (<>
 		<Card p="sm" key={news.id}>			

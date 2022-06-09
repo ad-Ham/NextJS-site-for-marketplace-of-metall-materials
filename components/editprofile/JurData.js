@@ -1,23 +1,18 @@
-import { Grid, Input, Button} from "@mantine/core"
+import { Grid, Input, Button,MediaQuery,SimpleGrid, Group} from "@mantine/core"
 
 
 export const JurData = () => {
     return (<>
-    <h3 style={{fontSize: 20, marginBottom:30}} align="center">Ваши юридические данные</h3>
-        <Grid justify="center">
-            <Grid.Col span={5}>
-                    <label style={{fontSize: 15}}>Организация:<Input style={{marginBottom:10}} placeholder="Введите вашу организацию"/></label>
-                    <label style={{fontSize: 15}}>Юридический адрес:<Input style={{marginBottom:10}} placeholder="Введите ваш юридический адрес" /></label>
-                    <label style={{fontSize: 15}}>Должность:<Input style={{marginBottom:10}} placeholder="Введите вашу должность" /></label>
-                   
-            </Grid.Col>
-            <Grid.Col span={5}>     
-                    <label style={{fontSize: 15}}>ИНН:<Input style={{marginBottom:10}} placeholder="Введите ваш ИНН" /></label>
-                    <label style={{fontSize: 15}}>ОГРН:<Input style={{marginBottom:10}} placeholder="Введите ваш ОГРН" /></label>
-            </Grid.Col>
-            <Button variant="outline" style={{marginTop:20, marginBottom: 10}} align="center">Сохранить изменения</Button>
-        </Grid>
-       
+    <h3 style={{fontSize: 20, marginBottom:30}} align="center">Ваши юридические данные</h3>      
+            <SimpleGrid cols={1}>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Организация:<Input placeholder="Введите вашу организацию"/></label>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Юридический адрес:<Input placeholder="Введите ваш юридический адрес" /></label>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Должность:<Input placeholder="Введите вашу должность" /></label>         
+                    <label style={{fontSize: 15, marginBottom:-10}}>ИНН:<Input placeholder="Введите ваш ИНН" /></label>
+                    <label style={{fontSize: 15}}>ОГРН:<Input placeholder="Введите ваш ОГРН" /></label>
+            <Group position="center"><Button variant="outline" style={{marginTop:10}} align="center">Сохранить изменения</Button></Group>
+        
+        </SimpleGrid>
     </>)
 }
 

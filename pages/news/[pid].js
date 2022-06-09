@@ -10,6 +10,7 @@ import { CommentsBlock } from '../../components/comments/CommentsBlock';
 import Link from 'next/link'
 import styles from '../../styles/news/newspage.module.scss'
 import { axios, checkToken } from '/middleware/axios.js';
+import { Pencil,Trash, Pin, PinnedOff } from 'tabler-icons-react';
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
 const imageToBase64 = require('image-to-base64');
@@ -71,7 +72,7 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
 	const [singleNew, setSingleNew] = useState([])
 
 	return (
-		<>
+		<><Card>
 			<div className={styles.content}>
 				<div className={styles.leftside}>
 					{/* <div className={styles.adbannerside}><Link href="https://www.example.com"><Adbannerside /></Link></div> */}
@@ -79,29 +80,45 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
 				<div className={styles.rightside}>
 					{user && <>
 						{(user.role === 'admin') && <>
-							<Grid>
-								<Grid.Col span={4} justify={'center'} align={'left'}>
-									<Link href={"/news/edit/" + news.id} passHref>
-										<Button variant="subtle" style={{ marginTop: 14 }}>
-											Редактировать
-										</Button>
-									</Link>
-								</Grid.Col>
-								<Grid.Col span={4} justify={'center'} align={'center'}>
-									<form id={news.id} key={'0'+news.id} onSubmit={handleDelete}>
-									<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
-										Удалить
-									</Button>
-									</form>
-								</Grid.Col>
-								<Grid.Col span={4} justify={'center'} align={'right'}>
-									<form id={news.id} key={'0'+news.id} onSubmit={handlePin}>
-									<Button id={news.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
-										Закрепить
-									</Button>
-									</form>
-								</Grid.Col>
-							</Grid>
+							<Group position="apart">	
+								<Group style={{marginLeft:20}}>						
+										<form id={news.id} key={'0'+news.id} onSubmit={handlePin}>
+										<Pin
+												id={news.id}
+												cursor={"pointer"}	
+												size={18}
+												strokeWidth={1}
+												color={'red'}
+											/>
+										</form>
+										<PinnedOff
+												id={news.id}
+												cursor={"pointer"}	
+												size={18}
+												strokeWidth={1}
+												color={'red'}
+											/>
+									</Group>				
+									<Group style={{marginRight:20}}>
+										<Link href={"/news/edit/" + news.id} passHref>
+										<Pencil	
+											cursor={"pointer"}	
+											size={18}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>								
+									<form id={news.id} key={'0'+news.id} onSubmit={handleDelete}>									
+									<Trash
+											id={news.id}
+											cursor={"pointer"}	
+											size={18}
+											strokeWidth={1}
+											color={'red'}
+										/>
+									</form>	
+									</Group>									
+							</Group>
 						</>}
 					</>}
 					<NewsBlock news={news} tags={tags} comments={comments} user={user}/>
@@ -114,6 +131,7 @@ const NewsPage = ({news, tags, newsList, comments, user}) => {
 					</div>
 				</div>
 			</div>
+			</Card>
 		</>
 	)
 }

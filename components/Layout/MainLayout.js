@@ -212,7 +212,9 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 						<Navbar p="md" hiddenBreakpoint="sm" hidden={!openedMobile} width={{ sm: 200, lg: 300 }} className='navbar'>
 							<Navbar.Section style={{ marginBottom: 10 }}>
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-									<div style={{ marginBottom: 20}}>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
+									<div style={{ marginBottom: 20}}>
+										{(userStatus === true) ? <><MenuUser user={user} style={{ user }}/></> : <><LoginModal /></>}
+									</div>	
 								</MediaQuery>
 							</Navbar.Section>
 							<Navbar.Section grow component={ScrollArea}>
@@ -254,8 +256,8 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
 									</Link>	
 									<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-										<Group spacing={0}>
-											<ThemeIcon color="green" variant="subtle" size={30}><Users/></ThemeIcon>
+										<Group spacing={10}>
+											<ThemeIcon color="green" variant="subtle" size="md" style={{marginLeft:10}}><Users/></ThemeIcon>
 											<Text>{`${onlineUsers}`}</Text>
 										</Group>
 									</MediaQuery>							
@@ -430,10 +432,15 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										</Group>
 									</MediaQuery>
 									</Group>
-								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-									<div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
-								</MediaQuery>
-								{(userStatus === false) && <><LoginModal/></>}
+									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+										<div >
+											{(userStatus === true) ? <><MenuUser user={user} style={{ user }}/></> : <><LoginModal /></>}
+										</div>
+									</MediaQuery>
+								{/* <div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
+								
+								{(userStatus === false) && <><LoginModal/></>} */}
+								
 							</div>
 						</Header>
 					}
