@@ -576,7 +576,6 @@ export function PromosAdd({ user }) {
                         </>}
                     </Grid.Col>
                 {((category !== '') && (metal !== '') && (item != '')) && <>
-                    
                         <Grid.Col span={2} justify="center" align="center" style={{marginTop: 45}}>
                     {itemImage}
                     <Button style={{marginTop: 20}}
@@ -630,9 +629,12 @@ export function PromosAdd({ user }) {
                                 </Grid.Col>
                             </>}
                         </Grid>  
-                        {((category !== '') && (metal !== '') && (item != '')) && <>                  
+                        {
+                        ((category !== '') && (metal !== '') && (item != '')) && <>                  
                         <Grid.Col span={0} justify="center" align="center" style={{marginTop: 5}}>
-                    {itemImage}</Grid.Col> </>}                 
+                            {itemImage}
+                        </Grid.Col> </>
+                        }                 
                         {((category !== '') && (metal !== '') && (item != '')) && <>
                             <div style={{marginTop: 5}}>
                                 {itemFields}
@@ -706,9 +708,8 @@ export function PromosAdd({ user }) {
                             
                         </>}
                     </Grid.Col>
-                {/* {((category !== '') && (metal !== '') && (item != '')) && <>                   */}
+                {((category !== '') && (metal !== '') && (item != '')) && <>                  
                         <Grid.Col span={0} justify="center" align="center" style={{marginTop: 10}}>
-                    {/* {itemImage} */}
                     <Button style={{marginTop: 20}}
                         onClick={confirmItem}
                         // disabled={result.length == 0}
@@ -716,7 +717,7 @@ export function PromosAdd({ user }) {
                         Добавить товар в объявление
                     </Button>
                     </Grid.Col>                  
-                {/* </>} */}
+                </>}
             </>}
             </Grid>  
             </MediaQuery>   

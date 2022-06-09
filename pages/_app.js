@@ -9,8 +9,6 @@ import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
 import { ClockLoader } from 'react-spinners'
 
-// const users_socket = io.connect('https://api.metalmarket.pro/users')
-// const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 const users_socket = io.connect('https://api.metalmarket.pro/users')
 const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
 
@@ -18,9 +16,9 @@ const messages_socket = io.connect('https://api.metalmarket.pro/messages', { aut
 const MyApp = ({ Component, pageProps }) => {
 	const router = useRouter()
 
-	const { height, width } = useViewportSize();
+	const { height, width } = useViewportSize()
 
-	const [loading, setLoading] = useState(true)
+	const [loadingUser, setLoadingUser] = useState(true)
 	const [chats, setChats] = useState(undefined)
 	const [userStatus, setUserStatus] = useState(null)
 	const [user, setUser] = useState({
@@ -42,76 +40,75 @@ const MyApp = ({ Component, pageProps }) => {
 			axios.get('https://api.metalmarket.pro/getUser', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
 				setUser(response.data.user)
-				users_socket.emit('user_connect', {user_id: response.data.user.id})
-				setLoading(false)
+				// users_socket.emit('user_connect', {user_id: response.data.user.id})
+				setLoadingUser(false)
 			})
 			.catch(function (error) {
 				console.log(error)
-				setLoading(false)
+				setLoadingUser(false)
 			})
 		}
 		else {
-			users_socket.emit('user_connect', {user_id: null})
-			setLoading(false)
+			// users_socket.emit('user_connect', {user_id: null})
+			setLoadingUser(false)
 		}
 	}
 
 	useEffect(() => {
 		if (router.pathname === '/chats') setChats(true)
+		else setChats(false)
 
-		changeUserStatus()
+		if (loadingUser) changeUserStatus()
 		
-		users_socket.on('update_online_users', (data) => {
-			setCurrOnlineUsers(data.users)
-		})
+		// users_socket.on('update_online_users', (data) => {
+			// setCurrOnlineUsers(data.users)
+		// })
 
-		messages_socket.on('receive_message', (data) => {
-			showNotification({
-				title: 'Новое сообщения',
-				message: `Новое сообщения от пользователя`,
+		// messages_socket.on('receive_message', (data) => {
+			// showNotification({
+				// title: 'Новое сообщения',
+				// message: `Новое сообщения от пользователя`,
 				// ${data.firstName} ${data.surName}
-				autoClose: true,
+				// autoClose: true,
 	
-				color: "green"
-			})
-		})
-	}, [users_socket, messages_socket])	
+				// color: "green"
+			// })
+		// })
+	}, [])
+	// }, [users_socket, messages_socket])	
 
 	return (
-		<>	
-		{loading ? 
-			<>		
-			<Group
-				style = {{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					height: '100vh',
-				}}>
-				<Grid>
-					<Group>
-						 <ClockLoader					
-								color='#F5A623'
-								size={60}
-							/>
-						<Image
-							alt="metal-merket.pro"
-							src="/logo.svg"
-							width='60%'
-						/> 
-					</Group>
-				</Grid>	
-					
-
+		<>
+		{loadingUser ?
+			<div 
+			style = {{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				height: '100vh',
+			}}>
+				<Group spacing='xl' position="center">
+					<ClockLoader
+						color='#F5A623'
+						size={ (width + height) / 45 }
+					/>
+					<Image
+						alt="metal-merket.pro"
+						src="/logo.svg"
+						style={{
+							display: 'block',
+							width: '50%'
+						}}
+					/>
 				</Group>							
-				</> 	
-		:
-		<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
-			<Component {...pageProps} user={user} userStatus={userStatus}/>
-		</MainLayout>	
-	}
+			</div>
+			:
+			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
+				<Component {...pageProps} user={user} userStatus={userStatus}/>
+			</MainLayout>	
+		}
 	</>
 	)
 }
 
-export default MyApp;
+export default MyApp

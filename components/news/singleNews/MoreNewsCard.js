@@ -5,41 +5,39 @@ import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMa
 
 export const MoreNewsCard = ({news}) => {
 	const theme = useMantineTheme();
-	news = news.map(el => {
-		if (!el.date) {
+	news = news.map(newsObj => {
+		if (!newsObj.date) {
 			let date = new Date();
-			el.date = date;
+			newsObj.date = date;
 		} else {
-			let date = new Date(el.date);
-			el.date = date;
+			let date = new Date(newsObj.date);
+			newsObj.date = date;
 		}
-		return el;
+		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
 
-	const showNews = news.map(el => {
-		return (<Card  key={'0' + el.id} p="sm" style={{ marginBottom: '5px', minHeight: '75px'}}>
+	const showNews = news.map(newsObj => {
+		return (<Card  key={'0' + newsObj.id} p="sm" style={{ marginBottom: '5px', minHeight: '75px'}}>
 			<Card p="sm" shadow="md" span={10}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-					<Title order={3} weight={500}>{el.title}</Title>
+					<Title order={3} weight={500}>{newsObj.title}</Title>
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{el.desc}
+							{newsObj.desc}
 						</Text>
 					</Grid.Col>
 				</Grid>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'left'}>
 						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear() +' ' + el.time.slice(0, 5)
-						}
+							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
+							${newsObj.news_date.slice(11)}`}
 						</Text>
 
 					</Grid.Col>
@@ -47,7 +45,7 @@ export const MoreNewsCard = ({news}) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'end'} align={'right'}>
-					    <Link href={"/news/" + el.id} passHref>
+					    <Link href={"/news/" + newsObj.id} passHref>
 							<Button variant="subtle" style={{ marginTop: 14 }}>
 								Подробнее
 							</Button>

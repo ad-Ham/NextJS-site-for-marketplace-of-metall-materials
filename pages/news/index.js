@@ -34,15 +34,15 @@ export const getServerSideProps = async (context) => {
 
 const News = ({ news, newsHot }) => {
 	const theme = useMantineTheme();
-	news = news.map(el => {
-		if (!el.date) {
+	news = news.map(newsObj => {
+		if (!newsObj.date) {
 			let date = new Date();
-			el.date = date;
+			newsObj.date = date;
 		} else {
-			let date = new Date(el.date);
-			el.date = date;
+			let date = new Date(newsObj.date);
+			newsObj.date = date;
 		}
-		return el;
+		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
 	const showNews = news.map(el => {
@@ -142,12 +142,9 @@ const News = ({ news, newsHot }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'left'}>
-						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">
-							{
-							// (el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							// ((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							// el.date.getFullYear() +' ' + el.time.slice(0, 5)
-						}
+						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
+							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
+							${newsObj.news_date.slice(11)}`}
 						</Text>
 
 					</Grid.Col>
@@ -155,7 +152,7 @@ const News = ({ news, newsHot }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'right'}>
-					    <Link href={"/news/" + el.id} passHref>
+					    <Link href={"/news/" + newsObj.id} passHref>
 							<Button variant="subtle"  style={{ marginTop: 14}}>
 								Подробнее
 							</Button>
@@ -178,7 +175,7 @@ const News = ({ news, newsHot }) => {
 			</Head>
 			<Card p="sm" key={news.id}>
 			<Group position="right" style={{marginBottom:10}}>
-					 <>
+					<>
 					<Link href={'/news/add'} passHref>
 						<Plus
 							cursor={"pointer"}
@@ -201,10 +198,8 @@ const News = ({ news, newsHot }) => {
 						<Group position="apart">
 							<Group style={{marginBottom: 10}}>
 								<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
-									// (el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-									// ((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-									// el.date.getFullYear() +' ' + el.time.slice(0, 5)
-									}
+									`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
+									${newsHot.news_date.slice(11)}`}
 								</Text>						
 								<Text style={{ marginTop: '9px' }}>|</Text>
 								<Group spacing={5} style={{ marginTop: '10px' }}>
@@ -273,7 +268,7 @@ const News = ({ news, newsHot }) => {
 							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={120} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
-						{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
+							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
 								Горячая новость
 							</Badge></>}
 							<Space h="xs"/>
@@ -286,12 +281,10 @@ const News = ({ news, newsHot }) => {
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'left'}>
-								<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-									// (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-									// ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-									// date.getFullYear() +' ' + newsHot.time.slice(0, 5)
-								}
-								</Text>
+							<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
+								`${newsHot.news_date.slice(8, 10)}.${newsHot.news_date.slice(5, 7)}.${newsHot.news_date.slice(0, 4)}
+								${newsHot.news_date.slice(11)}`}
+							</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>

@@ -125,9 +125,9 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 		<MediaQuery largerThan="sm" styles={{ display: 'none' }} >
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group>
-						<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">
+						<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">{
 							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
-							${newsObj.news_date.slice(11)}`
+							${newsObj.news_date.slice(11)}`}
 						</Text>
 						<Text style={{ marginTop: '9px' }}>|</Text>
 						<Group spacing={5} style={{ marginTop: '10px' }}>
