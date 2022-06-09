@@ -13,7 +13,7 @@ import { axios, checkToken } from '/middleware/axios.js';
 import { Pencil,Trash, Pin, PinnedOff } from 'tabler-icons-react';
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
-// const imageToBase64 = require('image-to-base64')
+const imageToBase64 = require('image-to-base64')
 	
 const handleDelete = async(e) => {
 	await axios.post('https://api.metalmarket.pro/newsdelete', {id: e.target.id})
