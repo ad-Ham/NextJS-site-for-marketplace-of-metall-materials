@@ -79,7 +79,7 @@ const MyApp = ({ Component, pageProps }) => {
 
 	return (
 		<>	
-		{!loadingUser ? 
+		{loadingUser ? 
 			<>
 				<div 
 				style = {{
