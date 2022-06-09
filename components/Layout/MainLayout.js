@@ -425,7 +425,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 										<Group spacing={0}>
 											<ThemeIcon color="green" variant="subtle" size={30}><Users/></ThemeIcon>
-											<Text>{`${onlineUsers}`}</Text>
+											<Text>{`Сейчас на сайте: ${onlineUsers}`}</Text>
 										</Group>
 									</MediaQuery>
 									</Group>
