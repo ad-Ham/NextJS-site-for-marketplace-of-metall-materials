@@ -5,7 +5,7 @@ import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMa
 import { Plus, Pencil, X } from 'tabler-icons-react';
 const axios = require('axios').default;
 import { MessageCircle2 } from 'tabler-icons-react';
-const imageToBase64 = require('image-to-base64');
+// const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
@@ -17,11 +17,11 @@ export const getServerSideProps = async (context) => {
 	let news = res.data.news
 	
 	let newsHot = res.data.newsHot
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
+	// newsHot['image'] = await imageToBase64(newsHot.photopath)
 	let i;
 	for (i=0;i<news.length;++i) {
 		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+		// news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
 		props: {
@@ -56,9 +56,9 @@ const News = ({ news, newsHot }) => {
 					<Group style={{marginBottom: 10}}>
 						<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">
 							{
-							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear() +' ' + el.time.slice(0, 5)
+							// (el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
+							// ((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
+							// el.date.getFullYear() +' ' + el.time.slice(0, 5)
 							}
 						</Text>						
 						<Text style={{ marginTop: '9px' }}>|</Text>
@@ -144,9 +144,9 @@ const News = ({ news, newsHot }) => {
 				    <Grid.Col span={4} justify={'end'} align={'left'}>
 						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">
 							{
-							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear() +' ' + el.time.slice(0, 5)
+							// (el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
+							// ((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
+							// el.date.getFullYear() +' ' + el.time.slice(0, 5)
 						}
 						</Text>
 
@@ -201,9 +201,9 @@ const News = ({ news, newsHot }) => {
 						<Group position="apart">
 							<Group style={{marginBottom: 10}}>
 								<Text style={{ marginTop: '10px', marginLeft: 5  }}  color="gray" size="xs">{
-									(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-									((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-									el.date.getFullYear() +' ' + el.time.slice(0, 5)
+									// (el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
+									// ((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
+									// el.date.getFullYear() +' ' + el.time.slice(0, 5)
 									}
 								</Text>						
 								<Text style={{ marginTop: '9px' }}>|</Text>
@@ -287,12 +287,11 @@ const News = ({ news, newsHot }) => {
 						<Grid>
 							<Grid.Col span={4} justify={'end'} align={'left'}>
 								<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
-									(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
-									((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
-									date.getFullYear() +' ' + newsHot.time.slice(0, 5)
+									// (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
+									// ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
+									// date.getFullYear() +' ' + newsHot.time.slice(0, 5)
 								}
 								</Text>
-
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'center'}>
 								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>

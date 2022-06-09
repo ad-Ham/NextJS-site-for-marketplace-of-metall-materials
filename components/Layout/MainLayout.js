@@ -251,8 +251,8 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
 									</Link>	
 									<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-										<Group spacing={0}>
-											<ThemeIcon color="green" variant="subtle" size={30}><Users/></ThemeIcon>
+										<Group spacing={10}>
+											<ThemeIcon color="green" variant="subtle" size="md" style={{marginLeft:10}}><Users/></ThemeIcon>
 											<Text>{`${onlineUsers}`}</Text>
 										</Group>
 									</MediaQuery>							
