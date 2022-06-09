@@ -37,7 +37,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 1,
 			user_firstName: 'Тимур',
 			user_surName: 'Тимур',
-			message_date: '2022-07-07 08:40',
+			message_time: '2022-07-07 08:40',
 			user_post: 'Тимур',
 			user_orgName: 'Тимур',
 			data: 'Хочу спать'
@@ -46,7 +46,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Привет'
@@ -55,7 +55,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Ну давай тогда'
@@ -64,7 +64,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Привет'
@@ -73,7 +73,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Привет'
@@ -82,7 +82,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Привет'
@@ -91,7 +91,7 @@ export function UserChats({ userDialogs, user, userStatus }) {
 			id: 2,
 			user_firstName: 'Иван',
 			user_surName: 'Иванов',
-			message_date: '2022-07-07 09:40',
+			message_time: '2022-07-07 09:40',
 			user_post: 'Иван',
 			user_orgName: 'Иван',
 			data: 'Привет'
@@ -109,8 +109,8 @@ export function UserChats({ userDialogs, user, userStatus }) {
 						<Group position="left">
 							<Text size="sm">{`${message.user_firstName} ${message.user_surName}`}</Text>
 							<Text size="xs" color="dimmed">
-							{`${message.message_date.slice(8, 10)}.${message.message_date.slice(5, 7)}.${message.message_date.slice(0, 4)}
-							${message.message_date.slice(11)}`}
+							{`${message.message_time.slice(8, 10)}.${message.message_time.slice(5, 7)}.${message.message_time.slice(0, 4)}
+							${message.message_time.slice(11)}`}
 							</Text>
 						</Group>
 						<Text size="xs" style={{marginTop: 3}}>{`${message.user_post}, ${message.user_orgName}`}</Text>
