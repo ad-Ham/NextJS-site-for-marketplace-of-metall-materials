@@ -40,7 +40,7 @@ const MyApp = ({ Component, pageProps }) => {
 			axios.get('https://api.metalmarket.pro/getUser', {params: {token: localStorage.getItem("token")}})
 			.then(function(response) {
 				setUser(response.data.user)
-				// users_socket.emit('user_connect', {user_id: response.data.user.id})
+				users_socket.emit('user_connect', {user_id: response.data.user.id})
 				setLoadingUser(false)
 			})
 			.catch(function (error) {
@@ -49,7 +49,7 @@ const MyApp = ({ Component, pageProps }) => {
 			})
 		}
 		else {
-			// users_socket.emit('user_connect', {user_id: null})
+			users_socket.emit('user_connect', {user_id: null})
 			setLoadingUser(false)
 		}
 	}
@@ -60,22 +60,22 @@ const MyApp = ({ Component, pageProps }) => {
 
 		if (loadingUser) changeUserStatus()
 		
-		// users_socket.on('update_online_users', (data) => {
-			// setCurrOnlineUsers(data.users)
-		// })
+		users_socket.on('update_online_users', (data) => {
+			setCurrOnlineUsers(data.users)
+		})
 
-		// messages_socket.on('receive_message', (data) => {
-			// showNotification({
-				// title: 'Новое сообщения',
-				// message: `Новое сообщения от пользователя`,
+		messages_socket.on('receive_message', (data) => {
+			showNotification({
+				title: 'Новое сообщения',
+				message: `Новое сообщения от пользователя`,
 				// ${data.firstName} ${data.surName}
-				// autoClose: true,
+				autoClose: true,
 	
-				// color: "green"
-			// })
-		// })
+				color: "green"
+			})
+		})
 	}, [])
-	// }, [users_socket, messages_socket])	
+	}, [users_socket, messages_socket])	
 
 	return (
 		<>
