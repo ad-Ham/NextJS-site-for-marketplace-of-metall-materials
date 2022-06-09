@@ -17,7 +17,7 @@ export default function Index() {
 				<meta charSet="utf-8" />
 			</Head>
 			{/* <Adbannertop/> */}
-			<div className={styles.content, styles.maindiv}>
+			<div className={styles.content}>
 				<div className={styles.loginheaderblock}>
 					<h1 className={styles.loginheader}>Вход в личный кабинет</h1>
 				</div>

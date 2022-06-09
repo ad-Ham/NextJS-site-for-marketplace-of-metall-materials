@@ -1,7 +1,7 @@
 import { RepostLayout } from './RepostLayout'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { SimpleGrid, Image, Badge } from '@mantine/core';
+import { SimpleGrid, Image, Badge,MediaQuery} from '@mantine/core';
 import styles from './NewsBlock.module.scss'
 const axios = require('axios').default;
 
@@ -10,9 +10,12 @@ export const NewsBlock = ({news, tags}) => {
 	return (<>
 		<div className={styles.maindiv}>
 			<SimpleGrid cols={1}>
-				<p className={styles.newstitle}>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}><p className={styles.newstitle}>
 					{news.title}
-				</p>
+				</p></MediaQuery>
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}><p style={{fontSize:20, fontWeight:700, align:"center"}}>
+					{news.title}
+				</p></MediaQuery>
 
 				<p className={styles.newsdate}>
 					{`${news.news_date.slice(8, 10)}.${news.news_date.slice(5, 7)}.${news.news_date.slice(0, 4)}
