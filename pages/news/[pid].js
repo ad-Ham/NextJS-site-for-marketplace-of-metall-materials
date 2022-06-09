@@ -15,12 +15,11 @@ import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMa
 const imageToBase64 = require('image-to-base64');
 	
 const handleDelete = async(e) => {
-	console.log(e.target.id)
-	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
+	await axios.post('https://api.metalmarket.pro/newsdelete', {id: e.target.id})
 }
 
 const handlePin = async(e) => {
-	await axios.post('https://api.metalmarket.pro/newspin', {id:e.target.id})
+	await axios.post('https://api.metalmarket.pro/newspin', {id: e.target.id})
 }
 
 export async function getServerSideProps(context) {

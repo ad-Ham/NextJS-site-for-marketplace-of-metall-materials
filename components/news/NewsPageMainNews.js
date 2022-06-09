@@ -6,12 +6,6 @@ export const NewsPageMainNews = ({ importantNews }) => {
 	// console.log(importantNews.id);
 	// console.log(importantNews.title);
 
-	{
-		importantNews.map(importantNews => (
-			console.log(importantNews.id)
-		))
-	}
-
 	return (<>
 		<div className={styles.maindiv}>
 			<div className={styles.newsmainheader}>

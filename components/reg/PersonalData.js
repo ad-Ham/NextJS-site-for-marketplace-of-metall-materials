@@ -16,7 +16,6 @@ export const PersonalData = () => {
 			lastName,
 			phoneNumber
 		};
-		console.log(data);
 	};
 	return (<>
 		<Group className={styles.maindiv}>

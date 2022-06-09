@@ -9,68 +9,6 @@ import { PromosAdd } from '../../../components/promos/PromosAdd'
 
 
 const AddPromo = ({ user }) => {
-	// const [newsStatus, setNewsStatus] = useState('');
-
-	// const [title, setTitle] = useState('');
-	// const [name, setName] = useState('');
-	// const [category, setCategory] = useState('');
-	// const [description, setDescription] = useState('');
-	// const [country, setCountry] = useState('');
-	// const [regionsList, setRegionsList] = useState('');
-	// const [region, setRegion] = useState('');
-	// const [email, setEmail] = useState('');
-	// const [phoneNumber, setPhoneNumber] = useState('');
-	// const [organizationName, setOrganizationName] = useState('');
-	// const [price, setPrice] = useState('');
-
-	// const showPreview = e => {
-	// 	elem.classList.add("modWindowWrapper");
-	// }
-
-	// const removePreview = e => {
-	// 	elem.classList.remove("modWindowWrapper");
-	// }
-
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-	// 	if (country === '' || region === '') {
-	// 		alert('Вы не выбрали страну')
-	// 		return
-	// 	}
-	// 	console.log(JSON.stringify({
-	// 		title,
-	// 		name,
-	// 		email,
-	// 		phoneNumber,
-	// 		country,
-	// 		region,
-	// 		category,
-	// 		price,
-	// 		description
-	// 	}))
-
-	// 	axios.post('https://api.metalmarket.pro/promosquery', {
-	// 		title,
-	// 		name,
-	// 		email,
-	// 		phoneNumber,
-	// 		country,
-	// 		region,
-	// 		category,
-	// 		price,
-	// 		description
-	// 	})
-	// 		.then(response => response.json())
-	// 		.then(result => {
-	// 			console.log(result);
-	// 		})
-	// 		.catch(err => {
-	// 			if (err) {
-	// 				console.log(err);
-	// 			}
-	// 		})
-	// }
-
 	return (<>
 		<PromosAdd user={user}/>
 	</>)

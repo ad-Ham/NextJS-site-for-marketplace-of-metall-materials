@@ -31,8 +31,6 @@ const NewsPageEdit = ({ news, pid, user, userStatus }) => {
 	const uploadToServer = async (e) => {  
 	   	e.preventDefault()
 	    const body = new FormData(document.getElementById("uploadForm"));
-	    console.log(body)
-	    // console.log("file", image)
 	    body.append("html", value); 
 	    body.append("id", pid);    
 	    const response = await fetch("https://api.metalmarket.pro/updateNews", {

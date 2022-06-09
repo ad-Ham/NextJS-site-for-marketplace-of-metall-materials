@@ -18,7 +18,6 @@ export const JurData = () => {
 			inn,
 			ogrn
 		};
-		console.log(data);
 	};
 	return (<>
 		<Group className={styles.maindiv}>

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
-import { Center, Group, Image, Grid,Space, Card, MediaQuery, SimpleGrid } from '@mantine/core'
+import { Group, Image } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
-import io from 'socket.io-client'
+
 import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
 import { ClockLoader } from 'react-spinners'
-
-const users_socket = io.connect('https://api.metalmarket.pro/users')
-const messages_socket = io.connect('https://api.metalmarket.pro/messages', { autoConnect: false })
+import { messages_socket, users_socket } from '../middleware/sockets'
 
 
 const MyApp = ({ Component, pageProps }) => {
@@ -55,8 +53,16 @@ const MyApp = ({ Component, pageProps }) => {
 	}
 
 	useEffect(() => {
-		if (router.pathname === '/chats') setChats(true)
-		else setChats(false)
+		if (router.pathname === '/chats') {
+			setChats(true)
+			messages_socket.connect()
+		}
+		else {
+			if (messages_socket.connected) {
+				messages_socket.disconnect()
+			}
+			setChats(false)
+		}
 
 		if (loadingUser) changeUserStatus()
 		

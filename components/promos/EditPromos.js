@@ -268,8 +268,6 @@ export function EditPromos({ user }) {
     }
 
     function addItem (callback) {
-        console.log(size)
-
         const items = {
             'category' : category,
             'metal' : metal,

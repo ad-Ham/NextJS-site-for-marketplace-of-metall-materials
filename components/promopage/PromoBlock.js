@@ -65,17 +65,17 @@ export const PromoBlock = () => {
 			alert('Вы не выбрали страну')
 			return
 		}
-		console.log(JSON.stringify({
-			title,
-			name,
-			email,
-			phoneNumber,
-			country,
-			region,
-			category,
-			price,
-			description
-		}))
+		// console.log(JSON.stringify({
+		// 	title,
+		// 	name,
+		// 	email,
+		// 	phoneNumber,
+		// 	country,
+		// 	region,
+		// 	category,
+		// 	price,
+		// 	description
+		// }))
 
 		axios.post('https://api.metalmarket.pro/promosquery', {
 			title,
@@ -89,9 +89,9 @@ export const PromoBlock = () => {
 			description
 		})
 			.then(response => response.json())
-			.then(result => {
-				console.log(result);
-			})
+			// .then(result => {
+				// console.log(result);
+			// })
 			.catch(err => {
 				if (err) {
 					console.log(err);

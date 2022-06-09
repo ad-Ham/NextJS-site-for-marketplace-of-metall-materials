@@ -53,19 +53,6 @@ export default function Index() {
 			],
 		};
 
-		console.log(JSON.stringify({
-			email: data.mainData[0],
-			password: data.mainData[1],
-			surname: data.personalData[0],
-			firstname: data.personalData[1],
-			lastname: data.personalData[2],
-			phonenumber: data.personalData[3],
-			orgname: data.jurData[0],
-			juradress: data.jurData[1],
-			inn: data.jurData[2],
-			ogrn: data.jurData[3],
-		}));
-
 		axios.post('https://api.metalmarket.pro/regquery', {
 			email: data.mainData[0],
 			password: data.mainData[1],
@@ -80,7 +67,6 @@ export default function Index() {
 		})
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
 				e.target.reset()
 			})
 			.catch(err => {

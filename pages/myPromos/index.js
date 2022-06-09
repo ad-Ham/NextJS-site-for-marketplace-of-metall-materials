@@ -221,7 +221,6 @@ const MyPromos = ({ promos }) => {
   }
 
   const updateServiceCategory = e => {
-    console.log('CHECK' + e)
     if (e !== null) {
         setCategory(e)
         updateSectionRows(sections, subsections, e)

@@ -3,8 +3,6 @@ import { Button, Grid, Card, Title, Table, Space, MediaQuery, Group, ScrollArea}
 import styles from './MainPromos.module.scss'
 
 export const MainPromos = ({ promos, user }) => {
-	console.log(promos)
-
 	const rows = [...promos].filter(el => el.id).map((promo) => {
 		let date = new Date(promo.date);
 		let link = '/promos/' + promo.id

@@ -16,7 +16,6 @@ import { useRouter } from 'next/router'
 
 
 export function PromosAdd({ user }) {
-    console.log(user)
     const router = useRouter()
     const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 
@@ -344,7 +343,6 @@ export function PromosAdd({ user }) {
     }
 
     const savePromo = () => {
-        console.log(data.values)
         axios.post('https://api.metalmarket.pro/uploadPromo', {data: data, user_id: user.id})
         .then(function() {
             showNotification({

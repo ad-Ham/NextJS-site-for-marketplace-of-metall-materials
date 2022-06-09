@@ -29,7 +29,6 @@ export const getServerSideProps = async (context) => {
 }
 
 const handleDelete = async(e) => {
-	console.log(e.target.id)
 	await axios.post('https://api.metalmarket.pro/newsdelete', {id:e.target.id})
 }
 
