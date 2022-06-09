@@ -249,9 +249,15 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									</Link>
 									<Link href="/underconstruction" passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Users />}>Конференции</Button>
-									</Link>
-								</Stack>
-							</Navbar.Section>
+									</Link>	
+									<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+										<Group spacing={0}>
+											<ThemeIcon color="green" variant="subtle" size={30}><Users/></ThemeIcon>
+											<Text>{`${onlineUsers}`}</Text>
+										</Group>
+									</MediaQuery>							
+									</Stack>
+							</Navbar.Section>							
 						</Navbar>
 					}
 					aside={<>
@@ -355,7 +361,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 					}
 					footer={<>					
 							<Footer maxHeight={80}>	
-							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>					
+							<MediaQuery smallerThan={760} styles={{ display: 'none' }}>					
 								<Group position="apart" style={{marginRight: 20, marginLeft:20}} >
 									<Group>
 										<Link href="/" passHref>						
@@ -373,7 +379,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										</Group>									
 								</Group>
 							</MediaQuery>
-							<MediaQuery largerThan="sm" styles={{ display: 'none' }}>					
+							<MediaQuery largerThan={760} styles={{ display: 'none' }}>					
 								<Group position="center">									
 										<Link href="/" passHref>						
 											<Image
@@ -402,8 +408,8 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										color={theme.colors.gray[6]}
 										mr="xl"
 									/>
-								</MediaQuery>
-								<Group spacing='xl'>
+								</MediaQuery>							
+									<Group>
 									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 										<Link href="/" passHref>
 											<Image className={styles.logo}
@@ -415,11 +421,13 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 											/>
 										</Link>
 									</MediaQuery>
-									<Group spacing='xs'>
-										<ThemeIcon color="green" variant="light"><Users/></ThemeIcon>
-										<Text>{`Сейчас на сайте: ${onlineUsers}`}</Text>
+									<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+										<Group spacing={0}>
+											<ThemeIcon color="green" variant="subtle" size={30}><Users/></ThemeIcon>
+											<Text>{`${onlineUsers}`}</Text>
+										</Group>
+									</MediaQuery>
 									</Group>
-								</Group>
 								<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 									<div>{(userStatus === true) && <><MenuUser user={user} style={{ user }}/></>}</div>	
 								</MediaQuery>

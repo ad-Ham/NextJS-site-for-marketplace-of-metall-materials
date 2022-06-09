@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
-import { Center, Group, Image } from '@mantine/core'
+import { Center, Group, Image, Grid,Space, Card, MediaQuery, SimpleGrid } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
 import io from 'socket.io-client'
@@ -80,27 +80,31 @@ const MyApp = ({ Component, pageProps }) => {
 	return (
 		<>	
 		{loading ? 
-			<>
-				<div 
+			<>		
+			<Group
 				style = {{
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
 					height: '100vh',
 				}}>
-					<Group spacing="xl" position="center">
-						<ClockLoader
-							color='#F5A623'
-							size={ 60 }
-						/>
+				<Grid>
+					<Group>
+						 <ClockLoader					
+								color='#F5A623'
+								size={60}
+							/>
 						<Image
 							alt="metal-merket.pro"
 							src="/logo.svg"
 							width='60%'
-						/>
+						/> 
 					</Group>
-				</div>
-			</> 	
+				</Grid>	
+					
+
+				</Group>							
+				</> 	
 		:
 		<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
 			<Component {...pageProps} user={user} userStatus={userStatus}/>

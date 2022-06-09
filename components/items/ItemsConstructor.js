@@ -568,7 +568,8 @@ export function circle (metalData, stampName, CallbackInput) {
 
 export function ribbon (metalData, stampName, CallbackInput) {
     return ([<>
-        <SimpleGrid cols={2} justify="center" align="center">     
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
                 required
                 label={`Выберите марку ${stampName}`}
@@ -617,6 +618,58 @@ export function ribbon (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Mаркa ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Ширина"
+            >
+            <Input
+                placeholder="Введите ширину ленты"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Толщина"
+            >
+            <Input
+                placeholder="Введите толщину ленты"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery> 
     </>,
     <>
         <Image 
@@ -632,6 +685,7 @@ export function ribbon (metalData, stampName, CallbackInput) {
 
 export function sheet (metalData, stampName, CallbackInput) {
     return ([<>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>       
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
                 required
@@ -657,6 +711,8 @@ export function sheet (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
             <InputWrapper
                 required
@@ -694,7 +750,75 @@ export function sheet (metalData, stampName, CallbackInput) {
                 rightSection="м."
                 />
             </InputWrapper>
-        </SimpleGrid>
+        </SimpleGrid>              
+    </MediaQuery>
+    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>      
+        <SimpleGrid cols={1} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Марка ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>
+            </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}> 
+            <SimpleGrid cols={2} justify="center" align="left">
+            <InputWrapper
+                required
+                label="Ширина листа"
+            >
+            <Input
+                placeholder="Введите ширину листа"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} м.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>       
+            <InputWrapper
+                required
+                label="Длина листа" 
+            >
+            <Input
+                placeholder="Введите длину листа"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина листа', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Толщина ленты"
+            >
+            <Input
+                placeholder="Введите толщину ленты"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина ленты"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>              
+    </MediaQuery>
     </>,
     <>
         <Image
@@ -1024,7 +1148,8 @@ export function tap (metalData, stampName, CallbackInput) {
     }
 
     return ([<>
-        <SimpleGrid cols={2} justify="center" align="center">     
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+           <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
                 required
                 label={`Выберите исполнение`}
@@ -1049,6 +1174,34 @@ export function tap (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery> 
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+           <SimpleGrid cols={2} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Исполнение`}
+            >
+            <Select
+                placeholder={`Выберите исполнение`}
+                data={executionData}
+                style={{width: '100%' }}
+                onChange={value => setExecution(value)} 
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Размер"
+            >
+            <Select
+                placeholder="Выберите размер"
+                data={execution}
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('Размер', {value})}
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery> 
     </>,
     <>
         <Image
@@ -1063,6 +1216,7 @@ export function tap (metalData, stampName, CallbackInput) {
 
 export function roundPipe (metalData, stampName, CallbackInput) {
     return ([<>
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
                 required
@@ -1112,6 +1266,58 @@ export function roundPipe (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+     </MediaQuery>
+     <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Марка ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Внешний диаметр"
+            >
+            <Input
+                placeholder="Введите внешний диаметр трубы"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Диаметр', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Толщина стенки"
+            >
+            <Input
+                placeholder="Введите толщину стенки"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+     </MediaQuery>
     </>,
     <>
         <Image
@@ -1126,7 +1332,8 @@ export function roundPipe (metalData, stampName, CallbackInput) {
 
 export function profilePipe (metalData, stampName, CallbackInput) {
     return ([<>
-        <SimpleGrid cols={2} justify="center" align="center">     
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">     
             <InputWrapper
                 required
                 label={`Выберите марку ${stampName}`}
@@ -1187,6 +1394,74 @@ export function profilePipe (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <>
+        <SimpleGrid cols={1} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Марка ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>  
+            </SimpleGrid>
+        <SimpleGrid cols={2} justify="center" align="left">         
+            <InputWrapper
+                required
+                label="Ширина трубы"
+            >      
+            <Input
+                placeholder="Введите ширину трубы"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Высота трубы"
+            >
+            <Input
+                placeholder="Введите высоту трубы"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Высота', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Толщина стенки"
+            >
+            <Input
+                placeholder="Введите толщину стенки"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </>
+        </MediaQuery>
     </>,
     <>
         <Image
@@ -1201,7 +1476,9 @@ export function profilePipe (metalData, stampName, CallbackInput) {
 
 export function corner (metalData, stampName, CallbackInput) {
     return ([<>
-        <SimpleGrid cols={3} justify="center" align="center">     
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+       
+           <SimpleGrid cols={3} justify="center" align="center">     
             <InputWrapper
                 required
                 label={`Выберите марку ${stampName}`}
@@ -1238,6 +1515,8 @@ export function corner (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <SimpleGrid cols={2} justify="center" align="center" style={{marginTop: 10}}>     
             <InputWrapper
                 required
@@ -1263,7 +1542,79 @@ export function corner (metalData, stampName, CallbackInput) {
                 rightSection="м."
                 />
             </InputWrapper>
+        </SimpleGrid>      
+    </MediaQuery> 
+    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>    
+           <SimpleGrid cols={1} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Марка ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">
+            <InputWrapper
+                required
+                label="Ширина"
+            >      
+            <Input
+                placeholder="Введите ширину уголка"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Ширина', `${event.target.value} м.`)}
+                rightSection="мм."
+                />    
+            </InputWrapper>      
+            <InputWrapper
+                required
+                label="Высотa"
+            >
+            <Input
+                placeholder="Введите высоту уголка"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Высота', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left" style={{marginTop: 10}}>     
+            <InputWrapper
+                required
+                label="Толщина полки"
+            >
+            <Input
+                placeholder="Введите толщину полки"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Толщина', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>      
+    </MediaQuery> 
     </>,
     <>
         <Image
@@ -1278,6 +1629,7 @@ export function corner (metalData, stampName, CallbackInput) {
 
 export function hexagon (metalData, stampName, CallbackInput) {
     return ([<>
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <SimpleGrid cols={3} justify="center" align="center">     
             <InputWrapper
                 required
@@ -1315,6 +1667,50 @@ export function hexagon (metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={1} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={`Марка ${stampName}`}
+            >
+            <Select
+                placeholder={`Выберите марку ${stampName}`}
+                data={metalData}
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('stamp', `${value}`)} 
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">
+            <InputWrapper
+                required
+                label="Сторона"
+            >
+            <Input
+                placeholder="Введите номер шестигранника"
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Номер', `${event.target.value} мм.`)}
+                rightSection="мм."
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery>
     </>,
     <>
         <Image
@@ -1391,6 +1787,7 @@ export function flatFlange(metalData, stampName, CallbackInput) {
     }
 
     return ([<>
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}> 
         <SimpleGrid cols={2} justify="center" align="center">     
             <InputWrapper
                 required
@@ -1416,6 +1813,34 @@ export function flatFlange(metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}> 
+        <SimpleGrid cols={2} justify="center" align="left">     
+            <InputWrapper
+                required
+                label={'Давление'}
+            >
+            <Select
+                placeholder={`Выберите давление`}
+                data={pressureData}
+                style={{width: '100%' }}
+                onChange={value => setPressureDiametr(value)} 
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Диаметр"
+            >
+            <Select
+                placeholder="Выберите условный диаметр"
+                data={pressureDiametr}
+                // value={price} 
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('Условный диаметр', value)}
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery>
     </>,
     <>
         <Image
@@ -1465,6 +1890,7 @@ export function channel(metalData, stampName, CallbackInput) {
     ]
 
     return ([<>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <SimpleGrid cols={2} justify="center" align="center">                        
             <InputWrapper
                 required
@@ -1489,6 +1915,33 @@ export function channel(metalData, stampName, CallbackInput) {
                 />
             </InputWrapper>
         </SimpleGrid>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <SimpleGrid cols={2} justify="center" align="left">                        
+            <InputWrapper
+                required
+                label="Номер"
+            >
+            <Select
+                placeholder="Выберите номер швеллера" 
+                data={channelData} 
+                style={{width: '100%' }}
+                onChange={value => CallbackInput('Номер швеллера', `${value}`)} 
+                />
+            </InputWrapper>
+            <InputWrapper
+                required
+                label="Длина"
+            >
+            <Input
+                placeholder="Введите длину" 
+                style={{width: '100%' }}
+                onChange={event => CallbackInput('Длина', `${event.target.value} м.`)}
+                rightSection="м."
+                />
+            </InputWrapper>
+        </SimpleGrid>
+        </MediaQuery>
     </>,
     <Image
         width='35%'
