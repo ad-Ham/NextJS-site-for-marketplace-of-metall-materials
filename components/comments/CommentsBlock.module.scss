@@ -3,13 +3,14 @@
 	margin-left: 20px;
     margin-right: 20px;
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .commentsCount {
     margin-bottom: 10px;
 }
 
-.mainMessage {
+.mainComment {
     position: relative;
     width: auto;
     padding-bottom: 16px;
@@ -18,7 +19,7 @@
     border-top: 1px solid #B2BEB5;
 }
 
-.replyMessage {
+.replyComment {
     border-top: 1px solid #B2BEB5;
     position: relative;
     width: auto;

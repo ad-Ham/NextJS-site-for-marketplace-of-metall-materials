@@ -13,37 +13,26 @@ export const getServerSideProps = async (context) => {
 			'Accept': 'application/json'
 		}
 	})
-	// const images = new Map();
 	let news = res.data.news
 	
 	let newsHot = res.data.newsHot
 	newsHot['image'] = await imageToBase64(newsHot.photopath)
-	let i;
-	for (i=0;i<news.length;++i) {
-		// images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
+	let i
+
+	for (i = 0; i < news.length; ++i) {
 		news[i]['image'] = await imageToBase64(news[i].photopath)
 	}
 	return {
 		props: {
 			news: news,
 			newsHot: newsHot
-			// images: images
-		},
+		}
 	}
 }
 
 const News = ({ news, newsHot, user }) => {
 	const theme = useMantineTheme();
-	news = news.map(newsObj => {
-		if (!newsObj.date) {
-			let date = new Date();
-			newsObj.date = date;
-		} else {
-			let date = new Date(newsObj.date);
-			newsObj.date = date;
-		}
-		return newsObj;
-	})
+
 	const [otherNews, setOtherNews] = useState([])
 	const showNews = news.map(newsObj => {
 		return (
@@ -65,7 +54,7 @@ const News = ({ news, newsHot, user }) => {
 								strokeWidth={1}
 								color={'gray'}
 								/>
-							<Text color="gray" size="xs">0</Text>		
+							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 						</Group>
 					</Group>
 					<Group >

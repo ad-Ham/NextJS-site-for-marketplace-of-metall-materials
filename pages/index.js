@@ -6,7 +6,7 @@ import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64')
 
 
 export async function getServerSideProps(context) {
@@ -15,7 +15,6 @@ export async function getServerSideProps(context) {
 			'Accept': 'application/json'
 		}
 	})
-	//const images = new Map();
 	let news = res.data.news
 
 	let newsHot = res.data.newsHot

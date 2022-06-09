@@ -109,8 +109,8 @@ function commentSimple(comment, user, comments, userStatus) {
                     </Group>
                     <Text size="xs" style={{marginTop: 1}}>{`${comment.post}, ${comment.orgName}` }</Text>
                     <Text size="xs" color="dimmed" style={{marginTop: 3}}>
-                    {`${comment.comment_date.slice(8, 10)}.${comment.comment_date.slice(5, 7)}.${comment.comment_date.slice(0, 4)}
-                    ${comment.comment_date.slice(11)}`}
+                    {`${comment.comment_time.slice(8, 10)}.${comment.comment_time.slice(5, 7)}.${comment.comment_time.slice(0, 4)}
+                    ${comment.comment_time.slice(11)}`}
                     </Text>
                 </div>
             </Group>
@@ -121,7 +121,7 @@ function commentSimple(comment, user, comments, userStatus) {
                         В ответ пользователю {`${comment.replyUserFirstName} ${comment.replyUserSurName}`}
                     </Text>
                 }
-                {comment.data}
+                {comment.comment_text}
                 </Text>
                 {replied.reply && answerCommentInput}
             </SimpleGrid>

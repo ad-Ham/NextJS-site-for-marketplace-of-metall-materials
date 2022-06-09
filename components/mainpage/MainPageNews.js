@@ -8,18 +8,7 @@ import { useRouter } from 'next/router'
 import { MessageCircle2 } from 'tabler-icons-react';
 
 export const MainPageNews = ({ news, newsHot, user }) => {
-	const theme = useMantineTheme();
-
-	news = news.map(newsObj => {
-		if (!newsObj.date) {
-			let date = new Date();
-			newsObj.date = date;
-		} else {
-			let date = new Date(newsObj.date);
-			newsObj.date = date;
-		}
-		return newsObj;
-	})
+	const theme = useMantineTheme()
 
 	const newsCards = news.slice(0, 2).map(newsObj => {
 		return (<>	
@@ -233,7 +222,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 									strokeWidth={1}
 									color={'gray'}
 									/>
-							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
+							<Text color="gray" size="xs">{newsHot.comments_count}</Text>		
 						</Group>
 						</Group>
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm, maxWidth: '100%' }}>
