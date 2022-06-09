@@ -13,19 +13,19 @@ import { axios, checkToken } from '/middleware/axios.js';
 import { Pencil,Trash, Pin, PinnedOff } from 'tabler-icons-react';
 import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge } from '@mantine/core';
 // const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64');
+const imageToBase64 = require('image-to-base64')
 	
 const handleDelete = async(e) => {
-	await axios.post('https://api.metalmarket.pro/newsdelete', {id: e.target.id})
+	await axios.post('http://localhost:3001/newsdelete', {id: e.target.id})
 }
 
 const handlePin = async(e) => {
-	await axios.post('https://api.metalmarket.pro/newspin', {id: e.target.id})
+	await axios.post('http://localhost:3001/newspin', {id: e.target.id})
 }
 
 export async function getServerSideProps(context) {
 	const id = context.params.pid
-	let res = await axios.get('https://api.metalmarket.pro/singlenews', {params: {id: id}, headers: {'Accept': 'application/json'}})
+	let res = await axios.get('http://localhost:3001/singlenews', {params: {id: id}, headers: {'Accept': 'application/json'}})
 	let tagsMas = res.data.news.tags.split(', ')
 	let tags = []
 	let i;
@@ -35,17 +35,15 @@ export async function getServerSideProps(context) {
 	let news = res.data.news
 	news['image'] = await imageToBase64(news.photopath)
 
-	res = await axios.get('https://api.metalmarket.pro/newsquery', {
+	res = await axios.get('http://localhost:3001/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
 
-	//const images = new Map();
 	const newsList = res.data.news
 		
 	for (i=0;i<newsList.length;++i) {
-		images.set(news.data.news[i].id, await imageToBase64(news.data.news[i].photopath))
 		newsList[i]['image'] = await imageToBase64(newsList[i].photopath)
 	}
 
@@ -53,7 +51,7 @@ export async function getServerSideProps(context) {
 		newsList.splice(newsList.indexOf(news))
 	}
 	
-	const response = await axios.get("https://api.metalmarket.pro/getcomments",
+	const response = await axios.get("http://localhost:3001/getcomments",
 		{ params : { entity: 'news', entity_id: id, headers: { 'Accept': 'application/json' }} }
 	)
 
