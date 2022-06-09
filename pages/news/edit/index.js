@@ -40,32 +40,32 @@ const NewsEdit = ({ news, user, userStatus }) => {
 	const router = useRouter();
 
 	const theme = useMantineTheme();
-	news = news.map(el => {
-		if (!el.date) {
+	news = news.map(newsObj => {
+		if (!newsObj.date) {
 			let date = new Date();
-			el.date = date;
+			newsObj.date = date;
 		} else {
-			let date = new Date(el.date);
-			el.date = date;
+			let date = new Date(newsObj.date);
+			newsObj.date = date;
 		}
-		return el;
+		return newsObj;
 	})
 	const [otherNews, setOtherNews] = useState([])
-	const showNews = news.map(el => {
-		return (<Grid.Col span={12} key={'0' + el.id}>
+	const showNews = news.map(newsObj => {
+		return (<Grid.Col span={12} key={'0' + newsObj.id}>
 			<Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-					<Title order={3} weight={500}>{el.title}</Title>
+					<Title order={3} weight={500}>{newsObj.title}</Title>
 				</Group>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,'+ el.image} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={100} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
-							{el.desc}
+							{newsObj.desc}
 						</Text>
-						{(el.pinned === 1) && <><Badge color="pink" variant="light">
+						{(newsObj.pinned === 1) && <><Badge color="pink" variant="light">
 							Горячая новость
 						</Badge></>}
 					</Grid.Col>
@@ -73,10 +73,8 @@ const NewsEdit = ({ news, user, userStatus }) => {
 				<Grid>
 				    <Grid.Col span={2} justify={'center'} align={'right'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{
-							(el.date.getDate().toString().length === 1 ? '0' + el.date.getDate().toString() : el.date.getDate().toString()) + '.' +
-							((el.date.getMonth() + 1).toString().length === 1 ? '0' + (el.date.getMonth() + 1).toString() : (el.date.getMonth() + 1).toString()) + '.' +
-							el.date.getFullYear() +' ' + el.time.slice(0, 5)
-						}
+						`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
+						${newsObj.news_date.slice(11)}`}
 						</Text>
 
 					</Grid.Col>
@@ -84,22 +82,22 @@ const NewsEdit = ({ news, user, userStatus }) => {
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
 					</Grid.Col>
 					<Grid.Col span={3} justify={'center'} align={'center'}>
-					    <Link href={"/news/edit/" + el.id} passHref>
+					    <Link href={"/news/edit/" + newsObj.id} passHref>
 							<Button variant="subtle" style={{ marginTop: 14 }}>
 								Редактировать
 							</Button>
 						</Link>
 					</Grid.Col>
 					<Grid.Col span={2} justify={'center'} align={'center'}>
-						<form id={el.id} key={'0'+el.id} onSubmit={handleDelete}>
-						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+						<form id={newsObj.id} key={'0'+newsObj.id} onSubmit={handleDelete}>
+						<Button id={newsObj.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
 							Удалить
 						</Button>
 						</form>
 					</Grid.Col>
 					<Grid.Col span={3} justify={'center'} align={'center'}>
-						<form id={el.id} key={'0'+el.id} onSubmit={handlePin}>
-						<Button id={el.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
+						<form id={newsObj.id} key={'0'+newsObj.id} onSubmit={handlePin}>
+						<Button id={newsObj.id} type="submit" variant="subtle" style={{ marginTop: 14 }}>
 							Закрепить
 						</Button>
 						</form>
