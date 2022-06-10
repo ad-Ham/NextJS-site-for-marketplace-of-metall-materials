@@ -279,7 +279,21 @@ const News = ({ news, newsHot }) => {
 							</Text>
 						</Grid.Col>
 					</Grid> */}
-					<Group position="apart">
+					<Grid justify={"space-between"} columns={24}>
+						<Grid.Col span={4}>
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
+						</Grid.Col>
+						<Grid.Col span={20}>
+							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
+								Горячая новость
+							</Badge></>}
+							<Space h="xs"/>
+							<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
+								{newsHot.desc}
+							</Text>
+						</Grid.Col>
+					</Grid>
+					{/* <Group position="apart">
 						<Group position="left">
 						<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
 						</Group>
@@ -292,7 +306,7 @@ const News = ({ news, newsHot }) => {
 									{newsHot.desc}
 								</Text>
 						</Group>
-					</Group>
+					</Group> */}
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>
