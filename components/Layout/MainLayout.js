@@ -266,9 +266,9 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 											</tr>
 										</thead>
 										<tbody>
-											{metalls.map(metalls => (
+											{metalls.map((metalls, index) => (
 												<tr key={metalls.id}>
-													<td style={{ fontWeight: 400 }}>{metallsIcon[0].image} {metalls.name}</td>
+													<td style={{ fontWeight: 400 }}>{metallsIcon[index].image} {metalls.name}</td>
 													<td >{metalls.price}</td>
 													<td style={{
 														color: (parseFloat(metalls.price_change) < 0 ? '#ff0000' : '#008000'),
@@ -307,7 +307,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 										<tbody>
 											{stock.map(stock => (
 												<tr key={stock.id}>
-													<td style={{ fontWeight: 400 }}>{companyLogo[stock.id-0].image}   {stock.name}</td>
+													<td style={{ fontWeight: 400 }}>{companyLogo[stock.id].image}   {stock.name}</td>
 													<td >{stock.price}</td>
 													<td style={{
 														color: (parseFloat(stock.price_change) < 0 ? '#ff0000' : '#008000'),
