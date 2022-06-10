@@ -1,7 +1,7 @@
 import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { ModalsProvider, useModals } from '@mantine/modals';
-import { axios, checkToken } from '/middleware/axios.js';
+import { useForm } from '@mantine/form'
+import { useModals } from '@mantine/modals';
+import { axios } from '/middleware/axios.js';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link'
 import { useRouter } from 'next/router'

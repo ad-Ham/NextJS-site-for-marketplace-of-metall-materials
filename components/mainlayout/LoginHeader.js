@@ -1,6 +1,7 @@
 import { LoginHeaderButton } from '../mainLayout/LoginHeaderButton.js'
-import { useState } from 'react';
-const axios = require('axios').default;
+import { useState } from 'react'
+
+const axios = require('axios').default
 
 export const LoginHeader = () => {
 	const [login, setLogin] = useState('');
@@ -14,8 +15,8 @@ export const LoginHeader = () => {
 		  })
 		  .then(function (response) {
 
-		    let token = response.data.token;
-		    localStorage.setItem('token', token);
+		    let token = response.data.token
+		    localStorage.setItem('token', token)
 	    	alert('Вы успешно вошли!')
 		    e.target.reset();
 		  })

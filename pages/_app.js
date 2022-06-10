@@ -61,9 +61,19 @@ const MyApp = ({ Component, pageProps }) => {
 			setCurrOnlineUsers(data.users)
 		})
 
+		users_socket.on('new_message', (data) => {
+			if (router.pathname !== '/chats') {
+				showNotification({
+					title: 'Новое сообщение',
+					message: 'Новое сообщение',
+					// message: `Новое сообщение от пользователя ${data.message.sender_firsName} ${data.message.sender_surName}`,
+					autoClose: true,
 		
-	// }, [users_socket, messages_socket])	
-	}, [users_socket])
+					color: "green"
+				})
+			}
+		})
+	}, [users_socket, messages_socket])	
 
 	return (
 		<>

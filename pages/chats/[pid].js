@@ -1,5 +1,5 @@
 // import { UserChats } from "../../components/chats/chats"
-import axios from "axios";
+import axios from "axios"
 import React, { useState, useEffect } from 'react'
 import { useViewportSize } from '@mantine/hooks'
 import { messages_socket } from '../../middleware/sockets'
@@ -11,8 +11,7 @@ import { showNotification } from '@mantine/notifications'
 // const imageToBase64 = require('image-to-base64')
 
 export async function getServerSideProps(context) {
-	// const user_id = localStorage.getItem('user_id')
-	const user_id = 84
+	const user_id = context.params.pid
 
 	const res = await axios.get('https://api.metalmarket.pro/getuserdialogs', {
 		params: {
@@ -26,7 +25,7 @@ export async function getServerSideProps(context) {
 	const userDialogs = res.data.userDialogs
 
 	for (let i = 0; i < userDialogs.length; i++) {
-		// userDialogs[i].dialog_user.user_image = await imageToBase64(userDialogs[i].dialog_user.photopath)
+		userDialogs[i].dialog_user.user_image = await imageToBase64(userDialogs[i].dialog_user.photopath)
 	}	
 
 	return {
@@ -40,11 +39,11 @@ export async function getServerSideProps(context) {
 export function ChatsPage({ userDialogs, user, userStatus }) {
 	const userDialogsMessages = useForm({
 		initialValues: {
-			dialogs: formList(userDialogs),
-			activeDialogMessages: formList([])
+			dialogs: formList(userDialogs)
 		}
 	})
 
+	const [connected, setConnected] = useState(false)
 	const { height, width } = useViewportSize()
 	const { classes, cx } = useStyles()
 	const [activeDialogIndex, setActiveDialogIndex] = useState(0)
@@ -53,42 +52,40 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 	const [messageText, setMessageText] = useState('')
 		
 	useEffect(() => {
-		// if (!messages_socket.connected) messages_socket.connect()
+		if (!connected) {
+			messages_socket.emit('register_user', { user_id: user.id })
+		}
 
 		messages_socket.on('receive_message', (data) => {
-			const dialogIndex = userDialogs.findIndex(dialog => dialog.dialog_user_id === data.dialog_user_id)
+			const dialogIndex = userDialogsMessages.values.dialogs.findIndex(dialog => dialog.dialog_user_id === parseInt(data.dialog_id))
 
-			setMessages(data.message)
+			setMessages(data.message, dialogIndex)
 		})
 
-		messages_socket.on('new_message', (data) => {
-			// console.log('success')
-			// if (router.pathname !== '/chats') {
-				showNotification({
-					title: 'Новое сообщение',
-					message: 'Новое сообщение',
-					// message: `Новое сообщение от пользователя ${data.message.sender_firsName} ${data.message.sender_surName}`,
-					autoClose: true,
 		
-					color: "green"
-				})
-			// }
-		})
 		// messages_socket.on('delete_messsage', (data) => {
 
 		// })
 
 	}, [messages_socket])
 
-	function changeDialogs(message, callback) {
-		userDialogsMessages.values.dialogs[activeDialogIndex].messages.push(message)
-		userDialogsMessages.reorderListItem('dialogs', { from: activeDialogIndex, to: 0})
+	function changeDialogs(message, index, callback) {
+		console.log(index)
+
+		if (index === undefined) {
+			userDialogsMessages.values.dialogs[activeDialogIndex].messages.push(message)
+			userDialogsMessages.reorderListItem('dialogs', { from: activeDialogIndex, to: 0})
+		}
+		if (index !== undefined) {
+			userDialogsMessages.values.dialogs[index].messages.push(message)
+			userDialogsMessages.reorderListItem('dialogs', { from: index, to: 0})
+		}
 	
 		callback()
 	}
 
-	function setMessages(message) {
-		changeDialogs(message, function() {
+	function setMessages(message, index=undefined) {
+		changeDialogs(message, index, function() {
 			setActiveDialogIndex(0)
 		})
 	}
@@ -126,12 +123,12 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 		// Внедрить очередь для оптимизации (не сейчас)
 	}
 	
-	const activeDialog = userDialogsMessages.values.activeDialogMessages.map(message => (
+	const activeDialog = userDialogsMessages.values.dialogs[activeDialogIndex].messages.map(message => (
 		<>
 			<div key={message.id} className={classes.mainMessage}>
 				<Group>
 				<Avatar 
-					src={message.sender_id === user.id ? 'data:image/' + ';base64,' + user.image : 'data:image/' + ';base64,' + dialogUserImage} 
+					src={message.sender_id === user.id ? ('data:image/' + ';base64,' + user.image) : ('data:image/' + ';base64,' + dialogUserImage)} 
 					radius="xl"
 					size={(dialogUserImage) ? "md" : "lg"}
 				/>

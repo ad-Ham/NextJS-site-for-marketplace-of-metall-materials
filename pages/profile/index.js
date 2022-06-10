@@ -14,9 +14,25 @@ import { useRouter } from 'next/router'
 import { useModals } from '@mantine/modals';
 
 
-const PersonalData = ({ user, userStatus }) => {
+export async function getServerSideProps(context) {
+	const res = await axios.get('https://api.metalmarket.pro/getUnapprovedUsers', {
+		headers: {
+			'Accept': 'application/json'
+		}
+	})
+	
+	const unapprovedUsers = res.data.users
+
+	return {
+		props: {
+			unapprovedUsers: unapprovedUsers
+		}
+	}
+}
+
+
+const PersonalData = ({ user, userStatus, unapprovedUsers=[] }) => {
     const router = useRouter();
-    const [users, setUsers] = useState([])
     
     const modals = useModals();
 
@@ -24,14 +40,16 @@ const PersonalData = ({ user, userStatus }) => {
     const [open, setOpen] = useState(false);
 
     const handleApprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/approveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/approveUser', {email: e.target.id})
+        .then(function() {router.reload(window.location.pathname)})
     }
 
     const handleDisapprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/disapproveUser', {email:e.target.id})
+        await axios.post('https://api.metalmarket.pro/disapproveUser', {email: e.target.id})
+        .then(function() {router.reload(window.location.pathname)})
     }
 
-    const showUsers = users.map(el => {
+    const showUsers = unapprovedUsers.map(el => {
             return (<Grid.Col span={12} key={'0' + el.id}>
                 <Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
                     <Group position="apart" style={{ marginBottom: 5 }}>
