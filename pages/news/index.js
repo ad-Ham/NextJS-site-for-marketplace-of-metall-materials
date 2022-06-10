@@ -57,24 +57,26 @@ const News = ({ news, newsHot, user }) => {
 							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 						</Group>
 					</Group>
-					<Group >
-									<Link href={'/news/edit'} passHref>
-										<Pencil	
-											cursor={"pointer"}	
-											size={15}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
-									<Link href="#" passHref>
-										<X	
-											cursor={"pointer"}	
-											size={15}
-											strokeWidth={1}
-											color={'blue'}											
-										/>
-									</Link>
-							</Group>
+					<Group>
+						{user.role === 'admin' && <>
+							<Link href={'/news/edit'} passHref>
+								<Pencil	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}
+								/>
+							</Link>
+							<Link href="#" passHref>
+								<X	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}
+								/>
+							</Link>
+						</>}
+				</Group>
 				 </Group>
 				</MediaQuery>
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
@@ -82,25 +84,27 @@ const News = ({ news, newsHot, user }) => {
 					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
 						<Link href={"/news/" + newsObj.id} passHref><Title order={3} weight={500}>{newsObj.title}</Title></Link>
 					</Group>
-					<Group >
-									<Link href={'/news/edit'} passHref>
-										<Pencil	
-											cursor={"pointer"}	
-											size={20}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
-									<Link href="#" passHref>
-										<X		
-											cursor={"pointer"}
-											size={20}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
-							</Group>
-							</Group>
+					<Group>
+						{user.role === 'admin' && <>
+							<Link href={'/news/edit'} passHref>
+								<Pencil	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}
+								/>
+							</Link>
+							<Link href="#" passHref>
+								<X	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}
+								/>
+							</Link>
+						</>}
+					</Group>
+					</Group>
 				</MediaQuery>
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
@@ -226,22 +230,24 @@ const News = ({ news, newsHot, user }) => {
 								<Link href={"/news/" + newsHot.id} passHref><Title order={3} weight={500}>{newsHot.title}</Title></Link>
 							</Group>							
 							<Group >
-								<Link href={'/news/edit'} passHref>
-									<Pencil	
-										cursor={"pointer"}	
-										size={20}
-										strokeWidth={1}
-										color={'blue'}
-									/>
-								</Link>
-								<Link href="#" passHref>
-									<X	
-										cursor={"pointer"}	
-										size={20}
-										strokeWidth={1}
-										color={'blue'}
-									/>
-								</Link>
+								{user.role === 'admin' && <>
+									<Link href={'/news/edit'} passHref>
+										<Pencil	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+									<Link href="#" passHref>
+										<X	
+											cursor={"pointer"}	
+											size={15}
+											strokeWidth={1}
+											color={'blue'}
+										/>
+									</Link>
+								</>}
 							</Group>
 						</Group>
 					</MediaQuery>

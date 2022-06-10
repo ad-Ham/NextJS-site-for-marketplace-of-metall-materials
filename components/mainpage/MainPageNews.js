@@ -1,11 +1,11 @@
 import Link from 'next/link'
-// import Image from 'next/image'
 import styles from './MainPageNews.module.scss'
 import { Button, Grid, Card, Title, Text, Badge, Image, Group, useMantineTheme, Space, MediaQuery, SimpleGrid } from '@mantine/core';
 import { useState, useEffect, React} from 'react';
 import { axios, checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
 import { MessageCircle2 } from 'tabler-icons-react';
+
 
 export const MainPageNews = ({ news, newsHot, user }) => {
 	const theme = useMantineTheme()
