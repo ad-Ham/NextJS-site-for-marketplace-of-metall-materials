@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react';
 import Link from 'next/link'
-import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge, MediaQuery } from '@mantine/core';
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, Badge, MediaQuery,SimpleGrid } from '@mantine/core';
 import { Plus, Pencil, X } from 'tabler-icons-react';
 const axios = require('axios').default;
 import { MessageCircle2 } from 'tabler-icons-react';
@@ -72,21 +72,21 @@ const News = ({ news, newsHot }) => {
 						</Group>
 					</Group>
 					<Group >
-									<Link href={'/news/edit'} passHref>
-										<Pencil	
-											cursor={"pointer"}	
-											size={15}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
-									<Link href="#" passHref>
-										<X	
-											cursor={"pointer"}	
-											size={15}
-											strokeWidth={1}
-											color={'blue'}											
-										/>
+							<Link href={'/news/edit'} passHref>
+								<Pencil	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}
+								/>
+							</Link>
+							<Link href="#" passHref>
+								<X	
+									cursor={"pointer"}	
+									size={15}
+									strokeWidth={1}
+									color={'blue'}											
+								/>
 									</Link>
 							</Group>
 				 </Group>
@@ -97,22 +97,22 @@ const News = ({ news, newsHot }) => {
 						<Link href={"/news/" + el.id} passHref><Title order={3} weight={500}>{el.title}</Title></Link>
 					</Group>
 					<Group >
-									<Link href={'/news/edit'} passHref>
-										<Pencil	
-											cursor={"pointer"}	
-											size={20}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
-									<Link href="#" passHref>
-										<X		
-											cursor={"pointer"}
-											size={20}
-											strokeWidth={1}
-											color={'blue'}
-										/>
-									</Link>
+						<Link href={'/news/edit'} passHref>
+							<Pencil	
+							cursor={"pointer"}	
+							size={20}
+							strokeWidth={1}
+							color={'blue'}
+							/>
+						</Link>
+						<Link href="#" passHref>
+							<X		
+							cursor={"pointer"}
+							size={20}
+							strokeWidth={1}
+							color={'blue'}
+							/>
+						</Link>
 							</Group>
 							</Group>
 				</MediaQuery>
@@ -127,7 +127,7 @@ const News = ({ news, newsHot }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image} height={120} widht={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image}  widht={"50%"} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -265,20 +265,34 @@ const News = ({ news, newsHot }) => {
 						</Group>
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-					<Grid justify={"center"}>
+					{/* <Grid justify={"center"}>
 						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={120} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
 							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
 								Горячая новость
 							</Badge></>}
 							<Space h="xs"/>
-							<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
+							<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
 								{newsHot.desc}
 							</Text>
 						</Grid.Col>
-					</Grid>
+					</Grid> */}
+					<Group position="apart">
+						<Group position="left">
+						<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
+						</Group>
+						<Group>
+							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
+									Горячая новость
+								</Badge></>}
+								<Space h="xs"/>
+								<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
+									{newsHot.desc}
+								</Text>
+						</Group>
+					</Group>
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>
