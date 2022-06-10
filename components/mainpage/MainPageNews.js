@@ -207,7 +207,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
-							}
+							} 
 						</Group>
 						<Group>
 							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">

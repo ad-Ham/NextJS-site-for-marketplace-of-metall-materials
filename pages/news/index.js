@@ -33,9 +33,8 @@ export const getServerSideProps = async (context) => {
 }
 
 const News = ({ news, newsHot, user }) => {
-	const theme = useMantineTheme();
+	const theme = useMantineTheme()
 
-	const [otherNews, setOtherNews] = useState([])
 	const showNews = news.map(newsObj => {
 		return (
 	  
@@ -70,7 +69,7 @@ const News = ({ news, newsHot, user }) => {
 								/>
 							</Link>
 							<Link href="#" passHref>
-								<X	
+								<X
 									cursor={"pointer"}	
 									size={15}
 									strokeWidth={1}
@@ -135,11 +134,11 @@ const News = ({ news, newsHot, user }) => {
 							Горячая новость
 						</Badge></>}
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-				<Grid justify={"center"}>
+				<Grid justify={"space-between"} columns={24}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} width='50%' alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} width='80%' layout="fill" />
 					</Grid.Col>
-					<Grid.Col span={8}>
+					<Grid.Col span={20}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{newsObj.desc}
 						</Text>						
@@ -277,23 +276,9 @@ const News = ({ news, newsHot, user }) => {
 						</Group>
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-					{/* <Grid justify={"center"}>
-						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} width='50%' alt="Norway" layout="fill" />
-						</Grid.Col>
-						<Grid.Col span={8}>
-							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
-								Горячая новость
-							</Badge></>}
-							<Space h="xs"/>
-							<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
-								{newsHot.desc}
-							</Text>
-						</Grid.Col>
-					</Grid> */}
 					<Grid justify={"space-between"} columns={24}>
-						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
+						<Grid.Col span={4}>							
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"80%"} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={20}>
 							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
@@ -304,21 +289,7 @@ const News = ({ news, newsHot, user }) => {
 								{newsHot.desc}
 							</Text>
 						</Grid.Col>
-					</Grid>
-					{/* <Group position="apart">
-						<Group position="left">
-						<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
-						</Group>
-						<Group>
-							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
-									Горячая новость
-								</Badge></>}
-								<Space h="xs"/>
-								<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
-									{newsHot.desc}
-								</Text>
-						</Group>
-					</Group> */}
+					</Grid>				
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>

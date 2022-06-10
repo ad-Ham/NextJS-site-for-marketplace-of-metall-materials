@@ -8,7 +8,7 @@ import { Text, Group, Avatar, Textarea, Grid, ScrollArea, Card, SimpleGrid, Acti
 import { Send } from 'tabler-icons-react'
 import { useForm, formList} from "@mantine/form"
 import { showNotification } from '@mantine/notifications'
-// const imageToBase64 = require('image-to-base64')
+const imageToBase64 = require('image-to-base64')
 
 export async function getServerSideProps(context) {
 	const user_id = context.params.pid

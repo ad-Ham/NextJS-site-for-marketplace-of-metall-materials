@@ -29,8 +29,6 @@ export const LoginHeaderButton = () => {
 				<Button onClick={showPreview} variant="light" color="gray" size="xs" uppercase>
 					Войти/Регистрация
 				</Button>
-
-				{/* >>>>>>> 63d29bb0dd60abbe5997735edc069494e0d6e6d5 */}
 			</div >
 			<style jsx>{`
 				

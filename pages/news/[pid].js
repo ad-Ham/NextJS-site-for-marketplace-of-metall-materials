@@ -93,7 +93,7 @@ const NewsPage = ({news, tags, newsList, comments, user, userStatus}) => {
 												cursor={"pointer"}	
 												size={18}
 												strokeWidth={1}
-												color={'red'}
+												color={'blue'}
 											/>
 										</form>
 										<PinnedOff
@@ -101,7 +101,7 @@ const NewsPage = ({news, tags, newsList, comments, user, userStatus}) => {
 												cursor={"pointer"}	
 												size={18}
 												strokeWidth={1}
-												color={'red'}
+												color={'blue'}
 											/>
 									</Group>				
 									<Group style={{marginRight:20}}>
