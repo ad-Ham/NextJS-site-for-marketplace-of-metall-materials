@@ -6,7 +6,7 @@ import { UserChats } from "../../components/chats/chats";
 export async function getServerSideProps(context) {
 	const user_id = 84
 
-	const res = await axios.get('http://localhost:3001/getuserdialogs', {
+	const res = await axios.get('https://api.metalmarket.pro/getuserdialogs', {
 		params: {
 			user_id: user_id
 		},
