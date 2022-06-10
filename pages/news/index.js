@@ -119,7 +119,7 @@ const News = ({ news, newsHot, user }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} height={120} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} width='50%' alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -261,7 +261,7 @@ const News = ({ news, newsHot, user }) => {
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 					<Grid justify={"center"}>
 						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} height={120} alt="Norway" layout="fill" />
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} width='50%' alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={8}>
 							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
