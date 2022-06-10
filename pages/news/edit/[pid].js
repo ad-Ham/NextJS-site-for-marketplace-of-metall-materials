@@ -1,12 +1,13 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-const axios = require('axios').default;
-import  RichTextEditor  from '../../../components/RichText.tsx';
-import { showNotification } from '@mantine/notifications';
-import { Input, Group, Button } from '@mantine/core';
-import { checkToken } from '/middleware/axios.js';
+const axios = require('axios').default
+import  RichTextEditor  from '../../../components/RichText.tsx'
+import { showNotification } from '@mantine/notifications'
+import { Input, Group, Button } from '@mantine/core'
+import { checkToken } from '/middleware/axios.js'
+const imageToBase64 = require('image-to-base64')
 
 
 export async function getServerSideProps(context) {
