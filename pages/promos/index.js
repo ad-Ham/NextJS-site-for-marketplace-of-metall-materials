@@ -246,7 +246,7 @@ const Promos = ({ promos }) => {
                 <meta charSet="utf-8" />
             </Head>
             <Card>
-                <Group justify="space-between" spacing={"60%"}>
+                <Group position="apart">
               {/* <div className='headerDiv'> */}
                   <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginBottom: 10}}><h1>Доска объявлений</h1></MediaQuery>
                     <Link href="/promos/add" passHref>
