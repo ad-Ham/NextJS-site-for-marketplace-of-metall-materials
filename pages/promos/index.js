@@ -236,38 +236,38 @@ if (e !== null) {
 }
 }
 
-return (
-	<>
-		<Head>
-			<title>Объявления</title>
-			<meta name="keywords" content="next, javascript" />
-			<meta name="description" content="this is" />
-			<meta charSet="utf-8" />
-		</Head>
-		<Card>
-			<Group justify="space-between" spacing={"60%"}>
-			{/* <div className='headerDiv'> */}
-				<MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginBottom: 10}}><h1>Доска объявлений</h1></MediaQuery>
-				<Link href="/promos/add" passHref>
-				<MediaQuery smallerThan="sm" styles={{ marginBottom: 10}}>
-					<Button variant="light">
-					Разместить объявление
-					</Button>
-					</MediaQuery>
-				</Link>                
-				</Group>                                                             
-			{/* </div> */}
-		<Select
-			id='mainSections'
-			data={categories}
-			label="Выберите раздел"
-			placeholder="--Разделы--"
-			searchable
-			nothingFound="Ничего не найдено"
-			clearButtonLabel="Clear selection"
-			clearable
-			onChange={updateSectionsValue}
-		/>
+    return (
+        <>
+            <Head>
+                <title>Объявления</title>
+                <meta name="keywords" content="next, javascript" />
+                <meta name="description" content="this is" />
+                <meta charSet="utf-8" />
+            </Head>
+            <Card>
+                <Group position="apart">
+              {/* <div className='headerDiv'> */}
+                  <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginBottom: 10}}><h1>Доска объявлений</h1></MediaQuery>
+                    <Link href="/promos/add" passHref>
+                    <MediaQuery smallerThan="sm" styles={{ marginBottom: 10}}>
+                      <Button variant="light">
+                        Разместить объявление
+                      </Button>
+                      </MediaQuery>
+                    </Link>                
+                  </Group>                                                             
+              {/* </div> */}
+            <Select
+              id='mainSections'
+              data={categories}
+              label="Выберите раздел"
+              placeholder="--Разделы--"
+              searchable
+              nothingFound="Ничего не найдено"
+              clearButtonLabel="Clear selection"
+              clearable
+              onChange={updateSectionsValue}
+            />
 
 		{(buySellStatus === true) && <><Select
 			data={[{value: 'Продам', label: 'Продам'}, {value: 'Куплю', label: 'Куплю'}]}

@@ -1,4 +1,4 @@
-import { Card, Table, MediaQuery, ScrollArea } from '@mantine/core';
+import { Card, Table, MediaQuery, ScrollArea, Text, Group,SimpleGrid} from '@mantine/core';
 import Link from 'next/link'
 import styles from './GostsList.module.scss'
 
@@ -519,8 +519,627 @@ export const GOSTS = [
 export const GostsList = () => {
     return (<>
     <div style={{ width: '100%'}}>
-      <Card>      
-            <Table>
+      <Card>  
+          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+          <SimpleGrid>                      
+                <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Катанка
+                </Text>                           
+                <li>
+                   <Text>
+                        Прутки стальные круглого сечения для холодной высадки и холодной экструзии
+                    </Text>                                     
+                    <p style={{fontWeight: 600}}>
+                        DIN EN 10108-2005
+                    </p>
+                </li>              
+                    <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Квадрат
+                    </Text>           
+                <li>
+                    <Text>
+                        Сталь кованая квадратная
+                    </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1133-71
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат стальной горячекатаный квадратный
+                 </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2591-2006
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прутки квадратные из инструментальной нелегированной стали
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1435-99
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Сталь калиброванная квадратная
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 8559-75
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прутки квадратные из быстрорежущей стали
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 19265-73
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат стальной горячекатаный квадратный общего назначения
+                 </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN EN 10059-2004
+                    </p> 
+                 </li>
+                 <li>
+                 <Text>
+                        Сталь прецизионная квадратного профиля
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN 59350-1982
+                    </p>
+                </li>
+
+                {/* Круг    */}
+              <li>
+                <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Круг
+                </Text>
+                </li>
+                <li>
+                    <Text>
+                        Сталь кованая круглая
+                    </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1133-71
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прутки круглые из инструментальной нелегированной стали
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1435-99
+                    </p>
+                </li>  
+                 <li >
+                 <Text>
+                        Прокат стальной горячекатаный круглый
+                 </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2590-2006
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прутки круглые из инструментальной нелегированной стали
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1435-99
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Сталь калиброванная круглая
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 7417-75
+                    </p>
+                </li>
+                <li>
+                    <Text>
+                        Сталь качественная круглая со специальной отделкой поверхности
+                     </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 14955-77
+                    </p>
+                </li>
+                <li>
+                    <Text>
+                        Прутки круглые из быстрорежущей стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 19265-73
+                    </p> 
+                 </li>
+                <li>
+                <Text>
+                        Прокат стальной горячекатаный круглый общего назначения
+               </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN EN 10060-2004
+                    </p>
+                </li>
+                 <li>
+                    <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Лента
+                   </Text>
+                </li>
+                <li>
+                <Text>
+                        Лента холоднокатаная из низкоуглеродистой стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 503-81
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лента холоднокатаная из инструментальной и пружинной стали
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2283-79
+                    </p>
+                </li>
+                <li>
+                    <Text>
+                        Лента холоднокатаная из углеродистой конструкционной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2284-79
+                    </p>
+                </li> 
+                 <li>
+                     <Text>
+                        Лента стальная упаковочная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 3560-73
+                    </p>
+                </li>
+                <li>
+                    <Text>
+                        Лента горячекатаная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 6009-74
+                    </p>
+                </li>
+                <li >
+                    <Text>
+                        Лента из электротехнической нелегированной тонколистовой стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 3836-83
+                    </p>
+                </li>
+                <li>
+                     <Text>
+                        Лента холоднокатаная из коррозионно-стойкой и жаростойкой стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 4986-79
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лента из стали марок 11КП и 11ЮА
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 8851-75
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лента стальная холоднокатаная термообработанная
+               </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 21996-76
+                    </p>
+                </li> 
+                 <li >
+                    <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Лист
+                    </Text>
+                </li>
+                <li>
+                <Text>
+                        Прокат листовой горячекатаный
+                 </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 19903-74
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат листовой холоднокатаный
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 19904-90
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Сталь тонколистовая оцинкованная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 14918-80
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лист горячеоцинкованный
+                        </Text>
+                    <p>
+                        ГОСТ Р 52246-2004
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Профили стальные с трапециевидными гофрами для строительства
+                </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 24045-2010
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Профили стальные гнутые листовые с трапециевидным гофром
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 9234-74
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лист стальной рифленый
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 8568-77
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат толстолистовой и широкополосный из конструкционной качественной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ1577-93
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат тонколистовой холоднокатаный из стали низкоуглеродистой качественной для холодной штамповки
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 9045-93
+                    </p>
+                </li>
+
+                <li>
+                <Text>
+                        Прокат толстолистовой из углеродистой стали обыкновенного качества
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 14637-89
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат листовой из углеродистой стали качественной и обыкновенного качества общего назначения
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 16523-97
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прокат тонколистовой из стали повышенной прочности
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 17066-94
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прокат тонколистовой холоднокатаный из стали низкоуглеродистой для эмалированной посуды
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 24244-80
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат листовой из углеродистой, низколегированной и легированной <br /> стали для котлов и сосудов, работающих под давлением
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 5520-79
+                    </p>
+                </li> 
+                 <li >
+                 <Text>
+                        Прокат листовой из коррозионно-стойких, жаростойких и жаропрочных сплавов
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 24982-81
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Листы стальные просечно-вытяжные
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 36.26.11-5-89<br />
+                        ТУ 5262-001-23083253-96<br />
+                        ТУ 0971-001-44028369-2011
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Лист стальной  электролитически оцинкованный
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 14-1-4766-90
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лист стальной  электролитически оцинкованный с полимерным покрытием
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 14-1-4695-89
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Лист профилированный
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 14-116-16-92
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Листовой прокат с чечевичным рифлением
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 14-2-818-88
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прокат листовой для холодной штамповки из конструкционной качественной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 4041-71
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прокат тонколистовой из стали коррозионно-стойкой, жаростойкой и жаропрочной
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 5582-75<br />
+                        ГОСТ 7350-77
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Сталь листовая горячекатаная двухслойная коррозионно-стойкая
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 10885-85
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Прокат листовой и широкополосный универсальный из стали конструкционной легированной<br />
+                        высококачественной специального назначения
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 11269-76
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Листы перфорированные
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ТУ 1812-001-50336739-2005
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Листы стальные горячекатаные рифленые
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN 59220-2000
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Листы волнистые и кровельные листы с покрытием
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN 59231-2003
+                    </p>
+                </li>                
+               <li >
+               <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Полоса
+                        </Text>
+                </li>
+                <li>
+                <Text>
+                        Прокат сортовой стальной горячекатаный полосовой
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 103-2006
+                    </p>
+                </li>
+                <li>
+                     <Text>
+                        Прокат стальной горячекатаный широкополосный универсальный
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 82-70
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Полосы из инструментальной нелегированной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1435-99
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Полосы горячекатаные и кованые из инструментальной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 4405-75
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Полосы стальные горячекатаные узкие общего назначения
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN EN 10058-2004
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Полосы стальные горячекатаные пружинные плоские
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN EN10092-1-2004
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Прокат стальной горячекатаный широкополосный универсальный
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN 59200-2001
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Сталь прецизионная полосовая
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        DIN 59350-1982
+                    </p>
+                </li> 
+                 <li >
+                 <Text style={{borderBottom: " 2px solid #6495ed", borderTop:" 2px solid #6495ed"}} align="center">
+                        Проволока
+                        </Text>
+                </li>
+                <li>
+                <Text>
+                        Проволока из низкоуглеродистой стали холоднотянутая для армирования железобетонных конструкций
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 6727-80
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Проволока из углеродистой стали для армирования предварительно напряженных железобетонных конструкций
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 7348-81
+                    </p>
+                </li> 
+                 <li >
+                 <Text>
+                        Проволока из углеродистой конструкционной стали
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 17305-91
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока стальная низкоуглеродистая общего назначения
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 3282-74
+                    </p>
+                </li>
+                <li>
+                <Text>
+                        Проволока низкоуглеродистая качественная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 792-67
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока стальная пружинная термически обработанная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 1071-81
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока стальная сварочная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2246-70
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока круглая холоднотянутая
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 2771-81
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока стальная кабельная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 3920-70
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока стальная углеродистая пружинная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 9389-75
+                    </p>
+                </li> 
+                 <li>
+                 <Text>
+                        Проволока стальная легированная пружинная
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 4963-78
+                    </p>
+                </li>
+                <li >
+                <Text>
+                        Проволока порошковая для дуговой сварки углеродистых и низколегированных сталей
+                        </Text>
+                    <p style={{fontWeight: 600}}>
+                        ГОСТ 26271-84
+                    </p>
+                </li>
+                </SimpleGrid> 
+         </MediaQuery>            
+            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                <Table>
                 <li className={styles.listitemheader}>
                 <p className={styles.listitemsubheadertext}>
                         Катанка
@@ -537,9 +1156,8 @@ export const GostsList = () => {
                     </p>
                     </Link>
                 </li>
-
                 {/* Квадрат    */}
-                <li className={styles.listitemheader}>
+               <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Квадрат
                     </p>
@@ -590,8 +1208,8 @@ export const GostsList = () => {
                     </p>
                     <p>
                         DIN EN 10059-2004
-                    </p>
-                </li>
+                    </p> 
+                 </li>
                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Сталь прецизионная квадратного профиля
@@ -602,7 +1220,7 @@ export const GostsList = () => {
                 </li>
 
                 {/* Круг    */}
-                <li className={styles.listitemheader}>
+              <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Круг
                     </p>
@@ -622,8 +1240,8 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 1435-99
                     </p>
-                </li>
-                <li className={styles.listitem}>
+                </li>  
+                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Прокат стальной горячекатаный круглый
                     </p>
@@ -661,8 +1279,8 @@ export const GostsList = () => {
                     </p>
                     <p>
                         ГОСТ 19265-73
-                    </p>
-                </li>
+                    </p> 
+                 </li>
                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Прокат стальной горячекатаный круглый общего назначения
@@ -673,7 +1291,7 @@ export const GostsList = () => {
                 </li>
 
                 {/* Лента    */}
-                <li className={styles.listitemheader}>
+                 <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Лента
                     </p>
@@ -701,8 +1319,8 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 2284-79
                     </p>
-                </li>
-                <li className={styles.listitem}>
+                </li> 
+                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Лента стальная упаковочная
                     </p>
@@ -749,10 +1367,10 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 21996-76
                     </p>
-                </li>
+                </li> 
 
                 {/* Лист    */}
-                <li className={styles.listitemheader}>
+                 <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Лист
                     </p>
@@ -869,8 +1487,8 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 5520-79
                     </p>
-                </li>
-                <li className={styles.listitem}>
+                </li> 
+                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Прокат листовой из коррозионно-стойких, жаростойких и жаропрочных сплавов
                     </p>
@@ -978,10 +1596,9 @@ export const GostsList = () => {
                     <p>
                         DIN 59231-2003
                     </p>
-                </li>
-
+                </li> 
                 {/* Полоса    */}
-                <li className={styles.listitemheader}>
+               <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Полоса
                     </p>
@@ -1049,10 +1666,10 @@ export const GostsList = () => {
                     <p>
                         DIN 59350-1982
                     </p>
-                </li>
+                </li> 
 
                 {/* Проволока    */}
-                <li className={styles.listitemheader}>
+                 <li className={styles.listitemheader}>
                     <p className={styles.listitemsubheadertext}>
                         Проволока
                     </p>
@@ -1072,8 +1689,8 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 7348-81
                     </p>
-                </li>
-                <li className={styles.listitem}>
+                </li> 
+                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Проволока из углеродистой конструкционной стали
                     </p>
@@ -1136,8 +1753,8 @@ export const GostsList = () => {
                     <p>
                         ГОСТ 9389-75
                     </p>
-                </li>
-                <li className={styles.listitem}>
+                </li> 
+                 <li className={styles.listitem}>
                     <p className={styles.listitemtext}>
                         Проволока стальная легированная пружинная
                     </p>
@@ -1153,7 +1770,8 @@ export const GostsList = () => {
                         ГОСТ 26271-84
                     </p>
                 </li>
-            </Table>
+            </Table> 
+            </MediaQuery>
     </Card>
     </div>
     </>)

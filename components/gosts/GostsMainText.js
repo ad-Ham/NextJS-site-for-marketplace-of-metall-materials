@@ -1,33 +1,37 @@
-import { Card } from '@mantine/core';
+import { Card, Text, Group,MediaQuery} from '@mantine/core';
 import styles from './GostsMainText.module.scss'
 
 export const GostsMainText = () => {
     return (<>
     <div style={{ width: '100%'}}>
     <Card>
-        <div className={styles.maindiv}>
-            <div className={styles.gostsheader}>
-                <h2 className={styles.gostsheadertext}>ГОСТы металлургической продукции</h2>
-            </div>
-            <div className={styles.gostsbody}>
-                <p className={styles.gostsbodytextone}>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Group position="center" style={{marginBottom:10}}>
+                <Text weight={700} style={{fontSize:30}}>ГОСТы металлургической продукции</Text>
+            </Group>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <Group  style={{marginBottom:10}}>
+                <Text weight={500} style={{fontSize:20}} align="center">ГОСТы металлургической продукции</Text>
+            </Group>
+        </MediaQuery>
+        <Group position="center">   
+             <Text>
                     ГОСТ (Государственный Стандарт) устанавливает качества, которыми должны обладать товары, продаваемые и производимые на территории той или иной страны. Сегодня ГОСТы существуют во всех сферах жизни
                     современного человека, включая промышленную отрасль. Они регламентируют правила производства металлов, а также оборудования, инструментов, одежды и так далее и тому подобное. В документах указывается,
                     какие производственные методы применяются, на каком оборудовании, какой технологией вести плавку и какие применять материалы.
-                </p>
-                <p className={styles.gostsbodytexttwo}>
+            </Text>
+            <Text>
                     ГОСТы, имеющие в названии букву «Р» - это госты, принятые в Российской Федерации. Они представляют собой конкретные правила сертификации, которые помогают и облегчают проведение многих процедур.
-                </p>
-                <p className={styles.gostsbodytextthree}>
+            </Text> 
+            <Text>            
                     Пять лет назад необходимо было обязательно придерживаться и соблюдать государственные стандарты. Однако с 2011 года соблюдение ГОСТов происходит на добровольной основе для всех сфер, кроме тех,
                     которые тесно связаны со здоровьем человека.
-                </p>
-                <p className={styles.gostsbodytextfour}>
+            </Text> 
+            <Text>  
                     Абсолютно все ГОСТы имеют уникальную классификацию и состоят из кода, который в свою очередь состоит из букв и цифр.
-                </p>
-            </div>
-
-        </div>
+            </Text>
+        </Group>
         </Card>
         </div>
     </>)

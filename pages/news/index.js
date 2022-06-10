@@ -119,7 +119,11 @@ const News = ({ news, newsHot, user }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid justify={"center"}>
 					<Grid.Col span={4}>
+<<<<<<< HEAD
 						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} height={120} alt="Norway" layout="fill" />
+=======
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image} height={120} widht={100} alt="Norway" layout="fill" />
+>>>>>>> 70da4695b101e4ef6d82088872a408de376aa5d3
 					</Grid.Col>
 					<Grid.Col span={8}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -134,9 +138,11 @@ const News = ({ news, newsHot, user }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid>
 				    <Grid.Col span={4} justify={'end'} align={'left'}>
-						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">{
+						<Text style={{ marginTop: '20px', fontSize: '15px'}} color="gray" size="sm">
+							{
 							`${newsObj.news_date.slice(8, 10)}.${newsObj.news_date.slice(5, 7)}.${newsObj.news_date.slice(0, 4)}
-							${newsObj.news_date.slice(11)}`}
+							${newsObj.news_date.slice(11)}`
+							}
 						</Text>
 
 					</Grid.Col>
