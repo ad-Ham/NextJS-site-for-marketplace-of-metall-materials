@@ -35,7 +35,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 					</Text>
 				</Grid.Col>
 				<Grid.Col span={4} justify={'end'} align={'center'}>
-					<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+					<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>
 				</Grid.Col>
 				<Grid.Col span={4} justify={'end'} align={'right'}>
 					<Link href={'/news/'+newsObj.id} passHref>
@@ -98,7 +98,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 						</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'space-between'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'space-between'} align={'right'}>
 					<Link href={'/news/'+newsObj.id} passHref>
@@ -187,7 +187,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 								</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'end'} align={'center'}>
-								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+								<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsHot.comments_count} комментариев`}</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'end'} align={'right'}>
 							<Link href={'/news/'+newsHot.id} passHref>

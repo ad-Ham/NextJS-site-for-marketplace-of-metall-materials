@@ -139,7 +139,7 @@ const News = ({ news, newsHot, user }) => {
 
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'right'}>
 					    <Link href={"/news/" + newsObj.id} passHref>
@@ -198,7 +198,7 @@ const News = ({ news, newsHot, user }) => {
 										strokeWidth={1}
 										color={'gray'}
 										/>
-									<Text color="gray" size="xs">100</Text>		
+									<Text color="gray" size="xs">{newsHot.comments_count}</Text>		
 								</Group>
 							</Group>
 							<Group>
@@ -281,7 +281,7 @@ const News = ({ news, newsHot, user }) => {
 							</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'center'}>
-								<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+								<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsHot.comments_count} комментариев`}</Text>
 							</Grid.Col>
 							<Grid.Col span={4} justify={'center'} align={'right'}>
 								<Link href={"/news/" + newsHot.id} passHref>

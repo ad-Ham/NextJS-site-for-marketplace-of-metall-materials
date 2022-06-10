@@ -79,7 +79,7 @@ const NewsEdit = ({ news, user, userStatus }) => {
 
 					</Grid.Col>
 					<Grid.Col span={2} justify={'center'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>
 					</Grid.Col>
 					<Grid.Col span={3} justify={'center'} align={'center'}>
 					    <Link href={"/news/edit/" + newsObj.id} passHref>

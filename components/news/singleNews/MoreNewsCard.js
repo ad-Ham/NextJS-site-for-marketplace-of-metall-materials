@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState } from 'react'
 import Link from 'next/link'
-import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, MediaQuery } from '@mantine/core';
-import { MessageCircle2 } from 'tabler-icons-react';
+import { Card, Grid, Pagination, Space, Title, Group, Image, Text, Button, useMantineTheme, MediaQuery } from '@mantine/core'
+import { MessageCircle2 } from 'tabler-icons-react'
+
+
 export const MoreNewsCard = ({news}) => {
 	const theme = useMantineTheme();
 	news = news.map(newsObj => {
@@ -43,7 +45,7 @@ export const MoreNewsCard = ({news}) => {
 
 					</Grid.Col>
 					<Grid.Col span={4} justify={'end'} align={'center'}>
-						<Text style={{ marginTop: '20px' }} color="gray" size="sm">0 комментариев</Text>
+						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>
 					</Grid.Col>
 					<Grid.Col span={4} justify={'end'} align={'right'}>
 					    <Link href={"/news/" + newsObj.id} passHref>
@@ -69,7 +71,7 @@ export const MoreNewsCard = ({news}) => {
 								strokeWidth={1}
 								color={'gray'}
 								/>
-							<Text color="gray" size="xs">100</Text>		
+							<Text color="gray" size="xs">{newsObj.comments_count}</Text>		
 					</Group>
 				</Group>
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
