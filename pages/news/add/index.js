@@ -6,15 +6,13 @@ const axios = require('axios').default;
 import Link from 'next/link'
 import { checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
-const initialValue =
-  		'<p>Оформите вашу новость здесь</p> <p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>';
 
 const AddNews = ({ user, userStatus }) => {
 	
 	const router = useRouter();
 
 	const [newsStatus, setNewsStatus] = useState('');
-	const [value, onChange] = useState(initialValue);
+	const [value, onChange] = useState('');
 	const [desc, setDesc] = useState('');
 	const [title, setTitle] = useState('');
 	const [tags, setTags] = useState('');
@@ -35,7 +33,7 @@ const AddNews = ({ user, userStatus }) => {
 	      setCreateObjectURL(URL.createObjectURL(i));
 	      blah.src = URL.createObjectURL(i)
 	    }
-	  };
+	}
 
 	const uploadToServer = async (e) => {  
   	    e.preventDefault()
@@ -51,7 +49,7 @@ const AddNews = ({ user, userStatus }) => {
 		      message: 'Новость добавлена',
 		      color: 'green'
           })
-	  };
+	  }
 
 	return (<>
 		{(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
@@ -92,8 +90,6 @@ const AddNews = ({ user, userStatus }) => {
 					className="input"
 					length="100%"
 					onChange={e => setTags(e.target.value)} />
-
-
 				<Button type="submit">Добавить новость</Button>
 				<Input type="reset" value="Сбросить"/>
 				<div>

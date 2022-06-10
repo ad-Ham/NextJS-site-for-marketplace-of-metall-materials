@@ -9,8 +9,9 @@ export function MenuUser ({ user }) {
   	const router = useRouter();
   	const [opened, handlers] = useDisclosure(false);
 
-  	const deleteToken = () => {
+  	const deleteLocalStorage = () => {
     	localStorage.removeItem('token')
+		localStorage.removeItem('user_id')
     	router.reload(window.location.pathname)
   	}
 
@@ -21,7 +22,7 @@ export function MenuUser ({ user }) {
 			<Link href="/chats" passHref><Menu.Item  icon={<MessageCircle size={14} />}>Мои сообщения</Menu.Item></Link>
 			<Link href="/myPromos" passHref><Menu.Item  icon={<FileText size={14} />}>Мои объявления</Menu.Item></Link>
 			<Divider />
-			<Link href="#" passHref><Menu.Item color="red" icon={<Logout size={14} />} onClick={deleteToken}>Выйти из аккаунта</Menu.Item></Link>
+			<Link href="#" passHref><Menu.Item color="red" icon={<Logout size={14} />} onClick={deleteLocalStorage}>Выйти из аккаунта</Menu.Item></Link>
 		</Menu>
 	</>  
 	);

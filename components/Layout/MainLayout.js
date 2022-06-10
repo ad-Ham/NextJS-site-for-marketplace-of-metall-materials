@@ -48,31 +48,6 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 	const [password, setPassword] = useState('');
 	const [isMobile, setIsMobile] = useState(false)
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		axios.post('https://api.metalmarket.pro/login', {
-			login: login,
-			password: password
-		})
-			.then(function (response) {
-				if (response.status === 200) {
-					localStorage.setItem('token', response.data.token);
-					alert('Вы успешно вошли!')
-					elem.classList.remove("modWindowWrapper")
-				} else if (response.status === 404) {
-					alert('Пользователь не найден')
-				} else if (response.status === 403) {
-					alert('Неверный пароль')
-				}
-
-				e.target.reset();
-			})
-			.catch(function (error) {
-				alert('Неверный email или пароль!')
-				console.log(error);
-			});
-	}
-
 	const [opened, setOpened] = useState(false);
 	const [openedMobile, setOpenedMobile] = useState(false);
 

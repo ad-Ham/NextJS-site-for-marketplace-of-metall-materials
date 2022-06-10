@@ -53,16 +53,8 @@ const MyApp = ({ Component, pageProps }) => {
 	}
 
 	useEffect(() => {
-		if (router.pathname === '/chats') {
-			setChats(true)
-			messages_socket.connect()
-		}
-		else {
-			if (messages_socket.connected) {
-				messages_socket.disconnect()
-			}
-			setChats(false)
-		}
+		if (router.pathname === '/chats') setChats(true)
+		else setChats(false)
 
 		if (loadingUser) changeUserStatus()
 		
