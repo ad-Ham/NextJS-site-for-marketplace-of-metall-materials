@@ -4,7 +4,6 @@ import { showNotification } from '@mantine/notifications'
 import { Group, Image } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
-
 import { axios, checkToken } from '../middleware/axios'
 import { useRouter } from 'next/router'
 import { ClockLoader } from 'react-spinners'
@@ -62,17 +61,9 @@ const MyApp = ({ Component, pageProps }) => {
 			setCurrOnlineUsers(data.users)
 		})
 
-		messages_socket.on('receive_message', (data) => {
-			showNotification({
-				title: 'Новое сообщения',
-				message: `Новое сообщения от пользователя`,
-				// ${data.firstName} ${data.surName}
-				autoClose: true,
-	
-				color: "green"
-			})
-		})
-	}, [users_socket, messages_socket])	
+		
+	// }, [users_socket, messages_socket])	
+	}, [users_socket])
 
 	return (
 		<>

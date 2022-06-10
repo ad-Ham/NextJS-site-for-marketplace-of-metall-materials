@@ -13,9 +13,7 @@ export const LoginHeader = () => {
 		    password: password
 		  })
 		  .then(function (response) {
-		    console.log(response.data.loginStatus);
-		    console.log(response)
-		    console.log(response.data)
+
 		    let token = response.data.token;
 		    localStorage.setItem('token', token);
 	    	alert('Вы успешно вошли!')

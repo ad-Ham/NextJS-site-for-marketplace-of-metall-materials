@@ -7,9 +7,9 @@ import { JurData } from '../reg/JurData'
 import { RegButton } from '../reg/RegButton'
 import styles from './RegisterForm.module.scss'
 import React from 'react'
-const axios = require('axios').default;
-import { showNotification } from '@mantine/notifications';
-import { useModals } from '@mantine/modals';
+const axios = require('axios').default
+import { showNotification } from '@mantine/notifications'
+import { useModals } from '@mantine/modals'
 
 
 export function RegisterForm() {

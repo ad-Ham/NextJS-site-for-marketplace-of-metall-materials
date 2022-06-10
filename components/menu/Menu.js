@@ -11,7 +11,6 @@ export function MenuUser ({ user }) {
 
   	const deleteLocalStorage = () => {
     	localStorage.removeItem('token')
-		localStorage.removeItem('user_id')
     	router.reload(window.location.pathname)
   	}
 

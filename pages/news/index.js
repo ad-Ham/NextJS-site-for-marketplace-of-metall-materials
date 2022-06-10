@@ -156,8 +156,6 @@ const News = ({ news, newsHot, user }) => {
 		</Card>);
 	})
 
-	const date = new Date(newsHot.date)
-
 	return (
 		<>
 			<Head>

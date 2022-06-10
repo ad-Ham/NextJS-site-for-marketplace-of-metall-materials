@@ -30,7 +30,6 @@ export const LoginForm = ({ id }) => {
 				console.log(response.status)
 				if (response.status === 200) {
 					localStorage.setItem('token', response.data.token)
-					localStorage.setItem('user_id', response.data.user_id)
 					showNotification({
 						title: 'Отлично!',
 			            message: 'Вы успешно вошли в аккаунт ' + values.email,
