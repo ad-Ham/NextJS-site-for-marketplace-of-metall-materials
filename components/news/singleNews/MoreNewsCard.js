@@ -24,11 +24,11 @@ export const MoreNewsCard = ({news}) => {
 				<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 					<Title order={3} weight={500}>{newsObj.title}</Title>
 				</Group>
-				<Grid justify={"center"}>
+				<Grid justify={"space-between"} columns={24}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} height={100} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,'+ newsObj.image} widht={"80%"} alt="Norway" layout="fill" />
 					</Grid.Col>
-					<Grid.Col span={8}>
+					<Grid.Col span={20}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{newsObj.desc}
 						</Text>

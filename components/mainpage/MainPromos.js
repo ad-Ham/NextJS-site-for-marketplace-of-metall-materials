@@ -25,12 +25,12 @@ export const MainPromos = ({ promos, user }) => {
 
 	return (<>
 		<Card>
-		<Grid>
-				<Grid.Col span={8}>
+		{/* <Grid>
+				<Grid.Col span={6}>
 				<MediaQuery smallerThan="sm" styles={{fontSize:25}}><Title order={1}>Объявления</Title></MediaQuery>
 				</Grid.Col>
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-					<Grid.Col span={2} align={"right"}>
+					<Grid.Col span={3} align={"right"}>
 					<Link href="/promos/add" passHref>
 						<Button variant="subtle">
 							Разместить объявление
@@ -39,7 +39,7 @@ export const MainPromos = ({ promos, user }) => {
 					</Grid.Col>
 				</MediaQuery>
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-					<Grid.Col span={2} align={"right"}>
+					<Grid.Col span={3} align={"right"}>
 						<Link href="/promos" passHref>
 							<Button variant="subtle">
 								Все объявления
@@ -61,7 +61,38 @@ export const MainPromos = ({ promos, user }) => {
 							</Link>
 					</Group>
 				</MediaQuery>
-			</Grid>
+			</Grid> */}
+			<Group position="apart">
+				<Group><MediaQuery smallerThan="sm" styles={{fontSize:25}}><Title order={1}>Объявления</Title></MediaQuery></Group>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+					<Group>
+					<Link href="/promos/add" passHref>
+						<Button variant="subtle">
+							Разместить объявление
+						</Button>
+					</Link>
+					<Link href="/promos" passHref>
+							<Button variant="subtle">
+								Все объявления
+							</Button>
+						</Link>
+				</Group>
+				</MediaQuery>
+				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+						<Group position="right" spacing={0}>
+							<Link href="/promos/add" passHref>
+								<Button variant="subtle">
+									Разместить объявление
+								</Button>
+							</Link>						
+							<Link href="/promos" passHref>
+								<Button variant="subtle">
+									Все объявления
+								</Button>
+							</Link>
+					</Group>
+				</MediaQuery>
+			</Group>
 			<Space h="md" />
 			<ScrollArea>
 				<Table striped highlightOnHover sx={{ minWidth: 800 }} verticalSpacing="sm">

@@ -81,7 +81,7 @@ const News = ({ news, newsHot }) => {
 								/>
 							</Link>
 							<Link href="#" passHref>
-								<X	
+								<X
 									cursor={"pointer"}	
 									size={15}
 									strokeWidth={1}
@@ -125,11 +125,11 @@ const News = ({ news, newsHot }) => {
 							Горячая новость
 						</Badge></>}
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-				<Grid justify={"center"}>
+				<Grid justify={"space-between"} columns={24}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image}  widht={"50%"} alt="Norway" layout="fill" />
+						<Image src={'data:image/'+el.photopath.substr(el.photopath.length-3)+';base64,' + el.image}  widht={"80%"} alt="Norway" layout="fill" />
 					</Grid.Col>
-					<Grid.Col span={8}>
+					<Grid.Col span={20}>
 						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{el.desc}
 						</Text>						
@@ -265,23 +265,9 @@ const News = ({ news, newsHot }) => {
 						</Group>
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-					{/* <Grid justify={"center"}>
-						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
-						</Grid.Col>
-						<Grid.Col span={8}>
-							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
-								Горячая новость
-							</Badge></>}
-							<Space h="xs"/>
-							<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
-								{newsHot.desc}
-							</Text>
-						</Grid.Col>
-					</Grid> */}
 					<Grid justify={"space-between"} columns={24}>
-						<Grid.Col span={4}>
-							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
+						<Grid.Col span={4}>							
+							<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"80%"} alt="Norway" layout="fill" />
 						</Grid.Col>
 						<Grid.Col span={20}>
 							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
@@ -292,21 +278,7 @@ const News = ({ news, newsHot }) => {
 								{newsHot.desc}
 							</Text>
 						</Grid.Col>
-					</Grid>
-					{/* <Group position="apart">
-						<Group position="left">
-						<Image src={'data:image/'+newsHot.photopath.substr(newsHot.photopath.length-3)+';base64,'+ newsHot.image} widht={"50%"} alt="Norway" layout="fill" />
-						</Group>
-						<Group>
-							{(newsHot.pinned === 1) && <><Badge color="pink" variant="light">
-									Горячая новость
-								</Badge></>}
-								<Space h="xs"/>
-								<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
-									{newsHot.desc}
-								</Text>
-						</Group>
-					</Group> */}
+					</Grid>				
 					</MediaQuery>
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Grid>
