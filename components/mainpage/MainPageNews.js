@@ -183,7 +183,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
-							}
+							 } 
 							<Title order={3} style={{ maxWidth: '100%' }} weight={500}>{newsHot.title}</Title>
 						</Group>
 						<Text lineClamp={6} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
@@ -218,7 +218,7 @@ export const MainPageNews = ({ news, newsHot, user }) => {
 							<Badge color="pink" variant="light">
 								Горячая новость
 							</Badge>
-							} 
+							 } 
 						</Group>
 						<Group>
 							<Text style={{ marginTop: '10px', marginLeft: 5  }} color="gray" size="xs">

@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import { Mail, Phone, Lock, BuildingSkyscraper,Download,Trash, Home,Login, FileText,Pencil, FileDescription, User } from 'tabler-icons-react';
+import { Mail, Phone, Lock, BuildingSkyscraper,Download,Trash, Home,Login, FileText,Pencil, FileDescription, User, PictureInPicture } from 'tabler-icons-react';
 import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
-import { Modal, Image, Avatar, Group, Title, Button, Badge, Input } from '@mantine/core';
+import { Modal, Image, Avatar, Group, Title, Button, Badge, Input ,Text,Card , Grid, MediaQuery,SimpleGrid,Container} from '@mantine/core';
 // import styles from './PersonalData.module.scss'
-import { Card , Grid, MediaQuery,SimpleGrid} from '@mantine/core';
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
 import { useEffect, useState } from 'react';
@@ -132,7 +131,7 @@ return (<>
     {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
     {(userStatus === true) && <>
     <Card>   
-    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+    {/* <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Group position="center">     
             <Avatar
                     radius={'50%'}
@@ -248,12 +247,137 @@ return (<>
                 strokeWidth={2}
                 color={'#42aaff'}
                  />
-        </Group>     
+        </Group>      */}
+       <Group>
+       <PictureInPicture
+         size={30}
+         strokeWidth={1}/>
+            <Text weight={400} size="lg">
+                Мой профиль
+            </Text>
+        </Group>
+         <Container my="md">
+      <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 1, minHeight: '75px'}]}>    
+      <Card shadow="sm" p="lg">                
+        <Group direction="column">   
+        <Card.Section style={{marginLeft:"30%"}}>         
+            <Avatar
+                    radius={'50%'}
+                    size={190}                   
+                    src={'data:image/' + ';base64,' + user.image}
+                    alt="Avatar"
+                    />
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:15, marginLeft:10, marginTop:10}}> <Download
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>                  
+            </Card.Section>  
+            <Text align="center" style={{fontSize:25}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</Text>             
+        </Group>  
+        <Group style={{}} position="right">
+                <Modal 
+                    size="xl"
+                    opened={opened}
+                    onClose={() => setOpened(false)}>
+                    <YourData/>
+                </Modal>
+                <Pencil
+                    onClick={() => setOpened(true)}
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'}
+                />
+        </Group>        
+        </Card>     
+        <Card shadow="sm" p="lg">
+            <Text weight={400} size="lg" align="center" style={{marginBottom:20, borderBottom: " 1px solid #DCDCDC"}}>
+                Ваши личные и юридические данные
+            </Text>                   
+        <Group direction="column">
+        <Group>
+                    <Mail               
+                        size={20}
+                        strokeWidth={1}
+                        color={'#FF4F00'}
+                        alt="Электронная почта"
+                        title="Электронная почта"/>
+                    <p style={{fontSize:17}}>
+                    {user.email}
+                    </p>
+                </Group>
+                <Group>
+                    <Phone 
+                    size={20}
+                    strokeWidth={1}
+                    color={'#FF4F00'}/>
+                    <p style={{fontSize:17}}>
+                    {user.phoneNumber}</p>
+                </Group>                            
+            <Group>
+            <BuildingSkyscraper 
+                    size={20}
+                    strokeWidth={1}
+                     color={'#FF4F00'}/>
+            <p style={{fontSize:18}}>
+                 {'Организация: ' + user.orgName}</p>
+            </Group>
+                <Group>
+                <Home 
+                        size={20}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:17}}>
+                     {'Юридический адрес: ' + user.jurAdress}</p>
+                </Group>
+                <Group>
+                <User 
+                        size={20}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:17}}>
+                    {'Должность: ' + user.post}</p>
+                </Group>
+                <Group>
+                <FileText
+                        size={20}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:17}}>
+                    {'ИНН: ' + user.inn}</p>
+                </Group>
+                <Group>
+                <FileDescription 
+                         size={20}
+                         strokeWidth={1}
+                         color={'#FF4F00'}/>
+                <p style={{fontSize:17}}>
+                     {'ОГРН: ' + user.ogrn}</p> 
+                </Group>  
+            </Group>
+            <Group position="right">
+            <Modal 
+                size="xl"
+                opened={open}
+                onClose={() => setOpen(false)}>
+                 <JurData/>
+            </Modal>
+            <Pencil
+                onClick={() => setOpen(true)}
+                size={20}
+                strokeWidth={2}
+                color={'#42aaff'}
+                 />
+        </Group>                 
+            </Card>  
+      </SimpleGrid>
+    </Container>
     </Card>
     </>}
     {(userStatus === true) && (user.role === 'admin') && 
     <>
-        <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginLeft: 10}}><h1 style={{margin: "2% 0"}}>Заявки на регистрацию</h1></MediaQuery>
+        <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginLeft: 10}}><Text style={{margin: "2% 0"}} size="lg">Заявки на регистрацию</Text></MediaQuery>
         <Grid>
             {showUsers}
         </Grid>
