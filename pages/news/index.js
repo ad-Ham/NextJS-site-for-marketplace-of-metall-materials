@@ -8,22 +8,26 @@ import { MessageCircle2 } from 'tabler-icons-react';
 const imageToBase64 = require('image-to-base64');
 
 export const getServerSideProps = async (context) => {
+	const mobile = (context.req.headers['user-agent']
+	.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i) ? true : false)
+
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
-	let news = res.data.news
 	
+	let news = res.data.news
 	let newsHot = res.data.newsHot
 	
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
-	
-	let i
+	if (!mobile) {
+		newsHot['image'] = await imageToBase64(newsHot.photopath)
 
-	for (i = 0; i < news.length; ++i) {
-		news[i]['image'] = await imageToBase64(news[i].photopath)
+		for (let i = 0; i < news.length; i++) {
+			news[i]['image'] = await imageToBase64(news[i].photopath)
+		}
 	}
+
 	return {
 		props: {
 			news: news,
