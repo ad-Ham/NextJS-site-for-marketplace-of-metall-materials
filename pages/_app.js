@@ -80,32 +80,6 @@ const MyApp = ({ Component, pageProps }) => {
 	return (
 		<>
 		{loadingUser ?
-			// <div 
-			// style = {{
-			// 	display: 'flex',
-			// 	alignItems: 'center',
-			// 	justifyContent: 'center',
-			// 	height: '100vh',
-			// }}>
-			// 	<Group spacing='xl' position="center">				
-								
-			// 				<ClockLoader
-			// 				color='#F5A623'
-			// 				position="right"
-			// 				size={ (width + height) / 45 }
-			// 			/>							
-			// 					<Image
-			// 					alt="metal-merket.pro"
-			// 					src="/logo.svg"
-			// 					style={{
-			// 						display: 'block',
-			// 						width: '50%'
-			// 					}}
-			// 				/>
-						
-						
-			// 	</Group>							
-			// </div>
 			<div style = {{
 				display: 'flex',
 				alignItems: 'center',
