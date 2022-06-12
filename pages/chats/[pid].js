@@ -10,6 +10,10 @@ import { useForm, formList} from "@mantine/form"
 import { showNotification } from '@mantine/notifications'
 const imageToBase64 = require('image-to-base64')
 
+
+const support_id = 88
+
+
 export async function getServerSideProps(context) {
 	const user_id = context.params.pid
 
@@ -25,7 +29,7 @@ export async function getServerSideProps(context) {
 	const userDialogs = res.data.userDialogs
 
 	for (let i = 0; i < userDialogs.length; i++) {
-		userDialogs[i].dialog_user.user_image = await imageToBase64(userDialogs[i].dialog_user.photopath)
+		userDialogs[i].dialog_user[0].image = await imageToBase64(userDialogs[i].dialog_user[0].photopath)
 	}	
 
 	return {
@@ -43,9 +47,10 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 		}
 	})
 
-	const [connected, setConnected] = useState(false)
 	const { height, width } = useViewportSize()
 	const { classes, cx } = useStyles()
+	const [supportMode, setSupportMode] = useState(false)
+	const [connected, setConnected] = useState(false)
 	const [activeDialogIndex, setActiveDialogIndex] = useState(0)
 	const [activeDialogId, setActiveDialogId] = useState(null)
 	const [dialogUserImage, setDialogUserImage] = useState('')
@@ -53,6 +58,8 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 		
 	useEffect(() => {
 		if (!connected) {
+			setConnected(true)
+
 			messages_socket.emit('register_user', { user_id: user.id })
 		}
 
@@ -70,23 +77,23 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 	}, [messages_socket])
 
 	function changeDialogs(message, index, callback) {
-		console.log(index)
-
 		if (index === undefined) {
 			userDialogsMessages.values.dialogs[activeDialogIndex].messages.push(message)
-			userDialogsMessages.reorderListItem('dialogs', { from: activeDialogIndex, to: 0})
+			var curr_dialog = userDialogsMessages.values.dialogs.splice(activeDialogIndex, 1)
 		}
-		if (index !== undefined) {
+		else {
 			userDialogsMessages.values.dialogs[index].messages.push(message)
-			userDialogsMessages.reorderListItem('dialogs', { from: index, to: 0})
+			var curr_dialog = userDialogsMessages.values.dialogs.splice(index, 1)
 		}
-	
-		callback()
+		
+		callback(curr_dialog)
 	}
 
 	function setMessages(message, index=undefined) {
-		changeDialogs(message, index, function() {
+		changeDialogs(message, index, function(curr_dialog) {
+			userDialogsMessages.values.dialogs.unshift(curr_dialog[0])
 			setActiveDialogIndex(0)
+			setMessageText('')
 		})
 	}
 
@@ -100,27 +107,39 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 
 		let message_time = `${year}-${month}-${day} ${time}`
 
-		const buildedMessage = {
-			id: null,
-			sender_id: user.id,
-			sender_post: user.post,
-			sender_orgName: user.orgName,
-			message_text: messageText,
-			message_time: message_time,
-			sender_firstName: user.firstName,
-			sender_surName: user.surName,
-			sender_photopath: user.image,
+		if (!supportMode) {
+			var buildedMessage = {
+				id: null,
+				sender_id: user.id,
+				sender_post: user.post,
+				sender_orgName: user.orgName,
+				message_text: messageText,
+				message_time: message_time,
+				sender_firstName: user.firstName,
+				sender_surName: user.surName
+			}
+		}
+		else {
+			var buildedMessage = {
+				id: null,
+				sender_id: support_id,
+				sender_post: null,
+				sender_orgName: null,
+				message_text: messageText,
+				message_time: message_time,
+				sender_firstName: 'Поддержка сайта metalmarket.pro',
+				sender_surName: null
+			}
 		}
 
 		const dbMessage = {
-			sender_id: user.id,
+			sender_id: supportMode ? support_id : user.id,
 			receiver_id: activeDialogId,
 			message_text: messageText
 		}
 
 		setMessages(buildedMessage)
-		messages_socket.emit('send_message', { receiver_id: activeDialogId, dbMessage: dbMessage, buildedMessage: buildedMessage })
-		// Внедрить очередь для оптимизации (не сейчас)
+		messages_socket.emit('send_message', { receiver_id: supportMode ? support_id : activeDialogId, dbMessage: dbMessage, buildedMessage: buildedMessage })
 	}
 	
 	const activeDialog = userDialogsMessages.values.dialogs[activeDialogIndex].messages.map(message => (
@@ -163,6 +182,7 @@ export function ChatsPage({ userDialogs, user, userStatus }) {
 					setActiveDialogId(dialog.dialog_user_id)
 					setActiveDialogIndex(index)
 					setDialogUserImage(dialog.dialog_user.image)
+					setMessageText('')
 					userDialogsMessages.setFieldValue('activeDialogMessages', formList(userDialogs[index].messages))
 				}
 			}}>
@@ -202,6 +222,7 @@ return (<>
 						</SimpleGrid>
 					</ScrollArea>
 					<Textarea
+						value={messageText}
 						autosize
 						minRows={2}
 						maxRows={4}

@@ -10,6 +10,9 @@ const imageToBase64 = require('image-to-base64')
 
 
 export async function getServerSideProps(context) {
+	const mobile = (context.req.headers['user-agent']
+	.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i) ? true : false)
+
 	const res = await axios.get('https://api.metalmarket.pro/newsquery', {
 		headers: {
 			'Accept': 'application/json'
@@ -23,19 +26,23 @@ export async function getServerSideProps(context) {
 		newsHot = news[0]
 		news = news.slice(1)
 	}
-
-	newsHot['image'] = await imageToBase64(newsHot.photopath)
-	let i;
-	for (i=0;i<news.length;++i) {
-		news[i]['image'] = await imageToBase64(news[i].photopath)
-	}
 	
+	let i;
+
+	if (!mobile) {
+		newsHot['image'] = await imageToBase64(newsHot.photopath)
+
+		for (i=0;i<news.length;++i) {
+			news[i]['image'] = await imageToBase64(news[i].photopath)
+		}
+	}
 	
 	const promos = await axios.get('https://api.metalmarket.pro/promosquery', {
 		headers: {
 			'Accept': 'application/json'
 		}
 	})
+
 	return {
 		props: {
 			news: news,
@@ -46,38 +53,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Index({ news, promos, newsHot, user }) {
-	const [isMobile, setIsMobile] = useState(false)
-
-	const [dollarPrice, setDollarPrice] = useState('')
-	const [euroPrice, setEuroPrice] = useState('')
-
-	const [metalls, setMetalls] = useState([])
-
-	useEffect(() => {
-		if (document.body.clientWidth < 900) {
-			setIsMobile(true)
-		}
-
-		axios.get('https://api.metalmarket.pro/getExchangeRates')
-			.then(function (response) {
-				const dollarPrice = response.data.dollar_price
-				const euroPrice = response.data.euro_price
-				setDollarPrice(dollarPrice)
-				setEuroPrice(euroPrice)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
-
-		axios.get('https://api.metalmarket.pro/getMetalsPrice')
-			.then(function (response) {
-				setMetalls(response.data.metals)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
-	}, [])
-
 	return (
 		<>
 			<Head>

@@ -42,16 +42,14 @@ import { useRouter } from 'next/router'
 import { LoginModal } from '../login/LoginModal';
 
 export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) => {
-	const router = useRouter();
-
-	const [login, setLogin] = useState('');
-	const [password, setPassword] = useState('');
+	const router = useRouter()
+	
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [opened, setOpened] = useState(false);
-	const [openedMobile, setOpenedMobile] = useState(false);
+	const [openedMobile, setOpenedMobile] = useState(false)
 
-	const theme = useMantineTheme();
+	const theme = useMantineTheme()
 
 	const [stock, setStock] = useState([])
 	const [metalls, setMetalls] = useState([])
@@ -85,7 +83,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 		image: <img src="/Sn.svg" height="20px" width="20px"/>
 
 	}
-];
+	]
 
 	const companyLogo = [{
 		image: <img src="/nornickel.svg" height="20px" width="20px"/>
@@ -118,53 +116,45 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 		image: <img src="/tmk.svg" height="20px" width="20px"/>
 
 	}
-];
-
-	const dictionary = {
-		'news': 'Новости',
-		'promos': 'Объявления',
-		'main': 'Главная',
-		'account': 'Аккаунт',
-		'edit': 'Изменить'
-	}
-	console.log(router.pathname.split('/'))
-	const items = ['main', ...router.pathname.split('/').filter(item => item !== '')].map((item, index) => (
-		<Anchor href={item === 'main' ? '/' : item} key={index}>
-			{dictionary[item]}
-		</Anchor>
-	));
+	];
+	// const items = ['main', ...router.pathname.split('/').filter(item => item !== '')].map((item, index) => (
+	// 	<Anchor href={item === 'main' ? '/' : item} key={index}>
+	// 		{dictionary[item]}
+	// 	</Anchor>
+	// ));
 
 	useEffect(() => {
 		if (document.body.clientWidth < 900) {
 			setIsMobile(true)
 		}
+		else {
+			axios.get('https://api.metalmarket.pro/getExchangeRates')
+				.then(function (response) {
+					const dollarPrice = response.data.dollar_price
+					const euroPrice = response.data.euro_price
+					setDollarPrice(dollarPrice)
+					setEuroPrice(euroPrice)
+				})
+				.catch(function (error) {
+					console.log(error);
+				})
 
-		axios.get('https://api.metalmarket.pro/getExchangeRates')
-			.then(function (response) {
-				const dollarPrice = response.data.dollar_price
-				const euroPrice = response.data.euro_price
-				setDollarPrice(dollarPrice)
-				setEuroPrice(euroPrice)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
+			axios.get('https://api.metalmarket.pro/getMetalsPrice')
+				.then(function (response) {
+					setMetalls(response.data.metals)
+				})
+				.catch(function (error) {
+					console.log(error);
+				})
 
-		axios.get('https://api.metalmarket.pro/getMetalsPrice')
-			.then(function (response) {
-				setMetalls(response.data.metals)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
-
-		axios.get('https://api.metalmarket.pro/getStockRates')
-			.then(function (response) {
-				setStock(response.data.stock)
-			})
-			.catch(function (error) {
-				console.log(error);
-			})
+			axios.get('https://api.metalmarket.pro/getStockRates')
+				.then(function (response) {
+					setStock(response.data.stock)
+				})
+				.catch(function (error) {
+					console.log(error);
+				})
+		}
 	}, [])
 
 	return (
@@ -241,7 +231,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 						</Navbar>
 					}
 					aside={<>
-						{!chats && <>
+						{!chats && !isMobile && <>
 							<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 								<Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 350 }} className={styles.aside}>
 									<div style={{ borderRadius: '5px', border: '1px #8d98a3 solid', padding: '10px' }}>
