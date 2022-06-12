@@ -6,7 +6,7 @@ import { Modal, Image, Avatar, Group, Title, Button, Badge, Input ,Text,Card , G
 // import styles from './PersonalData.module.scss'
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, React} from 'react';
 const axios = require('axios').default;
 import { checkToken } from '/middleware/axios.js';
 import { useRouter } from 'next/router'
@@ -130,125 +130,9 @@ return (<>
     </Head>
     {(userStatus === false) && <><h1 className="errorHeader">401 Unauthorized</h1><p className="errorText">Пожалуйста, авторизуйтесь</p></>}
     {(userStatus === true) && <>
-    <Card>   
-    {/* <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Group position="center">     
-            <Avatar
-                    radius={'50%'}
-                    size={90}
-                    src={'data:image/' + ';base64,' + user.image}
-                    alt="Avatar"
-                    />
-                <Button onClick={openAvatarModal} variant="outline"
-                    style={{fontSize:12, marginTop: "15%"}}> <Download
-                    size={8}
-                    strokeWidth={2}
-                    color={'#42aaff'} 
-                    />  Загрузить</Button>                                          
-             </Group>  
-             </MediaQuery> 
-        <Group position="apart" >      
-            <Group>                       
-            <SimpleGrid cols={1}> 
-                <MediaQuery smallerThan="sm" styles={{marginTop: 0, marginLeft:10}}><p style={{fontSize:25, marginBottom: 30, marginTop: 30}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</p></MediaQuery>
-                <p style={{fontSize:18, marginBottom: 18}}>
-                <Mail
-                size={20}
-                strokeWidth={2}
-                color={'#26194d'}
-                alt="Электронная почта"
-                title="Электронная почта"/>  {user.email}
-                </p>
-                <p style={{fontSize:18, marginBottom: 15}}>
-                <Phone 
-                size={20}
-                strokeWidth={2}
-                color={'#26194d'}/>  {user.phoneNumber}</p>
-                <p style={{fontSize:18, marginBottom: 15}}><Login 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Логин:</p>
-                <p style={{fontSize:18, marginBottom: 0}}><Lock 
-                    size={20}
-                    strokeWidth={2}
-                    color={'#26194d'}/>  Пароль:</p></SimpleGrid>
-            </Group>
-            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-            <Group>     
-            <SimpleGrid cols={1} style={{marginBottom:50, marginRight:50}}><Avatar
-                    radius={'50%'}
-                    size={90}
-                    src={'data:image/' + ';base64,' + user.image}
-                    alt="Avatar"
-                    />
-                <Button onClick={openAvatarModal} variant="outline"
-                    style={{fontSize:14, marginTop: "10%"}}> <Download
-                    size={18}
-                    strokeWidth={2}
-                    color={'#42aaff'} 
-                    />  Загрузить</Button>  
-                    </SimpleGrid>                         
-             </Group>  
-             </MediaQuery>          
-        </Group>
-
-        <Group style={{marginTop:20}} position="right">
-                <Modal 
-                    size="xl"
-                    opened={opened}
-                    onClose={() => setOpened(false)}>
-                    <YourData/>
-                </Modal>
-                <Pencil
-                    onClick={() => setOpened(true)}
-                    size={20}
-                    strokeWidth={2}
-                    color={'#42aaff'}
-                />
-        </Group>
-        <Group>
-        <SimpleGrid cols={1}>
-        <p style={{fontSize:18, marginBottom: 20, marginTop: 10}}><BuildingSkyscraper 
-                    size={20}
-                    strokeWidth={2}
-                     color={'#26194d'}/> {'Организация: ' + user.orgName}</p>
-                <p style={{fontSize:18, marginBottom: 20}}>
-                    <Home 
-                        size={20}
-                        strokeWidth={2}
-                        color={'#26194d'}/> {'Юридический адрес: ' + user.jurAdress}</p>
-                <p style={{fontSize:18, marginBottom: 20}}>
-                    <User 
-                        size={20}
-                        strokeWidth={2}
-                        color={'#26194d'}/> {'Должность: ' + user.post}</p>
-                <p style={{fontSize:18, marginBottom: 20}}>
-                    <FileText
-                        size={20}
-                        strokeWidth={2}
-                        color={'#26194d'}/> {'ИНН: ' + user.inn}</p>
-                <p style={{fontSize:18}}>
-                    <FileDescription 
-                         size={20}
-                         strokeWidth={2}
-                         color={'#26194d'}/> {'ОГРН: ' + user.ogrn}</p>
-                </SimpleGrid>
-        </Group>
-        <Group position="right">
-            <Modal 
-                size="xl"
-                opened={open}
-                onClose={() => setOpen(false)}>
-                 <JurData/>
-            </Modal>
-            <Pencil
-                onClick={() => setOpen(true)}
-                size={20}
-                strokeWidth={2}
-                color={'#42aaff'}
-                 />
-        </Group>      */}
-       <Group>
+    <Card>     
+    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+       <Group  style={{marginBottom:10}}>
        <PictureInPicture
          size={30}
          strokeWidth={1}/>
@@ -256,54 +140,80 @@ return (<>
                 Мой профиль
             </Text>
         </Group>
-         <Container my="md">
+    </MediaQuery>
+    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+       <Group  style={{marginBottom:10}}>
+       <PictureInPicture
+         size={20}
+         strokeWidth={1}/>
+            <Text weight={400} size="md">
+                Мой профиль
+            </Text>
+        </Group>
+    </MediaQuery>
+         {/* <Container my="md"> */}
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 1, minHeight: '75px'}]}>    
       <Card shadow="sm" p="lg">                
-        <Group direction="column">   
-        <Card.Section style={{marginLeft:"30%"}}>         
+       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+         <Group direction="column" style={{marginLeft:"20%"}}>   
+        <Card.Section style={{marginLeft:"5%"}}>         
             <Avatar
                     radius={'50%'}
-                    size={190}                   
+                    size={250}                   
                     src={'data:image/' + ';base64,' + user.image}
                     alt="Avatar"
                     />
                 <Button onClick={openAvatarModal} variant="outline"
-                    style={{fontSize:15, marginLeft:10, marginTop:10}}> <Download
+                    style={{fontSize:15, marginLeft:"25%", marginTop:"10%"}}> <Download
                     size={20}
                     strokeWidth={2}
                     color={'#42aaff'} 
                     />  Загрузить</Button>                  
-            </Card.Section>  
-            <Text align="center" style={{fontSize:25}}>{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</Text>             
-        </Group>  
-        <Group style={{}} position="right">
-                <Modal 
-                    size="xl"
-                    opened={opened}
-                    onClose={() => setOpened(false)}>
-                    <YourData/>
-                </Modal>
-                <Pencil
-                    onClick={() => setOpened(true)}
+            </Card.Section>                                  
+        </Group>
+        </MediaQuery> 
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+         <Group direction="column" style={{marginLeft:"20%"}}>   
+        <Card.Section style={{marginLeft:"5%"}}>         
+            <Avatar
+                    radius={'50%'}
+                    size={150}                   
+                    src={'data:image/' + ';base64,' + user.image}
+                    alt="Avatar"
+                    />
+                <Button onClick={openAvatarModal} variant="outline"
+                    style={{fontSize:15, marginLeft:"10%", marginTop:"10%"}}> <Download
                     size={20}
                     strokeWidth={2}
-                    color={'#42aaff'}
-                />
-        </Group>        
+                    color={'#42aaff'} 
+                    />  Загрузить</Button>                  
+            </Card.Section>                                  
+        </Group>
+        </MediaQuery> 
+        <MediaQuery smallerThan="sm" styles={{display: 'none' }}>
+            <Text style={{fontSize:25, marginTop:10}} align="center">{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</Text>              
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{display: 'none' }}>
+            <Text style={{fontSize:20, marginTop:5}} align="center">{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</Text>              
+        </MediaQuery>
         </Card>     
         <Card shadow="sm" p="lg">
-            <Text weight={400} size="lg" align="center" style={{marginBottom:20, borderBottom: " 1px solid #DCDCDC"}}>
-                Ваши личные и юридические данные
-            </Text>                   
-        <Group direction="column">
-        <Group>
+        <MediaQuery smallerThan="sm" styles={{fontSize: 15}}>
+             <Text weight={400} size="lg" align="center" style={{marginBottom:20, borderBottom: " 1px solid #DCDCDC", color:"#7d7f7d"}}>
+                Личные данные
+            </Text> 
+        </MediaQuery>                  
+        <Group direction="column">  
+        <MediaQuery smallerThan="sm" styles={{display: 'none' }}>
+        <SimpleGrid>
+                <Group>
                     <Mail               
                         size={20}
                         strokeWidth={1}
                         color={'#FF4F00'}
                         alt="Электронная почта"
                         title="Электронная почта"/>
-                    <p style={{fontSize:17}}>
+                    <p style={{fontSize:18}}>
                     {user.email}
                     </p>
                 </Group>
@@ -312,10 +222,58 @@ return (<>
                     size={20}
                     strokeWidth={1}
                     color={'#FF4F00'}/>
-                    <p style={{fontSize:17}}>
+                    <p style={{fontSize:18}}>
                     {user.phoneNumber}</p>
-                </Group>                            
-            <Group>
+                </Group>
+                </SimpleGrid> 
+        </MediaQuery>   
+                <MediaQuery largerThan="sm" styles={{display: 'none' }}>
+                <SimpleGrid>
+                <Group>
+                    <Mail               
+                        size={15}
+                        strokeWidth={1}
+                        color={'#FF4F00'}
+                        alt="Электронная почта"
+                        title="Электронная почта"/>
+                    <p style={{fontSize:15}}>
+                    {user.email}
+                    </p>
+                </Group>
+                <Group>
+                    <Phone 
+                    size={15}
+                    strokeWidth={1}
+                    color={'#FF4F00'}/>
+                    <p style={{fontSize:15}}>
+                    {user.phoneNumber}</p>
+                </Group>
+                </SimpleGrid> 
+                </MediaQuery>              
+                </Group>            
+                <Group style={{}} position="right">
+                <Modal 
+                    size="xl"
+                    opened={opened}
+                    onClose={() => setOpened(false)}>
+                    <YourData/>
+                </Modal>
+                <Pencil
+                    onClick={() => setOpened(true)}
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'}
+                />
+        </Group> 
+            <MediaQuery smallerThan="sm" styles={{fontSize: 15,marginTop:10}}>             
+                <Text weight={400} size="lg" align="center" style={{marginBottom:20,marginTop:10, borderBottom: " 1px solid #DCDCDC", color:"#7d7f7d"}}>
+                Юридические данные
+            </Text> 
+            </MediaQuery> 
+            <Group direction="column">                           
+            <MediaQuery smallerThan="sm" styles={{display: 'none' }}>
+            <SimpleGrid>
+            <Group>               
             <BuildingSkyscraper 
                     size={20}
                     strokeWidth={1}
@@ -355,6 +313,52 @@ return (<>
                 <p style={{fontSize:17}}>
                      {'ОГРН: ' + user.ogrn}</p> 
                 </Group>  
+                </SimpleGrid>
+            </MediaQuery>
+            <MediaQuery largerThan="sm" styles={{display: 'none' }}>
+            <SimpleGrid>
+            <Group>               
+            <BuildingSkyscraper 
+                    size={15}
+                    strokeWidth={1}
+                     color={'#FF4F00'}/>
+            <p style={{fontSize:15}}>
+                 {'Организация: ' + user.orgName}</p>
+            </Group>
+                <Group>
+                <Home 
+                        size={15}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:15}}>
+                     {'Юр. адрес: ' + user.jurAdress}</p>
+                </Group>
+                <Group>
+                <User 
+                        size={15}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:15}}>
+                    {'Должность: ' + user.post}</p>
+                </Group>
+                <Group>
+                <FileText
+                        size={15}
+                        strokeWidth={1}
+                        color={'#FF4F00'}/>
+                <p style={{fontSize:15}}>
+                    {'ИНН: ' + user.inn}</p>
+                </Group>
+                <Group>
+                <FileDescription 
+                         size={15}
+                         strokeWidth={1}
+                         color={'#FF4F00'}/>
+                <p style={{fontSize:15}}>
+                     {'ОГРН: ' + user.ogrn}</p> 
+                </Group>  
+                </SimpleGrid>
+            </MediaQuery>
             </Group>
             <Group position="right">
             <Modal 
@@ -372,10 +376,7 @@ return (<>
         </Group>                 
             </Card>  
       </SimpleGrid>
-    </Container>
-    </Card>
-    </>}
-    {(userStatus === true) && (user.role === 'admin') && 
+      {(userStatus === true) && (user.role === 'admin') && 
     <>
         <MediaQuery smallerThan="sm" styles={{ fontSize: 20, marginLeft: 10}}><Text style={{margin: "2% 0"}} size="lg">Заявки на регистрацию</Text></MediaQuery>
         <Grid>
@@ -383,6 +384,8 @@ return (<>
         </Grid>
     </>
     }
+    </Card>
+    </>}
     <style jsx>{`
         .email:hover:after {
             content: attr(data-name);
