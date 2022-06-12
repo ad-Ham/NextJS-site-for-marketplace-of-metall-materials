@@ -1,15 +1,15 @@
-import { ModalsProvider } from '@mantine/modals';
-import { MantineProvider, Space} from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals'
+import { useScrollLock } from '@mantine/hooks'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MainLayout.module.scss'
-import { UserButton } from '../mainlayout/UserButton'
-import { useState, useEffect } from 'react';
-import { axios, checkToken } from '/middleware/axios.js';
-import { PersonalData } from '../profile/PersonalData';
-import { MenuUser } from '../menu/Menu';
+import { useState, useEffect } from 'react'
+import { axios, checkToken } from '/middleware/axios.js'
+import { MenuUser } from '../menu/Menu'
+import { LoginModal } from '../login/LoginModal'
 import {
 	AppShell,
+	MantineProvider,
 	Button,
 	Navbar,
 	Header,
@@ -39,14 +39,14 @@ import {
 	Users, Help, Certificate, AddressBook } from 'tabler-icons-react';
 import { useRouter } from 'next/router'
 
-import { LoginModal } from '../login/LoginModal';
 
 export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) => {
 	const router = useRouter()
 	
 	const [isMobile, setIsMobile] = useState(false)
 
-	const [opened, setOpened] = useState(false);
+	const [opened, setOpened] = useState(false)
+	const [scrollLocked, setScrollLocked] = useScrollLock()
 	const [openedMobile, setOpenedMobile] = useState(false)
 
 	const theme = useMantineTheme()
@@ -182,7 +182,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									</div>	
 								</MediaQuery>
 							</Navbar.Section>
-							<Navbar.Section grow component={ScrollArea}>
+							<Navbar.Section grow component={ScrollArea} onClick={() => setOpenedMobile(false)}>
 								<Stack spacing='md'>
 									<Link href='/help' passHref style={{ cursor: 'pointer' }}>
 										<Button className={styles.navbarSectionButton} variant="subtle" color="gray" size="md" leftIcon={<Help />} style={{ color: '#e84f22' }}>Техподдежка</Button>
@@ -223,7 +223,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 									<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 										<Group spacing={10}>
 											<ThemeIcon color="green" variant="subtle" size="md" style={{marginLeft:10}}><Users/></ThemeIcon>
-											<Text>{`${onlineUsers}`}</Text>
+											<Text>{`Онлайн: ${onlineUsers}`}</Text>
 										</Group>
 									</MediaQuery>							
 									</Stack>
@@ -358,6 +358,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 												src="/logo.svg"
 												width={250}
 												height={65}
+												onClick={() => setOpenedMobile(false)}
 											/>								
 										</Link>																													
 									<Text style={{fontSize:12, marginTop: -30}}>© ООО &quot;Технические системы&quot;, 2022</Text>																													
@@ -372,7 +373,10 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 								<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
 									<Burger
 										opened={opened}
-										onClick={() => setOpenedMobile((o) => !o)}
+										onClick={() => {
+											setOpenedMobile((o) => !o)
+											// setScrollLocked((c) => !c)
+										}}
 										size="sm"
 										color={theme.colors.gray[6]}
 										mr="xl"
@@ -387,6 +391,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 												src="/logo.svg"
 												width={300}
 												height={75}
+												onClick={() => setOpenedMobile(false)}
 											/>
 										</Link>
 									</MediaQuery>
