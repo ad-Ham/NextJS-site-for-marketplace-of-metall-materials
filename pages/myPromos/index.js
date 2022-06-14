@@ -30,7 +30,7 @@ const scaleY = {
     common: { transformOrigin: 'top' },
     transitionProperty: 'transform, opacity',
   };
-const MyPromos = ({ promos }) => {
+const MyPromos = ({ promos ,user}) => {
     const [deletePromo, setDeletePromo] = useState(false )
     const [editPromo, setEditPromo] = useState(false)
 
@@ -305,14 +305,18 @@ const MyPromos = ({ promos }) => {
                 <tbody>
                     {rows}
                     <tr>
-                    <td>                   
-                            <Modal
-                                    size="60%"
-                                    opened={editPromo}
-                                    onClose={() => setEditPromo(false)}                                   
-                                >                                   
-                                    <EditPromos />
-                            </Modal>
+                    <td>                                              
+                            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                                <Group>
+                                    <Modal
+                                            size="xl"
+                                            opened={editPromo}
+                                            onClose={() => setEditPromo(false)}                                   
+                                        >                                   
+                                            <EditPromos user={user}/>
+                                    </Modal>
+                                </Group>
+                            </MediaQuery>                         
                             <Modal
                                     opened={deletePromo}
                                     onClose={() => setDeletePromo(false)}                             

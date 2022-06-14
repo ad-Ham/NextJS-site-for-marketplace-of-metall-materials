@@ -122,10 +122,10 @@ const News = ({ news, newsHot, user }) => {
 				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 				<Grid justify={"space-between"} columns={24}>
 					<Grid.Col span={4}>
-						<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} width='80%' layout="fill" />
+					<Image src={'data:image/'+newsObj.photopath.substr(newsObj.photopath.length-3)+';base64,' + newsObj.image} width={"80%"} alt="Norway" layout="fill" />
 					</Grid.Col>
 					<Grid.Col span={20}>
-						<Text lineClamp={4} size="sm" style={{ color: '#868e96', lineHeight: 1.5 }}>
+						<Text lineClamp={4} size="md" style={{ color: '#868e96', lineHeight: 1.5 }}>
 							{newsObj.desc}
 						</Text>						
 						{(newsObj.pinned === 1) &&<><Badge color="pink" variant="light">
@@ -143,7 +143,6 @@ const News = ({ news, newsHot, user }) => {
 							${newsObj.news_date.slice(11)}`
 							}
 						</Text>
-
 					</Grid.Col>
 					<Grid.Col span={4} justify={'center'} align={'center'}>
 						<Text style={{ marginTop: '20px' }} color="gray" size="sm">{`${newsObj.comments_count} комментариев`}</Text>

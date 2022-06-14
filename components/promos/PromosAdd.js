@@ -503,7 +503,7 @@ export function PromosAdd({ user }) {
                             <div style={{marginTop: 15}}>
                                 {itemFields}
                             </div>                         
-                                <SimpleGrid cols={3} justify="center" align="center" style={{marginTop: 15}}>
+                                <SimpleGrid cols={3} justify="center" align="left" style={{marginTop: 15}}>
                                 <InputWrapper
                                     required
                                     label="Цена товара"
@@ -543,7 +543,7 @@ export function PromosAdd({ user }) {
                                 />
                                 </InputWrapper>
                             </SimpleGrid>                         
-                            <SimpleGrid cols={2} justify="center" align="center" style={{marginTop: 15}}>
+                            <SimpleGrid cols={2} justify="center" align="left" style={{marginTop: 15}}>
                             <InputWrapper
                                     required
                                     label="Страна"

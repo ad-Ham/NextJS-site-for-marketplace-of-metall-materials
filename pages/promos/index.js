@@ -48,13 +48,12 @@ const [rows, setRows] = useState([...promos].filter(el => el.id).map((element) =
 						(date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString()) + '.' +
 						((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '.' +
 						date.getFullYear() + ' ' + element.time.slice(0,5)
-					}</Tooltip></Link>
+					}
+					</Tooltip></Link>
 				</td>
 				<td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.category}</Tooltip></Link></td>
-				<td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.title}</Tooltip></Link></td>
-				<td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.user.orgName}</Tooltip></Link></td>
-				<td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.region}</Tooltip></Link></td>
-			
+				<td><Link href={'/promos/'+element.id}><Tooltip label={categories} position="bottom" withArrow>{element.title}</Tooltip></Link></td>		
+				
 			</tr>
 		</tbody>
 		</>
@@ -145,9 +144,8 @@ function updateSectionRows(sections, subsections, category) {
 			}
 		</td>
 		<td>{element.category}</td>
-		<td>{element.title}</td>
-		<td>{element.organizationName}</td>
-		<td>{element.region}</td>
+		<td>{element.title}</td>		
+		<td></td>
 	</tr>)
 }));
 	})
@@ -305,7 +303,7 @@ if (e !== null) {
 					<th>Дата</th>
 					<th>Категория</th>
 					<th>Название объявления</th>
-					<th>Организация</th>
+					<th></th>
 				</tr>
 			</thead>
 				{rows}

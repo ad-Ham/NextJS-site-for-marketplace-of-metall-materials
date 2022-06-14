@@ -6,7 +6,7 @@ import styles from '../styles/index.module.scss'
 import { useState, useEffect } from 'react'
 import { CaretUp, CaretDown } from 'tabler-icons-react';
 const axios = require('axios').default;
-const imageToBase64 = require('image-to-base64')
+// const imageToBase64 = require('image-to-base64')
 
 
 export async function getServerSideProps(context) {
@@ -30,10 +30,10 @@ export async function getServerSideProps(context) {
 	let i;
 
 	if (!mobile) {
-		newsHot['image'] = await imageToBase64(newsHot.photopath)
+		// newsHot['image'] = await imageToBase64(newsHot.photopath)
 
 		for (i=0;i<news.length;++i) {
-			news[i]['image'] = await imageToBase64(news[i].photopath)
+			// news[i]['image'] = await imageToBase64(news[i].photopath)
 		}
 	}
 	
@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
 		props: {
 			news: news,
 			promos: promos.data.promos,
-			newsHot: newsHot
+			// newsHot: newsHot
 		},
 	}
 }
