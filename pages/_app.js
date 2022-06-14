@@ -16,7 +16,6 @@ const MyApp = ({ Component, pageProps }) => {
 	const { height, width } = useViewportSize()
 
 	const [loadingUser, setLoadingUser] = useState(true)
-	const [chats, setChats] = useState(undefined)
 	const [userStatus, setUserStatus] = useState(null)
 	const [user, setUser] = useState({
 		id : null,
@@ -52,9 +51,6 @@ const MyApp = ({ Component, pageProps }) => {
 	}
 
 	useEffect(() => {
-		if (router.pathname === '/chats') setChats(true)
-		else setChats(false)
-
 		if (loadingUser) changeUserStatus()
 		
 		users_socket.on('update_online_users', (data) => {
@@ -85,13 +81,12 @@ const MyApp = ({ Component, pageProps }) => {
 				height: '100vh',
 			}}>
 				<Group spacing='xl' position="center">
-					
-						<div className="loader">
+					<div className="loader">
 						<div className="inner one"></div>
 						<div className="inner two"></div>
 						<div className="inner three"></div>
-						</div>
-					
+					</div>
+				
 					<Image
 						alt="metal-merket.pro"
 						src="/logo.svg"
@@ -99,11 +94,11 @@ const MyApp = ({ Component, pageProps }) => {
 						display: 'block',
 						width: '50%'
 						}}
-						/>
+					/>
 				</Group>
 			</div>
 			:
-			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus} chats={chats}>
+			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus}>
 				<Component {...pageProps} user={user} userStatus={userStatus}/>
 			</MainLayout>	
 		}
@@ -113,8 +108,8 @@ const MyApp = ({ Component, pageProps }) => {
 			position: absolute right;
 			top: calc(50% - 32px);
 			left: calc(50% - 32px);
-			width: 64px;
-			height: 64px;
+			width: ${(width + height) / 45}px;
+			height: ${(width + height) / 45}px;
 			border-radius: 50%;
 			perspective: 800px;
 		  }

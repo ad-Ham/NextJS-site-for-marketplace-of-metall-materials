@@ -15,8 +15,22 @@ import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router'
 
 
+const savePromo = (data, user) => {
+    axios.post('http://localhost:3001/uploadPromo', {data: data, user_id: user.id})
+    .then(function() {
+        showNotification({
+            title: 'Объявление оптравлено на рассмотрение',
+            message: 'Дождитесь проверки данных. Обычно проверка объявления занимает от 5 минут до 24 часов',
+            autoClose: false,
+            
+            color: "green"
+        })
+        setTimeout(router.reload(window.location.pathname), 5000);
+    })
+}
+
+
 export function PromosAdd({ user }) {
-    const router = useRouter()
     const sizeFields = ['Диаметр', 'Сторона', 'Ширина', 'Длина листа', 'Толщина', 'Высота', 'Номер', 'Длина']
 
     const [preview, setPreview] = useState(false)
@@ -29,7 +43,6 @@ export function PromosAdd({ user }) {
     const [metal, setMetal] = useState('')
     const [size, setSize] = useState('')
     const [price, setPrice] = useState('')
-    const [priceData, setPriceData] = useState('')
     const [currency, setCurrency] = useState('')
     const [count, setCount] = useState('')
     const [country, setCountry] = useState('Россия')
@@ -50,13 +63,13 @@ export function PromosAdd({ user }) {
 
     const data = useForm({
         initialValues: {
+            'user': user,
             'title': '',
             'category': '',
             'items': formList([]),
             'description': ''
         }
     })
-
 
     function setItemFullData(items, metalName, stamps, stampName) {
         setItemsData(items)
@@ -296,7 +309,7 @@ export function PromosAdd({ user }) {
         setConcatSizeChars()
     }
 
-    function setConcatSizeChars(callback) {
+    function setConcatSizeChars() {
         var values = []
         var char_values = []
         
@@ -340,20 +353,6 @@ export function PromosAdd({ user }) {
 
         setAddPromo(false)
         checkCategory()
-    }
-
-    const savePromo = () => {
-        axios.post('https://api.metalmarket.pro/uploadPromo', {data: data, user_id: user.id})
-        .then(function() {
-            showNotification({
-                title: 'Объявление оптравлено на рассмотрение',
-                message: 'Дождитесь проверки данных. Обычно проверка объявления занимает от 5 минут до 24 часов',
-                autoClose: false,
-                
-                color: "green"
-            })
-            setTimeout(router.reload(window.location.pathname), 45000);
-        })
     }
 
     return (<>
@@ -780,7 +779,7 @@ export function PromosAdd({ user }) {
                 <Grid.Col span={3}>
                     <Button type="submit"
                     disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')} 
-                    onClick={() => savePromo()}>
+                    onClick={() => savePromo(data, user)}>
                     Разместить объявление
                     </Button>
                 </Grid.Col>
@@ -797,18 +796,17 @@ export function PromosAdd({ user }) {
                         onClose={() => setPreview(false)}
                         title="Предпросмотр объявления"
                     >
-                    <PromoBlock promoData={data.values}/>
+                    <PromoBlock promo={data}/>
                     </Modal>
                 </Grid.Col>
             </Grid>
         </MediaQuery> 
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                <Group position="center" >
-                
                     <Button type="submit"
                     disabled={(data.values.items.length == 0) || (data.values.title === '') || (data.values.promoCategory === '') || (data.values.description === '')} 
-                    onClick={() => savePromo()}>
-                    Разместить объявление
+                    onClick={() => savePromo(data, user)}>
+                        Разместить объявление
                     </Button>
                 
                     <Button 

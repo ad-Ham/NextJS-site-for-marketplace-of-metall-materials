@@ -40,9 +40,10 @@ import {
 import { useRouter } from 'next/router'
 
 
-export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) => {
+export const MainLayout = ({ onlineUsers, children, user, userStatus }) => {
 	const router = useRouter()
 	
+	const [chats, setChats] = useState(false)
 	const [isMobile, setIsMobile] = useState(false)
 
 	const [opened, setOpened] = useState(false)
@@ -124,6 +125,9 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 	// ));
 
 	useEffect(() => {
+		if (router.pathname === '/chats') setChats(true)
+		else setChats(false)
+
 		if (document.body.clientWidth < 900) {
 			setIsMobile(true)
 		}
@@ -155,7 +159,7 @@ export const MainLayout = ({ onlineUsers, children, user, userStatus, chats }) =
 					console.log(error);
 				})
 		}
-	}, [])
+	}, [router])
 
 	return (
 		<>
