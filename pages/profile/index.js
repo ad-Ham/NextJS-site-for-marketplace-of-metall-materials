@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Mail, Phone, Lock, BuildingSkyscraper,Download,Trash, Home,Login, FileText,Pencil, FileDescription,Edit, User, PictureInPicture } from 'tabler-icons-react';
 import Profilepicture from '/public/profilepicture.svg'
 import Link from 'next/link'
-import { Modal, Image, Avatar, Group, Title, Button, Badge, Input ,Text,Card , Grid, MediaQuery,SimpleGrid,Container} from '@mantine/core';
+import { Modal,Avatar, Group, Title, Button, Badge, Input ,Text,Card , Grid, MediaQuery,SimpleGrid,Container} from '@mantine/core';
 // import styles from './PersonalData.module.scss'
 import { YourData } from '../../components/editprofile/YourData';
 import { JurData } from '../../components/editprofile/JurData';
@@ -13,25 +13,9 @@ import { useRouter } from 'next/router'
 import { useModals } from '@mantine/modals';
 
 
-export async function getServerSideProps(context) {
-	const res = await axios.get('https://api.metalmarket.pro/getUnapprovedUsers', {
-		headers: {
-			'Accept': 'application/json'
-		}
-	})
-	
-	const unapprovedUsers = res.data.users
-
-	return {
-		props: {
-			unapprovedUsers: unapprovedUsers
-		}
-	}
-}
-
-
-const PersonalData = ({ user, userStatus, unapprovedUsers=[] }) => {
+const PersonalData = ({ user, userStatus }) => {
     const router = useRouter();
+    const [users, setUsers] = useState([])
     
     const modals = useModals();
 
@@ -39,16 +23,14 @@ const PersonalData = ({ user, userStatus, unapprovedUsers=[] }) => {
     const [open, setOpen] = useState(false);
 
     const handleApprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/approveUser', {email: e.target.id})
-        .then(function() {router.reload(window.location.pathname)})
+        await axios.post('https://api.metalmarket.pro/approveUser', {email:e.target.id})
     }
 
     const handleDisapprove = async(e) => {
-        await axios.post('https://api.metalmarket.pro/disapproveUser', {email: e.target.id})
-        .then(function() {router.reload(window.location.pathname)})
+        await axios.post('https://api.metalmarket.pro/disapproveUser', {email:e.target.id})
     }
 
-    const showUsers = unapprovedUsers.map(el => {
+    const showUsers = users.map(el => {
             return (<Grid.Col span={12} key={'0' + el.id}>
                 <Card p="sm" shadow="xl" style={{ marginBottom: '10px', minHeight: '75px' }}>
                     <Group position="apart" style={{ marginBottom: 5 }}>
@@ -196,22 +178,22 @@ return (<>
                     color={'#FF4F00'}/>
                     <p style={{fontSize:18}}>
                     {user.phoneNumber}</p>
-                </Group>                          
-                {/* <Group style={{}} position="right">
-                <Modal 
-                    size="xl"
-                    opened={opened}
-                    onClose={() => setOpened(false)}>
-                    <YourData/>
-                </Modal>
-                <Pencil
-                    onClick={() => setOpened(true)}
-                    size={20}
-                    strokeWidth={2}
-                    color={'#42aaff'}
-                />
-        </Group> */}
-        </Group>           
+                </Group>                                      
+          </Group> 
+             <Group position="right" >
+                    <Modal 
+                        size="xl"
+                        opened={opened}
+                        onClose={() => setOpened(false)}>
+                        <YourData user={user}/>
+                    </Modal>
+                    <Pencil
+                        onClick={() => setOpened(true)}
+                        size={20}
+                        strokeWidth={2}
+                        color={'#42aaff'}
+                     />
+                </Group>          
                 <Text weight={400} size="lg" align="center" style={{marginBottom:20,marginTop:10, borderBottom: " 1px solid #DCDCDC", color:"#7d7f7d"}}>
                 Юридические данные
             </Text> 
@@ -259,12 +241,12 @@ return (<>
                 </Group>  
                 </SimpleGrid>              
             </Group>
-            {/* <Group position="right">
+            <Group position="right">
             <Modal 
                 size="xl"
                 opened={open}
                 onClose={() => setOpen(false)}>
-                 <JurData/>
+                 <JurData user={user}/>
             </Modal>
             <Pencil
                 onClick={() => setOpen(true)}
@@ -272,7 +254,7 @@ return (<>
                 strokeWidth={2}
                 color={'#42aaff'}
                  />
-        </Group>                  */}
+        </Group>                 
             </Card>
         </Grid.Col>  
         <Grid.Col span={4}>     
@@ -325,6 +307,20 @@ return (<>
             </Text>                  
         <Group direction="column">  
             <Text style={{fontSize:20}} align="center">{user.surName + ' ' + user.firstName+ ' ' + user.lastName}</Text>                 
+            <Group >
+                <Modal 
+                    size="xl"
+                    opened={opened}
+                    onClose={() => setOpened(false)}>
+                    <YourData user={user}/>
+                </Modal>
+                <Pencil
+                    onClick={() => setOpened(true)}
+                    size={20}
+                    strokeWidth={2}
+                    color={'#42aaff'}
+                />
+             </Group>
                 <Group>
                     <Mail               
                         size={15}
@@ -343,21 +339,7 @@ return (<>
                     color={'#FF4F00'}/>
                     <p style={{fontSize:15}}>
                     {user.phoneNumber}</p>
-                </Group>                          
-                {/* <Group style={{}} position="right">
-                <Modal 
-                    size="xl"
-                    opened={opened}
-                    onClose={() => setOpened(false)}>
-                    <YourData/>
-                </Modal>
-                <Pencil
-                    onClick={() => setOpened(true)}
-                    size={20}
-                    strokeWidth={2}
-                    color={'#42aaff'}
-                />
-        </Group> */}
+                </Group>                                        
         </Group>           
                 <Text weight={400} size="md" align="center" style={{marginBottom:15,marginTop:15, borderBottom: " 1px solid #DCDCDC", color:"#7d7f7d"}}>
                 Юридические данные
@@ -406,12 +388,12 @@ return (<>
                 </Group>  
                 </SimpleGrid>              
             </Group>
-            {/* <Group position="right">
+            <Group position="right">
             <Modal 
                 size="xl"
                 opened={open}
                 onClose={() => setOpen(false)}>
-                 <JurData/>
+                 <JurData user={user}/>
             </Modal>
             <Pencil
                 onClick={() => setOpen(true)}
@@ -419,13 +401,13 @@ return (<>
                 strokeWidth={2}
                 color={'#42aaff'}
                  />
-        </Group>                  */}
+        </Group>                 
             </Card>
             </Grid.Col>
         </Grid>           
       
       </MediaQuery>
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+      {/* <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <Group  style={{marginBottom:15, marginTop:15}}>
         <Edit
             size={30}
@@ -458,7 +440,7 @@ return (<>
             <label style={{fontSize: 15}}>ОГРН:<Input placeholder="Введите ваш ОГРН" /></label>
         </SimpleGrid>
         <Group position="center"><Button variant="outline" style={{marginTop:15}} align="center">Сохранить изменения</Button>
-        <Button variant="outline" style={{marginTop:15}} align="center">Отменить</Button></Group>
+        <Button variant="outline" style={{marginTop:15}} align="center">Отменить</Button></Group> */}
       {(userStatus === true) && (user.role === 'admin') && 
     <>
         <MediaQuery smallerThan="sm" styles={{ fontSize: 17, marginLeft: 10}}><Text style={{margin: "2% 0"}} size="lg">Заявки на регистрацию</Text></MediaQuery>

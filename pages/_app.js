@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../components/Layout/MainLayout'
 import { showNotification } from '@mantine/notifications'
-import { Group, Image } from '@mantine/core'
+import { Group, Image,MediaQuery } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks';
 import '/styles/_app.scss'
 import { axios, checkToken } from '../middleware/axios'
@@ -74,29 +74,59 @@ const MyApp = ({ Component, pageProps }) => {
 	return (
 		<>
 		{loadingUser ?
-			<div style = {{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-				height: '100vh',
-			}}>
-				<Group spacing='xl' position="center">
-					<div className="loader">
-						<div className="inner one"></div>
-						<div className="inner two"></div>
-						<div className="inner three"></div>
-					</div>
+			// <div style = {{
+			// 	display: 'flex',
+			// 	alignItems: 'center',
+			// 	justifyContent: 'center',
+			// 	height: '100vh',
+			// }}>
+			// 	<div spacing='xl' position="center">
+			// 		<div className="loader">
+			// 			<div className="inner one"></div>
+			// 			<div className="inner two"></div>
+			// 			<div className="inner three"></div>
+			// 		</div>
 				
+			// 		<Image
+			// 			alt="metal-merket.pro"
+			// 			src="/logo.svg"
+			// 			style={{
+			// 			display: 'block',
+			// 			width: '50%'
+			// 			}}
+			// 		/>
+			// 	</div>
+			// </div>
+		
+			<div style={{
+				position: 'relative',
+				alignItems: 'center',
+				display: 'inline-flex',
+				justifyContent: 'center',
+				width: '100%',
+				marginLeft: '10%',
+				height: '100vh'
+			}}>							
+					<div className="loader">
+			 			<div className="inner one"></div>
+		 				<div className="inner two"></div>
+						<div className="inner three"></div>
+			 			
+					</div>					
+					<div>							
 					<Image
-						alt="metal-merket.pro"
-						src="/logo.svg"
-						style={{
-						display: 'block',
-						width: '50%'
-						}}
-					/>
-				</Group>
+			 			alt="metal-merket.pro"
+			 			src="/logo.svg"
+			 			style={{
+						marginLeft:10,
+			 			display: 'block',
+			 			width: '50%'
+			 			}}
+			 		/>
+					</div>
+																	
 			</div>
+		
 			:
 			<MainLayout onlineUsers={currOnlineUsers} user={user} userStatus={userStatus}>
 				<Component {...pageProps} user={user} userStatus={userStatus}/>

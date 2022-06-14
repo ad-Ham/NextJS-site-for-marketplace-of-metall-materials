@@ -1,15 +1,27 @@
 import { Grid, Input, Button,MediaQuery,SimpleGrid, Group} from "@mantine/core"
+import { useForm } from '@mantine/form';
 
 
-export const JurData = () => {
+export const JurData = ({ user }) => {
+    const userChange = useForm({
+        initialValues: {    
+            orgName: user.orgName,  
+            jurAdress: user.jurAdress,
+            position:user.position,
+            inn: user.inn,
+            ogrn: user.ogrn,
+            termsOfService: false
+        }
+    })
+    console.log(userChange.values)
     return (<>
     <h3 style={{fontSize: 20, marginBottom:30}} align="center">Ваши юридические данные</h3>      
-            <SimpleGrid cols={1}>
-                    <label style={{fontSize: 15, marginBottom:-10}}>Организация:<Input placeholder="Введите вашу организацию"/></label>
-                    <label style={{fontSize: 15, marginBottom:-10}}>Юридический адрес:<Input placeholder="Введите ваш юридический адрес" /></label>
-                    <label style={{fontSize: 15, marginBottom:-10}}>Должность:<Input placeholder="Введите вашу должность" /></label>         
-                    <label style={{fontSize: 15, marginBottom:-10}}>ИНН:<Input placeholder="Введите ваш ИНН" /></label>
-                    <label style={{fontSize: 15}}>ОГРН:<Input placeholder="Введите ваш ОГРН" /></label>
+            <SimpleGrid cols={1} onSubmit={userChange.onSubmit((values) => handleSubmit(values))}>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Организация:<Input placeholder="Введите вашу организацию" {...userChange.getInputProps('orgName')}/></label>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Юридический адрес:<Input placeholder="Введите ваш юридический адрес" {...userChange.getInputProps('jurAdress')}/></label>
+                    <label style={{fontSize: 15, marginBottom:-10}}>Должность:<Input placeholder="Введите вашу должность" {...userChange.getInputProps('position')}/></label>         
+                    <label style={{fontSize: 15, marginBottom:-10}}>ИНН:<Input placeholder="Введите ваш ИНН" {...userChange.getInputProps('inn')}/></label>
+                    <label style={{fontSize: 15}}>ОГРН:<Input placeholder="Введите ваш ОГРН" {...userChange.getInputProps('ogrn')}/></label>
             <Group position="center"><Button variant="outline" style={{marginTop:10}} align="center">Сохранить изменения</Button></Group>
         
         </SimpleGrid>

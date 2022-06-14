@@ -84,12 +84,12 @@ const News = ({ news, newsHot, user }) => {
 				</Group>
 				 </Group>
 				</MediaQuery>
-				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+				<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>					
 					<Group position="apart">
-					<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-						<Link href={"/news/" + newsObj.id} passHref><Title order={3} weight={500}>{newsObj.title}</Title></Link>
+					<Group style={{ marginBottom: 10, marginTop: 0, maxWidth:'90%'}}>
+						<Link href={"/news/" + newsObj.id} passHref><Title order={4} weight={500}>{newsObj.title}</Title></Link>
 					</Group>
-					<Group>
+					<Group position="right"  style={{ marginBottom:10}}>
 						{user.role === 'admin' && <>
 							<Link href={'/news/edit'} passHref>
 								<Pencil	
@@ -108,25 +108,7 @@ const News = ({ news, newsHot, user }) => {
 								/>
 							</Link>
 						</>}
-					</Group>
-					<Group >
-						<Link href={'/news/edit'} passHref>
-							<Pencil	
-							cursor={"pointer"}	
-							size={20}
-							strokeWidth={1}
-							color={'blue'}
-							/>
-						</Link>
-						<Link href="#" passHref>
-							<X		
-							cursor={"pointer"}
-							size={20}
-							strokeWidth={1}
-							color={'blue'}
-							/>
-						</Link>
-							</Group>
+					</Group>					
 							</Group>
 				</MediaQuery>
 				<MediaQuery largerThan="sm" styles={{ display: 'none' }}>
@@ -250,7 +232,7 @@ const News = ({ news, newsHot, user }) => {
 					<MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
 						<Group position="apart">
 							<Group position="apart" style={{ marginBottom: 5, marginTop: 0 }}>
-								<Link href={"/news/" + newsHot.id} passHref><Title order={3} weight={500}>{newsHot.title}</Title></Link>
+								<Link href={"/news/" + newsHot.id} passHref><Title order={4} weight={500}>{newsHot.title}</Title></Link>
 							</Group>							
 							<Group >
 								{user.role === 'admin' && <>
